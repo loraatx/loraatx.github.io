@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoRaATX - Kickstarter Campaign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            color: #333;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            text-decoration: none;
             color: #333;
         }
         header {
@@ -56,6 +75,13 @@
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
     <header>
         <h1>LoRaATX</h1>
         <p>A license free open source Internet of Things network covering all of Austin, Texas</p>
@@ -72,11 +98,16 @@
         </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section" id="about">
         <h2>About LoRaATX</h2>
         <p>LoRaATX.City is the website for the kickstarter campaign to develop 3 case study demonstrations of possible uses for a long range IoT network in Austin</p>
         <p>The campaign seeks 12k to develop 1. A pet tracker, 2. An Inline Scooter and 3. A portable flood warning system all activated by LoRaWAN gateways</p>
         <p>his project is a proof-of-concept for a city-owned LoRaWAN network in Austin—a long-range, low-power wireless system that lets smart devices like scooters, pet trackers, leak sensors, and air monitors connect without using cellular data. Instead of relying on expensive telecoms, this Kickstarter funds a demo showing how Austin could operate its own secure, low-frequency IoT network as a public utility. We’ll equip a scooter with LoRaWAN tech, turn a everyday pet collar into a pet tracker with a LoRaWAN transmitter, and use a terrarium to demonstrate a LoRaWAN Flood Alert system. The kickstarter also funds a time limited small nonprofit for possible federal grants and to organize stakeholders of the idea. The campaign will be conducted in August, 2025</p>
+    </section>
+
+    <section class="content-section" id="contact">
+        <h2>Contact</h2>
+        <p>For inquiries, please reach out to <a href="mailto:info@loraatx.city">info@loraatx.city</a>.</p>
     </section>
 
     <footer>
