@@ -12,11 +12,39 @@ const zoomVal = document.getElementById("zoomVal");
 const goBtn = document.getElementById("go");
 const searchBox = document.getElementById("search");
 
+function readParams() {
+  const u = new URL(location.href);
+  const g = (k, d) => Number(u.searchParams.get(k) ?? d);
+  const s = u.searchParams.get("style");
+  return {
+    center: [g("lng", -97.7431), g("lat", 30.2672)],
+    zoom: g("z", 13), pitch: g("p", 60), bearing: g("b", 0),
+    style: s
+  };
+}
+function writeParams() {
+  const u = new URL(location.href);
+  const c = map.getCenter();
+  u.searchParams.set("lat", c.lat.toFixed(5));
+  u.searchParams.set("lng", c.lng.toFixed(5));
+  u.searchParams.set("z", map.getZoom().toFixed(2));
+  u.searchParams.set("p", map.getPitch().toFixed(0));
+  u.searchParams.set("b", map.getBearing().toFixed(0));
+  u.searchParams.set("style", styleSelect.value);
+  history.replaceState({}, "", u);
+}
+
 // Replace these placeholders with real OpenFreeMap style URLs later.
 const STYLE_REGISTRY = {
   OFM_3D: "https://tiles.openfreemap.org/styles/liberty",   // 3D buildings via extrusions
   OFM_2D: "https://tiles.openfreemap.org/styles/positron"   // crisp 2D
 };
+
+const init = readParams();
+if (init.style && STYLE_REGISTRY[init.style]) styleSelect.value = init.style;
+pitchInput.value = init.pitch;
+bearingInput.value = init.bearing;
+zoomInput.value = init.zoom;
 
 function resolveStyle() {
   const choice = styleSelect.value;
@@ -27,12 +55,14 @@ function resolveStyle() {
 let map = new maplibregl.Map({
   container: mapContainer,
   style: resolveStyle(),
-  center: [-97.7431, 30.2672], // Austin
+  center: init.center,
   zoom: Number(zoomInput.value),
   pitch: Number(pitchInput.value),
   bearing: Number(bearingInput.value),
   attributionControl: false
 });
+
+map.setPitch(init.pitch); map.setBearing(init.bearing); map.setZoom(init.zoom); map.setCenter(init.center);
 
 const attrib = document.getElementById("attrib");
 function showMsg(msg) {
@@ -60,10 +90,13 @@ pitchInput.addEventListener("input", () => { map.setPitch(Number(pitchInput.valu
 bearingInput.addEventListener("input", () => { map.setBearing(Number(bearingInput.value)); syncLabels(); });
 zoomInput.addEventListener("input", () => { map.setZoom(Number(zoomInput.value)); syncLabels(); });
 
+["moveend","pitchend","rotateend","zoomend"].forEach(evt => map.on(evt, writeParams));
+
 styleSelect.addEventListener("change", () => {
   const newStyle = resolveStyle();
   if (newStyle) map.setStyle(newStyle);
 });
+styleSelect.addEventListener("change", writeParams);
 
 styleUrlInput.addEventListener("change", () => {
   if (styleSelect.value === "CUSTOM") {
@@ -81,6 +114,11 @@ goBtn.addEventListener("click", () => {
   } else {
     alert("Please enter coordinates like: 30.2672,-97.7431");
   }
+});
+
+document.getElementById("addOverlay").addEventListener("click", () => {
+  const url = document.getElementById("overlayUrl").value.trim();
+  if (url) addGeoJsonOverlay(url, "overlay");
 });
 
 // Auto-enable terrain if the style includes a DEM source.
