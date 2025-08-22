@@ -79,6 +79,15 @@ map.on("error", e => {
 
 map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
 
+const geolocate = new maplibregl.GeolocateControl({
+  positionOptions: { enableHighAccuracy: true },
+  trackUserLocation: false,          // set true to keep following the user
+  showUserHeading: true              // optional: shows direction arrow
+});
+map.addControl(geolocate, 'top-right');
+
+map.on('load', () => geolocate.trigger());
+
 function syncLabels() {
   pitchVal.textContent = `${pitchInput.value}°`;
   bearingVal.textContent = `${bearingInput.value}°`;
