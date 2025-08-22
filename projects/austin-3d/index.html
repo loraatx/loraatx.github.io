@@ -7,6 +7,7 @@
 
     <!-- Perf: warm up tile host -->
     <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+    <link rel="preconnect" href="https://maps.austintexas.gov" crossorigin>
 
     <!-- MapLibre -->
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^3.6.0/dist/maplibre-gl.css" />
@@ -130,6 +131,10 @@
           <label>Jump to</label>
           <input id="search" type="text" placeholder="lat,lng (e.g. 30.2672,-97.7431)" />
           <button id="go">Go</button>
+        </div>
+
+        <div class="row">
+          <label><input id="toggleZoning" type="checkbox" /> Show Austin zoning overlay</label>
         </div>
 
         <div class="row fine">
