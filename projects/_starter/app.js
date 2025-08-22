@@ -118,3 +118,48 @@ export async function addGeoJsonOverlay(url, id = "overlay") {
     paint: { "circle-radius": 4, "circle-opacity": 0.85 }
   });
 }
+
+// Austin zoning overlay
+const toggleZoning = document.getElementById("toggleZoning");
+let zoningData;
+
+async function addZoning() {
+  if (!zoningData) {
+    const url = "https://maps.austintexas.gov/arcgis/rest/services/Shared/Zoning_1/MapServer/0/query?where=1=1&outFields=*&f=geojson";
+    const res = await fetch(url);
+    zoningData = await res.json();
+  }
+  if (!map.getSource("zoning")) {
+    map.addSource("zoning", { type: "geojson", data: zoningData });
+    map.addLayer({
+      id: "zoning-fill",
+      type: "fill",
+      source: "zoning",
+      paint: { "fill-color": "#ec4899", "fill-opacity": 0.15 }
+    });
+    map.addLayer({
+      id: "zoning-line",
+      type: "line",
+      source: "zoning",
+      paint: { "line-color": "#ec4899", "line-width": 1 }
+    });
+  }
+}
+
+function removeZoning() {
+  if (map.getLayer("zoning-line")) map.removeLayer("zoning-line");
+  if (map.getLayer("zoning-fill")) map.removeLayer("zoning-fill");
+  if (map.getSource("zoning")) map.removeSource("zoning");
+}
+
+toggleZoning?.addEventListener("change", async () => {
+  if (toggleZoning.checked) {
+    await addZoning();
+  } else {
+    removeZoning();
+  }
+});
+
+map.on("styledata", () => {
+  if (toggleZoning?.checked) addZoning();
+});
