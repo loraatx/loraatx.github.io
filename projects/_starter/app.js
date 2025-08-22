@@ -34,6 +34,19 @@ let map = new maplibregl.Map({
   attributionControl: false
 });
 
+const attrib = document.getElementById("attrib");
+function showMsg(msg) {
+  attrib.textContent = msg;
+  setTimeout(() => attrib.textContent = "© OpenStreetMap contributors", 2000);
+}
+
+map.on("dataloading", () => attrib.textContent = "Loading map…");
+map.on("idle", () => attrib.textContent = "© OpenStreetMap contributors");
+map.on("error", e => {
+  console.error(e);
+  showMsg("Map style error — check console");
+});
+
 map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
 
 function syncLabels() {
