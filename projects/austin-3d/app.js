@@ -14,8 +14,8 @@ const searchBox = document.getElementById("search");
 
 // Replace these placeholders with real OpenFreeMap style URLs later.
 const STYLE_REGISTRY = {
-  "OFM_3D": "https://{YOUR_OPENFREEMAP_3D_STYLE_URL}/style.json",
-  "OFM_2D": "https://{YOUR_OPENFREEMAP_2D_STYLE_URL}/style.json",
+  OFM_3D: "https://tiles.openfreemap.org/styles/liberty",   // 3D buildings via extrusions
+  OFM_2D: "https://tiles.openfreemap.org/styles/positron"   // crisp 2D
 };
 
 function resolveStyle() {
