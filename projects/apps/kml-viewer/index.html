@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Austin 3D Map</title>
+    <title>KML Viewer</title>
 
     <!-- Perf: warm up tile host -->
     <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
@@ -12,6 +12,7 @@
     <!-- MapLibre -->
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^3.6.0/dist/maplibre-gl.css" />
     <script src="https://unpkg.com/maplibre-gl@^3.6.0/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@tmcw/togeojson@4"></script>
 
     <!-- Optional project styles -->
     <link rel="stylesheet" href="./styles.css" />
@@ -119,19 +120,17 @@
         </div>
 
         <div class="row">
-          <label>View</label>
-          <label for="pitch">Pitch <span id="pitchVal" class="fine"></span></label>
-          <input id="pitch" type="range" min="0" max="85" value="60" />
-          <label for="bearing">Bearing <span id="bearingVal" class="fine"></span></label>
-          <input id="bearing" type="range" min="0" max="359" value="0" />
-          <label for="zoom">Zoom <span id="zoomVal" class="fine"></span></label>
-          <input id="zoom" type="range" min="1" max="20" value="13" />
-        </div>
-
-        <div class="row">
           <label>Jump to</label>
           <input id="search" type="text" placeholder="lat,lng (e.g. 30.2672,-97.7431)" />
           <button id="go">Go</button>
+        </div>
+
+        <div class="row">
+          <label for="kmlUrl">KML overlay URL</label>
+          <input id="kmlUrl" type="text" placeholder="https://.../file.kml" />
+          <button id="loadKml">Load KML</button>
+          <!-- optional local file -->
+          <input id="kmlFile" type="file" accept=".kml" />
         </div>
 
         <div class="row fine">
