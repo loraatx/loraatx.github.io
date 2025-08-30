@@ -1,0 +1,5 @@
+title: LoRaATX
+description: A license-free, open-source Internet of Things network covering all of Austin, Texas.
+
+# Output includes future-dated posts if needed
+future: true
