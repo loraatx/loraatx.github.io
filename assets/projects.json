@@ -1,21 +1,14 @@
 [
   {
     "title": "Austin 3D Map",
-    "description": "Explore Austin in 3D using our interactive map.",
-    "link": "https://loraatx.github.io/austin-3d/"
-  },
-  {
-    "title": "KML Viewer",
-    "description": "View and analyze KML files directly in your browser.",
-    "link": "https://loraatx.github.io/kml-viewer/"
+    "description": "Interactive 3D map of Austin showcasing LoRa coverage.",
     "link": "https://loraatx.github.io/austin-3d/",
-    "image": "https://via.placeholder.com/300x200?text=Austin+3D+Map",
-    "description": "Interactive 3D map of Austin showcasing LoRa coverage."
+    "image": "https://via.placeholder.com/300x200?text=Austin+3D+Map"
   },
   {
     "title": "KML Viewer",
+    "description": "Tool for viewing KML datasets directly in the browser.",
     "link": "https://loraatx.github.io/kml-viewer/",
-    "image": "https://via.placeholder.com/300x200?text=KML+Viewer",
-    "description": "Tool for viewing KML datasets directly in the browser."
+    "image": "https://via.placeholder.com/300x200?text=KML+Viewer"
   }
 ]
