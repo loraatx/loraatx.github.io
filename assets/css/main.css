@@ -1,0 +1,133 @@
+:root {
+  --rustic-clay: #B66B4A;
+  --golden-brown: #9C5F21;
+  --deep-walnut: #3E2617;
+  --bright-electric-blue: #0065CF;
+  --sky-blue: #3AA8F5;
+  --font-family: 'Roboto', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--deep-walnut);
+}
+
+.navbar {
+  background-color: var(--deep-walnut);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero {
+  background-color: var(--rustic-clay);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.hero h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2.5rem;
+}
+
+.section {
+  padding: 4rem 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.section h2 {
+  margin-top: 0;
+  color: var(--golden-brown);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.project-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.project-card h3 {
+  margin: 0.5rem 1rem;
+}
+.project-card p {
+  margin: 0 1rem 1rem;
+  font-size: 0.9rem;
+}
+.project-card a {
+  display: block;
+  margin: 0 1rem 1rem;
+  color: var(--bright-electric-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--bright-electric-blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+footer {
+  background-color: var(--deep-walnut);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .navbar ul {
+    flex-direction: column;
+  }
+  .hero {
+    padding: 2rem 1rem;
+  }
+}
