@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -64,6 +65,39 @@
             margin: 2rem auto;
             padding: 0 1rem;
         }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .contact-form button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #1558b0;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: #333;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
         footer {
             background-color: #f4f4f4;
             text-align: center;
@@ -115,7 +149,20 @@
 
     <section class="content-section" id="contact">
         <h2>Contact</h2>
-        <p>For inquiries, please reach out to <a href="mailto:info@loraatx.city">info@loraatx.city</a>.</p>
+        <form id="contactForm" class="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <div class="social-icons">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
     </section>
 
     <footer>
@@ -130,5 +177,17 @@
   </ul>
 </section>
 
+    <script>
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            alert('Thank you for your message!');
+            form.reset();
+        });
+    </script>
 </body>
 </html>
