@@ -8,16 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
             color: #333;
+            padding-top: 70px;
         }
         nav {
             background-color: #f4f4f4;
             padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
         nav ul {
             list-style: none;
@@ -31,15 +40,35 @@
             text-decoration: none;
             color: #333;
         }
-        header {
+        .hero {
             background-color: #1a73e8;
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 4rem 1rem;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        .hero-logo {
+            max-width: 150px;
+        }
+        .cta-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            background-color: #f9f9f9;
+        }
+        .feature {
+            max-width: 200px;
+            text-align: center;
         }
         .video-section {
             max-width: 800px;
@@ -77,22 +106,40 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <header>
+    <section id="hero" class="hero">
+        <img src="assets/logo.svg" alt="LoRaATX logo" class="hero-logo">
         <h1>LoRaATX</h1>
-        <p>A license-free, open-source Internet of Things network covering all of Austin, Texas.</p>
-    </header>
+        <p class="tagline">A license-free, open-source Internet of Things network covering all of Austin, Texas.</p>
+        <a href="#projects" class="cta-btn">Explore Projects</a>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h3>Open Source</h3>
+            <p>Built transparently for the community.</p>
+        </div>
+        <div class="feature">
+            <h3>Citywide Coverage</h3>
+            <p>Connect devices across Austin.</p>
+        </div>
+        <div class="feature">
+            <h3>Community-Owned</h3>
+            <p>Run by and for local residents.</p>
+        </div>
+    </section>
 
     <section class="video-section">
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/C9W6zWNgO4E" 
-                    title="LoRaATX Explainer Video" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe src="https://www.youtube.com/embed/C9W6zWNgO4E"
+                    title="LoRaATX Explainer Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
             </iframe>
         </div>
@@ -113,6 +160,14 @@
         <p>The campaign will also support a temporary nonprofit to pursue federal grants and organize stakeholders. It is scheduled for August 2025.</p>
     </section>
 
+    <section id="projects" class="content-section">
+        <h2>Projects</h2>
+        <ul>
+            <li><a href="https://loraatx.github.io/austin-3d/">Austin 3D Map</a></li>
+            <li><a href="https://loraatx.github.io/kml-viewer/">KML Viewer</a></li>
+        </ul>
+    </section>
+
     <section class="content-section" id="contact">
         <h2>Contact</h2>
         <p>For inquiries, please reach out to <a href="mailto:info@loraatx.city">info@loraatx.city</a>.</p>
@@ -121,14 +176,6 @@
     <footer>
         <p>&copy; 2025 LoRaATX. All rights reserved.</p>
     </footer>
-<!-- Projects -->
-<section id="projects" style="padding:24px 16px; border-top:1px solid #eee; font: 14px/1.5 system-ui, sans-serif;">
-  <h2 style="margin:0 0 12px 0;">Projects</h2>
-  <ul style="margin:0; padding-left: 18px;">
-    <li><a href="https://loraatx.github.io/austin-3d/">Austin 3D Map</a></li>
-    <li><a href="https://loraatx.github.io/kml-viewer/">KML Viewer</a></li>
-  </ul>
-</section>
 
 </body>
 </html>
