@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>LoRaATX — Austin Maps & Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Austin-focused maps, apps, and planning projects. This site is a container linking to standalone repos and embeddable apps." />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    /* ---- Root tokens: quick theming ---- */
+    :root{
+      --bg:#0e0e11;
+      --panel:#141418;
+      --text:#e9e9f0;
+      --muted:#b7b7c2;
+      --accent:#e17a00;       /* UT-burnt-orange adjacent; adjust as needed */
+      --accent-2:#2b90d9;     /* alt accent for links/buttons */
+      --maxw:1100px;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --gap:16px;
+      --pad:clamp(14px, 3vw, 24px);
+      --section-pad:clamp(32px, 5vw, 72px);
+      --sticky-h:56px;        /* nav height for offset calculations */
+    }
+
+    /* ---- Base ---- */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{color:var(--accent-2); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%; display:block}
+
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad)}
+
+    /* ---- Banner ---- */
+    header.banner{
+      background:linear-gradient(180deg, #1a1a21, #101015);
+      border-bottom:1px solid #22232a;
+    }
+    .hero{
+      position:relative;
+      aspect-ratio:16/9; /* standard banner area; swap with real image/video later */
+      width:100%;
+      background:
+        radial-gradient(60% 60% at 60% 40%, rgba(225,122,0,.18) 0%, rgba(225,122,0,0) 60%),
+        radial-gradient(50% 50% at 20% 20%, rgba(43,144,217,.18) 0%, rgba(43,144,217,0) 60%),
+        url("assets/banner-placeholder.jpg") center/cover no-repeat;
+      border-radius:0 0 var(--radius) var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero .hero-text{
+      position:absolute; inset:auto 0 0 0;
+      padding: clamp(16px, 4vw, 28px);
+      background:linear-gradient(180deg, rgba(16,16,21,0) 0%, rgba(16,16,21,.85) 60%, rgba(16,16,21,.95) 100%);
+    }
+    .kicker{
+      display:inline-block; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+    }
+    h1{margin:.25rem 0 .5rem; font-size: clamp(1.4rem, 4vw, 2.2rem)}
+    .sub{color:var(--muted); max-width:65ch}
+
+    /* ---- Nav (sticky, under banner) ---- */
+    nav#site-nav{
+      position:sticky; top:0; z-index:50;
+      background:rgba(14,14,17,.8);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid #22232a;
+    }
+    .nav-inner{display:flex; align-items:center; gap:8px; height:var(--sticky-h)}
+    .brand{font-weight:700; letter-spacing:.02em}
+    .spacer{flex:1}
+    .menu-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px; border:1px solid #2a2b33; background:#17171d; color:var(--text);
+    }
+    ul.menu{
+      list-style:none; margin:0; padding:0; display:none; gap:6px;
+    }
+    ul.menu a{
+      display:block; padding:.5rem .75rem; border-radius:10px; border:1px solid transparent;
+    }
+    ul.menu a:hover{border-color:#2a2b33; background:#181821}
+    /* show horizontal menu on >= 720px */
+    @media (min-width:720px){
+      .menu-btn{display:none}
+      ul.menu{display:flex}
+    }
+
+    /* ---- Mobile drawer ---- */
+    .drawer{display:none; border-bottom:1px solid #22232a; background:#101015}
+    .drawer a{display:block; padding:.85rem var(--pad); border-top:1px solid #1a1b22}
+
+    /* ---- Sections ---- */
+    section{
+      padding:var(--section-pad) 0;
+      scroll-margin-top: calc(var(--sticky-h) + 10px);
+      border-bottom:1px solid #1a1b22;
+    }
+    section:last-of-type{border-bottom:none}
+    h2{font-size: clamp(1.2rem, 3.5vw, 1.8rem); margin:0 0 .5rem}
+    p{margin:.5rem 0 1rem}
+    .panel{
+      background:var(--panel);
+      border:1px solid #22232a;
+      border-radius:var(--radius);
+      padding: clamp(14px, 3.5vw, 22px);
+      box-shadow:var(--shadow);
+    }
+
+    /* ---- Grids ---- */
+    .grid{
+      display:grid;
+      gap:var(--gap);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width:720px){
+      .grid.cols-2{grid-template-columns: 1fr 1fr}
+      .grid.cols-3{grid-template-columns: repeat(3, 1fr)}
+    }
+
+    /* ---- Cards ---- */
+    .card{
+      background:#121218; border:1px solid #22232a; border-radius:12px; padding:16px;
+    }
+    .card h3{margin:.2rem 0 .4rem; font-size:1.05rem}
+    .muted{color:var(--muted)}
+    .btn{
+      display:inline-block; padding:.6rem .9rem; border-radius:10px; border:1px solid #2a2b33;
+      background:#17171d; color:var(--text); text-decoration:none;
+    }
+    .btn:hover{background:#1b1b22}
+    .btn-accent{border-color:transparent; background:var(--accent); color:#0b0b0d}
+    .btn-accent:hover{filter:brightness(1.05)}
+
+    /* ---- Footer ---- */
+    footer{padding:40px 0; color:var(--muted); font-size:.95rem}
+  </style>
+</head>
+<body>
+  <a class="skip-to" href="#about" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <!-- Header / Banner -->
+  <header class="banner">
+    <div class="wrap">
+      <div class="hero" role="img" aria-label="Austin skyline banner image placeholder">
+        <div class="hero-text">
+          <span class="kicker">Austin • Maps • Planning</span>
+          <h1>LoRaATX: Maps, Apps, and Urban Planning Experiments</h1>
+          <p class="sub">This site is a <strong>container</strong>. Code, apps, and assets live in separate repositories. Here you’ll find links, embeds, and project status.</p>
+          <p>
+            <a class="btn btn-accent" href="#apps">Explore Apps</a>
+            <a class="btn" href="#projects">View Projects</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Nav under banner -->
+  <nav id="site-nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <div class="brand">loraatx.city</div>
+      <div class="spacer"></div>
+      <button id="menuButton" class="menu-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        ☰
+      </button>
+      <ul class="menu" id="desktopMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#kickstarter">Kickstarter</a></li>
+      </ul>
+    </div>
+    <div id="mobileMenu" class="drawer" hidden>
+      <a href="#about">About</a>
+      <a href="#apps">Apps</a>
+      <a href="#projects">Projects</a>
+      <a href="#videos">Videos</a>
+      <a href="#kickstarter">Kickstarter</a>
+    </div>
+  </nav>
+
+  <main id="content">
+    <!-- About -->
+    <section id="about">
+      <div class="wrap">
+        <div class="panel">
+          <h2>About</h2>
+          <p>Filler copy: a concise statement of purpose goes here. Describe the “container” model: this site links to standalone repositories hosting apps, styles, and assets. Each repo serves its own <code>index.html</code> for direct embedding.</p>
+          <p class="muted">Tip: keep a <code>/catalog.json</code> in this repo with metadata for each external app (name, repo URL, iframe URL, tags). Codex can read it to auto-render cards below.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apps -->
+    <section id="apps">
+      <div class="wrap">
+        <h2>Apps</h2>
+        <p class="muted">Embeds of standalone apps served from their own repos. Replace placeholders with real URLs once those repos are live.</p>
+
+        <!-- Example App Cards -->
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Austin 3D Map (OFM)</h3>
+            <p class="muted">Interactive MapLibre view with OpenFreeMap styles. Hosted in a separate repo.</p>
+            <p><a class="btn" href="https://loraatx.github.io/austin-3d/" target="_blank" rel="noopener">Open App</a></p>
+            <!-- Embeddable iframe slot -->
+            <div class="panel" style="margin-top:10px">
+              <div class="muted" style="margin-bottom:8px">Inline preview (iframe):</div>
+              <div style="aspect-ratio:16/9; background:#0b0b0e; border:1px dashed #2a2b33; border-radius:10px; overflow:hidden">
+                <!-- Replace src with the hosted /index.html of that repo -->
+                <iframe src="https://loraatx.github.io/austin-3d/" title="Austin 3D Map" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Zoning Overlay Explorer</h3>
+            <p class="muted">City-level zoning layers with toggles and filters. Separate repo; include attribution.</p>
+            <p><a class="btn" href="https://loraatx.github.io/zoning-explorer/" target="_blank" rel="noopener">Open App</a></p>
+            <div class="panel" style="margin-top:10px">
+              <div class="muted" style="margin-bottom:8px">Inline preview (iframe):</div>
+              <div style="aspect-ratio:16/9; background:#0b0b0e; border:1px dashed #2a2b33; border-radius:10px; overflow:hidden">
+                <iframe src="https://loraatx.github.io/zoning-explorer/" title="Zoning Explorer" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more app cards as you publish repos -->
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>LoRaWAN Austin</h3>
+            <p class="muted">Docs, network maps, and demo apps. <em>Placeholder text.</em></p>
+            <p><a class="btn" href="https://github.com/loraatx/lorawan-austin" target="_blank" rel="noopener">Repo</a></p>
+          </article>
+          <article class="card">
+            <h3>CityCoin Experiments</h3>
+            <p class="muted">Tokenized civic incentives; dashboards &amp; flows. <em>Placeholder text.</em></p>
+            <p><a class="btn" href="https://github.com/loraatx/citycoin-experiments" target="_blank" rel="noopener">Repo</a></p>
+          </article>
+          <article class="card">
+            <h3>Planning Library</h3>
+            <p class="muted">Curated Austin planning docs with metadata. <em>Placeholder text.</em></p>
+            <p><a class="btn" href="https://github.com/loraatx/austin-planning-library" target="_blank" rel="noopener">Repo</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos">
+      <div class="wrap">
+        <h2>Videos</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Urban Planning Deep Dives</h3>
+            <p class="muted">Playlist embed placeholder. Replace the <code>src</code> once your YouTube playlist is ready.</p>
+            <div style="aspect-ratio:16/9; background:#0b0b0e; border:1px dashed #2a2b33; border-radius:10px; overflow:hidden">
+              <iframe
+                src="https://www.youtube.com/embed?listType=playlist&list=PL_PLACEHOLDER"
+                title="YouTube playlist"
+                style="width:100%;height:100%;border:0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Shorts / TikTok</h3>
+            <p class="muted">Grid of shorts or a TikTok profile embed. Placeholder links below.</p>
+            <p>
+              <a class="btn" href="https://www.youtube.com/@YOURCHANNEL/shorts" target="_blank" rel="noopener">YouTube Shorts</a>
+              <a class="btn" href="https://www.tiktok.com/@YOURHANDLE" target="_blank" rel="noopener">TikTok</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kickstarter -->
+    <section id="kickstarter">
+      <div class="wrap">
+        <h2>Kickstarter</h2>
+        <div class="panel">
+          <p><strong>Project Title Placeholder</strong></p>
+          <p class="muted">Short pitch: 2–3 sentences explaining the project, why Austin, and what backers get. Add a CTA below.</p>
+          <p><a class="btn btn-accent" href="https://www.kickstarter.com/projects/YOURPROJECT" target="_blank" rel="noopener">Back the Project</a></p>
+
+          <!-- Optional Kickstarter embed -->
+          <div class="muted" style="margin:12px 0 8px">Live embed (optional):</div>
+          <div style="aspect-ratio:16/9; background:#0b0b0e; border:1px dashed #2a2b33; border-radius:10px; overflow:hidden">
+            <iframe src="https://www.kickstarter.com/projects/YOURPROJECT/widget/card.html"
+                    title="Kickstarter embed"
+                    style="width:100%;height:100%;border:0"
+                    loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="grid cols-2">
+        <div>
+          <div class="muted">© <span id="year"></span> LoRaATX · Austin, Texas</div>
+          <div class="muted">Contact: <a href="mailto:you@loraatx.city">you@loraatx.city</a></div>
+        </div>
+        <div>
+          <div class="muted">Attribution &amp; Licenses: Placeholder for map/data credits and repo licenses.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="wrap" style="color:#ffbd2f; padding:12px 0">This site works better with JavaScript enabled.</div>
+  </noscript>
+
+  <script>
+    // ---- Mobile menu toggle ----
+    (function(){
+      const btn = document.getElementById('menuButton');
+      const drawer = document.getElementById('mobileMenu');
+      const desktopMenu = document.getElementById('desktopMenu');
+
+      function closeDrawer(){ drawer.hidden = true; btn.setAttribute('aria-expanded','false'); }
+      function openDrawer(){ drawer.hidden = false; btn.setAttribute('aria-expanded','true'); }
+
+      btn.addEventListener('click', () => {
+        if (drawer.hidden) openDrawer(); else closeDrawer();
+      });
+
+      drawer.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') closeDrawer();
+      });
+
+      // Close drawer if switching to desktop
+      const mq = window.matchMedia('(min-width:720px)');
+      mq.addEventListener('change', () => { if (mq.matches) closeDrawer(); });
+
+      // Active link highlight on scroll (simple, cheap)
+      const sections = ['about','apps','projects','videos','kickstarter']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+      const links = [...(desktopMenu?.querySelectorAll('a') || []), ...(drawer?.querySelectorAll('a') || [])];
+
+      function setActive(id){
+        links.forEach(a => {
+          const on = a.getAttribute('href') === '#' + id;
+          a.style.borderColor = on ? '#2a2b33' : 'transparent';
+          a.style.background = on ? '#181821' : 'transparent';
+        });
+      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-56px 0px -70% 0px', threshold: 0.1 });
+
+      sections.forEach(sec => obs.observe(sec));
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
