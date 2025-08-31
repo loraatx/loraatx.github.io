@@ -7,12 +7,20 @@
   <meta name="description" content="Austin-focused maps, apps, and planning projects. This site is a container linking to standalone repos and embeddable apps." />
   <link rel="icon" href="favicon.ico" />
   <style>
+    :root{
+      --bg:#0e0e11;
+      --text:#e9e9f0;
+    }
     body{
       margin:0;
       padding:0;
-      background:#0e0e11;
-      color:#e9e9f0;
+      background:var(--bg);
+      color:var(--text);
       font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    }
+    .light{
+      --bg:#ffffff;
+      --text:#0e0e11;
     }
     h1,h2{margin:0 0 .5rem;}
     a{color:#2b90d9;text-decoration:none;}
@@ -23,6 +31,7 @@
     header.banner{background:#141418;border-bottom:1px solid #22232a;padding:16px 0;}
     header.banner nav a{margin-right:1rem;}
     header.banner nav a:last-child{margin-right:0;}
+    header.banner nav button{background:none;border:0;color:inherit;cursor:pointer;margin-left:1rem;}
     section{padding:32px 0;border-bottom:1px solid #1a1b22;}
     section:last-of-type{border-bottom:none;}
     .section-grid{display:flex;flex-direction:column;gap:16px;}
@@ -47,6 +56,7 @@
         <a href="#projects">Projects</a>
         <a href="#videos">Videos</a>
         <a href="#kickstarter">Kickstarter</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </nav>
     </div>
   </header>
@@ -171,6 +181,15 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    const root=document.documentElement;
+    const toggle=document.getElementById('theme-toggle');
+    if(localStorage.getItem('theme')==='light'){
+      root.classList.add('light');
+    }
+    toggle.addEventListener('click',()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');
+    });
   </script>
 </body>
 </html>
