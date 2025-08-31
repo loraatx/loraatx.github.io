@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>LoRaATX — Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive apps built by LoRaATX." />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0e0e11;
+      --text:#e9e9f0;
+    }
+    body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    }
+    .light{
+      --bg:#ffffff;
+      --text:#0e0e11;
+    }
+    h1,h2{margin:0 0 .5rem;}
+    a{color:#2b90d9;text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    ol{margin:0;padding-left:1.2rem;}
+    li{margin-bottom:.5rem;}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px;}
+    header.banner{background:#141418;border-bottom:1px solid #22232a;padding:16px 0;}
+    header.banner nav a{margin-right:1rem;}
+    header.banner nav a:last-child{margin-right:0;}
+    header.banner nav button{background:none;border:0;color:inherit;cursor:pointer;margin-left:1rem;}
+    section{padding:32px 0;border-bottom:1px solid #1a1b22;}
+    section:last-of-type{border-bottom:none;}
+    .section-grid{display:flex;flex-direction:column;gap:16px;}
+    .section-grid .media,.section-grid .links{flex:1;}
+    @media(min-width:720px){
+      .section-grid{flex-direction:row;align-items:center;}
+      .section-grid.reverse{flex-direction:row-reverse;}
+    }
+    footer{padding:40px 0;}
+    img{max-width:100%;display:block;}
+  </style>
+</head>
+<body>
+  <a class="skip-to" href="#apps" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <!-- Simple Banner -->
+  <header class="banner">
+    <div class="wrap">
+      <h1>LoRaATX — Austin Maps &amp; Apps</h1>
+      <nav aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#apps">Apps</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#videos">Videos</a>
+        <a href="index.html#kickstarter">Kickstarter</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section id="apps">
+      <div class="wrap">
+        <div class="section-grid reverse">
+          <div class="media">
+            <iframe src="https://loraatx.github.io/austin-3d/" title="Austin 3D Map" style="width:100%; aspect-ratio:16/9; border:0" loading="lazy"></iframe>
+          </div>
+          <div class="links">
+            <h2>Apps</h2>
+            <ol>
+              <li><a href="https://loraatx.github.io/austin-3d/" target="_blank" rel="noopener">Austin 3D Map</a> — interactive MapLibre view with OpenFreeMap styles.</li>
+              <li><a href="https://loraatx.github.io/zoning-explorer/" target="_blank" rel="noopener">Zoning Overlay Explorer</a> — city-level zoning layers with filters.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="grid cols-2">
+        <div>
+          <div class="muted">© <span id="year"></span> LoRaATX · Austin, Texas</div>
+          <div class="muted">Contact: <a href="mailto:you@loraatx.city">you@loraatx.city</a></div>
+        </div>
+        <div>
+          <div class="muted">Attribution &amp; Licenses: Placeholder for map/data credits and repo licenses.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="wrap" style="color:#ffbd2f; padding:12px 0">This site works better with JavaScript enabled.</div>
+  </noscript>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const root=document.documentElement;
+    const toggle=document.getElementById('theme-toggle');
+    if(localStorage.getItem('theme')==='light'){
+      root.classList.add('light');
+    }
+    toggle.addEventListener('click',()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');
+    });
+  </script>
+</body>
+</html>
