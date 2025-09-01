@@ -15,6 +15,7 @@
       --dark-brown:#5b341a;
       --blue:#2c7be5;
       --light-blue:#63b3ff;
+      --nav-blue:#174ea6;
     }
     body{
       margin:0;
@@ -34,7 +35,8 @@
     .wrap{max-width:1100px;margin:0 auto;padding:0 16px;}
     header.banner{background:var(--sand);border:4px solid var(--brown);padding:16px;color:var(--dark-brown);text-align:center;}
     header.banner nav{display:flex;justify-content:center;align-items:center;gap:1.5rem;}
-    header.banner nav a{font-size:1.25rem;}
+    header.banner nav a{font-size:1.25rem;color:var(--nav-blue);}
+    header.banner nav a:hover{color:var(--light-blue);}
     header.banner nav .theme-toggle{display:flex;align-items:center;}
     header.banner nav .theme-toggle input{display:none;}
     header.banner nav .theme-toggle .slider{position:relative;width:48px;height:24px;background:var(--blue);border-radius:12px;margin:0 .5rem;}
@@ -67,10 +69,10 @@
         <a href="index.html#videos">Videos</a>
         <a href="index.html#kickstarter">Kickstarter</a>
         <label class="theme-toggle" for="theme-toggle">
-          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
           <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
           <span class="slider"></span>
-          <span class="moon">🌙</span>
+          <span class="sun">☀️</span>
         </label>
       </nav>
     </div>
