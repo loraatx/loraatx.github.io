@@ -1,164 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Austin Long Range</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Austin-focused maps, apps, and planning side projects. This site is a container linking to standalone repos and embeddable apps." />
-  <link rel="icon" href="favicon.ico" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>City Anatomy</title>
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    header, footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f8f8f8;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    #map {
+      flex: 1;
+      width: 100%;
+    }
+    footer {
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-to" href="#about" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
-
-  <!-- Simple Banner -->
-  <header class="banner">
-    <div class="wrap">
-      <div class="header-content">
-        <div class="site-title"><a href="index.html">Austin Long Range</a></div>
-        <nav aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#apps">Maps &amp; Apps</a>
-          <a href="#projects">Side Projects</a>
-          <label class="theme-toggle" for="theme-toggle">
-            <span class="moon">🌙</span>
-            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
-            <span class="slider"></span>
-            <span class="sun">☀️</span>
-          </label>
-        </nav>
-        <div class="social-icons">
-          <a href="https://github.com/loraatx" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 .296c-6.63 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.605-2.665-.303-5.467-1.332-5.467-5.93 0-1.31.468-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.807 5.624-5.48 5.92.432.372.816 1.102.816 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.296c0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/@AustinLongRange" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M23.498 6.186a2.97 2.97 0 0 0-2.086-2.087C19.736 3.5 12 3.5 12 3.5s-7.736 0-9.412.6A2.97 2.97 0 0 0 .502 6.186C0 7.864 0 12 0 12s0 4.136.502 5.814a2.97 2.97 0 0 0 2.086 2.087c1.676.6 9.412.6 9.412.6s7.736 0 9.412-.6a2.97 2.97 0 0 0 2.086-2.087C24 16.136 24 12 24 12s0-4.136-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
-            </svg>
-          </a>
-          <a href="https://x.com/AustinLongRange" aria-label="X">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M2 0h5l5 7 5-7h5l-7.5 10.5L22 24h-5l-5-7-5 7H2l7.5-10.5L2 0z"/>
-            </svg>
-          </a>
-          <a href="https://www.patreon.com/AustinLongRange" aria-label="Patreon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M22.12 0H1.88C.84 0 0 .84 0 1.88v20.24C0 23.16.84 24 1.88 24h20.24C23.16 24 24 23.16 24 22.12V1.88C24 .84 23.16 0 22.12 0zM15.6 4.5c3.38 0 6.1 2.72 6.1 6.1s-2.72 6.1-6.1 6.1-6.1-2.72-6.1-6.1 2.72-6.1 6.1-6.1zM4.5 4.5h3v15h-3v-15z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
+  <header>
+    <h1>City Anatomy Map</h1>
   </header>
 
-  <main id="content">
-    <!-- About -->
-      <section id="about">
-        <div class="wrap">
-          <div class="section-grid">
-            <div class="media">
-              <iframe
-                src="https://www.youtube.com/embed/C9W6zWNgO4E?rel=0&controls=0&modestbranding=1"
-                title="Austin 3D Terrain"
-                style="width:100%; aspect-ratio:16/9; border:1px solid #000;"
-                loading="lazy"
-                allowfullscreen>
-              </iframe>
-            </div>
-            <div class="links">
-              <h2>Core Services</h2>
-              <ul>
-                <li>Real Estate and Market Research</li>
-                <li>Custom mapping (GIS) solutions</li>
-                <li>Consumer-level custom smart city devices</li>
-              </ul>
-      
-              <h2>Civic Tech Development</h2>
-              <ul>
-                <li>Downtown Micro-Transport Plan Kickstarter Campaign</li>
-                <li>Infrastructure-Based <em>AustinCityCoins</em> and <em>ATXCredits</em> on Solana</li>
-                <li>The Austin Long Range IdeaLab</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <!-- Services -->
-    <section id="services">
-      <div class="wrap">
-        <div class="section-grid reverse">
-          <div class="media">
-            <img src="img/services.webp" alt="Services placeholder image">
-          </div>
-          <div class="links">
-            <p>Services:<br><br>Custom mapping support and consultation for civic projects. Let's chart out the possibilities together with tailored tools and insights.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Maps &amp; Apps -->
-    <section id="apps">
-      <div class="wrap">
-        <div class="section-grid">
-          <div class="media">
-            <iframe src="https://loraatx.github.io/austin-3d/" title="Austin 3D Map" style="width:100%; aspect-ratio:16/9; border:0" loading="lazy"></iframe>
-          </div>
-          <div class="links">
-            <p>Maps &amp; Apps:<br><br>Interactive experiments that showcase spatial data in fresh ways. Explore prototypes that turn complex layers into approachable visuals.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Side Projects -->
-    <section id="projects">
-      <div class="wrap">
-        <div class="section-grid reverse">
-          <div class="media">
-            <img src="img/sideprojects.webp" alt="Side Projects placeholder image">
-          </div>
-          <div class="links">
-            <p>Side Projects:<br><br>A collection of small-scale explorations built to test ideas and inspire conversation around planning and technology.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
+  <div id="map"></div>
 
   <footer>
-    <div class="wrap">
-      <div class="grid cols-2">
-        <div>
-          <div class="muted">© <span id="year"></span> Austin Long Range · Austin, Texas</div>
-          <div class="muted">Contact: <a href="mailto:charlesthomas@loraatx.city">charlesthomas@loraatx.city</a></div>
-        </div>
-        <div>
-          <div class="muted">Attribution &amp; Licenses: Placeholder for map/data credits and repo licenses.</div>
-        </div>
-      </div>
-    </div>
+    <p>&copy; 2025 City Anatomy • Powered by 
+      <a href="https://openfreemap.org" target="_blank">OpenFreeMap</a>
+    </p>
   </footer>
 
-  <noscript>
-    <div class="wrap" style="color:#ffbd2f; padding:12px 0">This site works better with JavaScript enabled.</div>
-  </noscript>
-
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const root=document.documentElement;
-    const toggle=document.getElementById('theme-toggle');
-    if(localStorage.getItem('theme')==='light'){
-      root.classList.add('light');
-      toggle.checked=true;
-    }
-    toggle.addEventListener('change',()=>{
-      root.classList.toggle('light');
-      localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-97.7431, 30.2672], // Austin, TX
+      zoom: 15,
+      pitch: 60,
+      bearing: -17.6,
+      antialias: true
+    });
+
+    // Add zoom/rotation controls
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    // Wait for the map to load before adding 3D buildings
+    map.on('load', () => {
+      // Find the first symbol layer so we can insert buildings underneath labels
+      const layers = map.getStyle().layers;
+      let labelLayerId;
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+
+      // Add 3D building layer
+      map.addLayer(
+        {
+          id: '3d-buildings',
+          source: 'openmaptiles',
+          'source-layer': 'building',
+          filter: ['==', ['get', 'extrude'], 'true'],
+          type: 'fill-extrusion',
+          minzoom: 15,
+          paint: {
+            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-height': ['get', 'render_height'],
+            'fill-extrusion-base': ['get', 'render_min_height'],
+            'fill-extrusion-opacity': 0.7
+          }
+        },
+        labelLayerId
+      );
     });
   </script>
 </body>
