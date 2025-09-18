@@ -77,6 +77,18 @@ a:hover {
   color: var(--text);
 }
 
+.section-links {
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-links a {
+  font-weight: 500;
+}
+
 .social-links {
   margin-top: 1.25rem;
   display: flex;
@@ -114,16 +126,6 @@ main {
   flex-direction: column;
 }
 
-.intro {
-  padding: 3rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.intro-inner {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
 .map-section {
   flex: 1;
   display: flex;
@@ -137,6 +139,29 @@ main {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   box-shadow: inset 0 1px 0 rgba(15, 25, 45, 0.05);
+}
+
+.info-section {
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.section-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.section-nav span {
+  color: var(--muted);
 }
 
 .page-footer {
@@ -163,11 +188,11 @@ main {
     font-size: 1.75rem;
   }
 
-  .intro {
-    padding: 2.5rem 1.25rem 1.5rem;
-  }
-
   .map-section {
     padding-bottom: 2rem;
+  }
+
+  .info-section {
+    padding: 2rem 1.25rem;
   }
 }
