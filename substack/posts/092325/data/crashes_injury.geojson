@@ -1,0 +1,950 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.62336033,
+          30.33032487
+        ]
+      },
+      "properties": {
+        "Crash ID": 21011666,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "04:00 - 04:59",
+        "Latitude": "30.33032487",
+        "Longitude": "-97.62336033",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-SIDESWIPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72841246,
+          30.30863477
+        ]
+      },
+      "properties": {
+        "Crash ID": 21013194,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "07:00 - 07:59",
+        "Latitude": "30.30863477",
+        "Longitude": "-97.72841246",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72494293,
+          30.2572253
+        ]
+      },
+      "properties": {
+        "Crash ID": 21013199,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.2572253",
+        "Longitude": "-97.72494293",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74364455,
+          30.27928545
+        ]
+      },
+      "properties": {
+        "Crash ID": 21013200,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "11:00 - 11:59",
+        "Latitude": "30.27928545",
+        "Longitude": "-97.74364455",
+        "Manner of Collision": "ANGLE - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.69059982,
+          30.2482894
+        ]
+      },
+      "properties": {
+        "Crash ID": 21013202,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "08:00 - 08:59",
+        "Latitude": "30.2482894",
+        "Longitude": "-97.69059982",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.68376247,
+          30.38326475
+        ]
+      },
+      "properties": {
+        "Crash ID": 21013206,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "12:00 - 12:59",
+        "Latitude": "30.38326475",
+        "Longitude": "-97.68376247",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.73343934,
+          30.39593847
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018562,
+        "Adjusted Average Daily Traffic Amount": "101956",
+        "Crash Possible Injury Count": 4,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 4,
+        "Hour of Day": "16:00 - 16:59",
+        "Latitude": "30.39593847",
+        "Longitude": "-97.73343934",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE STOPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.69761029,
+          30.34227918
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018573,
+        "Adjusted Average Daily Traffic Amount": "125356",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "A - SUSPECTED SERIOUS INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "20:00 - 20:59",
+        "Latitude": "30.34227918",
+        "Longitude": "-97.69761029",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.70428135,
+          30.33276121
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018624,
+        "Adjusted Average Daily Traffic Amount": "155546",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "15:00 - 15:59",
+        "Latitude": "30.33276121",
+        "Longitude": "-97.70428135",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-SIDESWIPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.66015032,
+          30.21359757
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018617,
+        "Adjusted Average Daily Traffic Amount": "79587",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.21359757",
+        "Longitude": "-97.66015032",
+        "Manner of Collision": "ONE MOTOR VEHICLE - TURNING LEFT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.76508245,
+          30.47677474
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018618,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.47677474",
+        "Longitude": "-97.76508245",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.73293247,
+          30.27044478
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018620,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.27044478",
+        "Longitude": "-97.73293247",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.87559,
+          30.2004148
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018621,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 2,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.2004148",
+        "Longitude": "-97.87559",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.76496829,
+          30.43213473
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018622,
+        "Adjusted Average Daily Traffic Amount": "123297",
+        "Crash Possible Injury Count": 2,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "11:00 - 11:59",
+        "Latitude": "30.43213473",
+        "Longitude": "-97.76496829",
+        "Manner of Collision": "ANGLE - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75007845,
+          30.21819138
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018627,
+        "Adjusted Average Daily Traffic Amount": "187715",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "15:00 - 15:59",
+        "Latitude": "30.21819138",
+        "Longitude": "-97.75007845",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.58649823,
+          30.33126581
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018629,
+        "Adjusted Average Daily Traffic Amount": "50361",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "14:00 - 14:59",
+        "Latitude": "30.33126581",
+        "Longitude": "-97.58649823",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75536698,
+          30.33512283
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018691,
+        "Adjusted Average Daily Traffic Amount": "157279",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "20:00 - 20:59",
+        "Latitude": "30.33512283",
+        "Longitude": "-97.75536698",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.71074083,
+          30.34664407
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018706,
+        "Adjusted Average Daily Traffic Amount": "158475",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "06:00 - 06:59",
+        "Latitude": "30.34664407",
+        "Longitude": "-97.71074083",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.68255248,
+          30.29587477
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020310,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "99 - UNKNOWN",
+        "Crash Total Injury Count": 0,
+        "Hour of Day": "10:00 - 10:59",
+        "Latitude": "30.29587477",
+        "Longitude": "-97.68255248",
+        "Manner of Collision": "ONE MOTOR VEHICLE - TURNING LEFT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74771246,
+          30.22350479
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020312,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "21:00 - 21:59",
+        "Latitude": "30.22350479",
+        "Longitude": "-97.74771246",
+        "Manner of Collision": "ANGLE - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.79715034,
+          30.13752898
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020359,
+        "Adjusted Average Daily Traffic Amount": "131349",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "11:00 - 11:59",
+        "Latitude": "30.13752898",
+        "Longitude": "-97.79715034",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-SIDESWIPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74293246,
+          30.33518477
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018687,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "17:00 - 17:59",
+        "Latitude": "30.33518477",
+        "Longitude": "-97.74293246",
+        "Manner of Collision": "ANGLE - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.63469031,
+          30.32954169
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018688,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "99 - UNKNOWN",
+        "Crash Total Injury Count": 0,
+        "Hour of Day": "14:00 - 14:59",
+        "Latitude": "30.32954169",
+        "Longitude": "-97.63469031",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE STOPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.6886098,
+          30.37535723
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018689,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "06:00 - 06:59",
+        "Latitude": "30.37535723",
+        "Longitude": "-97.6886098",
+        "Manner of Collision": "OPPOSITE DIRECTION - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.67002029,
+          30.43409432
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018692,
+        "Adjusted Average Daily Traffic Amount": "145146",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "00:00 - 00:59",
+        "Latitude": "30.43409432",
+        "Longitude": "-97.67002029",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75533801,
+          30.43898808
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018711,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "09:00 - 09:59",
+        "Latitude": "30.43898808",
+        "Longitude": "-97.75533801",
+        "Manner of Collision": "ONE MOTOR VEHICLE - TURNING RIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.79739255,
+          30.13690088
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018715,
+        "Adjusted Average Daily Traffic Amount": "140562",
+        "Crash Possible Injury Count": 3,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 3,
+        "Hour of Day": "11:00 - 11:59",
+        "Latitude": "30.13690088",
+        "Longitude": "-97.79739255",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.78612153,
+          30.22849174
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018764,
+        "Adjusted Average Daily Traffic Amount": "168034",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "16:00 - 16:59",
+        "Latitude": "30.22849174",
+        "Longitude": "-97.78612153",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.73223247,
+          30.43386474
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018765,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "17:00 - 17:59",
+        "Latitude": "30.43386474",
+        "Longitude": "-97.73223247",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE STOPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75890201,
+          30.23181569
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018766,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "A - SUSPECTED SERIOUS INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "18:00 - 18:59",
+        "Latitude": "30.23181569",
+        "Longitude": "-97.75890201",
+        "Manner of Collision": "ONE MOTOR VEHICLE - TURNING RIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.73071246,
+          30.35661476
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018767,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "15:00 - 15:59",
+        "Latitude": "30.35661476",
+        "Longitude": "-97.73071246",
+        "Manner of Collision": "ANGLE - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74147246,
+          30.26768478
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018772,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "23:00 - 23:59",
+        "Latitude": "30.26768478",
+        "Longitude": "-97.74147246",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.66294399,
+          30.28526691
+        ]
+      },
+      "properties": {
+        "Crash ID": 21019612,
+        "Adjusted Average Daily Traffic Amount": "36326",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "17:00 - 17:59",
+        "Latitude": "30.28526691",
+        "Longitude": "-97.66294399",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE STOPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72194247,
+          30.25300478
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020313,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "23:00 - 23:59",
+        "Latitude": "30.25300478",
+        "Longitude": "-97.72194247",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.68229832,
+          30.40927566
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018775,
+        "Adjusted Average Daily Traffic Amount": "57418",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "07:00 - 07:59",
+        "Latitude": "30.40927566",
+        "Longitude": "-97.68229832",
+        "Manner of Collision": "OPPOSITE DIRECTION - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.64796073,
+          30.30015857
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018776,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "07:00 - 07:59",
+        "Latitude": "30.30015857",
+        "Longitude": "-97.64796073",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-SIDESWIPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.76018565,
+          30.42945845
+        ]
+      },
+      "properties": {
+        "Crash ID": 21018777,
+        "Adjusted Average Daily Traffic Amount": "123297",
+        "Crash Possible Injury Count": 2,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "08:00 - 08:59",
+        "Latitude": "30.42945845",
+        "Longitude": "-97.76018565",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72214247,
+          30.26254478
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020361,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "12:00 - 12:59",
+        "Latitude": "30.26254478",
+        "Longitude": "-97.72214247",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75953852,
+          30.42872261
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020362,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "15:00 - 15:59",
+        "Latitude": "30.42872261",
+        "Longitude": "-97.75953852",
+        "Manner of Collision": "OPPOSITE DIRECTION - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74616861,
+          30.22494469
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020363,
+        "Adjusted Average Daily Traffic Amount": "187715",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "16:00 - 16:59",
+        "Latitude": "30.22494469",
+        "Longitude": "-97.74616861",
+        "Manner of Collision": "ONE MOTOR VEHICLE - GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.78467245,
+          30.24191479
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020365,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "17:00 - 17:59",
+        "Latitude": "30.24191479",
+        "Longitude": "-97.78467245",
+        "Manner of Collision": "ANGLE - BOTH GOING STRAIGHT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.67817987,
+          30.39691165
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020366,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "17:00 - 17:59",
+        "Latitude": "30.39691165",
+        "Longitude": "-97.67817987",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE STOPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.67247248,
+          30.37541476
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020367,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 2,
+        "Crash Severity": "C - POSSIBLE INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "18:00 - 18:59",
+        "Latitude": "30.37541476",
+        "Longitude": "-97.67247248",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72895463,
+          30.28067088
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020371,
+        "Adjusted Average Daily Traffic Amount": "183326",
+        "Crash Possible Injury Count": 0,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 1,
+        "Hour of Day": "22:00 - 22:59",
+        "Latitude": "30.28067088",
+        "Longitude": "-97.72895463",
+        "Manner of Collision": "SAME DIRECTION - BOTH GOING STRAIGHT-REAR END"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.71722747,
+          30.29816477
+        ]
+      },
+      "properties": {
+        "Crash ID": 21020375,
+        "Adjusted Average Daily Traffic Amount": "No Data",
+        "Crash Possible Injury Count": 1,
+        "Crash Severity": "B - SUSPECTED MINOR INJURY",
+        "Crash Total Injury Count": 2,
+        "Hour of Day": "06:00 - 06:59",
+        "Latitude": "30.29816477",
+        "Longitude": "-97.71722747",
+        "Manner of Collision": "SAME DIRECTION - ONE STRAIGHT-ONE LEFT TURN"
+      }
+    }
+  ]
+}
