@@ -8,14 +8,18 @@
   <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
   <style>
     html, body { margin: 0; height: 100%; }
-    #app { display: grid; grid-template-rows: auto 1fr auto; height: 100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    header { padding: 10px 14px; border-bottom: 1px solid #eee; }
+    #app { display: grid; grid-template-rows: auto auto 1fr auto; height: 100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    header { padding: 12px 16px; border-bottom: 1px solid #eee; }
+    #summary { padding: 12px 16px; border-bottom: 1px solid #eee; line-height: 1.5; }
+    #summary .metrics { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 8px 0 6px; font-size: 14px; color: #222; }
+    #summary .metrics b { font-weight: 600; }
+    #summary p { margin: 8px 0 0; }
     #map { position: relative; }
     #map canvas { outline: none; }
     #legend { position: absolute; bottom: 16px; left: 16px; background: rgba(255,255,255,0.94); padding: 10px 12px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); font-size: 13px; }
     #legend .row { display: flex; align-items: center; margin: 4px 0; gap: 8px; }
     .swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-    footer { padding: 8px 14px; font-size: 12px; border-top: 1px solid #eee; color: #444; }
+    footer { padding: 8px 16px; font-size: 12px; border-top: 1px solid #eee; color: #444; }
     .attribution a { color: inherit; }
   </style>
 </head>
@@ -24,7 +28,31 @@
     <header>
       <strong>Crash Injury Map — thispostexample</strong>
     </header>
+
+    <!-- Summary block above the map -->
+    <section id="summary">
+      <div class="metrics">
+        <div><b>Total crashes:</b> 48</div>
+        <div><b>Total injuries:</b> 62</div>
+        <div><b>Avg injuries/crash:</b> 1.29</div>
+        <div><b>Severity (A/B/C/Unknown):</b> 2 / 29 / 15 / 2</div>
+      </div>
+      <p>
+        The crashes in this dataset reflect a broad range of collision types, but certain patterns dominate.
+        The most frequent is <em>angle collisions with both vehicles going straight</em> (10 cases), followed closely by
+        <em>rear-end collisions in the same direction</em> (9 cases). Single-vehicle incidents also appear often,
+        especially those involving a car going straight (6 cases). Complex interactions such as <em>one vehicle going
+        straight while the other turns left</em> (5 cases) or <em>a vehicle stopped while another moves straight in the
+        same direction</em> (5 cases) also stand out. Sideswipes in the same direction account for 4 crashes, while
+        turning maneuvers (right or left) make up 5 combined cases. Less frequent but notable are opposite-direction
+        crashes, whether both vehicles were going straight (2 cases) or one turned left into oncoming traffic (1 case).
+        In sum, the dataset points to a concentration of angle and rear-end conflicts, but with a meaningful share of
+        single-vehicle and turning-related crashes adding to the injury profile.
+      </p>
+    </section>
+
     <div id="map"></div>
+
     <footer>
       <span class="attribution">Basemap © OpenStreetMap contributors. Hosted via GitHub Pages. Data: uploaded CSV converted to GeoJSON.</span>
     </footer>
@@ -61,9 +89,10 @@
               "circle-color": [
                 "match",
                 ["get", "Crash Severity"],
-                "A - Suspected Serious Injury", "#c0392b",
-                "B - Suspected Minor Injury",   "#e67e22",
-                "C - Possible Injury",          "#f1c40f",
+                "A - SUSPECTED SERIOUS INJURY", "#c0392b",
+                "B - SUSPECTED MINOR INJURY",   "#e67e22",
+                "C - POSSIBLE INJURY",          "#f1c40f",
+                "99 - UNKNOWN",                 "#7f8c8d",
                 "#7f8c8d"
               ],
               "circle-opacity": 0.9,
