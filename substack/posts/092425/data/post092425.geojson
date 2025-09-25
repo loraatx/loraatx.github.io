@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "where": "1201 East 11th Street",
+        "whats_proposed": "Add cocktail lounge as a conditional use",
+        "what_that_means": "Would restore rights removed in 2022, allowing bar use on site",
+        "staff_says": "Deny \u2013 no change since Council\u2019s 2022 decision",
+        "neighbors_say": "Urban Renewal Board split; owner claims unfair treatment vs. nearby city-owned lots",
+        "tension": "Conflict between property rights and Council\u2019s recent policy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7275,
+          30.2686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "where": "905 Shady Lane",
+        "whats_proposed": "Rezone from SF-3-NP to LO-MU-CO-NP",
+        "what_that_means": "Would allow limited office and mixed-use on 0.72 acres",
+        "staff_says": "Approve \u2013 good buffer between homes and commercial uses",
+        "neighbors_say": "Not much formal opposition noted",
+        "tension": "Balancing school, warehouses, and neighborhood homes nearby"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.6912,
+          30.2545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "where": "500 Shady Lane",
+        "whats_proposed": "Rezone case postponed",
+        "what_that_means": "Applicant asked to push hearing back to Oct 28, 2025",
+        "staff_says": "Postponement request accepted",
+        "neighbors_say": "Pending coordination with Austin Fire Department",
+        "tension": "Delay rather than substantive debate yet"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.6943,
+          30.2571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "where": "2406 Rosewood Avenue",
+        "whats_proposed": "Change from Civic to Mixed Use; rezone from SF-3-NP to CS-MU-CO-NP",
+        "what_that_means": "Would allow commercial mixed-use development",
+        "staff_says": "Approve \u2013 aligns with planning goals",
+        "neighbors_say": "Commission unanimously supported",
+        "tension": "Repurposing nonprofit land for broader development"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.711,
+          30.2716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "where": "2000 E. 6th Street",
+        "whats_proposed": "Add to Plaza Saltillo TOD plan",
+        "what_that_means": "Rezone to TOD-NP allowing taller mixed-use up to 90 feet",
+        "staff_says": "Approve \u2013 fits Saltillo corridor vision",
+        "neighbors_say": "Supports TOD growth around rail",
+        "tension": "Density and height changes near rail lines"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.718,
+          30.2624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "where": "2007 E. 7th Street",
+        "whats_proposed": "Add to Plaza Saltillo TOD plan",
+        "what_that_means": "Rezone to TOD-NP allowing taller mixed-use up to 90 feet",
+        "staff_says": "Approve \u2013 fits Saltillo corridor vision",
+        "neighbors_say": "Supports TOD growth around rail",
+        "tension": "Density and height changes near rail lines"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7175,
+          30.2629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "where": "3305 Duval Street",
+        "whats_proposed": "Change from MF-1 to MF-3",
+        "what_that_means": "From 4 units/10 bedrooms \u2192 up to 12 units/36 bedrooms",
+        "staff_says": "Approve with overlay limiting to 6 units",
+        "neighbors_say": "Hancock NA voted 18\u20136 against; worry about traffic and scale",
+        "tension": "Owner wants bigger units near UT; neighbors fear overbuilding"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7305,
+          30.2965
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "where": "3303 Duval Street",
+        "whats_proposed": "Change from MF-1 to MF-3",
+        "what_that_means": "From 4 units/10 bedrooms \u2192 up to 12 units/36 bedrooms",
+        "staff_says": "Approve with overlay limiting to 6 units",
+        "neighbors_say": "Hancock NA voted 18\u20136 against; worry about traffic and scale",
+        "tension": "Owner wants bigger units near UT; neighbors fear overbuilding"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7306,
+          30.2966
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "where": "501 Harris Avenue",
+        "whats_proposed": "Change from MF-1 to MF-3",
+        "what_that_means": "From 4 units/10 bedrooms \u2192 up to 12 units/36 bedrooms",
+        "staff_says": "Approve with overlay limiting to 6 units",
+        "neighbors_say": "Hancock NA voted 18\u20136 against; worry about traffic and scale",
+        "tension": "Owner wants bigger units near UT; neighbors fear overbuilding"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7315,
+          30.2964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "where": "505 Harris Avenue",
+        "whats_proposed": "Change from MF-1 to MF-3",
+        "what_that_means": "From 4 units/10 bedrooms \u2192 up to 12 units/36 bedrooms",
+        "staff_says": "Approve with overlay limiting to 6 units",
+        "neighbors_say": "Hancock NA voted 18\u20136 against; worry about traffic and scale",
+        "tension": "Owner wants bigger units near UT; neighbors fear overbuilding"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7317,
+          30.2963
+        ]
+      }
+    }
+  ]
+}
