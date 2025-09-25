@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Planning Commission Cases – Sept 23, 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- MapLibre CSS -->
+  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    .maplibregl-popup-content {
+      font: 14px/1.4 "Helvetica Neue", Arial, sans-serif;
+      max-width: 300px;
+    }
+    .popup-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .popup-section {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <!-- MapLibre JS -->
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  <script>
+    // Initialize map
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+      center: [-97.7275, 30.2686], // Centered on Austin
+      zoom: 12
+    });
+
+    // Add navigation controls
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    // Load the GeoJSON from the same folder
+    fetch('planning_cases_map.geojson')
+      .then(response => response.json())
+      .then(data => {
+        // Add the GeoJSON as a source
+        map.addSource('cases', {
+          type: 'geojson',
+          data: data
+        });
+
+        // Add layer for points
+        map.addLayer({
+          id: 'cases-layer',
+          type: 'circle',
+          source: 'cases',
+          paint: {
+            'circle-radius': 6,
+            'circle-color': '#FF5722',
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#fff'
+          }
+        });
+
+        // Add popups on click
+        map.on('click', 'cases-layer', (e) => {
+          const props = e.features[0].properties;
+          const html = `
+            <div class="popup">
+              <div class="popup-title">${props.where}</div>
+              <div class="popup-section"><b>Proposed:</b> ${props.whats_proposed}</div>
+              <div class="popup-section"><b>Means:</b> ${props.what_that_means}</div>
+              <div class="popup-section"><b>Staff:</b> ${props.staff_says}</div>
+              <div class="popup-section"><b>Neighbors:</b> ${props.neighbors_say}</div>
+              <div class="popup-section"><b>Tension:</b> ${props.tension}</div>
+            </div>
+          `;
+          new maplibregl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(html)
+            .addTo(map);
+        });
+
+        // Change cursor on hover
+        map.on('mouseenter', 'cases-layer', () => {
+          map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', 'cases-layer', () => {
+          map.getCanvas().style.cursor = '';
+        });
+
+        // Fit bounds to all points
+        const bounds = new maplibregl.LngLatBounds();
+        data.features.forEach(f => bounds.extend(f.geometry.coordinates));
+        map.fitBounds(bounds, { padding: 50 });
+      });
+  </script>
+</body>
+</html>
