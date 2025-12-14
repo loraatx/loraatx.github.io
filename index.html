@@ -15,13 +15,21 @@
 </head>
 <body>
   <header id="top" class="topbar">
-    <div class="brand">City Anatomy</div>
-    <nav class="primary-nav" aria-label="Main navigation">
-      <a href="#substack">Substack</a>
-      <a href="#services">Services</a>
-      <a href="#apps">Apps</a>
-      <a href="#maps">Maps</a>
-    </nav>
+    <div class="topbar-left">
+      <div class="brand">City Anatomy</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#top">Docs</a>
+        <a href="#top">Examples</a>
+        <a href="#top">Showcase</a>
+        <a href="#top">Blog</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
   </header>
 
   <main>
@@ -38,57 +46,6 @@
       </div>
     </section>
 
-    <section id="substack" class="info-section">
-      <div class="section-inner">
-        <h2>Substack</h2>
-        <p>Details about the City Anatomy Substack will appear here soon.</p>
-        <div class="section-nav" aria-label="Section navigation">
-          <a href="#top">Back to top</a>
-          <a href="#services">Services</a>
-          <a href="#apps">Apps</a>
-          <a href="#maps">Maps</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="info-section">
-      <div class="section-inner">
-        <h2>Services</h2>
-        <p>Outline the services offered by City Anatomy in this space.</p>
-        <div class="section-nav" aria-label="Section navigation">
-          <a href="#top">Back to top</a>
-          <a href="#substack">Substack</a>
-          <a href="#apps">Apps</a>
-          <a href="#maps">Maps</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="apps" class="info-section">
-      <div class="section-inner">
-        <h2>Apps</h2>
-        <p>Share information about apps and tools connected to City Anatomy.</p>
-        <div class="section-nav" aria-label="Section navigation">
-          <a href="#top">Back to top</a>
-          <a href="#substack">Substack</a>
-          <a href="#services">Services</a>
-          <a href="#maps">Maps</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="maps" class="info-section">
-      <div class="section-inner">
-        <h2>Maps</h2>
-        <p>Highlight additional map resources and projects in this section.</p>
-        <div class="section-nav" aria-label="Section navigation">
-          <a href="#top">Back to top</a>
-          <a href="#substack">Substack</a>
-          <a href="#services">Services</a>
-          <a href="#apps">Apps</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="page-footer">
@@ -142,6 +99,30 @@
         },
         labelLayerId
       );
+    });
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = initialTheme;
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    const toggleIcon = themeToggle.querySelector('.toggle-icon');
+    const toggleLabel = themeToggle.querySelector('.toggle-label');
+
+    const updateToggleUI = (theme) => {
+      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    };
+
+    updateToggleUI(initialTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme;
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+      updateToggleUI(nextTheme);
     });
   </script>
 </body>
