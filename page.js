@@ -24,6 +24,21 @@
     updateToggleUI(nextTheme);
   });
 
+  const primaryNav = document.querySelector('.primary-nav');
+  const navToggle = document.querySelector('.nav-toggle');
+
+  const closeNav = () => {
+    if (!primaryNav || !navToggle) return;
+    primaryNav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  navToggle?.addEventListener('click', () => {
+    if (!primaryNav) return;
+    const isOpen = primaryNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
   const navSections = document.querySelectorAll('.nav-section');
   navSections.forEach((section) => {
     const toggle = section.querySelector('.nav-section-toggle');
@@ -65,6 +80,11 @@
 
   navLinks.forEach((btn) => {
     btn.addEventListener('click', () => activateLink(btn));
+    btn.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        closeNav();
+      }
+    });
   });
 
   const initial = document.querySelector('.nav-link.is-active') || navLinks[0];

@@ -6,15 +6,15 @@
   <title>Crash Injury Map — September 15th to 22nd Austin Car Crashes with Injuries</title>
   <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
   <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
   <style>
-    html, body { margin: 0; height: 100%; }
-    #app { display: grid; grid-template-rows: auto auto 1fr auto; height: 100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    header { padding: 12px 16px; border-bottom: 1px solid #eee; }
+    #app { display: grid; grid-template-rows: auto auto 1fr auto; min-height: 65vh; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     #summary { padding: 12px 16px; border-bottom: 1px solid #eee; line-height: 1.5; }
     #summary .metrics { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 8px 0 6px; font-size: 14px; color: #222; }
     #summary .metrics b { font-weight: 600; }
     #summary p { margin: 8px 0 0; }
-    #map { position: relative; }
+    #map { position: relative; min-height: 360px; }
     #map canvas { outline: none; }
     #legend { position: absolute; bottom: 16px; left: 16px; background: rgba(255,255,255,0.94); padding: 10px 12px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); font-size: 13px; }
     #legend .row { display: flex; align-items: center; margin: 4px 0; gap: 8px; }
@@ -24,39 +24,68 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <header>
-      <strong>Crash Injury Map — September 15th - 23rd - 2025</strong>
-    </header>
+  <header id="top" class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content/">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
 
-    <!-- Summary block above the map -->
-    <section id="summary">
-      <div class="metrics">
-        <div><b>Total crashes:</b> 48</div>
-        <div><b>Total injuries:</b> 62</div>
-        <div><b>Avg injuries/crash:</b> 1.29</div>
-        <div><b>Severity (A/B/C/Unknown):</b> 2 / 29 / 15 / 2</div>
+  <main class="report-shell">
+    <div id="app" class="report-card">
+      <div>
+        <strong>Crash Injury Map — September 15th - 23rd - 2025</strong>
       </div>
-      <p>
-        The crashes in this dataset reflect a broad range of collision types, but certain patterns dominate.
-        The most frequent is <em>angle collisions with both vehicles going straight</em> (10 cases), followed closely by
-        <em>rear-end collisions in the same direction</em> (9 cases). Single-vehicle incidents also appear often,
-        especially those involving a car going straight (6 cases). Complex interactions such as <em>one vehicle going
-        straight while the other turns left</em> (5 cases) or <em>a vehicle stopped while another moves straight in the
-        same direction</em> (5 cases) also stand out. Sideswipes in the same direction account for 4 crashes, while
-        turning maneuvers (right or left) make up 5 combined cases. Less frequent but notable are opposite-direction
-        crashes, whether both vehicles were going straight (2 cases) or one turned left into oncoming traffic (1 case).
-        In sum, the dataset points to a concentration of angle and rear-end conflicts, but with a meaningful share of
-        single-vehicle and turning-related crashes adding to the injury profile.
-      </p>
-    </section>
 
-    <div id="map"></div>
+      <!-- Summary block above the map -->
+      <section id="summary">
+        <div class="metrics">
+          <div><b>Total crashes:</b> 48</div>
+          <div><b>Total injuries:</b> 62</div>
+          <div><b>Avg injuries/crash:</b> 1.29</div>
+          <div><b>Severity (A/B/C/Unknown):</b> 2 / 29 / 15 / 2</div>
+        </div>
+        <p>
+          The crashes in this dataset reflect a broad range of collision types, but certain patterns dominate.
+          The most frequent is <em>angle collisions with both vehicles going straight</em> (10 cases), followed closely by
+          <em>rear-end collisions in the same direction</em> (9 cases). Single-vehicle incidents also appear often,
+          especially those involving a car going straight (6 cases). Complex interactions such as <em>one vehicle going
+          straight while the other turns left</em> (5 cases) or <em>a vehicle stopped while another moves straight in the
+          same direction</em> (5 cases) also stand out. Sideswipes in the same direction account for 4 crashes, while
+          turning maneuvers (right or left) make up 5 combined cases. Less frequent but notable are opposite-direction
+          crashes, whether both vehicles were going straight (2 cases) or one turned left into oncoming traffic (1 case).
+          In sum, the dataset points to a concentration of angle and rear-end conflicts, but with a meaningful share of
+          single-vehicle and turning-related crashes adding to the injury profile.
+        </p>
+      </section>
 
-    <footer>
-      <span class="attribution">Basemap © OpenStreetMap contributors. Hosted via GitHub Pages. Data: uploaded CSV converted to GeoJSON.</span>
-    </footer>
-  </div>
+      <div id="map"></div>
+
+      <footer>
+        <span class="attribution">Basemap © OpenStreetMap contributors. Hosted via GitHub Pages. Data: uploaded CSV converted to GeoJSON.</span>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>&copy; 2025 City Anatomy &bull; Powered by
+      <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
+    </p>
+  </footer>
 
   <script>
     const map = new maplibregl.Map({
@@ -142,5 +171,6 @@
     }
     map.on('load', buildLegend);
   </script>
+  <script src="/page.js"></script>
 </body>
 </html>

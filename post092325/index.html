@@ -8,9 +8,12 @@
   <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="topbar">
+  <header id="top" class="topbar">
     <div class="topbar-left">
       <a class="brand" href="/index.html">City Anatomy</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+      </button>
       <nav class="primary-nav" aria-label="Main navigation">
         <a href="/maps.html">Maps</a>
         <a href="/apps.html">Apps</a>
@@ -68,8 +71,10 @@
         </p>
       </article>
 
-      <footer class="docs-footer">
-        <p>&copy; 2025 City Anatomy • Shared layout across maps, apps, services, and stories.</p>
+      <footer class="page-footer docs-footer">
+        <p>&copy; 2025 City Anatomy &bull; Powered by
+          <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
+        </p>
       </footer>
     </div>
   </main>

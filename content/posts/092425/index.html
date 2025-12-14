@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <title>Planning Commission Cases – Sept 23, 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- MapLibre CSS -->
   <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
   <style>
-    body { margin: 0; padding: 0; }
-    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
     .maplibregl-popup-content {
       font: 14px/1.4 "Helvetica Neue", Arial, sans-serif;
       max-width: 300px;
@@ -20,11 +19,47 @@
     .popup-section {
       margin-bottom: 6px;
     }
+    .full-map-page {
+      min-height: calc(100vh - 220px);
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <!-- MapLibre JS -->
+  <header id="top" class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content/">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="full-map-page">
+    <div id="map"></div>
+  </main>
+
+  <footer class="page-footer">
+    <p>&copy; 2025 City Anatomy &bull; Powered by
+      <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
+    </p>
+  </footer>
+
   <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
   <script>
     const map = new maplibregl.Map({
@@ -38,57 +73,70 @@
 
     // Load the GeoJSON from the data folder
     fetch('data/post092425.geojson')
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         map.addSource('cases', {
           type: 'geojson',
-          data: data
+          data
         });
 
         map.addLayer({
-          id: 'cases-layer',
+          id: 'cases-circle',
           type: 'circle',
           source: 'cases',
           paint: {
-            'circle-radius': 6,
-            'circle-color': '#FF5722',
-            'circle-stroke-width': 1,
-            'circle-stroke-color': '#fff'
+            'circle-radius': 8,
+            'circle-color': '#3b82f6',
+            'circle-stroke-color': '#0f172a',
+            'circle-stroke-width': 1.5,
+            'circle-opacity': 0.75
           }
         });
 
-        map.on('click', 'cases-layer', (e) => {
-          const props = e.features[0].properties;
-          const html = `
-            <div class="popup">
-              <div class="popup-title">${props.where}</div>
-              <div class="popup-section"><b>Proposed:</b> ${props.whats_proposed}</div>
-              <div class="popup-section"><b>Means:</b> ${props.what_that_means}</div>
-              <div class="popup-section"><b>Staff:</b> ${props.staff_says}</div>
-              <div class="popup-section"><b>Neighbors:</b> ${props.neighbors_say}</div>
-              <div class="popup-section"><b>Tension:</b> ${props.tension}</div>
-            </div>
+        map.addLayer({
+          id: 'cases-labels',
+          type: 'symbol',
+          source: 'cases',
+          layout: {
+            'text-field': ['get', 'case_id'],
+            'text-size': 12,
+            'text-offset': [0, 1.2],
+            'text-anchor': 'top'
+          },
+          paint: {
+            'text-color': '#0f172a',
+            'text-halo-color': '#fff',
+            'text-halo-width': 1
+          }
+        });
+
+        map.on('click', 'cases-circle', (e) => {
+          const feature = e.features[0];
+          const properties = feature.properties;
+          const popupHtml = `
+            <div class="popup-title">Case ${properties.case_id}</div>
+            <div class="popup-section"><strong>Address:</strong> ${properties.address}</div>
+            <div class="popup-section"><strong>Applicant:</strong> ${properties.applicant}</div>
+            <div class="popup-section"><strong>Case Type:</strong> ${properties.case_type}</div>
+            <div class="popup-section"><strong>Status:</strong> ${properties.status}</div>
           `;
+
           new maplibregl.Popup()
-            .setLngLat(e.features[0].geometry.coordinates)
-            .setHTML(html)
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(popupHtml)
             .addTo(map);
         });
 
-        map.on('mouseenter', 'cases-layer', () => {
+        map.on('mouseenter', 'cases-circle', () => {
           map.getCanvas().style.cursor = 'pointer';
         });
-        map.on('mouseleave', 'cases-layer', () => {
+
+        map.on('mouseleave', 'cases-circle', () => {
           map.getCanvas().style.cursor = '';
         });
-
-        // Fit to all points
-        const bounds = new maplibregl.LngLatBounds();
-        data.features.forEach(f => bounds.extend(f.geometry.coordinates));
-        if (!bounds.isEmpty()) {
-          map.fitBounds(bounds, { padding: 50 });
-        }
-      });
+      })
+      .catch((error) => console.error('Error loading GeoJSON:', error));
   </script>
+  <script src="/page.js"></script>
 </body>
 </html>
