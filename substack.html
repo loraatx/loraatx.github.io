@@ -2,14 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=/content/" />
-  <title>Redirecting to Content • City Anatomy</title>
-  <link rel="canonical" href="https://anatomy.city/content" />
-  <script>
-    window.location.replace('/content/');
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter • City Anatomy</title>
+  <link rel="canonical" href="https://anatomy.city/substack" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <p>Redirecting to <a href="/content/">anatomy.city/content</a>…</p>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content/">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="docs-page">
+    <div class="docs-layout">
+      <aside class="docs-nav" aria-label="Newsletter navigation">
+        <p class="content-kicker">Newsletter</p>
+        <h1 class="page-title">Substack-style updates</h1>
+        <p class="sidebar-lede">
+          Dispatches from the studio: quick notes on projects, links we're reading, and ways to collaborate.
+          Use the dropdown to hop between recent placeholder posts while the shared map stays centered.
+        </p>
+
+        <div class="nav-section">
+          <button class="nav-section-toggle" type="button" aria-expanded="true">
+            <span>Recent sends</span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-links">
+            <li><button class="nav-link is-active" data-description="City hall rezoning recap with map snapshots." data-tag="Update" data-map-label="Council recap" data-color="#f59e0b">Council recap</button></li>
+            <li><button class="nav-link" data-description="Notes from a neighborhood walk paired with fresh cartography." data-tag="Field" data-map-label="Trail notes" data-color="#22c55e">Trail notes</button></li>
+            <li><button class="nav-link" data-description="What we're building next quarter plus a sneak peek of map experiments." data-tag="Roadmap" data-map-label="Roadmap teaser" data-color="#3b82f6">Roadmap teaser</button></li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="map-column">
+        <div class="map-panel">
+          <div class="map-viewport" data-base-color="#f59e0b">
+            <div class="map-overlay">
+              <p class="overlay-label">Shared map</p>
+              <h2 data-map-label>Council recap</h2>
+              <p class="overlay-note" data-map-note>Each newsletter item points to the same preview map.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article class="detail-panel" aria-live="polite">
+        <p class="detail-tag" data-detail-tag>Update</p>
+        <h2 class="detail-title" data-detail-title>Council recap</h2>
+        <p class="detail-body" data-detail-body>
+          City hall rezoning recap with map snapshots.
+        </p>
+      </article>
+
+      <footer class="docs-footer">
+        <p>&copy; 2025 City Anatomy • Shared layout across maps, apps, services, and stories.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="/page.js"></script>
 </body>
 </html>

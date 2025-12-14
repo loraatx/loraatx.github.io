@@ -1,117 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crash Injury Map — thispostexample</title>
-  <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
-  <style>
-    html, body { margin: 0; height: 100%; }
-    #app { display: grid; grid-template-rows: auto 1fr auto; height: 100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    header { padding: 10px 14px; border-bottom: 1px solid #eee; }
-    #map { position: relative; }
-    #map canvas { outline: none; }
-    #legend { position: absolute; bottom: 16px; left: 16px; background: rgba(255,255,255,0.94); padding: 10px 12px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); font-size: 13px; }
-    #legend .row { display: flex; align-items: center; margin: 4px 0; gap: 8px; }
-    .swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-    footer { padding: 8px 14px; font-size: 12px; border-top: 1px solid #eee; color: #444; }
-    .attribution a { color: inherit; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <div id="app">
-    <header>
-      <strong>Crash Injury Map — thispostexample</strong>
-    </header>
-    <div id="map"></div>
-    <footer>
-      <span class="attribution">Basemap © OpenStreetMap contributors. Hosted via GitHub Pages. Data: uploaded CSV converted to GeoJSON.</span>
-    </footer>
-  </div>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content/">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
 
-  <script>
-    const map = new maplibregl.Map({
-      container: 'map',
-      style: {
-        "version": 8,
-        "sources": {
-          "osm": {
-            "type": "raster",
-            "tiles": ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-            "tileSize": 256,
-            "attribution": "© OpenStreetMap contributors"
-          },
-          "crashes": {
-            "type": "geojson",
-            "data": "./data/crashes_injury.geojson"
-          }
-        },
-        "layers": [
-          { "id": "osm", "type": "raster", "source": "osm" },
-          {
-            "id": "crash-points",
-            "type": "circle",
-            "source": "crashes",
-            "paint": {
-              "circle-radius": [
-                "interpolate", ["linear"], ["to-number", ["get", "Crash Total Injury Count"], 1],
-                0, 4, 1, 6, 3, 8, 5, 10
-              ],
-              "circle-color": [
-                "match",
-                ["get", "Crash Severity"],
-                "A - Suspected Serious Injury", "#c0392b",
-                "B - Suspected Minor Injury",   "#e67e22",
-                "C - Possible Injury",          "#f1c40f",
-                "#7f8c8d"
-              ],
-              "circle-opacity": 0.9,
-              "circle-stroke-color": "#222",
-              "circle-stroke-width": 0.75
-            }
-          }
-        ]
-      },
-      center: [-97.7431, 30.2672],
-      zoom: 10
-    });
+  <main class="docs-page">
+    <div class="docs-layout">
+      <aside class="docs-nav" aria-label="Crash map navigation">
+        <p class="content-kicker">Project</p>
+        <h1 class="page-title">Crash Injury Map</h1>
+        <p class="sidebar-lede">
+          A notebook-style view of the crash injury dataset used in thispostexample. The left menu mirrors deck.gl's dropdown behavior so you can jump between placeholder focuses while the shared map stays in view.
+        </p>
 
-    const popup = new maplibregl.Popup({ closeButton: true, closeOnClick: true });
+        <div class="nav-section">
+          <button class="nav-section-toggle" type="button" aria-expanded="true">
+            <span>Crash layers</span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-links">
+            <li><button class="nav-link is-active" data-description="Points sized by total injury count with severity-driven colors." data-tag="Severity" data-map-label="Injury clusters" data-color="#ef4444">Injury clusters</button></li>
+            <li><button class="nav-link" data-description="Showing corridors with repeat crash activity." data-tag="Hotspots" data-map-label="Hotspot sweep" data-color="#f97316">Hotspot sweep</button></li>
+            <li><button class="nav-link" data-description="Filtering the dataset for late-night patterns around the core." data-tag="Temporal" data-map-label="After-hours view" data-color="#3b82f6">After-hours view</button></li>
+          </ul>
+        </div>
+      </aside>
 
-    map.on('click', 'crash-points', (e) => {
-      const f = e.features[0];
-      const p = f.properties;
-      const html = `
-        <div style="min-width:240px">
-          <div style="font-weight:600; margin-bottom:6px;">Crash ID: ${p["Crash ID"] ?? "—"}</div>
-          <div><strong>Severity:</strong> ${p["Crash Severity"] ?? "—"}</div>
-          <div><strong>Total Injuries:</strong> ${p["Crash Total Injury Count"] ?? "0"}</div>
-          <div><strong>Possible Injuries:</strong> ${p["Crash Possible Injury Count"] ?? "0"}</div>
-          <div><strong>Manner:</strong> ${p["Manner of Collision"] ?? "—"}</div>
-          <div><strong>Hour:</strong> ${p["Hour of Day"] ?? "—"}</div>
-          <div><strong>AADT:</strong> ${p["Adjusted Average Daily Traffic Amount"] ?? "—"}</div>
-        </div>`;
-      popup.setLngLat(f.geometry.coordinates).setHTML(html).addTo(map);
-    });
+      <section class="map-column">
+        <div class="map-panel">
+          <div class="map-viewport" data-base-color="#ef4444">
+            <div class="map-overlay">
+              <p class="overlay-label">Shared map</p>
+              <h2 data-map-label>Injury clusters</h2>
+              <p class="overlay-note" data-map-note>Placeholder map shared across every crash lens.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    map.on('mouseenter', 'crash-points', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'crash-points', () => map.getCanvas().style.cursor = '');
+      <article class="detail-panel" aria-live="polite">
+        <p class="detail-tag" data-detail-tag>Severity</p>
+        <h2 class="detail-title" data-detail-title>Injury clusters</h2>
+        <p class="detail-body" data-detail-body>
+          Points sized by total injury count with severity-driven colors.
+        </p>
+      </article>
 
-    function buildLegend() {
-      const el = document.createElement('div');
-      el.id = 'legend';
-      el.innerHTML = `
-        <div style="font-weight:600; margin-bottom:6px;">Legend</div>
-        <div class="row"><span class="swatch" style="background:#c0392b;"></span> A — Suspected Serious Injury</div>
-        <div class="row"><span class="swatch" style="background:#e67e22;"></span> B — Suspected Minor Injury</div>
-        <div class="row"><span class="swatch" style="background:#f1c40f;"></span> C — Possible Injury</div>
-        <div class="row"><span class="swatch" style="background:#7f8c8d;"></span> Unknown</div>
-        <div style="margin-top:6px; font-size:12px; color:#555;">Point size ≈ total injury count</div>
-      `;
-      document.getElementById('map').appendChild(el);
-    }
-    map.on('load', buildLegend);
-  </script>
+      <footer class="docs-footer">
+        <p>&copy; 2025 City Anatomy • Shared layout across maps, apps, services, and stories.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="/page.js"></script>
 </body>
 </html>
