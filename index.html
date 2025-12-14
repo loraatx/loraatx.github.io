@@ -17,6 +17,9 @@
   <header id="top" class="topbar">
     <div class="topbar-left">
       <a class="brand" href="/index.html">City Anatomy</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+      </button>
       <nav class="primary-nav" aria-label="Main navigation">
         <a href="/maps.html">Maps</a>
         <a href="/apps.html">Apps</a>
@@ -122,6 +125,24 @@
       document.documentElement.dataset.theme = nextTheme;
       localStorage.setItem('theme', nextTheme);
       updateToggleUI(nextTheme);
+    });
+
+    const primaryNav = document.querySelector('.primary-nav');
+    const navToggle = document.querySelector('.nav-toggle');
+
+    navToggle?.addEventListener('click', () => {
+      if (!primaryNav) return;
+      const isOpen = primaryNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    primaryNav?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900 && primaryNav.classList.contains('is-open')) {
+          primaryNav.classList.remove('is-open');
+          navToggle?.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
   </script>
 </body>
