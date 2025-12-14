@@ -196,6 +196,19 @@ main {
   line-height: 1.6;
 }
 
+.city-facts {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+  color: var(--text);
+}
+
+.city-facts strong {
+  color: var(--text);
+}
+
 .news-feed {
   background: color-mix(in srgb, var(--surface) 90%, transparent);
   border: 1px solid var(--border);
