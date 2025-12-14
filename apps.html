@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apps • City Anatomy</title>
+  <link rel="canonical" href="https://anatomy.city/apps" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">City Anatomy</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/examples.html">Examples</a>
+        <a href="/substack.html">Substack</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="content-page">
+    <div class="content-shell">
+      <p class="content-kicker">Apps</p>
+      <h1>Prototyping spatial tools</h1>
+      <p class="content-lede">
+        Lightweight applications that sit on top of the base maps. Expect experiments in
+        site selection, zoning lookups, climate overlays, and neighborhood storytelling.
+        Everything here is a sketch meant to gather feedback before turning into a full release.
+      </p>
+      <div class="placeholder-grid" aria-label="App ideas">
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">Lot scanner</h2>
+          <p class="placeholder-meta">A quick parcel explorer that summarizes setbacks, FAR, and utilities.</p>
+        </div>
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">Mobility companion</h2>
+          <p class="placeholder-meta">Concept for comparing transit, bike, and walk times to major anchors.</p>
+        </div>
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">Heat & shade finder</h2>
+          <p class="placeholder-meta">Placeholder for a map that mixes tree canopy, impervious cover, and heat readings.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>&copy; 2025 City Anatomy • Slug URL: <strong>anatomy.city/apps</strong></p>
+  </footer>
+
+  <script>
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = initialTheme;
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    const toggleIcon = themeToggle.querySelector('.toggle-icon');
+    const toggleLabel = themeToggle.querySelector('.toggle-label');
+
+    const updateToggleUI = (theme) => {
+      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    };
+
+    updateToggleUI(initialTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme;
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+      updateToggleUI(nextTheme);
+    });
+  </script>
+</body>
+</html>
