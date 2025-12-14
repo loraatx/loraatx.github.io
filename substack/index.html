@@ -2,22 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>City Anatomy Substack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substack • City Anatomy</title>
+  <link rel="canonical" href="https://anatomy.city/substack" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Subscribe to City Anatomy</h1>
-  <p>Get the latest maps, planning reviews, and data-driven posts from Austin, TX.</p>
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">City Anatomy</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/examples.html">Examples</a>
+        <a href="/substack">Substack</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
 
-  <!-- Substack Widget -->
-  <div id="custom-substack-embed"></div>
+  <main class="content-page">
+    <div class="content-shell">
+      <p class="content-kicker">Substack</p>
+      <h1>Notes, drafts, and dispatches</h1>
+      <p class="content-lede">
+        The writing desk for City Anatomy lives on Substack. Here you'll find longform essays,
+        quick dispatches from field work, and weeknotes about what we're building. The posts
+        below are placeholders until the real feed is connected.
+      </p>
+      <div class="placeholder-grid" aria-label="Substack teasers">
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">How the skyline breathes</h2>
+          <p class="placeholder-meta">An outline for a story on wind, shade, and pocket parks downtown.</p>
+        </div>
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">A week inside the GIS stack</h2>
+          <p class="placeholder-meta">Notes from processing open data and tuning tiling pipelines.</p>
+        </div>
+        <div class="placeholder-card">
+          <h2 class="placeholder-title">Field trip: Waller Creek</h2>
+          <p class="placeholder-meta">Photo placeholders and captions from an evening walk along the trail.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>&copy; 2025 City Anatomy • Slug URL: <strong>anatomy.city/substack</strong></p>
+  </footer>
+
   <script>
-    window.CustomSubstackWidget = {
-      substackUrl: "cityanatomy.substack.com", // ← replace this
-      placeholder: "you@example.com",
-      buttonText: "Subscribe",
-      theme: "custom"
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = initialTheme;
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    const toggleIcon = themeToggle.querySelector('.toggle-icon');
+    const toggleLabel = themeToggle.querySelector('.toggle-label');
+
+    const updateToggleUI = (theme) => {
+      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
     };
+
+    updateToggleUI(initialTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme;
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+      updateToggleUI(nextTheme);
+    });
   </script>
-  <script src="https://substackapi.com/widget.js" async></script>
 </body>
 </html>
