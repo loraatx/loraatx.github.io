@@ -2,14 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=/services.html" />
-  <title>Redirecting to Services • City Anatomy</title>
-  <link rel="canonical" href="https://anatomy.city/services" />
-  <script>
-    window.location.replace('/services.html');
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples • City Anatomy</title>
+  <link rel="canonical" href="https://anatomy.city/examples" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <p>Redirecting to <a href="/services.html">anatomy.city/services</a>…</p>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content/">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="docs-page">
+    <div class="docs-layout">
+      <aside class="docs-nav" aria-label="Examples navigation">
+        <p class="content-kicker">Examples</p>
+        <h1 class="page-title">Deck.gl style gallery</h1>
+        <p class="sidebar-lede">
+          A compact directory of patterns inspired by deck.gl's examples. Use the dropdown menu to swap between placeholder demos and see the same map respond in the center panel.
+        </p>
+
+        <div class="nav-section">
+          <button class="nav-section-toggle" type="button" aria-expanded="true">
+            <span>Example set</span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-links">
+            <li><button class="nav-link is-active" data-description="Stylized basemap with focus on center city morphologies." data-tag="Basemap" data-map-label="Massing reference" data-color="#0ea5e9">Massing reference</button></li>
+            <li><button class="nav-link" data-description="Placeholder for an origin-destination flow layer." data-tag="Mobility" data-map-label="Flow map sample" data-color="#8b5cf6">Flow map sample</button></li>
+            <li><button class="nav-link" data-description="Cartogram-inspired view with color ramps for amenities." data-tag="Amenities" data-map-label="Amenity pulses" data-color="#f97316">Amenity pulses</button></li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="map-column">
+        <div class="map-panel">
+          <div class="map-viewport" data-base-color="#0ea5e9">
+            <div class="map-overlay">
+              <p class="overlay-label">Shared map</p>
+              <h2 data-map-label>Massing reference</h2>
+              <p class="overlay-note" data-map-note>Same canvas reacts to each gallery example.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article class="detail-panel" aria-live="polite">
+        <p class="detail-tag" data-detail-tag>Basemap</p>
+        <h2 class="detail-title" data-detail-title>Massing reference</h2>
+        <p class="detail-body" data-detail-body>
+          Stylized basemap with focus on center city morphologies.
+        </p>
+      </article>
+
+      <footer class="docs-footer">
+        <p>&copy; 2025 City Anatomy • Shared layout across maps, apps, services, and stories.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="/page.js"></script>
 </body>
 </html>

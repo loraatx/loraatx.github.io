@@ -6,7 +6,7 @@
   <title>Services • City Anatomy</title>
   <link rel="canonical" href="https://anatomy.city/services" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
   <header class="topbar">
@@ -27,60 +27,55 @@
     </div>
   </header>
 
-  <main class="content-page">
-    <div class="content-shell">
-      <p class="content-kicker">Services</p>
-      <h1>Consulting, research, and technical support</h1>
-      <p class="content-lede">
-        City Anatomy provides spatial analysis, cartography, and product thinking for teams building
-        with place-based data. These service cards outline how we help—from short audits to full
-        implementation partnerships.
-      </p>
-      <div class="placeholder-grid" aria-label="Service offerings">
-        <div class="placeholder-card">
-          <h2 class="placeholder-title">Data & mapping audit</h2>
-          <p class="placeholder-meta">Rapid review of your geospatial stack with recommendations on styling, tiling, and hosting.</p>
+  <main class="docs-page">
+    <div class="docs-layout">
+      <aside class="docs-nav" aria-label="Service navigation">
+        <p class="content-kicker">Services</p>
+        <h1 class="page-title">Consulting, research, and technical support</h1>
+        <p class="sidebar-lede">
+          City Anatomy provides spatial analysis, cartography, and product thinking for teams building with place-based data.
+          These service cards outline how we help—from short audits to full implementation partnerships.
+        </p>
+
+        <div class="nav-section">
+          <button class="nav-section-toggle" type="button" aria-expanded="true">
+            <span>Ways we help</span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-links">
+            <li><button class="nav-link is-active" data-description="Rapid review of your geospatial stack with recommendations on styling, tiling, and hosting." data-tag="Audit" data-map-label="Data & mapping audit" data-color="#2563eb">Data &amp; mapping audit</button></li>
+            <li><button class="nav-link" data-description="Sprint-focused builds to test new map features or decision tools with real users." data-tag="Prototype" data-map-label="Product prototyping" data-color="#16a34a">Product prototyping</button></li>
+            <li><button class="nav-link" data-description="Workshops and playbooks that help your team maintain maps, data pipelines, and UI standards." data-tag="Enablement" data-map-label="Training & documentation" data-color="#d946ef">Training &amp; documentation</button></li>
+          </ul>
         </div>
-        <div class="placeholder-card">
-          <h2 class="placeholder-title">Product prototyping</h2>
-          <p class="placeholder-meta">Sprint-focused builds to test new map features or decision tools with real users.</p>
+      </aside>
+
+      <section class="map-column">
+        <div class="map-panel">
+          <div class="map-viewport" data-base-color="#2563eb">
+            <div class="map-overlay">
+              <p class="overlay-label">Shared map</p>
+              <h2 data-map-label>Data &amp; mapping audit</h2>
+              <p class="overlay-note" data-map-note>Same preview map grounds every engagement.</p>
+            </div>
+          </div>
         </div>
-        <div class="placeholder-card">
-          <h2 class="placeholder-title">Training & documentation</h2>
-          <p class="placeholder-meta">Workshops and playbooks that help your team maintain maps, data pipelines, and UI standards.</p>
-        </div>
-      </div>
+      </section>
+
+      <article class="detail-panel" aria-live="polite">
+        <p class="detail-tag" data-detail-tag>Audit</p>
+        <h2 class="detail-title" data-detail-title>Data &amp; mapping audit</h2>
+        <p class="detail-body" data-detail-body>
+          Rapid review of your geospatial stack with recommendations on styling, tiling, and hosting.
+        </p>
+      </article>
+
+      <footer class="docs-footer">
+        <p>&copy; 2025 City Anatomy • Shared layout across maps, apps, services, and stories.</p>
+      </footer>
     </div>
   </main>
 
-  <footer class="page-footer">
-    <p>&copy; 2025 City Anatomy • Slug URL: <strong>anatomy.city/services</strong></p>
-  </footer>
-
-  <script>
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const storedTheme = localStorage.getItem('theme');
-    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
-    document.documentElement.dataset.theme = initialTheme;
-
-    const themeToggle = document.querySelector('.theme-toggle');
-    const toggleIcon = themeToggle.querySelector('.toggle-icon');
-    const toggleLabel = themeToggle.querySelector('.toggle-label');
-
-    const updateToggleUI = (theme) => {
-      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-      toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
-    };
-
-    updateToggleUI(initialTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.dataset.theme;
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.dataset.theme = nextTheme;
-      localStorage.setItem('theme', nextTheme);
-      updateToggleUI(nextTheme);
-    });
-  </script>
+  <script src="/page.js"></script>
 </body>
 </html>
