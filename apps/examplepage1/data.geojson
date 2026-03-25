@@ -4,56 +4,113 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Point 1",
-        "description": "Demo location"
+        "name": "Barton Brew",
+        "type": "independent",
+        "outdoor": "yes",
+        "wifi": "yes",
+        "neighborhood": "Barton Springs"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-97.7431, 30.2672]
+        "coordinates": [-97.7612, 30.2589]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Point 2",
-        "description": "Demo location"
+        "name": "Capitol Coffee",
+        "type": "chain",
+        "outdoor": "no",
+        "wifi": "yes",
+        "neighborhood": "Downtown"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-97.7500, 30.2700]
+        "coordinates": [-97.7428, 30.2706]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Point 3",
-        "description": "Demo location"
+        "name": "Lakehouse Roasters",
+        "type": "independent",
+        "outdoor": "yes",
+        "wifi": "no",
+        "neighborhood": "South Shore"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-97.7350, 30.2600]
+        "coordinates": [-97.7314, 30.2508]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Point 4",
-        "description": "Demo location"
+        "name": "Metro Beans",
+        "type": "chain",
+        "outdoor": "yes",
+        "wifi": "yes",
+        "neighborhood": "East Austin"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-97.7200, 30.2750]
+        "coordinates": [-97.7264, 30.2642]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Point 5",
-        "description": "Demo location"
+        "name": "West End Cafe",
+        "type": "independent",
+        "outdoor": "no",
+        "wifi": "yes",
+        "neighborhood": "Clarksville"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-97.7600, 30.2550]
+        "coordinates": [-97.7581, 30.2771]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "University Grind",
+        "type": "chain",
+        "outdoor": "no",
+        "wifi": "yes",
+        "neighborhood": "West Campus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.7449, 30.2872]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cedar Street Coffee",
+        "type": "independent",
+        "outdoor": "yes",
+        "wifi": "yes",
+        "neighborhood": "Warehouse District"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.7487, 30.2677]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riverside Roast",
+        "type": "chain",
+        "outdoor": "yes",
+        "wifi": "no",
+        "neighborhood": "Riverside"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.7368, 30.2459]
       }
     }
   ]
