@@ -2,23 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Example Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- MapLibre CSS -->
-  <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
-
-  <!-- Your styles -->
-  <link rel="stylesheet" href="./style.css" />
+  <title>City Anatomy</title>
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link href="style.css" rel="stylesheet" />
 </head>
 <body>
+  <header id="top" class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="/index.html">City Anatomy</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/maps.html">Maps</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/services.html">Services</a>
+        <a href="/content.html">Content</a>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <span class="toggle-icon">☀️</span>
+        <span class="toggle-label">Light</span>
+      </button>
+    </div>
+  </header>
 
-  <div id="map"></div>
+  <main>
+    <section class="map-hero">
+      <div id="map" role="application" aria-label="3D map of Austin, Texas"></div>
+      <div class="hero-overlay">
+        <p class="eyebrow">Austin, Texas</p>
+        <ul class="city-facts">
+          <li><strong>Mayor:</strong> Kirk Watson</li>
+          <li><strong>Population:</strong> ~997,600</li>
+          <li><strong>Area:</strong> 320 sq miles (Land)</li>
+        </ul>
+      </div>
+    </section>
 
-  <!-- MapLibre JS -->
-  <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+  </main>
 
-  <!-- Your app -->
-  <script src="./app.js"></script>
+  <footer class="page-footer">
+    <p>&copy; 2025 City Anatomy &bull; Powered by
+      <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
+  <script>
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-97.7431, 30.2672], // Austin, TX
+      zoom: 15,
+      pitch: 60,
+      bearing: -17.6,
+      antialias: true
+    });
+
+    // Add zoom/rotation controls
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    // Wait for the map to load before adding 3D buildings
+    map.on('load', () => {
+      // Find the first symbol layer so we can insert buildings underneath labels
+      const layers = map.getStyle().layers;
+      let labelLayerId;
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+
+      // Add 3D building layer
+      map.addLayer(
+        {
+          id: '3d-buildings',
+          source: 'openmaptiles',
+          'source-layer': 'building',
+          filter: ['==', ['get', 'extrude'], 'true'],
+          type: 'fill-extrusion',
+          minzoom: 15,
+          paint: {
+            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-height': ['get', 'render_height'],
+            'fill-extrusion-base': ['get', 'render_min_height'],
+            'fill-extrusion-opacity': 0.7
+          }
+        },
+        labelLayerId
+      );
+    });
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = initialTheme;
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    const toggleIcon = themeToggle.querySelector('.toggle-icon');
+    const toggleLabel = themeToggle.querySelector('.toggle-label');
+
+    const updateToggleUI = (theme) => {
+      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    };
+
+    updateToggleUI(initialTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme;
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+      updateToggleUI(nextTheme);
+    });
+
+    const primaryNav = document.querySelector('.primary-nav');
+    const navToggle = document.querySelector('.nav-toggle');
+
+    navToggle?.addEventListener('click', () => {
+      if (!primaryNav) return;
+      const isOpen = primaryNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    primaryNav?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900 && primaryNav.classList.contains('is-open')) {
+          primaryNav.classList.remove('is-open');
+          navToggle?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
