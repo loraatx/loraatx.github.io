@@ -4,9 +4,12 @@ let allFeatures = [];
 async function init() {
   map = new maplibregl.Map({
     container: "map",
-    style: "https://demotiles.maplibre.org/style.json",
+    style: "https://tiles.openfreemap.org/styles/liberty",
     center: [-97.7431, 30.2672],
-    zoom: 11
+    zoom: 13,
+    pitch: 45,
+    bearing: -15,
+    antialias: true
   });
 
   map.addControl(new maplibregl.NavigationControl(), "top-right");
@@ -16,6 +19,43 @@ async function init() {
   allFeatures = geojson.features;
 
   map.on("load", () => {
+    // Find the first symbol layer to insert buildings beneath labels
+    const layers = map.getStyle().layers;
+    let labelLayerId;
+    for (let i = 0; i < layers.length; i++) {
+      if (layers[i].type === "symbol" && layers[i].layout && layers[i].layout["text-field"]) {
+        labelLayerId = layers[i].id;
+        break;
+      }
+    }
+
+    // Add 3D building extrusion layer
+    map.addLayer(
+      {
+        id: "3d-buildings",
+        source: "openmaptiles",
+        "source-layer": "building",
+        type: "fill-extrusion",
+        minzoom: 13,
+        paint: {
+          "fill-extrusion-color": "#c8cdd4",
+          "fill-extrusion-height": [
+            "interpolate", ["linear"], ["zoom"],
+            13, 0,
+            15, ["coalesce", ["get", "render_height"], 10]
+          ],
+          "fill-extrusion-base": [
+            "interpolate", ["linear"], ["zoom"],
+            13, 0,
+            15, ["coalesce", ["get", "render_min_height"], 0]
+          ],
+          "fill-extrusion-opacity": 0.65
+        }
+      },
+      labelLayerId
+    );
+
+    // Add places data source
     map.addSource("places", {
       type: "geojson",
       data: {
@@ -24,15 +64,30 @@ async function init() {
       }
     });
 
+    // Shadow layer for drop-shadow effect on markers
+    map.addLayer({
+      id: "places-shadow",
+      type: "circle",
+      source: "places",
+      paint: {
+        "circle-radius": 10,
+        "circle-color": "rgba(0,0,0,0.25)",
+        "circle-blur": 0.8,
+        "circle-translate": [1, 2]
+      }
+    });
+
+    // Main marker layer
     map.addLayer({
       id: "places-layer",
       type: "circle",
       source: "places",
       paint: {
-        "circle-radius": 7,
-        "circle-color": "#2c7be5",
+        "circle-radius": 8,
+        "circle-color": "#e63946",
         "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2
+        "circle-stroke-width": 2.5,
+        "circle-pitch-alignment": "map"
       }
     });
 
@@ -140,7 +195,11 @@ function updateTable(features) {
       const coords = feature.geometry.coordinates;
       map.flyTo({
         center: coords,
-        zoom: 14
+        zoom: 15.5,
+        pitch: 50,
+        bearing: -10,
+        duration: 1500,
+        essential: true
       });
 
       new maplibregl.Popup()
@@ -174,8 +233,10 @@ function fitMapToFeatures(features) {
 
   map.fitBounds(bounds, {
     padding: 60,
-    maxZoom: 14,
-    duration: 500
+    maxZoom: 15,
+    pitch: 45,
+    bearing: -15,
+    duration: 800
   });
 }
 
