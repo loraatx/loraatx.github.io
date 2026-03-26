@@ -3,12 +3,12 @@
 // ============================================================
 const CONFIG = {
   // Page text
-  title: "Example Page 1",
-  eyebrow: "MAP APP",
-  subtitle: "Simple demo layout for list-based map apps.",
+  title: "Tacos & Mexican Food",
+  eyebrow: "EAST AUSTIN",
+  subtitle: "34 spots from OSM — Mexican, Tex-Mex, and taco restaurants.",
 
   // Map defaults
-  center: [-97.7431, 30.2672],
+  center: [-97.722, 30.268],
   zoom: 13,
   pitch: 45,
   bearing: -15,
@@ -19,26 +19,24 @@ const CONFIG = {
 
   // Filters — each becomes a dropdown; values auto-populated from data
   filters: [
-    { property: "type",    label: "Type" },
-    { property: "outdoor", label: "Outdoor Seating" },
-    { property: "wifi",    label: "Wi-Fi" }
+    { property: "kind",    label: "Type" },
+    { property: "cuisine", label: "Cuisine" }
   ],
 
   // Table columns
   columns: [
-    { property: "name",         header: "Name" },
-    { property: "type",         header: "Type" },
-    { property: "outdoor",      header: "Outdoor" },
-    { property: "wifi",         header: "Wi-Fi" },
-    { property: "neighborhood", header: "Neighborhood" }
+    { property: "name",    header: "Name" },
+    { property: "kind",    header: "Type" },
+    { property: "cuisine", header: "Cuisine" },
+    { property: "address", header: "Address" }
   ],
 
   // Popup detail rows (name is always shown as the title)
   popupFields: [
-    { property: "type",         label: "Type" },
-    { property: "outdoor",      label: "Outdoor" },
-    { property: "wifi",         label: "Wi-Fi" },
-    { property: "neighborhood", label: "Neighborhood" }
+    { property: "kind",    label: "Type" },
+    { property: "cuisine", label: "Cuisine" },
+    { property: "address", label: "Address" },
+    { property: "phone",   label: "Phone" }
   ]
 };
 // ============================================================
