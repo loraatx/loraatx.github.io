@@ -1,61 +1,27 @@
 let map;
 let allFeatures = [];
+let popup;
 
 async function init() {
+  const response = await fetch("./data.geojson");
+  const geojson = await response.json();
+  allFeatures = geojson.features;
+
   map = new maplibregl.Map({
     container: "map",
     style: "https://tiles.openfreemap.org/styles/liberty",
     center: [-97.7431, 30.2672],
-    zoom: 13,
-    pitch: 45,
-    bearing: -15,
+    zoom: 15,
+    pitch: 60,
+    bearing: -17.6,
     antialias: true
   });
 
   map.addControl(new maplibregl.NavigationControl(), "top-right");
 
-  const response = await fetch("./data.geojson");
-  const geojson = await response.json();
-  allFeatures = geojson.features;
-
   map.on("load", () => {
-    // Find the first symbol layer to insert buildings beneath labels
-    const layers = map.getStyle().layers;
-    let labelLayerId;
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === "symbol" && layers[i].layout && layers[i].layout["text-field"]) {
-        labelLayerId = layers[i].id;
-        break;
-      }
-    }
+    add3DBuildings();
 
-    // Add 3D building extrusion layer
-    map.addLayer(
-      {
-        id: "3d-buildings",
-        source: "openmaptiles",
-        "source-layer": "building",
-        type: "fill-extrusion",
-        minzoom: 13,
-        paint: {
-          "fill-extrusion-color": "#c8cdd4",
-          "fill-extrusion-height": [
-            "interpolate", ["linear"], ["zoom"],
-            13, 0,
-            15, ["coalesce", ["get", "render_height"], 10]
-          ],
-          "fill-extrusion-base": [
-            "interpolate", ["linear"], ["zoom"],
-            13, 0,
-            15, ["coalesce", ["get", "render_min_height"], 0]
-          ],
-          "fill-extrusion-opacity": 0.65
-        }
-      },
-      labelLayerId
-    );
-
-    // Add places data source
     map.addSource("places", {
       type: "geojson",
       data: {
@@ -64,48 +30,21 @@ async function init() {
       }
     });
 
-    // Shadow layer for drop-shadow effect on markers
-    map.addLayer({
-      id: "places-shadow",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": 10,
-        "circle-color": "rgba(0,0,0,0.25)",
-        "circle-blur": 0.8,
-        "circle-translate": [1, 2]
-      }
-    });
-
-    // Main marker layer
     map.addLayer({
       id: "places-layer",
       type: "circle",
       source: "places",
       paint: {
-        "circle-radius": 8,
-        "circle-color": "#e63946",
+        "circle-radius": 7,
+        "circle-color": "#2c7be5",
         "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2.5,
-        "circle-pitch-alignment": "map"
+        "circle-stroke-width": 2
       }
     });
 
     map.on("click", "places-layer", (e) => {
       const feature = e.features[0];
-      const props = feature.properties;
-      const coords = feature.geometry.coordinates.slice();
-
-      new maplibregl.Popup()
-        .setLngLat(coords)
-        .setHTML(`
-          <div class="popup-title">${props.name}</div>
-          <div class="popup-row"><strong>Type:</strong> ${props.type}</div>
-          <div class="popup-row"><strong>Outdoor:</strong> ${props.outdoor}</div>
-          <div class="popup-row"><strong>Wi-Fi:</strong> ${props.wifi}</div>
-          <div class="popup-row"><strong>Neighborhood:</strong> ${props.neighborhood}</div>
-        `)
-        .addTo(map);
+      showPopup(feature);
     });
 
     map.on("mouseenter", "places-layer", () => {
@@ -128,15 +67,45 @@ async function init() {
   });
 }
 
+function add3DBuildings() {
+  const layers = map.getStyle().layers;
+  let labelLayerId;
+
+  for (const layer of layers) {
+    if (layer.type === "symbol" && layer.layout && layer.layout["text-field"]) {
+      labelLayerId = layer.id;
+      break;
+    }
+  }
+
+  map.addLayer(
+    {
+      id: "3d-buildings",
+      source: "openmaptiles",
+      "source-layer": "building",
+      filter: ["==", ["get", "extrude"], "true"],
+      type: "fill-extrusion",
+      minzoom: 15,
+      paint: {
+        "fill-extrusion-color": "#aaa",
+        "fill-extrusion-height": ["get", "render_height"],
+        "fill-extrusion-base": ["get", "render_min_height"],
+        "fill-extrusion-opacity": 0.7
+      }
+    },
+    labelLayerId
+  );
+}
+
 function getUniqueValues(field) {
-  const values = allFeatures.map(f => f.properties[field]);
+  const values = allFeatures.map(feature => feature.properties[field]);
   return [...new Set(values)].sort();
 }
 
 function fillDropdown(selectId, values) {
   const select = document.getElementById(selectId);
 
-  values.forEach(value => {
+  values.forEach((value) => {
     const option = document.createElement("option");
     option.value = value;
     option.textContent = value;
@@ -149,7 +118,7 @@ function applyFilters() {
   const outdoorValue = document.getElementById("filterOutdoor").value;
   const wifiValue = document.getElementById("filterWifi").value;
 
-  const filtered = allFeatures.filter(feature => {
+  const filtered = allFeatures.filter((feature) => {
     const p = feature.properties;
 
     const matchesType = typeValue === "all" || p.type === typeValue;
@@ -179,7 +148,7 @@ function updateTable(features) {
   const tableBody = document.getElementById("tableBody");
   tableBody.innerHTML = "";
 
-  features.forEach(feature => {
+  features.forEach((feature) => {
     const p = feature.properties;
     const row = document.createElement("tr");
 
@@ -192,26 +161,14 @@ function updateTable(features) {
     `;
 
     row.addEventListener("click", () => {
-      const coords = feature.geometry.coordinates;
       map.flyTo({
-        center: coords,
-        zoom: 15.5,
-        pitch: 50,
-        bearing: -10,
-        duration: 1500,
-        essential: true
+        center: feature.geometry.coordinates,
+        zoom: 16,
+        pitch: 60,
+        bearing: -17.6
       });
 
-      new maplibregl.Popup()
-        .setLngLat(coords)
-        .setHTML(`
-          <div class="popup-title">${p.name}</div>
-          <div class="popup-row"><strong>Type:</strong> ${p.type}</div>
-          <div class="popup-row"><strong>Outdoor:</strong> ${p.outdoor}</div>
-          <div class="popup-row"><strong>Wi-Fi:</strong> ${p.wifi}</div>
-          <div class="popup-row"><strong>Neighborhood:</strong> ${p.neighborhood}</div>
-        `)
-        .addTo(map);
+      showPopup(feature);
     });
 
     tableBody.appendChild(row);
@@ -227,17 +184,43 @@ function fitMapToFeatures(features) {
 
   const bounds = new maplibregl.LngLatBounds();
 
-  features.forEach(feature => {
+  features.forEach((feature) => {
     bounds.extend(feature.geometry.coordinates);
   });
 
   map.fitBounds(bounds, {
     padding: 60,
-    maxZoom: 15,
-    pitch: 45,
-    bearing: -15,
-    duration: 800
+    maxZoom: 16,
+    duration: 500
   });
+
+  map.once("moveend", () => {
+    if (map.getZoom() >= 15) {
+      map.easeTo({
+        pitch: 60,
+        bearing: -17.6,
+        duration: 400
+      });
+    }
+  });
+}
+
+function showPopup(feature) {
+  const p = feature.properties;
+  const coords = feature.geometry.coordinates.slice();
+
+  if (popup) popup.remove();
+
+  popup = new maplibregl.Popup()
+    .setLngLat(coords)
+    .setHTML(`
+      <div class="popup-title">${p.name}</div>
+      <div class="popup-row"><strong>Type:</strong> ${p.type}</div>
+      <div class="popup-row"><strong>Outdoor:</strong> ${p.outdoor}</div>
+      <div class="popup-row"><strong>Wi-Fi:</strong> ${p.wifi}</div>
+      <div class="popup-row"><strong>Neighborhood:</strong> ${p.neighborhood}</div>
+    `)
+    .addTo(map);
 }
 
 init();
