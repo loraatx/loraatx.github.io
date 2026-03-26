@@ -1,162 +1,247 @@
+// ============================================================
+// CONFIG — Update this block when swapping to new GeoJSON data
+// ============================================================
+const CONFIG = {
+  // Page text
+  title: "Example Page 1",
+  eyebrow: "MAP APP",
+  subtitle: "Simple demo layout for list-based map apps.",
+
+  // Map defaults
+  center: [-97.7431, 30.2672],
+  zoom: 13,
+  pitch: 45,
+  bearing: -15,
+  markerColor: "#e63946",
+
+  // Which GeoJSON property is the display name (used as popup title)
+  nameField: "name",
+
+  // Filters — each becomes a dropdown; values auto-populated from data
+  filters: [
+    { property: "type",    label: "Type" },
+    { property: "outdoor", label: "Outdoor Seating" },
+    { property: "wifi",    label: "Wi-Fi" }
+  ],
+
+  // Table columns
+  columns: [
+    { property: "name",         header: "Name" },
+    { property: "type",         header: "Type" },
+    { property: "outdoor",      header: "Outdoor" },
+    { property: "wifi",         header: "Wi-Fi" },
+    { property: "neighborhood", header: "Neighborhood" }
+  ],
+
+  // Popup detail rows (name is always shown as the title)
+  popupFields: [
+    { property: "type",         label: "Type" },
+    { property: "outdoor",      label: "Outdoor" },
+    { property: "wifi",         label: "Wi-Fi" },
+    { property: "neighborhood", label: "Neighborhood" }
+  ]
+};
+// ============================================================
+
 let map;
 let allFeatures = [];
+let currentPopup;
 
 async function init() {
+  // Set page text from config
+  document.getElementById("pageEyebrow").textContent = CONFIG.eyebrow;
+  document.getElementById("pageTitle").textContent = CONFIG.title;
+  document.getElementById("pageSubtitle").textContent = CONFIG.subtitle;
+  document.title = CONFIG.title;
+
+  // Create map
   map = new maplibregl.Map({
     container: "map",
     style: "https://tiles.openfreemap.org/styles/liberty",
-    center: [-97.7431, 30.2672],
-    zoom: 13,
-    pitch: 45,
-    bearing: -15,
+    center: CONFIG.center,
+    zoom: CONFIG.zoom,
+    pitch: CONFIG.pitch,
+    bearing: CONFIG.bearing,
     antialias: true
   });
 
   map.addControl(new maplibregl.NavigationControl(), "top-right");
 
+  // Load GeoJSON
   const response = await fetch("./data.geojson");
   const geojson = await response.json();
   allFeatures = geojson.features;
 
   map.on("load", () => {
-    // Find the first symbol layer to insert buildings beneath labels
-    const layers = map.getStyle().layers;
-    let labelLayerId;
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === "symbol" && layers[i].layout && layers[i].layout["text-field"]) {
-        labelLayerId = layers[i].id;
-        break;
-      }
-    }
-
-    // Add 3D building extrusion layer
-    map.addLayer(
-      {
-        id: "3d-buildings",
-        source: "openmaptiles",
-        "source-layer": "building",
-        type: "fill-extrusion",
-        minzoom: 13,
-        paint: {
-          "fill-extrusion-color": "#c8cdd4",
-          "fill-extrusion-height": [
-            "interpolate", ["linear"], ["zoom"],
-            13, 0,
-            15, ["coalesce", ["get", "render_height"], 10]
-          ],
-          "fill-extrusion-base": [
-            "interpolate", ["linear"], ["zoom"],
-            13, 0,
-            15, ["coalesce", ["get", "render_min_height"], 0]
-          ],
-          "fill-extrusion-opacity": 0.65
-        }
-      },
-      labelLayerId
-    );
-
-    // Add places data source
-    map.addSource("places", {
-      type: "geojson",
-      data: {
-        type: "FeatureCollection",
-        features: allFeatures
-      }
-    });
-
-    // Shadow layer for drop-shadow effect on markers
-    map.addLayer({
-      id: "places-shadow",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": 10,
-        "circle-color": "rgba(0,0,0,0.25)",
-        "circle-blur": 0.8,
-        "circle-translate": [1, 2]
-      }
-    });
-
-    // Main marker layer
-    map.addLayer({
-      id: "places-layer",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": 8,
-        "circle-color": "#e63946",
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2.5,
-        "circle-pitch-alignment": "map"
-      }
-    });
-
-    map.on("click", "places-layer", (e) => {
-      const feature = e.features[0];
-      const props = feature.properties;
-      const coords = feature.geometry.coordinates.slice();
-
-      new maplibregl.Popup()
-        .setLngLat(coords)
-        .setHTML(`
-          <div class="popup-title">${props.name}</div>
-          <div class="popup-row"><strong>Type:</strong> ${props.type}</div>
-          <div class="popup-row"><strong>Outdoor:</strong> ${props.outdoor}</div>
-          <div class="popup-row"><strong>Wi-Fi:</strong> ${props.wifi}</div>
-          <div class="popup-row"><strong>Neighborhood:</strong> ${props.neighborhood}</div>
-        `)
-        .addTo(map);
-    });
-
-    map.on("mouseenter", "places-layer", () => {
-      map.getCanvas().style.cursor = "pointer";
-    });
-
-    map.on("mouseleave", "places-layer", () => {
-      map.getCanvas().style.cursor = "";
-    });
-
-    fillDropdown("filterType", getUniqueValues("type"));
-    fillDropdown("filterOutdoor", getUniqueValues("outdoor"));
-    fillDropdown("filterWifi", getUniqueValues("wifi"));
-
-    document.getElementById("filterType").addEventListener("change", applyFilters);
-    document.getElementById("filterOutdoor").addEventListener("change", applyFilters);
-    document.getElementById("filterWifi").addEventListener("change", applyFilters);
-
+    add3DBuildings();
+    addPlacesLayers();
+    buildFilters();
+    buildTableHead();
     applyFilters();
   });
 }
 
-function getUniqueValues(field) {
-  const values = allFeatures.map(f => f.properties[field]);
-  return [...new Set(values)].sort();
+// --- 3D Buildings ---
+
+function add3DBuildings() {
+  const layers = map.getStyle().layers;
+  let labelLayerId;
+  for (const layer of layers) {
+    if (layer.type === "symbol" && layer.layout && layer.layout["text-field"]) {
+      labelLayerId = layer.id;
+      break;
+    }
+  }
+
+  map.addLayer(
+    {
+      id: "3d-buildings",
+      source: "openmaptiles",
+      "source-layer": "building",
+      type: "fill-extrusion",
+      minzoom: 13,
+      paint: {
+        "fill-extrusion-color": "#c8cdd4",
+        "fill-extrusion-height": [
+          "interpolate", ["linear"], ["zoom"],
+          13, 0,
+          15, ["coalesce", ["get", "render_height"], 10]
+        ],
+        "fill-extrusion-base": [
+          "interpolate", ["linear"], ["zoom"],
+          13, 0,
+          15, ["coalesce", ["get", "render_min_height"], 0]
+        ],
+        "fill-extrusion-opacity": 0.65
+      }
+    },
+    labelLayerId
+  );
 }
 
-function fillDropdown(selectId, values) {
-  const select = document.getElementById(selectId);
+// --- Places source + marker layers ---
 
-  values.forEach(value => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = value;
-    select.appendChild(option);
+function addPlacesLayers() {
+  map.addSource("places", {
+    type: "geojson",
+    data: { type: "FeatureCollection", features: allFeatures }
+  });
+
+  // Shadow
+  map.addLayer({
+    id: "places-shadow",
+    type: "circle",
+    source: "places",
+    paint: {
+      "circle-radius": 10,
+      "circle-color": "rgba(0,0,0,0.25)",
+      "circle-blur": 0.8,
+      "circle-translate": [1, 2]
+    }
+  });
+
+  // Marker
+  map.addLayer({
+    id: "places-layer",
+    type: "circle",
+    source: "places",
+    paint: {
+      "circle-radius": 8,
+      "circle-color": CONFIG.markerColor,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 2.5,
+      "circle-pitch-alignment": "map"
+    }
+  });
+
+  map.on("click", "places-layer", (e) => {
+    showPopup(e.features[0]);
+  });
+
+  map.on("mouseenter", "places-layer", () => {
+    map.getCanvas().style.cursor = "pointer";
+  });
+
+  map.on("mouseleave", "places-layer", () => {
+    map.getCanvas().style.cursor = "";
   });
 }
 
+// --- Popup (shared between map click and table click) ---
+
+function showPopup(feature) {
+  const props = feature.properties;
+  const coords = feature.geometry.coordinates.slice();
+  const name = props[CONFIG.nameField] || "";
+
+  const rows = CONFIG.popupFields
+    .map(f => `<div class="popup-row"><strong>${f.label}:</strong> ${props[f.property] || ""}</div>`)
+    .join("");
+
+  if (currentPopup) currentPopup.remove();
+
+  currentPopup = new maplibregl.Popup()
+    .setLngLat(coords)
+    .setHTML(`<div class="popup-title">${name}</div>${rows}`)
+    .addTo(map);
+}
+
+// --- Filters (built dynamically from CONFIG.filters) ---
+
+function buildFilters() {
+  const container = document.getElementById("filters");
+  container.innerHTML = "";
+
+  CONFIG.filters.forEach(f => {
+    const group = document.createElement("div");
+    group.className = "filter-group";
+
+    const label = document.createElement("label");
+    label.textContent = f.label;
+
+    const select = document.createElement("select");
+    select.dataset.property = f.property;
+
+    const allOption = document.createElement("option");
+    allOption.value = "all";
+    allOption.textContent = "All";
+    select.appendChild(allOption);
+
+    getUniqueValues(f.property).forEach(val => {
+      const option = document.createElement("option");
+      option.value = val;
+      option.textContent = val;
+      select.appendChild(option);
+    });
+
+    select.addEventListener("change", applyFilters);
+
+    group.appendChild(label);
+    group.appendChild(select);
+    container.appendChild(group);
+  });
+}
+
+function getUniqueValues(property) {
+  const values = allFeatures.map(f => f.properties[property]);
+  return [...new Set(values)].sort();
+}
+
+// --- Filter logic ---
+
 function applyFilters() {
-  const typeValue = document.getElementById("filterType").value;
-  const outdoorValue = document.getElementById("filterOutdoor").value;
-  const wifiValue = document.getElementById("filterWifi").value;
+  const selects = document.querySelectorAll("#filters select");
+  const activeFilters = [];
+
+  selects.forEach(select => {
+    if (select.value !== "all") {
+      activeFilters.push({ property: select.dataset.property, value: select.value });
+    }
+  });
 
   const filtered = allFeatures.filter(feature => {
     const p = feature.properties;
-
-    const matchesType = typeValue === "all" || p.type === typeValue;
-    const matchesOutdoor = outdoorValue === "all" || p.outdoor === outdoorValue;
-    const matchesWifi = wifiValue === "all" || p.wifi === wifiValue;
-
-    return matchesType && matchesOutdoor && matchesWifi;
+    return activeFilters.every(f => p[f.property] === f.value);
   });
 
   updateMap(filtered);
@@ -165,14 +250,28 @@ function applyFilters() {
   fitMapToFeatures(filtered);
 }
 
+// --- Map update ---
+
 function updateMap(features) {
   const source = map.getSource("places");
   if (!source) return;
+  source.setData({ type: "FeatureCollection", features });
+}
 
-  source.setData({
-    type: "FeatureCollection",
-    features: features
+// --- Table (built dynamically from CONFIG.columns) ---
+
+function buildTableHead() {
+  const thead = document.getElementById("tableHead");
+  const tr = document.createElement("tr");
+
+  CONFIG.columns.forEach(col => {
+    const th = document.createElement("th");
+    th.textContent = col.header;
+    tr.appendChild(th);
   });
+
+  thead.innerHTML = "";
+  thead.appendChild(tr);
 }
 
 function updateTable(features) {
@@ -183,59 +282,47 @@ function updateTable(features) {
     const p = feature.properties;
     const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${p.name}</td>
-      <td>${p.type}</td>
-      <td>${p.outdoor}</td>
-      <td>${p.wifi}</td>
-      <td>${p.neighborhood}</td>
-    `;
+    CONFIG.columns.forEach(col => {
+      const td = document.createElement("td");
+      td.textContent = p[col.property] || "";
+      row.appendChild(td);
+    });
 
     row.addEventListener("click", () => {
-      const coords = feature.geometry.coordinates;
       map.flyTo({
-        center: coords,
+        center: feature.geometry.coordinates,
         zoom: 15.5,
         pitch: 50,
         bearing: -10,
         duration: 1500,
         essential: true
       });
-
-      new maplibregl.Popup()
-        .setLngLat(coords)
-        .setHTML(`
-          <div class="popup-title">${p.name}</div>
-          <div class="popup-row"><strong>Type:</strong> ${p.type}</div>
-          <div class="popup-row"><strong>Outdoor:</strong> ${p.outdoor}</div>
-          <div class="popup-row"><strong>Wi-Fi:</strong> ${p.wifi}</div>
-          <div class="popup-row"><strong>Neighborhood:</strong> ${p.neighborhood}</div>
-        `)
-        .addTo(map);
+      showPopup(feature);
     });
 
     tableBody.appendChild(row);
   });
 }
 
+// --- Count ---
+
 function updateCount(features) {
   document.getElementById("resultCount").textContent = `${features.length} results`;
 }
+
+// --- Fit bounds ---
 
 function fitMapToFeatures(features) {
   if (features.length === 0) return;
 
   const bounds = new maplibregl.LngLatBounds();
-
-  features.forEach(feature => {
-    bounds.extend(feature.geometry.coordinates);
-  });
+  features.forEach(f => bounds.extend(f.geometry.coordinates));
 
   map.fitBounds(bounds, {
     padding: 60,
     maxZoom: 15,
-    pitch: 45,
-    bearing: -15,
+    pitch: CONFIG.pitch,
+    bearing: CONFIG.bearing,
     duration: 800
   });
 }

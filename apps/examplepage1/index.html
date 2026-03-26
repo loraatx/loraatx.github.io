@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Example Page 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map App</title>
 
-  <link
-    href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css"
-    rel="stylesheet"
-  />
+  <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -16,33 +13,11 @@
 
     <header class="page-header">
       <div>
-        <div class="eyebrow">MAP APP</div>
-        <h1>Example Page 1</h1>
-        <p class="subtext">Simple demo layout for list-based map apps.</p>
+        <div class="eyebrow" id="pageEyebrow"></div>
+        <h1 id="pageTitle"></h1>
+        <p class="subtext" id="pageSubtitle"></p>
       </div>
-
-      <div class="filters">
-        <div class="filter-group">
-          <label for="filterType">Type</label>
-          <select id="filterType">
-            <option value="all">All</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="filterOutdoor">Outdoor Seating</label>
-          <select id="filterOutdoor">
-            <option value="all">All</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="filterWifi">Wi-Fi</label>
-          <select id="filterWifi">
-            <option value="all">All</option>
-          </select>
-        </div>
-      </div>
+      <div class="filters" id="filters"></div>
     </header>
 
     <section class="map-card">
@@ -54,18 +29,9 @@
         <h2>Locations</h2>
         <div id="resultCount">0 results</div>
       </div>
-
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Outdoor</th>
-              <th>Wi-Fi</th>
-              <th>Neighborhood</th>
-            </tr>
-          </thead>
+          <thead id="tableHead"></thead>
           <tbody id="tableBody"></tbody>
         </table>
       </div>
