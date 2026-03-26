@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Example Page 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example Page 1</title>
 
-  <link
-    href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css"
-    rel="stylesheet"
-  />
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="page">
 
     <header class="page-header">
-      <div>
+      <div class="header-text">
         <div class="eyebrow">MAP APP</div>
         <h1>Example Page 1</h1>
-        <p class="subtext">Simple demo layout for list-based map apps.</p>
+        <p class="subtext">Demo map with filters and a table below.</p>
       </div>
 
       <div class="filters">
@@ -45,7 +42,7 @@
       </div>
     </header>
 
-    <section class="map-card">
+    <section class="map-section">
       <div id="map"></div>
     </section>
 
@@ -73,7 +70,7 @@
 
   </div>
 
-  <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
