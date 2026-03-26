@@ -9,7 +9,9 @@
         "cuisine": "Tex-Mex",
         "address": "1925 Airport Boulevard",
         "phone": "+1 512-469-0225",
-        "website": "https://locations.tacobell.com/tx/austin/1925-airport-blvd.html"
+        "website": "https://locations.tacobell.com/tx/austin/1925-airport-blvd.html",
+        "inspection_score": 100,
+        "inspection_date": "2026-02-17"
       },
       "geometry": {
         "type": "Point",
@@ -27,7 +29,9 @@
         "cuisine": "Chicken",
         "address": "",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 79,
+        "inspection_date": "2026-02-03"
       },
       "geometry": {
         "type": "Point",
@@ -45,7 +49,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "2201 Manor Road",
         "phone": "+1-512-480-8441",
-        "website": "https://www.mimadresrestaurant.com/"
+        "website": "https://www.mimadresrestaurant.com/",
+        "inspection_score": 91,
+        "inspection_date": "2025-05-29"
       },
       "geometry": {
         "type": "Point",
@@ -63,7 +69,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "",
         "phone": "+1-512-472-9240",
-        "website": "https://ironcactus.com/austin-downtown"
+        "website": "https://ironcactus.com/austin-downtown",
+        "inspection_score": 82,
+        "inspection_date": "2025-09-25"
       },
       "geometry": {
         "type": "Point",
@@ -81,7 +89,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1900 Manor Road",
         "phone": "+1-512-457-9900",
-        "website": "https://www.elchilecafe.com/"
+        "website": "https://www.elchilecafe.com/",
+        "inspection_score": 74,
+        "inspection_date": "2026-02-09"
       },
       "geometry": {
         "type": "Point",
@@ -99,7 +109,9 @@
         "cuisine": "Tex-Mex",
         "address": "2611 Manor Road",
         "phone": "+1-512-524-0860",
-        "website": ""
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -117,7 +129,9 @@
         "cuisine": "Seafood",
         "address": "2113 Manor Road",
         "phone": "",
-        "website": "https://www.esteatx.com/"
+        "website": "https://www.esteatx.com/",
+        "inspection_score": 86,
+        "inspection_date": "2025-06-03"
       },
       "geometry": {
         "type": "Point",
@@ -135,7 +149,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1623 East 7th Street",
         "phone": "",
-        "website": "https://www.elchilito.com/"
+        "website": "https://www.elchilito.com/",
+        "inspection_score": 85,
+        "inspection_date": "2026-02-09"
       },
       "geometry": {
         "type": "Point",
@@ -153,7 +169,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "",
         "phone": "+1-512-703-4628",
-        "website": "https://www.chupacabracantina.com/"
+        "website": "https://www.chupacabracantina.com/",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -171,7 +189,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "2136 East 7th Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 73,
+        "inspection_date": "2023-06-21"
       },
       "geometry": {
         "type": "Point",
@@ -189,7 +209,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "",
         "phone": "+1-512-326-1182",
-        "website": "https://arandinasmexicanfood.com/"
+        "website": "https://arandinasmexicanfood.com/",
+        "inspection_score": 71,
+        "inspection_date": "2025-12-29"
       },
       "geometry": {
         "type": "Point",
@@ -207,7 +229,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "501 Comal Street",
         "phone": "+1-512-520-5333",
-        "website": "https://www.macocoatx.com/"
+        "website": "https://www.macocoatx.com/",
+        "inspection_score": 83,
+        "inspection_date": "2025-07-17"
       },
       "geometry": {
         "type": "Point",
@@ -225,7 +249,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "603 Sabine Street",
         "phone": "",
-        "website": "http://www.vaquerotaquero.com/"
+        "website": "http://www.vaquerotaquero.com/",
+        "inspection_score": 78,
+        "inspection_date": "2025-04-04"
       },
       "geometry": {
         "type": "Point",
@@ -243,7 +269,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "2324 East Cesar Chavez Street",
         "phone": "+1-512-497-3147",
-        "website": "https://www.thevegannom.com"
+        "website": "https://www.thevegannom.com",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -261,7 +289,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1511 East 6th Street",
         "phone": "+1-512-478-2420",
-        "website": "https://www.ciscosaustin.com/home"
+        "website": "https://www.ciscosaustin.com/home",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -279,7 +309,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1109 East 5th Street",
         "phone": "+1 512-582-1444",
-        "website": "https://locations.chipotle.com/tx/austin/1109-e-5th-st"
+        "website": "https://locations.chipotle.com/tx/austin/1109-e-5th-st",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -297,7 +329,9 @@
         "cuisine": "Korean",
         "address": "1414 Shore District Drive",
         "phone": "+1-512-382-9653",
-        "website": "https://www.chilantrobbq.com/"
+        "website": "https://www.chilantrobbq.com/",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -315,7 +349,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1920 East Riverside Drive",
         "phone": "+1-512-326-1975",
-        "website": "https://locations.chipotle.com/tx/austin/1920-e-riverside-dr"
+        "website": "https://locations.chipotle.com/tx/austin/1920-e-riverside-dr",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -333,7 +369,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "44 East Avenue",
         "phone": "",
-        "website": "https://bacalaratx.com/"
+        "website": "https://bacalaratx.com/",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -351,7 +389,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1901 East Martin Luther King Jr Boulevard",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -369,7 +409,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -387,7 +429,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1809 Manor Road",
         "phone": "",
-        "website": "https://www.elchilecafe.com/"
+        "website": "https://www.elchilecafe.com/",
+        "inspection_score": 74,
+        "inspection_date": "2026-02-09"
       },
       "geometry": {
         "type": "Point",
@@ -405,7 +449,9 @@
         "cuisine": "Tex-Mex",
         "address": "802 Red River Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 83,
+        "inspection_date": "2026-01-15"
       },
       "geometry": {
         "type": "Point",
@@ -423,7 +469,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1903 East Cesar Chavez Street",
         "phone": "+1 737-520-4285",
-        "website": "https://www.mrnaturalatx.com/"
+        "website": "https://www.mrnaturalatx.com/",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -441,7 +489,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1411 East 7th Street",
         "phone": "",
-        "website": "http://www.takobarestaurant.com/"
+        "website": "http://www.takobarestaurant.com/",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -459,7 +509,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1707 East 6th Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",
@@ -477,7 +529,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "2300 East Cesar Chavez Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 85,
+        "inspection_date": "2025-07-10"
       },
       "geometry": {
         "type": "Point",
@@ -495,7 +549,9 @@
         "cuisine": "Tex-Mex",
         "address": "105 Tillery Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 85,
+        "inspection_date": "2025-04-10"
       },
       "geometry": {
         "type": "Point",
@@ -513,7 +569,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "901 Tillery Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 80,
+        "inspection_date": "2025-07-24"
       },
       "geometry": {
         "type": "Point",
@@ -531,7 +589,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "1701 East Riverside Drive",
         "phone": "+1-512-912-1939",
-        "website": "https://www.eltacorrido.com/"
+        "website": "https://www.eltacorrido.com/",
+        "inspection_score": 70,
+        "inspection_date": "2025-11-19"
       },
       "geometry": {
         "type": "Point",
@@ -549,7 +609,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "4715 East Cesar Chavez Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 95,
+        "inspection_date": "2025-03-13"
       },
       "geometry": {
         "type": "Point",
@@ -562,30 +624,14 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Kuali Tlakuali",
-        "kind": "Restaurant",
-        "cuisine": "Tex-Mex",
-        "address": "",
-        "phone": "",
-        "website": ""
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -97.7241403,
-          30.2625243
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Pueblo Viejo Tillery",
         "kind": "Restaurant",
         "cuisine": "Mexican / Tacos",
         "address": "641 Tillery Street",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": 84,
+        "inspection_date": "2025-11-17"
       },
       "geometry": {
         "type": "Point",
@@ -603,7 +649,9 @@
         "cuisine": "Mexican / Tacos",
         "address": "",
         "phone": "",
-        "website": ""
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
       },
       "geometry": {
         "type": "Point",

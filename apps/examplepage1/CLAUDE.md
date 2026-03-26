@@ -50,9 +50,11 @@ When asked to find places (e.g., "all breweries in East Austin"):
 
 4. **Write to `data.geojson`** in this folder.
 
-5. **Update CONFIG** in `app.js` (see CONFIG Reference below).
+5. **Verify against Austin Food Inspections API** (Austin-area maps only — see Verification section below).
 
-6. **Commit and push to `main`.** The site updates via GitHub Pages within ~2 minutes.
+6. **Update CONFIG** in `app.js` (see CONFIG Reference below).
+
+7. **Commit and push to `main`.** The site updates via GitHub Pages within ~2 minutes.
 
 ### Workflow 2: User Provides GeoJSON
 
@@ -116,6 +118,65 @@ const CONFIG = {
 - Popups automatically include Google Maps / Apple Maps / Waze nav buttons — no config needed
 - `center` should be the geographic center of the data points
 - Set `zoom` based on data spread: tight cluster = 15, whole city = 12, metro area = 10
+
+## Business Verification — Austin Food Inspections
+
+After generating GeoJSON from OSM, cross-reference each place against the City of Austin's Food Establishment Inspection Scores dataset. This is free, has an API, and is the most reliable open signal that a food business is currently operating in Austin.
+
+**API endpoint:** `https://data.austintexas.gov/resource/ecmv-9xxi.json`
+
+**Fields returned:** `restaurant_name`, `address`, `zip_code`, `score`, `inspection_date`, `facility_id`, `process_description`
+
+**How to search by name (use urlencode, not manual % encoding):**
+```python
+import urllib.request, urllib.parse, json
+
+def soda_query(where_clause, limit=10):
+    params = {'$where': where_clause, '$limit': limit, '$order': 'inspection_date DESC'}
+    url = 'https://data.austintexas.gov/resource/ecmv-9xxi.json?' + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=10) as r:
+        return json.loads(r.read())
+
+# Example
+results = soda_query("restaurant_name like '%Juan%Million%'")
+# Returns: restaurant_name, address, score, inspection_date, etc.
+```
+
+**Search strategies (try in order):**
+1. Two-keyword name search: `restaurant_name like '%Word1%' and restaurant_name like '%Word2%'`
+2. Single keyword from name: `restaurant_name like '%UniqueWord%'`
+3. Address: `address like '%StreetNumber%StreetName%'`
+
+**What to do with results:**
+
+| Situation | Action |
+|-----------|--------|
+| Good name+address match, recent score (< 18 months) | Add `inspection_score` and `inspection_date` to GeoJSON properties |
+| Match found but score is old (> 18 months) | Add score but note it's old; flag for manual review |
+| No match found | Set `inspection_score: null` — possible reasons: closed, recently opened, different legal name, or data gap |
+| User confirms a place is closed | Remove from GeoJSON entirely |
+
+**Add these to GeoJSON properties and CONFIG popupFields:**
+```js
+// In GeoJSON feature properties:
+"inspection_score": 85,           // integer or null
+"inspection_date": "2025-07-10"   // YYYY-MM-DD string or null
+
+// In CONFIG popupFields — the showPopup() function skips null values automatically:
+{ property: "inspection_score", label: "Health Score" },
+{ property: "inspection_date",  label: "Inspected" }
+```
+
+**Popup rendering:** The `showPopup()` function already filters out null/empty values, so places without scores simply won't show those rows. Scores are displayed as `85/100`.
+
+**Important caveats:**
+- No match ≠ definitely closed. Some legitimate open restaurants are missing from the dataset (out-of-date, different legal name, etc.)
+- Chain locations (Taco Bell, Chipotle) may not match if inspected under a franchise ID
+- Zip codes in the dataset include 4-digit extensions (e.g., `78702-1234`) — don't filter by zip, search by name instead
+- Rate limit: keep ~0.3s between API calls
+
+**For non-Austin maps:** Use Google Places API (`business_status` field) or Yelp Fusion API (`is_closed` field) instead.
 
 ## GeoJSON Format
 

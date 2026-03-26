@@ -5,7 +5,7 @@ const CONFIG = {
   // Page text
   title: "Tacos & Mexican Food",
   eyebrow: "EAST AUSTIN",
-  subtitle: "34 spots from OSM — Mexican, Tex-Mex, and taco restaurants.",
+  subtitle: "33 spots — Mexican, Tex-Mex, and taco restaurants in East Austin.",
 
   // Map defaults
   center: [-97.722, 30.268],
@@ -33,10 +33,12 @@ const CONFIG = {
 
   // Popup detail rows (name is always shown as the title)
   popupFields: [
-    { property: "kind",    label: "Type" },
-    { property: "cuisine", label: "Cuisine" },
-    { property: "address", label: "Address" },
-    { property: "phone",   label: "Phone" }
+    { property: "kind",             label: "Type" },
+    { property: "cuisine",          label: "Cuisine" },
+    { property: "address",          label: "Address" },
+    { property: "phone",            label: "Phone" },
+    { property: "inspection_score", label: "Health Score" },
+    { property: "inspection_date",  label: "Inspected" }
   ]
 };
 // ============================================================
@@ -173,7 +175,12 @@ function showPopup(feature) {
   const name = props[CONFIG.nameField] || "";
 
   const rows = CONFIG.popupFields
-    .map(f => `<div class="popup-row"><strong>${f.label}:</strong>&nbsp;${props[f.property] || ""}</div>`)
+    .filter(f => props[f.property] !== null && props[f.property] !== undefined && props[f.property] !== "")
+    .map(f => {
+      let val = props[f.property];
+      if (f.property === "inspection_score") val = `${val}/100`;
+      return `<div class="popup-row"><strong>${f.label}:</strong>&nbsp;${val}</div>`;
+    })
     .join("");
 
   const navHtml = `
