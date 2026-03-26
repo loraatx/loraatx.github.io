@@ -145,6 +145,12 @@ body {
   margin-bottom: 12px;
 }
 
+.table-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .table-header h2 {
   margin: 0;
   font-size: 18px;
@@ -259,6 +265,68 @@ tbody tr:last-child td {
 .popup-nav-google { background: #4285F4; }
 .popup-nav-apple  { background: #2c2c2e; }
 .popup-nav-waze   { background: #33CCFF; color: #111 !important; }
+
+/* ── Export ───────────────────────────────────────── */
+
+.export-wrap {
+  position: relative;
+}
+
+.export-btn {
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  background: #fff;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.export-btn:hover {
+  border-color: #aaa;
+  background: #f8f8f8;
+}
+
+.export-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+  min-width: 170px;
+  overflow: hidden;
+}
+
+.export-menu.open {
+  display: block;
+}
+
+.export-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 13px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.1s ease;
+}
+
+.export-menu button:hover {
+  background: #f0f2f5;
+}
+
+.export-menu button + button {
+  border-top: 1px solid #eee;
+}
 
 /* ── Responsive ──────────────────────────────────── */
 
