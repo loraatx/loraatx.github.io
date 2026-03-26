@@ -171,18 +171,25 @@ function addPlacesLayers() {
 
 function showPopup(feature) {
   const props = feature.properties;
-  const coords = feature.geometry.coordinates.slice();
+  const [lng, lat] = feature.geometry.coordinates;
   const name = props[CONFIG.nameField] || "";
 
   const rows = CONFIG.popupFields
-    .map(f => `<div class="popup-row"><strong>${f.label}:</strong> ${props[f.property] || ""}</div>`)
+    .map(f => `<div class="popup-row"><strong>${f.label}:</strong>&nbsp;${props[f.property] || ""}</div>`)
     .join("");
+
+  const navHtml = `
+    <div class="popup-nav">
+      <a class="popup-nav-google" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener">Google</a>
+      <a class="popup-nav-apple" href="https://maps.apple.com/?q=${lat},${lng}" target="_blank" rel="noopener">Apple</a>
+      <a class="popup-nav-waze" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>`;
 
   if (currentPopup) currentPopup.remove();
 
-  currentPopup = new maplibregl.Popup()
-    .setLngLat(coords)
-    .setHTML(`<div class="popup-title">${name}</div>${rows}`)
+  currentPopup = new maplibregl.Popup({ maxWidth: "280px" })
+    .setLngLat([lng, lat])
+    .setHTML(`<div class="popup-title">${name}</div>${rows}${navHtml}`)
     .addTo(map);
 }
 
