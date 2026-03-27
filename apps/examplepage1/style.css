@@ -365,6 +365,40 @@ tbody tr:last-child td {
   border-top: 1px solid #eee;
 }
 
+/* ── Footer ──────────────────────────────────────── */
+
+.page-footer {
+  background: #f5f5f5;
+  border-top: 1px solid #d6d6d6;
+  padding: 18px 28px;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #888;
+  transition: color 0.15s ease;
+}
+
+.social-icons a:hover {
+  color: #333;
+}
+
+.social-icons svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* ── Dark Mode ───────────────────────────────────── */
 
 [data-theme="dark"] body {
@@ -517,6 +551,19 @@ tbody tr:last-child td {
 
 [data-theme="dark"] .popup-nav {
   border-top-color: #2a2a4a;
+}
+
+[data-theme="dark"] .page-footer {
+  background: #16213e;
+  border-top-color: #2a2a4a;
+}
+
+[data-theme="dark"] .social-icons a {
+  color: #6a6a8a;
+}
+
+[data-theme="dark"] .social-icons a:hover {
+  color: #d0d0e0;
 }
 
 /* ── Responsive ──────────────────────────────────── */
