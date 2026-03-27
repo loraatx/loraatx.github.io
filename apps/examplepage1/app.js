@@ -277,7 +277,6 @@ function buildFilters() {
 
     select.addEventListener("change", applyFilters);
 
-    group.appendChild(label);
     group.appendChild(select);
     container.appendChild(group);
   });
