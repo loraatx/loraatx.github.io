@@ -63,7 +63,8 @@ async function init() {
     zoom: CONFIG.zoom,
     pitch: CONFIG.pitch,
     bearing: CONFIG.bearing,
-    antialias: true
+    antialias: true,
+    preserveDrawingBuffer: true
   });
 
   map.addControl(new maplibregl.NavigationControl(), "top-right");
@@ -405,15 +406,14 @@ async function exportPDF() {
   pdf.text(CONFIG.subtitle, margin, margin + 12);
   pdf.setTextColor(0);
 
-  // Map screenshot
-  const mapEl = document.getElementById("map");
-  const canvas = await html2canvas(mapEl, { useCORS: true, scale: 2 });
-  const imgData = canvas.toDataURL("image/jpeg", 0.92);
+  // Map screenshot (use MapLibre's native canvas — html2canvas can't capture WebGL)
+  const mapCanvas = map.getCanvas();
+  const imgData = mapCanvas.toDataURL("image/png");
   const mapY = margin + 18;
   const mapW = pageW - margin * 2;
-  const mapH = (canvas.height / canvas.width) * mapW;
+  const mapH = (mapCanvas.height / mapCanvas.width) * mapW;
   const clampedMapH = Math.min(mapH, pageH - mapY - margin - 10);
-  pdf.addImage(imgData, "JPEG", margin, mapY, mapW, clampedMapH);
+  pdf.addImage(imgData, "PNG", margin, mapY, mapW, clampedMapH);
 
   // Table on next page
   pdf.addPage();
