@@ -48,7 +48,29 @@ let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
 
+// --- Theme toggle ---
+
+function initTheme() {
+  const btn = document.getElementById("themeToggle");
+  const saved = localStorage.getItem("theme") || "light";
+  applyTheme(saved);
+  btn.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    localStorage.setItem("theme", next);
+  });
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const btn = document.getElementById("themeToggle");
+  // Show sun when dark (click to go light), moon when light (click to go dark)
+  btn.textContent = theme === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19";
+}
+
 async function init() {
+  initTheme();
+
   // Set page text from config
   document.getElementById("pageEyebrow").textContent = CONFIG.eyebrow;
   document.getElementById("pageTitle").textContent = CONFIG.title;
