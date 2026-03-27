@@ -48,6 +48,25 @@ let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
 
+// --- 2D/3D view toggle ---
+
+let is3D = true;
+
+function initViewToggle() {
+  const btn = document.getElementById("viewToggle");
+  btn.addEventListener("click", () => {
+    is3D = !is3D;
+    btn.textContent = is3D ? "2D" : "3D";
+    if (is3D) {
+      map.easeTo({ pitch: CONFIG.pitch, bearing: CONFIG.bearing, duration: 600 });
+      map.setLayoutProperty("3d-buildings", "visibility", "visible");
+    } else {
+      map.easeTo({ pitch: 0, bearing: 0, duration: 600 });
+      map.setLayoutProperty("3d-buildings", "visibility", "none");
+    }
+  });
+}
+
 // --- Theme toggle ---
 
 function initTheme() {
@@ -103,6 +122,7 @@ async function init() {
 
   map.on("load", () => {
     add3DBuildings();
+    initViewToggle();
     addPlacesLayers();
     buildFilters();
     buildTableHead();
