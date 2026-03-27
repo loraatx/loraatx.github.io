@@ -68,6 +68,11 @@ async function init() {
   });
 
   map.addControl(new maplibregl.NavigationControl(), "top-right");
+  map.addControl(new maplibregl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    trackUserLocation: false,
+    showUserLocation: true
+  }), "top-right");
 
   // Load GeoJSON
   const response = await fetch("./data.geojson");
