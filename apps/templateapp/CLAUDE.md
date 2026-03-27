@@ -10,14 +10,15 @@ This is a config-driven MapLibre GL map application. It displays GeoJSON point d
 
 | File | Role | Changes per deployment? |
 |------|------|------------------------|
-| `index.html` | Generic shell with empty containers | **Never** |
-| `style.css` | All visual styling | **Rarely** |
-| `app.js` | CONFIG block (lines 1-44) + app logic | **Only the CONFIG block** |
+| `config.js` | CONFIG object — all deployment-specific values | **Yes — edit this** |
 | `data.geojson` | GeoJSON FeatureCollection of points | **Yes — replace entirely** |
+| `index.html` | Generic shell with empty containers | **Never** |
+| `style.css` | All visual styling | **Never** |
+| `app.js` | All app logic (map, filters, table, popups, export) | **Never** |
 
 ## How to Deploy New Data
 
-There are two workflows. Both end with: update `data.geojson`, update the CONFIG block in `app.js`, commit, push to `main`.
+There are two workflows. Both end with: replace `data.geojson`, update `config.js`, commit, push to `main`.
 
 ### Workflow 1: Query OpenStreetMap
 
@@ -52,7 +53,7 @@ When asked to find places (e.g., "all breweries in East Austin"):
 
 5. **Verify against Austin Food Inspections API** (Austin-area maps only — see Verification section below).
 
-6. **Update CONFIG** in `app.js` (see CONFIG Reference below).
+6. **Update `config.js`** (see CONFIG Reference below).
 
 7. **Commit and push to `main`.** The site updates via GitHub Pages within ~2 minutes.
 
@@ -62,12 +63,12 @@ When the user gives a GeoJSON file (pasted, uploaded, or via URL):
 
 1. **Inspect the feature properties** to determine filters, columns, popup fields, center, and zoom.
 2. **Write to `data.geojson`** (clean up if needed — ensure valid GeoJSON, consistent properties).
-3. **Update CONFIG** in `app.js`.
+3. **Update `config.js`**.
 4. **Commit and push to `main`.**
 
 ## CONFIG Reference
 
-The CONFIG object at the top of `app.js` (lines 4-43) is the ONLY thing that changes between deployments. Here's what each field does:
+The `config.js` file is the ONLY code file that changes between deployments (along with `data.geojson`). Here's what each field does:
 
 ```js
 const CONFIG = {
@@ -210,8 +211,8 @@ results = soda_query("restaurant_name like '%Juan%Million%'")
 To create a map for a new customer:
 1. Copy this entire folder to `apps/new-folder-name/`
 2. Replace `data.geojson` with the new data
-3. Update only the CONFIG block in `app.js`
-4. `index.html` and `style.css` stay unchanged
+3. Update `config.js` with new titles, center, filters, columns, popupFields
+4. `index.html`, `style.css`, and `app.js` stay unchanged
 
 ## Git Workflow
 
