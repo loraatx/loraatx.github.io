@@ -13,21 +13,12 @@ body {
   width: 100%;
 }
 
-/* ── Header ─────────────────────────────────────── */
+/* ── Header (compact — above map) ────────────────── */
 
 .page-header {
   background: #f5f5f5;
   border-bottom: 1px solid #d6d6d6;
-  padding: 24px 28px 22px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.header-text {
-  flex-shrink: 0;
+  padding: 14px 28px 12px;
 }
 
 .eyebrow {
@@ -36,14 +27,28 @@ body {
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: #999;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .page-header h1 {
-  margin: 0 0 4px 0;
+  margin: 0;
   font-size: 26px;
   font-weight: 700;
   color: #111;
+}
+
+/* ── Sub-header (below map — description + filters) ── */
+
+.sub-header {
+  background: #f5f5f5;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .subtext {
@@ -60,7 +65,6 @@ body {
   flex-wrap: wrap;
   gap: 14px;
   align-items: flex-end;
-  padding-top: 4px;
 }
 
 .filter-group {
@@ -332,9 +336,14 @@ tbody tr:last-child td {
 
 @media (max-width: 700px) {
   .page-header {
+    padding: 12px 18px 10px;
+  }
+
+  .sub-header {
     flex-direction: column;
-    padding: 18px 18px 16px;
-    gap: 16px;
+    padding: 14px 18px;
+    gap: 12px;
+    align-items: flex-start;
   }
 
   .filters {
