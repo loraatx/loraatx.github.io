@@ -1,0 +1,665 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taco Bell",
+        "kind": "Fast Food",
+        "cuisine": "Tex-Mex",
+        "address": "1925 Airport Boulevard",
+        "phone": "+1 512-469-0225",
+        "website": "https://locations.tacobell.com/tx/austin/1925-airport-blvd.html",
+        "inspection_score": 100,
+        "inspection_date": "2026-02-17"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7039145,
+          30.2832777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Pollo Rico",
+        "kind": "Fast Food",
+        "cuisine": "Chicken",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "inspection_score": 79,
+        "inspection_date": "2026-02-03"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7029666,
+          30.2817814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mi Madre's",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "2201 Manor Road",
+        "phone": "+1-512-480-8441",
+        "website": "https://www.mimadresrestaurant.com/",
+        "inspection_score": 91,
+        "inspection_date": "2025-05-29"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7189427,
+          30.2841763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Iron Cactus",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "",
+        "phone": "+1-512-472-9240",
+        "website": "https://ironcactus.com/austin-downtown",
+        "inspection_score": 82,
+        "inspection_date": "2025-09-25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7394843,
+          30.2672622
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Chile Café y Cantina",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1900 Manor Road",
+        "phone": "+1-512-457-9900",
+        "website": "https://www.elchilecafe.com/",
+        "inspection_score": 74,
+        "inspection_date": "2026-02-09"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.721778,
+          30.2840559
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taco Mex",
+        "kind": "Restaurant",
+        "cuisine": "Tex-Mex",
+        "address": "2611 Manor Road",
+        "phone": "+1-512-524-0860",
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7149412,
+          30.2847133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Este",
+        "kind": "Restaurant",
+        "cuisine": "Seafood",
+        "address": "2113 Manor Road",
+        "phone": "",
+        "website": "https://www.esteatx.com/",
+        "inspection_score": 86,
+        "inspection_date": "2025-06-03"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7195394,
+          30.2839954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Chilito",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1623 East 7th Street",
+        "phone": "",
+        "website": "https://www.elchilito.com/",
+        "inspection_score": 85,
+        "inspection_date": "2026-02-09"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7244128,
+          30.2630554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chupacabra Cantina",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "",
+        "phone": "+1-512-703-4628",
+        "website": "https://www.chupacabracantina.com/",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7391442,
+          30.2671673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Los Comales Restaurant",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "2136 East 7th Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 73,
+        "inspection_date": "2023-06-21"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7182535,
+          30.2618724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Arandinas Mexican Restaurant",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "",
+        "phone": "+1-512-326-1182",
+        "website": "https://arandinasmexicanfood.com/",
+        "inspection_score": 71,
+        "inspection_date": "2025-12-29"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.726533,
+          30.240538
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ma'CoCo",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "501 Comal Street",
+        "phone": "+1-512-520-5333",
+        "website": "https://www.macocoatx.com/",
+        "inspection_score": 83,
+        "inspection_date": "2025-07-17"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7267125,
+          30.2622663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaquero Taquero",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "603 Sabine Street",
+        "phone": "",
+        "website": "http://www.vaquerotaquero.com/",
+        "inspection_score": 78,
+        "inspection_date": "2025-04-04"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7358582,
+          30.2664657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Vegan Nom",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "2324 East Cesar Chavez Street",
+        "phone": "+1-512-497-3147",
+        "website": "https://www.thevegannom.com",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7183365,
+          30.2551436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cisco's Restaurant Bakery & Bar",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1511 East 6th Street",
+        "phone": "+1-512-478-2420",
+        "website": "https://www.ciscosaustin.com/home",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7267285,
+          30.2629914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chipotle",
+        "kind": "Fast Food",
+        "cuisine": "Mexican / Tacos",
+        "address": "1109 East 5th Street",
+        "phone": "+1 512-582-1444",
+        "website": "https://locations.chipotle.com/tx/austin/1109-e-5th-st",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7315898,
+          30.2635564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chi'Lantro BBQ",
+        "kind": "Fast Food",
+        "cuisine": "Korean",
+        "address": "1414 Shore District Drive",
+        "phone": "+1-512-382-9653",
+        "website": "https://www.chilantrobbq.com/",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7282424,
+          30.2438235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chipotle",
+        "kind": "Fast Food",
+        "cuisine": "Mexican / Tacos",
+        "address": "1920 East Riverside Drive",
+        "phone": "+1-512-326-1975",
+        "website": "https://locations.chipotle.com/tx/austin/1920-e-riverside-dr",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7273017,
+          30.2420991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bacalar",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "44 East Avenue",
+        "phone": "",
+        "website": "https://bacalaratx.com/",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7390426,
+          30.255648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Xolo Tacos",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1901 East Martin Luther King Jr Boulevard",
+        "phone": "",
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7208712,
+          30.2795932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sabor Tacos y Más",
+        "kind": "Fast Food",
+        "cuisine": "Mexican / Tacos",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7359069,
+          30.2851917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Chile Cafe Y Cantina",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1809 Manor Road",
+        "phone": "",
+        "website": "https://www.elchilecafe.com/",
+        "inspection_score": 74,
+        "inspection_date": "2026-02-09"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7225682,
+          30.2835404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pelons Tex Mex",
+        "kind": "Restaurant",
+        "cuisine": "Tex-Mex",
+        "address": "802 Red River Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 83,
+        "inspection_date": "2026-01-15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.736558,
+          30.2687925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mr. Natural",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1903 East Cesar Chavez Street",
+        "phone": "+1 737-520-4285",
+        "website": "https://www.mrnaturalatx.com/",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.724542,
+          30.2568164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Takoba",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1411 East 7th Street",
+        "phone": "",
+        "website": "http://www.takobarestaurant.com/",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7274071,
+          30.2641027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tamale House East",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "1707 East 6th Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7243786,
+          30.2615684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Juan in a Million",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "2300 East Cesar Chavez Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 85,
+        "inspection_date": "2025-07-10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7189555,
+          30.2553365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grizzelda's",
+        "kind": "Restaurant",
+        "cuisine": "Tex-Mex",
+        "address": "105 Tillery Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 85,
+        "inspection_date": "2025-04-10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7082195,
+          30.2521507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marcelino's",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "901 Tillery Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 80,
+        "inspection_date": "2025-07-24"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.703538,
+          30.2625575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Tacorrido: Authentic Mexican Taqueria",
+        "kind": "Fast Food",
+        "cuisine": "Mexican / Tacos",
+        "address": "1701 East Riverside Drive",
+        "phone": "+1-512-912-1939",
+        "website": "https://www.eltacorrido.com/",
+        "inspection_score": 70,
+        "inspection_date": "2025-11-19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7306042,
+          30.2444531
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Nada Cantina",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "4715 East Cesar Chavez Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 95,
+        "inspection_date": "2025-03-13"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7021705,
+          30.2514535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pueblo Viejo Tillery",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "641 Tillery Street",
+        "phone": "",
+        "website": "",
+        "inspection_score": 84,
+        "inspection_date": "2025-11-17"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7058024,
+          30.2578681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taqueria Fenix",
+        "kind": "Restaurant",
+        "cuisine": "Mexican / Tacos",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "inspection_score": null,
+        "inspection_date": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7047884,
+          30.2542881
+        ]
+      }
+    }
+  ]
+}
