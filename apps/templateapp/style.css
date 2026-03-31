@@ -609,88 +609,58 @@ tbody tr:last-child td {
   }
 }
 
-/* ── Draw Panel ──────────────────────────────────── */
+/* ── Draw Toolbar (overlaid on map) ─────────────── */
 
-.draw-panel {
+.draw-toolbar {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   background: #fff;
-  border-top: 1px solid #e0e0e0;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: #444;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.draw-panel.hidden {
+.draw-toolbar.hidden {
   display: none;
 }
 
-.draw-panel-header {
+.draw-tb-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  gap: 8px;
+  justify-content: center;
+  color: #555;
+  transition: background 0.15s, color 0.15s;
 }
 
-.draw-modes {
-  display: flex;
-  gap: 4px;
-}
-
-.draw-mode-btn {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: 1.5px solid #d4d4d4;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1;
-  color: #444;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
-}
-
-.draw-mode-btn:hover {
-  border-color: #aaa;
+.draw-tb-btn:hover {
   background: #f0f0f0;
+  color: #222;
 }
 
-.draw-mode-btn.active {
+.draw-tb-btn.active {
   background: #e8f0fe;
-  border-color: #4285f4;
   color: #1a73e8;
 }
 
-.draw-clear-btn {
-  padding: 3px 10px;
-  border: 1.5px solid #d4d4d4;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 12px;
-  color: #666;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.draw-clear-btn:hover {
-  border-color: #e63946;
-  color: #e63946;
-  background: #fff5f5;
-}
-
-.draw-info {
-  color: #666;
-  line-height: 1.6;
-}
-
-.draw-feature-row {
-  padding: 2px 0;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 12px;
-}
-
-.draw-feature-row:last-child {
-  border-bottom: none;
+.draw-tb-divider {
+  width: 1px;
+  height: 20px;
+  background: #d4d4d4;
+  margin: 0 2px;
 }
 
 .toolbar-btn.active {
@@ -699,51 +669,28 @@ tbody tr:last-child td {
   color: #1a73e8;
 }
 
-[data-theme="dark"] .draw-panel {
+[data-theme="dark"] .draw-toolbar {
   background: #16213e;
   border-color: #2a2a4a;
-  color: #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-[data-theme="dark"] .draw-panel-header strong {
+[data-theme="dark"] .draw-tb-btn {
+  color: #bbb;
+}
+
+[data-theme="dark"] .draw-tb-btn:hover {
+  background: #2a2a4a;
   color: #eee;
 }
 
-[data-theme="dark"] .draw-mode-btn {
-  background: #1a1a3a;
-  border-color: #3a3a5a;
-  color: #ccc;
-}
-
-[data-theme="dark"] .draw-mode-btn:hover {
-  background: #2a2a4a;
-  border-color: #5a5a7a;
-}
-
-[data-theme="dark"] .draw-mode-btn.active {
+[data-theme="dark"] .draw-tb-btn.active {
   background: #1a2a4a;
-  border-color: #4285f4;
   color: #7baff4;
 }
 
-[data-theme="dark"] .draw-clear-btn {
-  background: #1a1a3a;
-  border-color: #3a3a5a;
-  color: #aaa;
-}
-
-[data-theme="dark"] .draw-clear-btn:hover {
-  border-color: #e63946;
-  color: #e63946;
-  background: #2a1a1a;
-}
-
-[data-theme="dark"] .draw-info {
-  color: #9a9ab0;
-}
-
-[data-theme="dark"] .draw-feature-row {
-  border-color: #2a2a4a;
+[data-theme="dark"] .draw-tb-divider {
+  background: #3a3a5a;
 }
 
 [data-theme="dark"] .toolbar-btn.active {

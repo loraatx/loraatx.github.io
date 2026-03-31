@@ -2,7 +2,7 @@ let map;
 let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
-let terraDraw;
+let draw;
 let drawEnabled = false;
 
 // --- 2D/3D view toggle ---
@@ -24,94 +24,56 @@ function initViewToggle() {
   });
 }
 
-// --- Draw tools (terra-draw — MapLibre GL v5 compatible) ---
+// --- Draw tools (terra-draw) ---
 
 function initDraw() {
-  const {
-    TerraDraw,
-    TerraDrawMapLibreGLAdapter,
-    TerraDrawPointMode,
-    TerraDrawLineStringMode,
-    TerraDrawPolygonMode,
-    TerraDrawSelectMode
-  } = window.TerraDraw;
+  var TD = window.terraDraw;
+  var TDA = window.terraDrawMapLibreGLAdapter;
 
-  terraDraw = new TerraDraw({
-    adapter: new TerraDrawMapLibreGLAdapter({ map }),
+  draw = new TD.TerraDraw({
+    adapter: new TDA.TerraDrawMapLibreGLAdapter({ map: map, lib: maplibregl }),
     modes: [
-      new TerraDrawPointMode(),
-      new TerraDrawLineStringMode(),
-      new TerraDrawPolygonMode(),
-      new TerraDrawSelectMode({
+      new TD.TerraDrawPointMode(),
+      new TD.TerraDrawLineStringMode(),
+      new TD.TerraDrawPolygonMode(),
+      new TD.TerraDrawRectangleMode(),
+      new TD.TerraDrawSelectMode({
         flags: {
-          point: { feature: { draggable: true } },
-          linestring: { feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
-          polygon: { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } }
+          point:     { feature: { draggable: true } },
+          linestring:{ feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
+          polygon:   { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } },
+          rectangle: { feature: { draggable: true, coordinates: { draggable: true } } }
         }
       })
     ]
   });
 
-  terraDraw.start();
+  draw.start();
+
+  // Toolbar toggle (header button)
+  document.getElementById("drawToggle").addEventListener("click", function () {
+    drawEnabled = !drawEnabled;
+    this.classList.toggle("active", drawEnabled);
+    document.getElementById("drawToolbar").classList.toggle("hidden", !drawEnabled);
+    if (!drawEnabled) {
+      draw.setMode("static");
+      document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
+    }
+  });
 
   // Mode buttons
-  document.querySelectorAll("[data-draw-mode]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const mode = btn.dataset.drawMode;
-      terraDraw.setMode(mode);
-      document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll("[data-draw-mode]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      draw.setMode(btn.dataset.drawMode);
+      document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
       btn.classList.add("active");
     });
   });
 
-  // Clear all
-  document.getElementById("clearDrawBtn").addEventListener("click", () => {
-    terraDraw.clear();
-    document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
-    updateDrawInfo();
+  // Clear button
+  document.getElementById("clearDrawBtn").addEventListener("click", function () {
+    draw.clear();
   });
-
-  // Panel toggle
-  const toggleBtn = document.getElementById("drawToggle");
-  toggleBtn.addEventListener("click", () => {
-    drawEnabled = !drawEnabled;
-    toggleBtn.classList.toggle("active", drawEnabled);
-    document.getElementById("drawPanel").classList.toggle("hidden", !drawEnabled);
-    if (!drawEnabled) {
-      terraDraw.setMode("static");
-      document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
-    }
-  });
-
-  terraDraw.on("change", updateDrawInfo);
-  terraDraw.on("finish", updateDrawInfo);
-}
-
-function updateDrawInfo() {
-  const snapshot = terraDraw.getSnapshot();
-  const infoEl = document.getElementById("drawInfo");
-
-  if (!snapshot || snapshot.length === 0) {
-    infoEl.textContent = "Select a mode above to start drawing.";
-    return;
-  }
-
-  const lines = snapshot.map((f, i) => {
-    const type = f.geometry.type;
-    if (type === "Point") {
-      const [lng, lat] = f.geometry.coordinates;
-      return `Point ${i + 1}: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-    }
-    if (type === "LineString") {
-      return `Line ${i + 1}: ${f.geometry.coordinates.length} points`;
-    }
-    if (type === "Polygon") {
-      return `Polygon ${i + 1}: ${f.geometry.coordinates[0].length - 1} vertices`;
-    }
-    return `Feature ${i + 1}: ${type}`;
-  });
-
-  infoEl.innerHTML = lines.map(l => `<div class="draw-feature-row">${l}</div>`).join("");
 }
 
 // --- Theme toggle ---
