@@ -628,6 +628,37 @@ tbody tr:last-child td {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
+  gap: 8px;
+}
+
+.draw-modes {
+  display: flex;
+  gap: 4px;
+}
+
+.draw-mode-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  color: #444;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.draw-mode-btn:hover {
+  border-color: #aaa;
+  background: #f0f0f0;
+}
+
+.draw-mode-btn.active {
+  background: #e8f0fe;
+  border-color: #4285f4;
+  color: #1a73e8;
 }
 
 .draw-clear-btn {
@@ -676,6 +707,23 @@ tbody tr:last-child td {
 
 [data-theme="dark"] .draw-panel-header strong {
   color: #eee;
+}
+
+[data-theme="dark"] .draw-mode-btn {
+  background: #1a1a3a;
+  border-color: #3a3a5a;
+  color: #ccc;
+}
+
+[data-theme="dark"] .draw-mode-btn:hover {
+  background: #2a2a4a;
+  border-color: #5a5a7a;
+}
+
+[data-theme="dark"] .draw-mode-btn.active {
+  background: #1a2a4a;
+  border-color: #4285f4;
+  color: #7baff4;
 }
 
 [data-theme="dark"] .draw-clear-btn {

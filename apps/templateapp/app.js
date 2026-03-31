@@ -2,7 +2,7 @@ let map;
 let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
-let draw;
+let terraDraw;
 let drawEnabled = false;
 
 // --- 2D/3D view toggle ---
@@ -24,66 +24,89 @@ function initViewToggle() {
   });
 }
 
-// --- Draw tools (mapbox-gl-draw) ---
+// --- Draw tools (terra-draw — MapLibre GL v5 compatible) ---
 
 function initDraw() {
-  draw = new MapboxDraw({
-    displayControlsDefault: false,
-    controls: {
-      point: true,
-      line_string: true,
-      polygon: true,
-      trash: true
-    }
+  const {
+    TerraDraw,
+    TerraDrawMapLibreGLAdapter,
+    TerraDrawPointMode,
+    TerraDrawLineStringMode,
+    TerraDrawPolygonMode,
+    TerraDrawSelectMode
+  } = window.TerraDraw;
+
+  terraDraw = new TerraDraw({
+    adapter: new TerraDrawMapLibreGLAdapter({ map }),
+    modes: [
+      new TerraDrawPointMode(),
+      new TerraDrawLineStringMode(),
+      new TerraDrawPolygonMode(),
+      new TerraDrawSelectMode({
+        flags: {
+          point: { feature: { draggable: true } },
+          linestring: { feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
+          polygon: { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } }
+        }
+      })
+    ]
   });
 
-  const btn = document.getElementById("drawToggle");
-  btn.addEventListener("click", () => {
-    drawEnabled = !drawEnabled;
-    btn.classList.toggle("active", drawEnabled);
+  terraDraw.start();
 
-    const panel = document.getElementById("drawPanel");
-    panel.classList.toggle("hidden", !drawEnabled);
-
-    if (drawEnabled) {
-      map.addControl(draw, "top-right");
-    } else {
-      map.removeControl(draw);
-    }
+  // Mode buttons
+  document.querySelectorAll("[data-draw-mode]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const mode = btn.dataset.drawMode;
+      terraDraw.setMode(mode);
+      document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
   });
 
+  // Clear all
   document.getElementById("clearDrawBtn").addEventListener("click", () => {
-    draw.deleteAll();
+    terraDraw.clear();
+    document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
     updateDrawInfo();
   });
 
-  map.on("draw.create", updateDrawInfo);
-  map.on("draw.update", updateDrawInfo);
-  map.on("draw.delete", updateDrawInfo);
+  // Panel toggle
+  const toggleBtn = document.getElementById("drawToggle");
+  toggleBtn.addEventListener("click", () => {
+    drawEnabled = !drawEnabled;
+    toggleBtn.classList.toggle("active", drawEnabled);
+    document.getElementById("drawPanel").classList.toggle("hidden", !drawEnabled);
+    if (!drawEnabled) {
+      terraDraw.setMode("static");
+      document.querySelectorAll("[data-draw-mode]").forEach(b => b.classList.remove("active"));
+    }
+  });
+
+  terraDraw.on("change", updateDrawInfo);
+  terraDraw.on("finish", updateDrawInfo);
 }
 
 function updateDrawInfo() {
-  const data = draw.getAll();
+  const snapshot = terraDraw.getSnapshot();
   const infoEl = document.getElementById("drawInfo");
 
-  if (!data || data.features.length === 0) {
-    infoEl.textContent = "Draw a shape on the map using the tools on the right.";
+  if (!snapshot || snapshot.length === 0) {
+    infoEl.textContent = "Select a mode above to start drawing.";
     return;
   }
 
-  const lines = data.features.map((f, i) => {
+  const lines = snapshot.map((f, i) => {
     const type = f.geometry.type;
     if (type === "Point") {
       const [lng, lat] = f.geometry.coordinates;
       return `Point ${i + 1}: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
     }
     if (type === "LineString") {
-      const pts = f.geometry.coordinates.length;
-      return `Line ${i + 1}: ${pts} points`;
+      return `Line ${i + 1}: ${f.geometry.coordinates.length} points`;
     }
     if (type === "Polygon") {
-      const pts = f.geometry.coordinates[0].length - 1;
-      return `Polygon ${i + 1}: ${pts} vertices`;
+      return `Polygon ${i + 1}: ${f.geometry.coordinates[0].length - 1} vertices`;
     }
     return `Feature ${i + 1}: ${type}`;
   });

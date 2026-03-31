@@ -6,7 +6,6 @@
   <title>Map App</title>
 
   <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
-  <link href="https://unpkg.com/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -28,10 +27,15 @@
       <div id="map"></div>
       <div id="drawPanel" class="draw-panel hidden">
         <div class="draw-panel-header">
-          <strong>Drawn Features</strong>
+          <div class="draw-modes">
+            <button class="draw-mode-btn" data-draw-mode="point" title="Point">⬤</button>
+            <button class="draw-mode-btn" data-draw-mode="linestring" title="Line">╱</button>
+            <button class="draw-mode-btn" data-draw-mode="polygon" title="Polygon">⬡</button>
+            <button class="draw-mode-btn" data-draw-mode="select" title="Select / Edit">↖</button>
+          </div>
           <button id="clearDrawBtn" class="draw-clear-btn" aria-label="Clear all drawn features">Clear All</button>
         </div>
-        <div id="drawInfo" class="draw-info">Draw a shape on the map using the tools on the right.</div>
+        <div id="drawInfo" class="draw-info">Select a mode above to start drawing.</div>
       </div>
     </section>
 
@@ -77,7 +81,7 @@
   </div>
 
   <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-  <script src="https://unpkg.com/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js"></script>
+  <script src="https://unpkg.com/terra-draw/dist/terra-draw.umd.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
   <script src="./config.js"></script>
   <script src="./app.js"></script>
