@@ -27,7 +27,7 @@ function initViewToggle() {
 
 function initDraw() {
   var TD = window.terraDraw;
-  var TDA = window.terraDrawMapLibreGLAdapter;
+  var TDA = window.terraDrawMaplibreGlAdapter;
 
   draw = new TD.TerraDraw({
     adapter: new TDA.TerraDrawMapLibreGLAdapter({ map: map, lib: maplibregl }),
@@ -127,7 +127,7 @@ async function init() {
   map.on("load", () => {
     add3DBuildings();
     initViewToggle();
-    initDraw();
+    try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     addPlacesLayers();
     buildFilters();
     buildTableHead();
