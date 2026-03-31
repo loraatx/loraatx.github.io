@@ -2,6 +2,8 @@ let map;
 let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
+let draw;
+let drawEnabled = false;
 
 // --- 2D/3D view toggle ---
 
@@ -20,6 +22,73 @@ function initViewToggle() {
       map.setLayoutProperty("3d-buildings", "visibility", "none");
     }
   });
+}
+
+// --- Draw tools (mapbox-gl-draw) ---
+
+function initDraw() {
+  draw = new MapboxDraw({
+    displayControlsDefault: false,
+    controls: {
+      point: true,
+      line_string: true,
+      polygon: true,
+      trash: true
+    }
+  });
+
+  const btn = document.getElementById("drawToggle");
+  btn.addEventListener("click", () => {
+    drawEnabled = !drawEnabled;
+    btn.classList.toggle("active", drawEnabled);
+
+    const panel = document.getElementById("drawPanel");
+    panel.classList.toggle("hidden", !drawEnabled);
+
+    if (drawEnabled) {
+      map.addControl(draw, "top-right");
+    } else {
+      map.removeControl(draw);
+    }
+  });
+
+  document.getElementById("clearDrawBtn").addEventListener("click", () => {
+    draw.deleteAll();
+    updateDrawInfo();
+  });
+
+  map.on("draw.create", updateDrawInfo);
+  map.on("draw.update", updateDrawInfo);
+  map.on("draw.delete", updateDrawInfo);
+}
+
+function updateDrawInfo() {
+  const data = draw.getAll();
+  const infoEl = document.getElementById("drawInfo");
+
+  if (!data || data.features.length === 0) {
+    infoEl.textContent = "Draw a shape on the map using the tools on the right.";
+    return;
+  }
+
+  const lines = data.features.map((f, i) => {
+    const type = f.geometry.type;
+    if (type === "Point") {
+      const [lng, lat] = f.geometry.coordinates;
+      return `Point ${i + 1}: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+    }
+    if (type === "LineString") {
+      const pts = f.geometry.coordinates.length;
+      return `Line ${i + 1}: ${pts} points`;
+    }
+    if (type === "Polygon") {
+      const pts = f.geometry.coordinates[0].length - 1;
+      return `Polygon ${i + 1}: ${pts} vertices`;
+    }
+    return `Feature ${i + 1}: ${type}`;
+  });
+
+  infoEl.innerHTML = lines.map(l => `<div class="draw-feature-row">${l}</div>`).join("");
 }
 
 // --- Theme toggle ---
@@ -78,6 +147,7 @@ async function init() {
   map.on("load", () => {
     add3DBuildings();
     initViewToggle();
+    initDraw();
     addPlacesLayers();
     buildFilters();
     buildTableHead();
