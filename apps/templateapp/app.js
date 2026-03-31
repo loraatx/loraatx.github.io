@@ -32,24 +32,10 @@ function initDraw() {
   draw = new TD.TerraDraw({
     adapter: new TDA.TerraDrawMapLibreGLAdapter({ map: map, lib: maplibregl }),
     modes: [
-      new TD.TerraDrawSelectMode({
-        flags: {
-          point:            { feature: { draggable: true } },
-          linestring:       { feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
-          polygon:          { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } },
-          rectangle:        { feature: { draggable: true, coordinates: { draggable: true } } },
-          circle:           { feature: { draggable: true } },
-          freehand:         { feature: { draggable: true } },
-          "angled-rectangle": { feature: { draggable: true } }
-        }
-      }),
-      new TD.TerraDrawPointMode(),
       new TD.TerraDrawLineStringMode(),
-      new TD.TerraDrawPolygonMode(),
       new TD.TerraDrawRectangleMode(),
-      new TD.TerraDrawFreehandMode(),
       new TD.TerraDrawCircleMode(),
-      new TD.TerraDrawAngledRectangleMode()
+      new TD.TerraDrawPolygonMode()
     ]
   });
 
