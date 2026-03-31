@@ -3,7 +3,6 @@ let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
 let draw;
-let drawEnabled = false;
 
 // --- 2D/3D view toggle ---
 
@@ -33,33 +32,28 @@ function initDraw() {
   draw = new TD.TerraDraw({
     adapter: new TDA.TerraDrawMapLibreGLAdapter({ map: map, lib: maplibregl }),
     modes: [
+      new TD.TerraDrawSelectMode({
+        flags: {
+          point:            { feature: { draggable: true } },
+          linestring:       { feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
+          polygon:          { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } },
+          rectangle:        { feature: { draggable: true, coordinates: { draggable: true } } },
+          circle:           { feature: { draggable: true } },
+          freehand:         { feature: { draggable: true } },
+          "angled-rectangle": { feature: { draggable: true } }
+        }
+      }),
       new TD.TerraDrawPointMode(),
       new TD.TerraDrawLineStringMode(),
       new TD.TerraDrawPolygonMode(),
       new TD.TerraDrawRectangleMode(),
-      new TD.TerraDrawSelectMode({
-        flags: {
-          point:     { feature: { draggable: true } },
-          linestring:{ feature: { draggable: true, coordinates: { midpoints: true, draggable: true } } },
-          polygon:   { feature: { draggable: true, coordinates: { midpoints: true, draggable: true, deletable: true } } },
-          rectangle: { feature: { draggable: true, coordinates: { draggable: true } } }
-        }
-      })
+      new TD.TerraDrawFreehandMode(),
+      new TD.TerraDrawCircleMode(),
+      new TD.TerraDrawAngledRectangleMode()
     ]
   });
 
   draw.start();
-
-  // Toolbar toggle (header button)
-  document.getElementById("drawToggle").addEventListener("click", function () {
-    drawEnabled = !drawEnabled;
-    this.classList.toggle("active", drawEnabled);
-    document.getElementById("drawToolbar").classList.toggle("hidden", !drawEnabled);
-    if (!drawEnabled) {
-      draw.setMode("static");
-      document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
-    }
-  });
 
   // Mode buttons
   document.querySelectorAll("[data-draw-mode]").forEach(function (btn) {
@@ -73,6 +67,7 @@ function initDraw() {
   // Clear button
   document.getElementById("clearDrawBtn").addEventListener("click", function () {
     draw.clear();
+    document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
   });
 }
 
