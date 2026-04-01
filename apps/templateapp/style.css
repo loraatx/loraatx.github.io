@@ -612,26 +612,20 @@ tbody tr:last-child td {
 
 /* ── Satellite toggle button ─────────────────────── */
 
-.maplibregl-ctrl-top-left .maplibregl-ctrl-group:has(.satellite-btn) {
+.maplibregl-ctrl-group button.satellite-btn {
   width: auto;
-}
-
-.satellite-btn {
   padding: 0 10px;
   height: 29px;
   font-size: 12px;
   font-weight: 600;
   background: #fff;
-  border: none;
-  cursor: pointer;
   color: #333;
   white-space: nowrap;
-  display: block;
 }
 
-.satellite-btn:hover { background: #f0f0f0; }
+.maplibregl-ctrl-group button.satellite-btn:hover { background: #f0f0f0; }
 
-.satellite-btn.active {
+.maplibregl-ctrl-group button.satellite-btn.active {
   background: #e8f0fe;
   color: #1a73e8;
 }
