@@ -4,7 +4,7 @@
 // ============================================================
 const CONFIG = {
   // Page text
-  title: "Tacos & Mexican Food",
+  title: "Community Boards",
   eyebrow: "EAST AUSTIN",
   subtitle: "",
 
