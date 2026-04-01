@@ -612,9 +612,12 @@ tbody tr:last-child td {
 
 /* ── Satellite toggle button ─────────────────────── */
 
+.maplibregl-ctrl-top-left .maplibregl-ctrl-group:has(.satellite-btn) {
+  width: auto;
+}
+
 .satellite-btn {
-  width: 100%;
-  padding: 0 8px;
+  padding: 0 10px;
   height: 29px;
   font-size: 12px;
   font-weight: 600;
@@ -623,6 +626,7 @@ tbody tr:last-child td {
   cursor: pointer;
   color: #333;
   white-space: nowrap;
+  display: block;
 }
 
 .satellite-btn:hover { background: #f0f0f0; }
