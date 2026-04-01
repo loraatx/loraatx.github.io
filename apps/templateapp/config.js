@@ -6,7 +6,7 @@ const CONFIG = {
   // Page text
   title: "Tacos & Mexican Food",
   eyebrow: "EAST AUSTIN",
-  subtitle: "33 spots — Mexican, Tex-Mex, and taco restaurants in East Austin.",
+  subtitle: "",
 
   // Map defaults
   center: [-97.722, 30.268],
