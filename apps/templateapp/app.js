@@ -83,7 +83,6 @@ async function init() {
   // Set page text from config
   document.getElementById("pageEyebrow").textContent = CONFIG.eyebrow;
   document.getElementById("pageTitle").textContent = CONFIG.title;
-  document.getElementById("pageSubtitle").textContent = CONFIG.subtitle;
   document.title = CONFIG.title;
 
   // Create map
