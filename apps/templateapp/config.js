@@ -5,7 +5,7 @@
 const CONFIG = {
   // Page text
   title: "Community Boards",
-  eyebrow: "EAST AUSTIN",
+  eyebrow: "Austin Metro",
   subtitle: "",
 
   // Map defaults
