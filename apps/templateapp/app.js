@@ -68,10 +68,7 @@ function initDraw() {
   draw = new TD.TerraDraw({
     adapter: new TDA.TerraDrawMapLibreGLAdapter({ map: map, lib: maplibregl }),
     modes: [
-      new TD.TerraDrawLineStringMode(),
-      new TD.TerraDrawRectangleMode(),
-      new TD.TerraDrawCircleMode(),
-      new TD.TerraDrawPolygonMode()
+      new TD.TerraDrawLineStringMode()
     ]
   });
 
