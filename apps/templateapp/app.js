@@ -23,6 +23,42 @@ function initViewToggle() {
   });
 }
 
+// --- Satellite view toggle ---
+
+function initSatellite() {
+  map.addSource("satellite", {
+    type: "raster",
+    tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+    tileSize: 256,
+    attribution: "Tiles &copy; Esri"
+  });
+
+  map.addLayer({
+    id: "satellite-layer",
+    type: "raster",
+    source: "satellite",
+    layout: { visibility: "none" }
+  }, map.getStyle().layers[1].id);
+
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      this._btn = document.createElement("button");
+      this._btn.className = "satellite-btn";
+      this._btn.textContent = "Satellite";
+      this._btn.onclick = () => {
+        const on = map.getLayoutProperty("satellite-layer", "visibility") === "visible";
+        map.setLayoutProperty("satellite-layer", "visibility", on ? "none" : "visible");
+        this._btn.classList.toggle("active", !on);
+      };
+      this._container.appendChild(this._btn);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "top-left");
+}
+
 // --- Draw tools (terra-draw) ---
 
 function initDraw() {
@@ -112,6 +148,7 @@ async function init() {
   map.on("load", () => {
     add3DBuildings();
     initViewToggle();
+    initSatellite();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     addPlacesLayers();
     buildFilters();

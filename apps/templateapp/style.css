@@ -610,6 +610,28 @@ tbody tr:last-child td {
   }
 }
 
+/* ── Satellite toggle button ─────────────────────── */
+
+.satellite-btn {
+  width: 100%;
+  padding: 0 8px;
+  height: 29px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  white-space: nowrap;
+}
+
+.satellite-btn:hover { background: #f0f0f0; }
+
+.satellite-btn.active {
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
 /* ── Draw Bar (below map) ────────────────────────── */
 
 .draw-bar {
