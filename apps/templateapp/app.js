@@ -3,6 +3,7 @@ let allFeatures = [];
 let filteredFeatures = [];
 let currentPopup;
 let draw;
+let measuring = false;
 
 // --- 2D/3D view toggle ---
 
@@ -77,6 +78,9 @@ function initDraw() {
   // Mode buttons
   document.querySelectorAll("[data-draw-mode]").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      measuring = false;
+      map.getCanvas().style.cursor = "";
+      document.getElementById("measureBtn").classList.remove("active");
       draw.setMode(btn.dataset.drawMode);
       document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
       btn.classList.add("active");
@@ -88,6 +92,65 @@ function initDraw() {
     draw.clear();
     document.querySelectorAll("[data-draw-mode]").forEach(function (b) { b.classList.remove("active"); });
   });
+}
+
+// --- Measure tool ---
+
+function initMeasure() {
+  var pts = [];
+
+  map.addSource("measure-pts",  { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+  map.addSource("measure-line", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+
+  map.addLayer({ id: "measure-line-layer", type: "line", source: "measure-line",
+    paint: { "line-color": "#e63946", "line-width": 2, "line-dasharray": [3, 2] } });
+
+  map.addLayer({ id: "measure-pts-layer", type: "circle", source: "measure-pts",
+    paint: { "circle-radius": 5, "circle-color": "#e63946", "circle-stroke-color": "#fff", "circle-stroke-width": 2 } });
+
+  map.addLayer({ id: "measure-labels-layer", type: "symbol", source: "measure-pts",
+    layout: { "text-field": ["get", "label"], "text-size": 12, "text-offset": [0, -1.2], "text-anchor": "bottom" },
+    paint: { "text-color": "#222", "text-halo-color": "#fff", "text-halo-width": 2 } });
+
+  function haversine(a, b) {
+    var R = 3958.8, toRad = function(x) { return x * Math.PI / 180; };
+    var dLat = toRad(b[1] - a[1]), dLng = toRad(b[0] - a[0]);
+    var x = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(toRad(a[1])) * Math.cos(toRad(b[1])) * Math.sin(dLng/2) * Math.sin(dLng/2);
+    return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+  }
+
+  function redraw() {
+    var total = 0;
+    map.getSource("measure-pts").setData({ type: "FeatureCollection", features: pts.map(function(pt, i) {
+      if (i > 0) total += haversine(pts[i - 1], pt);
+      return { type: "Feature", geometry: { type: "Point", coordinates: pt },
+        properties: { label: i === 0 ? "Start" : (total.toFixed(2) + " mi") } };
+    })});
+    map.getSource("measure-line").setData({ type: "FeatureCollection",
+      features: pts.length > 1 ? [{ type: "Feature", geometry: { type: "LineString", coordinates: pts } }] : [] });
+  }
+
+  function clearMeasure() { pts = []; redraw(); }
+
+  map.on("click", function(e) {
+    if (!measuring) return;
+    pts.push([e.lngLat.lng, e.lngLat.lat]);
+    redraw();
+  });
+
+  var btn = document.getElementById("measureBtn");
+  btn.addEventListener("click", function() {
+    measuring = !measuring;
+    btn.classList.toggle("active", measuring);
+    map.getCanvas().style.cursor = measuring ? "crosshair" : "";
+    if (measuring && draw) {
+      draw.setMode("static");
+      document.querySelectorAll("[data-draw-mode]").forEach(function(b) { b.classList.remove("active"); });
+    }
+  });
+
+  document.getElementById("clearDrawBtn").addEventListener("click", clearMeasure);
 }
 
 // --- Theme toggle ---
@@ -147,6 +210,7 @@ async function init() {
     initViewToggle();
     initSatellite();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
+    initMeasure();
     addPlacesLayers();
     buildFilters();
     buildTableHead();

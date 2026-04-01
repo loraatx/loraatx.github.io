@@ -642,6 +642,8 @@ tbody tr:last-child td {
   border-bottom: 1px solid #d6d6d6;
 }
 
+#measureBtn { margin-left: auto; }
+
 .draw-tb-btn {
   padding: 6px 16px;
   border: 1.5px solid #d4d4d4;
