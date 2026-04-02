@@ -157,7 +157,6 @@ function initMeasure() {
 
 async function initOverlay() {
   if (!CONFIG.overlayLabel) return;
-  document.getElementById("overlayName").textContent = CONFIG.overlayLabel;
 
   var res = await fetch("./SecondData.geojson");
   if (!res.ok) return;
@@ -207,12 +206,29 @@ async function initOverlay() {
     }, "places-shadow");
   }
 
-  document.getElementById("overlayCheckbox").addEventListener("change", function () {
-    var vis = this.checked ? "visible" : "none";
-    map.setLayoutProperty("overlay-fill", "visibility", vis);
-    map.setLayoutProperty("overlay-line", "visibility", vis);
-    if (prop) map.setLayoutProperty("overlay-labels", "visibility", vis);
-  });
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      var label = document.createElement("label");
+      label.className = "overlay-ctrl-label";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.addEventListener("change", function () {
+        var vis = this.checked ? "visible" : "none";
+        map.setLayoutProperty("overlay-fill", "visibility", vis);
+        map.setLayoutProperty("overlay-line", "visibility", vis);
+        if (prop) map.setLayoutProperty("overlay-labels", "visibility", vis);
+      });
+      var span = document.createElement("span");
+      span.textContent = CONFIG.overlayLabel;
+      label.appendChild(checkbox);
+      label.appendChild(span);
+      this._container.appendChild(label);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "bottom-left");
 }
 
 // --- Theme toggle ---

@@ -630,6 +630,26 @@ tbody tr:last-child td {
   color: #1a73e8;
 }
 
+/* ── Overlay toggle control (bottom-left map corner) ── */
+
+.maplibregl-ctrl-group label.overlay-ctrl-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 29px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  background: #fff;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.maplibregl-ctrl-group label.overlay-ctrl-label:hover {
+  background: #f0f0f0;
+}
+
 /* ── Draw Bar (below map) ────────────────────────── */
 
 .draw-bar {
@@ -642,19 +662,9 @@ tbody tr:last-child td {
   border-bottom: 1px solid #d6d6d6;
 }
 
-.overlay-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #444;
-  cursor: pointer;
-  white-space: nowrap;
+#measureBtn {
   margin-left: auto;
 }
-
-[data-theme="dark"] .overlay-label { color: #ccc; }
 
 .draw-tb-btn {
   padding: 6px 16px;
