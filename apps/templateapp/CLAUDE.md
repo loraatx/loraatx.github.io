@@ -2,9 +2,11 @@
 
 ## What This Folder Is
 
+Remember to when generating code the user prefers clean code they can understand and prefer simple solutions using naming conventions when possible. 
+
 This is a config-driven MapLibre GL map application. It displays GeoJSON point data on a 3D map with extruded buildings, dropdown filters, a data table, and popups with Google Maps / Apple Maps / Waze navigation links.
 
-**Live URL:** https://anatomy.city/apps/examplepage1/
+**Live URL:** https://anatomy.city/apps/templateapp/
 
 ## Architecture
 
