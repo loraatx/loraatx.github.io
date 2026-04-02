@@ -555,22 +555,6 @@ function fitMapToFeatures(features) {
   });
 }
 
-// --- Export menu toggle ---
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("exportBtn");
-  const menu = document.getElementById("exportMenu");
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.classList.toggle("open");
-  });
-
-  document.addEventListener("click", () => {
-    menu.classList.remove("open");
-  });
-});
-
 // --- CSV export (filtered table) ---
 
 function exportCSV() {
@@ -594,82 +578,6 @@ function exportCSV() {
   a.download = `${CONFIG.title.replace(/[^a-z0-9]/gi, "_")}_export.csv`;
   a.click();
   URL.revokeObjectURL(url);
-  document.getElementById("exportMenu").classList.remove("open");
-}
-
-// --- PDF export (map screenshot + filtered table) ---
-
-async function exportPDF() {
-  const menu = document.getElementById("exportMenu");
-  menu.classList.remove("open");
-
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-  const pageW = pdf.internal.pageSize.getWidth();
-  const pageH = pdf.internal.pageSize.getHeight();
-  const margin = 12;
-
-  // Title
-  pdf.setFontSize(16);
-  pdf.setFont(undefined, "bold");
-  pdf.text(CONFIG.title, margin, margin + 6);
-  pdf.setFontSize(10);
-  pdf.setFont(undefined, "normal");
-  pdf.setTextColor(100);
-  pdf.text(CONFIG.subtitle, margin, margin + 12);
-  pdf.setTextColor(0);
-
-  // Map screenshot (use MapLibre's native canvas — html2canvas can't capture WebGL)
-  const mapCanvas = map.getCanvas();
-  const imgData = mapCanvas.toDataURL("image/png");
-  const mapY = margin + 18;
-  const mapW = pageW - margin * 2;
-  const mapH = (mapCanvas.height / mapCanvas.width) * mapW;
-  const clampedMapH = Math.min(mapH, pageH - mapY - margin - 10);
-  pdf.addImage(imgData, "PNG", margin, mapY, mapW, clampedMapH);
-
-  // Table on next page
-  pdf.addPage();
-  const headers = CONFIG.columns.map(c => c.header);
-  const colW = (pageW - margin * 2) / headers.length;
-  let y = margin + 6;
-
-  // Table title
-  pdf.setFontSize(12);
-  pdf.setFont(undefined, "bold");
-  pdf.text(`${filteredFeatures.length} Locations`, margin, y);
-  y += 8;
-
-  // Header row
-  pdf.setFillColor(235, 235, 235);
-  pdf.rect(margin, y - 4, pageW - margin * 2, 8, "F");
-  pdf.setFontSize(8);
-  pdf.setFont(undefined, "bold");
-  pdf.setTextColor(80);
-  headers.forEach((h, i) => {
-    pdf.text(h.toUpperCase(), margin + i * colW + 2, y);
-  });
-  pdf.setTextColor(0);
-  y += 6;
-
-  // Data rows
-  pdf.setFont(undefined, "normal");
-  pdf.setFontSize(9);
-  filteredFeatures.forEach(f => {
-    if (y > pageH - margin) {
-      pdf.addPage();
-      y = margin + 6;
-    }
-    const p = f.properties;
-    CONFIG.columns.forEach((col, i) => {
-      const val = (p[col.property] ?? "").toString();
-      const truncated = val.length > 35 ? val.slice(0, 33) + "..." : val;
-      pdf.text(truncated, margin + i * colW + 2, y);
-    });
-    y += 5.5;
-  });
-
-  pdf.save(`${CONFIG.title.replace(/[^a-z0-9]/gi, "_")}_export.pdf`);
 }
 
 init();

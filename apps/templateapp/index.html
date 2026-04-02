@@ -37,13 +37,7 @@
         <h2>Locations</h2>
         <div class="table-header-right">
           <div id="resultCount">0 results</div>
-          <div class="export-wrap">
-            <button class="export-btn" id="exportBtn">Export</button>
-            <div class="export-menu" id="exportMenu">
-              <button onclick="exportPDF()">PDF (Map + Table)</button>
-              <button onclick="exportCSV()">CSV (Table)</button>
-            </div>
-          </div>
+          <button class="export-btn" onclick="exportCSV()">Export CSV</button>
         </div>
       </div>
       <div class="filters" id="filters"></div>
@@ -72,8 +66,7 @@
   <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/terra-draw/dist/terra-draw.umd.js"></script>
   <script src="https://unpkg.com/terra-draw-maplibre-gl-adapter/dist/terra-draw-maplibre-gl-adapter.umd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
-  <script src="./config.js"></script>
+<script src="./config.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
