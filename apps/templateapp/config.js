@@ -15,12 +15,13 @@ const CONFIG = {
   bearing: -15,
   markerColor: "#e63946",
 
-  // Overlay label — checkbox text for SecondData.geojson polygon layer
+  // Overlay 1 — SecondData.geojson
   overlayLabel: "Zip Codes",
-
-  // Overlay color property — the GeoJSON property used to color and label each zone
-  // e.g. "zipcode", "district_name", "zone_type"
   overlayColorProperty: "zipcode",
+
+  // Overlay 2 — floodzone.geojson
+  overlay2Label: "Flood Zones",
+  overlay2ColorProperty: "flood_zone",
 
   // Which GeoJSON property is the display name (used as popup title)
   nameField: "name",
