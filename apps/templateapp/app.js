@@ -225,6 +225,9 @@ async function initOverlay() {
   if (CONFIG.overlay2Label) {
     await addOverlayControl("./floodzone.geojson", "overlay2", CONFIG.overlay2Label, CONFIG.overlay2ColorProperty);
   }
+  if (CONFIG.overlay3Label) {
+    await addOverlayControl("./Council_Districts.geojson", "overlay3", CONFIG.overlay3Label, CONFIG.overlay3ColorProperty);
+  }
 }
 
 // --- Theme toggle ---

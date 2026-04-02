@@ -23,6 +23,10 @@ const CONFIG = {
   overlay2Label: "Flood Zones",
   overlay2ColorProperty: "flood_zone",
 
+  // Overlay 3 — Council_Districts.geojson
+  overlay3Label: "Council Districts",
+  overlay3ColorProperty: "district_name",
+
   // Which GeoJSON property is the display name (used as popup title)
   nameField: "name",
 

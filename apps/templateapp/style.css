@@ -578,6 +578,7 @@ tbody tr:last-child td {
   gap: 6px;
   padding: 0 10px;
   height: 29px;
+  width: 150px;
   font-size: 12px;
   font-weight: 600;
   color: #333;
