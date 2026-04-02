@@ -18,6 +18,10 @@ const CONFIG = {
   // Overlay label — checkbox text for SecondData.geojson polygon layer
   overlayLabel: "Zip Codes",
 
+  // Overlay color property — the GeoJSON property used to color and label each zone
+  // e.g. "zipcode", "district_name", "zone_type"
+  overlayColorProperty: "zipcode",
+
   // Which GeoJSON property is the display name (used as popup title)
   nameField: "name",
 

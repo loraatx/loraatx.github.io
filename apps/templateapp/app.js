@@ -163,20 +163,55 @@ async function initOverlay() {
   if (!res.ok) return;
   var data = await res.json();
 
+  // Build per-zone color expression from unique property values
+  var palette = ["#4285f4","#ea4335","#fbbc04","#34a853","#ff6d00","#46bdc6","#7b1fa2","#f06292"];
+  var colorExpr = "#4285f4";
+  var prop = CONFIG.overlayColorProperty;
+
+  if (prop) {
+    var uniqueVals = [...new Set(data.features.map(function(f) { return f.properties[prop]; }))];
+    var matchExpr = ["match", ["get", prop]];
+    uniqueVals.forEach(function(val, i) {
+      matchExpr.push(val, palette[i % palette.length]);
+    });
+    matchExpr.push("#888");
+    colorExpr = matchExpr;
+  }
+
   map.addSource("overlay", { type: "geojson", data: data });
+
   map.addLayer({ id: "overlay-fill", type: "fill", source: "overlay",
     layout: { visibility: "none" },
-    paint: { "fill-color": "#4285f4", "fill-opacity": 0.15 }
+    paint: { "fill-color": colorExpr, "fill-opacity": 0.2 }
   }, "places-shadow");
+
   map.addLayer({ id: "overlay-line", type: "line", source: "overlay",
     layout: { visibility: "none" },
-    paint: { "line-color": "#4285f4", "line-width": 1.5 }
+    paint: { "line-color": colorExpr, "line-width": 1.5 }
   }, "places-shadow");
+
+  if (prop) {
+    map.addLayer({ id: "overlay-labels", type: "symbol", source: "overlay",
+      layout: {
+        visibility: "none",
+        "text-field": ["get", prop],
+        "text-size": 11,
+        "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+        "text-max-width": 8
+      },
+      paint: {
+        "text-color": "#222",
+        "text-halo-color": "#fff",
+        "text-halo-width": 1.5
+      }
+    }, "places-shadow");
+  }
 
   document.getElementById("overlayCheckbox").addEventListener("change", function () {
     var vis = this.checked ? "visible" : "none";
     map.setLayoutProperty("overlay-fill", "visibility", vis);
     map.setLayoutProperty("overlay-line", "visibility", vis);
+    if (prop) map.setLayoutProperty("overlay-labels", "visibility", vis);
   });
 }
 
