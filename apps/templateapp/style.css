@@ -642,7 +642,19 @@ tbody tr:last-child td {
   border-bottom: 1px solid #d6d6d6;
 }
 
-#measureBtn { margin-left: auto; }
+.overlay-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+[data-theme="dark"] .overlay-label { color: #ccc; }
 
 .draw-tb-btn {
   padding: 6px 16px;

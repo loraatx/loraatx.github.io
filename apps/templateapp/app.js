@@ -153,6 +153,33 @@ function initMeasure() {
   document.getElementById("clearDrawBtn").addEventListener("click", clearMeasure);
 }
 
+// --- Polygon overlay (SecondData.geojson) ---
+
+async function initOverlay() {
+  if (!CONFIG.overlayLabel) return;
+  document.getElementById("overlayName").textContent = CONFIG.overlayLabel;
+
+  var res = await fetch("./SecondData.geojson");
+  if (!res.ok) return;
+  var data = await res.json();
+
+  map.addSource("overlay", { type: "geojson", data: data });
+  map.addLayer({ id: "overlay-fill", type: "fill", source: "overlay",
+    layout: { visibility: "none" },
+    paint: { "fill-color": "#4285f4", "fill-opacity": 0.15 }
+  }, "places-shadow");
+  map.addLayer({ id: "overlay-line", type: "line", source: "overlay",
+    layout: { visibility: "none" },
+    paint: { "line-color": "#4285f4", "line-width": 1.5 }
+  }, "places-shadow");
+
+  document.getElementById("overlayCheckbox").addEventListener("change", function () {
+    var vis = this.checked ? "visible" : "none";
+    map.setLayoutProperty("overlay-fill", "visibility", vis);
+    map.setLayoutProperty("overlay-line", "visibility", vis);
+  });
+}
+
 // --- Theme toggle ---
 
 function initTheme() {
@@ -212,6 +239,7 @@ async function init() {
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
     addPlacesLayers();
+    initOverlay();
     buildFilters();
     buildTableHead();
     applyFilters();
