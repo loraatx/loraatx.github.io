@@ -656,3 +656,71 @@ tbody tr:last-child td {
   border-color: #4285f4;
   color: #7baff4;
 }
+
+/* ── Report modal ─────────────────────────────── */
+
+.report-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.report-modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  min-width: 260px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+.report-modal-title {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.report-field-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.report-field-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.report-field-item input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.report-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+[data-theme="dark"] .report-modal {
+  background: #16213e;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .report-modal-title {
+  color: #eee;
+}
+
+[data-theme="dark"] .report-field-item {
+  color: #ccc;
+}

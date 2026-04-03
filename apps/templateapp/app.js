@@ -252,6 +252,7 @@ function applyTheme(theme) {
 
 async function init() {
   initTheme();
+  initReportModal();
 
   // Set page text from config
   document.getElementById("pageEyebrow").textContent = CONFIG.eyebrow;
@@ -552,6 +553,113 @@ function fitMapToFeatures(features) {
     bearing: CONFIG.bearing,
     duration: 800
   });
+}
+
+// --- Report modal ---
+
+function initReportModal() {
+  var list = document.getElementById("reportFieldList");
+  CONFIG.columns.forEach(function(col) {
+    var label = document.createElement("label");
+    label.className = "report-field-item";
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.value = col.property;
+    cb.dataset.header = col.header;
+    cb.addEventListener("change", updateReportModalState);
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(" " + col.header));
+    list.appendChild(label);
+  });
+  document.getElementById("reportCancelBtn").addEventListener("click", closeReportModal);
+  document.getElementById("reportGenerateBtn").addEventListener("click", function() {
+    var selected = [...document.querySelectorAll("#reportFieldList input:checked")]
+      .map(function(cb) { return { property: cb.value, header: cb.dataset.header }; });
+    closeReportModal();
+    generateReport(selected);
+  });
+}
+
+function openReportModal() {
+  document.getElementById("reportModal").style.display = "flex";
+}
+
+function closeReportModal() {
+  document.getElementById("reportModal").style.display = "none";
+  document.querySelectorAll("#reportFieldList input").forEach(function(cb) {
+    cb.checked = false;
+    cb.disabled = false;
+  });
+  document.getElementById("reportGenerateBtn").disabled = true;
+}
+
+function updateReportModalState() {
+  var checkboxes = [...document.querySelectorAll("#reportFieldList input")];
+  var checked = checkboxes.filter(function(cb) { return cb.checked; });
+  checkboxes.forEach(function(cb) {
+    cb.disabled = checked.length >= 3 && !cb.checked;
+  });
+  document.getElementById("reportGenerateBtn").disabled = checked.length === 0;
+}
+
+function generateReport(selectedColumns) {
+  map.once("render", function() {
+    var canvas = map.getCanvas();
+    var imgData = canvas.toDataURL("image/png");
+    var { jsPDF } = window.jspdf;
+
+    var pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+    var pageW = pdf.internal.pageSize.getWidth();
+    var pageH = pdf.internal.pageSize.getHeight();
+    var margin = 12;
+    var usableW = pageW - margin * 2;
+    var MAX_CHARS = 150;
+
+    // Title
+    pdf.setFontSize(14);
+    pdf.setFont(undefined, "bold");
+    pdf.text(CONFIG.title, margin, margin + 5);
+
+    // Map image — fill ~52% of page height, maintain aspect ratio
+    var mapY = margin + 12;
+    var maxMapH = pageH * 0.52;
+    var aspect = canvas.height / canvas.width;
+    var mapH = Math.min(usableW * aspect, maxMapH);
+    pdf.addImage(imgData, "PNG", margin, mapY, usableW, mapH);
+
+    // Table
+    var colW = usableW / selectedColumns.length;
+    var y = mapY + mapH + 8;
+
+    // Header row
+    pdf.setFillColor(235, 235, 235);
+    pdf.rect(margin, y - 4, usableW, 7, "F");
+    pdf.setFontSize(8);
+    pdf.setFont(undefined, "bold");
+    pdf.setTextColor(80);
+    selectedColumns.forEach(function(col, i) {
+      pdf.text(col.header.toUpperCase(), margin + i * colW + 2, y);
+    });
+    y += 6;
+
+    // Data rows
+    pdf.setFont(undefined, "normal");
+    pdf.setFontSize(9);
+    pdf.setTextColor(0);
+    filteredFeatures.forEach(function(f) {
+      if (y > pageH - margin) { pdf.addPage(); y = margin + 8; }
+      var p = f.properties;
+      selectedColumns.forEach(function(col, i) {
+        var val = (p[col.property] ?? "").toString();
+        if (val.length > MAX_CHARS) val = val.slice(0, MAX_CHARS - 1) + "\u2026";
+        pdf.text(val, margin + i * colW + 2, y, { maxWidth: colW - 4 });
+      });
+      y += 6;
+    });
+
+    pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_report.pdf");
+  });
+  map.triggerRepaint();
 }
 
 // --- Export map as PNG ---

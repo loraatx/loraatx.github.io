@@ -32,7 +32,19 @@
       <button class="draw-tb-btn" id="clearDrawBtn">Clear</button>
       <button class="draw-tb-btn" id="measureBtn">Measure</button>
       <button class="draw-tb-btn" id="exportMapBtn" onclick="exportMap()">Map PNG</button>
+      <button class="draw-tb-btn" onclick="openReportModal()">Report</button>
     </section>
+
+    <div id="reportModal" class="report-modal-overlay">
+      <div class="report-modal">
+        <h3 class="report-modal-title">Select up to 3 fields for report</h3>
+        <div id="reportFieldList" class="report-field-list"></div>
+        <div class="report-modal-actions">
+          <button class="draw-tb-btn" id="reportCancelBtn">Cancel</button>
+          <button class="draw-tb-btn active" id="reportGenerateBtn" disabled>Generate</button>
+        </div>
+      </div>
+    </div>
 
     <section class="table-section">
       <div class="table-header">
@@ -65,6 +77,7 @@
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
   <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/terra-draw/dist/terra-draw.umd.js"></script>
   <script src="https://unpkg.com/terra-draw-maplibre-gl-adapter/dist/terra-draw-maplibre-gl-adapter.umd.js"></script>
