@@ -607,6 +607,10 @@ tbody tr:last-child td {
   margin-left: auto;
 }
 
+#exportMapBtn {
+  padding: 6px 8px;
+}
+
 .draw-tb-btn {
   padding: 6px 16px;
   border: 1.5px solid #d4d4d4;
