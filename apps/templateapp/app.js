@@ -603,61 +603,70 @@ function updateReportModalState() {
 }
 
 function generateReport(selectedColumns) {
+  if (!window.jspdf) {
+    alert("PDF library not loaded. Please refresh the page and try again.");
+    return;
+  }
   map.once("render", function() {
-    var canvas = map.getCanvas();
-    var imgData = canvas.toDataURL("image/png");
-    var { jsPDF } = window.jspdf;
+    try {
+      var canvas = map.getCanvas();
+      var imgData = canvas.toDataURL("image/png");
+      var { jsPDF } = window.jspdf;
 
-    var pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-    var pageW = pdf.internal.pageSize.getWidth();
-    var pageH = pdf.internal.pageSize.getHeight();
-    var margin = 12;
-    var usableW = pageW - margin * 2;
-    var MAX_CHARS = 150;
+      var pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+      var pageW = pdf.internal.pageSize.getWidth();
+      var pageH = pdf.internal.pageSize.getHeight();
+      var margin = 12;
+      var usableW = pageW - margin * 2;
+      var MAX_CHARS = 150;
 
-    // Title
-    pdf.setFontSize(14);
-    pdf.setFont(undefined, "bold");
-    pdf.text(CONFIG.title, margin, margin + 5);
+      // Title
+      pdf.setFontSize(14);
+      pdf.setFont("helvetica", "bold");
+      pdf.text(CONFIG.title, margin, margin + 5);
 
-    // Map image — fill ~52% of page height, maintain aspect ratio
-    var mapY = margin + 12;
-    var maxMapH = pageH * 0.52;
-    var aspect = canvas.height / canvas.width;
-    var mapH = Math.min(usableW * aspect, maxMapH);
-    pdf.addImage(imgData, "PNG", margin, mapY, usableW, mapH);
+      // Map image — fill ~52% of page height, maintain aspect ratio
+      var mapY = margin + 12;
+      var maxMapH = pageH * 0.52;
+      var aspect = canvas.height / canvas.width;
+      var mapH = Math.min(usableW * aspect, maxMapH);
+      pdf.addImage(imgData, "PNG", margin, mapY, usableW, mapH);
 
-    // Table
-    var colW = usableW / selectedColumns.length;
-    var y = mapY + mapH + 8;
+      // Table
+      var colW = usableW / selectedColumns.length;
+      var y = mapY + mapH + 8;
 
-    // Header row
-    pdf.setFillColor(235, 235, 235);
-    pdf.rect(margin, y - 4, usableW, 7, "F");
-    pdf.setFontSize(8);
-    pdf.setFont(undefined, "bold");
-    pdf.setTextColor(80);
-    selectedColumns.forEach(function(col, i) {
-      pdf.text(col.header.toUpperCase(), margin + i * colW + 2, y);
-    });
-    y += 6;
-
-    // Data rows
-    pdf.setFont(undefined, "normal");
-    pdf.setFontSize(9);
-    pdf.setTextColor(0);
-    filteredFeatures.forEach(function(f) {
-      if (y > pageH - margin) { pdf.addPage(); y = margin + 8; }
-      var p = f.properties;
+      // Header row
+      pdf.setFillColor(235, 235, 235);
+      pdf.rect(margin, y - 4, usableW, 7, "F");
+      pdf.setFontSize(8);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(80);
       selectedColumns.forEach(function(col, i) {
-        var val = (p[col.property] ?? "").toString();
-        if (val.length > MAX_CHARS) val = val.slice(0, MAX_CHARS - 1) + "\u2026";
-        pdf.text(val, margin + i * colW + 2, y, { maxWidth: colW - 4 });
+        pdf.text(col.header.toUpperCase(), margin + i * colW + 2, y);
       });
       y += 6;
-    });
 
-    pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_report.pdf");
+      // Data rows
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(9);
+      pdf.setTextColor(0);
+      filteredFeatures.forEach(function(f) {
+        if (y > pageH - margin) { pdf.addPage(); y = margin + 8; }
+        var p = f.properties;
+        selectedColumns.forEach(function(col, i) {
+          var val = (p[col.property] ?? "").toString();
+          if (val.length > MAX_CHARS) val = val.slice(0, MAX_CHARS - 1) + "\u2026";
+          pdf.text(val, margin + i * colW + 2, y, { maxWidth: colW - 4 });
+        });
+        y += 6;
+      });
+
+      pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_report.pdf");
+    } catch (e) {
+      console.error("Report generation failed:", e);
+      alert("Could not generate report: " + e.message);
+    }
   });
   map.triggerRepaint();
 }
