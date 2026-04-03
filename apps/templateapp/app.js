@@ -556,17 +556,15 @@ function fitMapToFeatures(features) {
 
 // --- Export map as PDF ---
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("exportMapBtn").addEventListener("click", function () {
-    var canvas = map.getCanvas();
-    var imgData = canvas.toDataURL("image/png");
-    var { jsPDF } = window.jspdf;
-    var landscape = canvas.width >= canvas.height;
-    var pdf = new jsPDF({ orientation: landscape ? "landscape" : "portrait", unit: "px", format: [canvas.width, canvas.height] });
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-    pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_map.pdf");
-  });
-});
+function exportMap() {
+  var canvas = map.getCanvas();
+  var imgData = canvas.toDataURL("image/png");
+  var { jsPDF } = window.jspdf;
+  var landscape = canvas.width >= canvas.height;
+  var pdf = new jsPDF({ orientation: landscape ? "landscape" : "portrait", unit: "px", format: [canvas.width, canvas.height] });
+  pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+  pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_map.pdf");
+}
 
 // --- CSV export (filtered table) ---
 
