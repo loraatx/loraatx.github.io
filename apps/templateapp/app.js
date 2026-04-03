@@ -554,16 +554,17 @@ function fitMapToFeatures(features) {
   });
 }
 
-// --- Export map as PDF ---
+// --- Export map as PNG ---
 
 function exportMap() {
-  var canvas = map.getCanvas();
-  var imgData = canvas.toDataURL("image/png");
-  var { jsPDF } = window.jspdf;
-  var landscape = canvas.width >= canvas.height;
-  var pdf = new jsPDF({ orientation: landscape ? "landscape" : "portrait", unit: "px", format: [canvas.width, canvas.height] });
-  pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-  pdf.save(CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_map.pdf");
+  map.once("render", function () {
+    var canvas = map.getCanvas();
+    var link = document.createElement("a");
+    link.download = CONFIG.title.replace(/[^a-z0-9]/gi, "_") + "_map.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+  map.triggerRepaint();
 }
 
 // --- CSV export (filtered table) ---
