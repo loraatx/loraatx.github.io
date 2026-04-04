@@ -38,11 +38,12 @@ const CONFIG = {
 
   // Table columns
   columns: [
-    { property: "name",    header: "Name" },
-    { property: "type",    header: "Type" },
-    { property: "address", header: "Address" },
-    { property: "phone",   header: "Phone" },
-    { property: "website", header: "Website" }
+    { property: "name",      header: "Name" },
+    { property: "type",      header: "Type" },
+    { property: "address",   header: "Address" },
+    { property: "phone",     header: "Phone" },
+    { property: "website",   header: "Website" },
+    { property: "instagram", header: "Instagram" }
   ],
 
   // Popup detail rows (name is always shown as the title)
@@ -51,6 +52,7 @@ const CONFIG = {
     { property: "address",          label: "Address" },
     { property: "phone",            label: "Phone" },
     { property: "website",          label: "Website" },
+    { property: "instagram",        label: "Instagram" },
     { property: "wifi",             label: "Wi-Fi" },
     { property: "outdoor_seating",  label: "Outdoor Seating" },
     { property: "drive_through",    label: "Drive-Through" },

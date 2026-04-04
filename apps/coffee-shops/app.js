@@ -439,7 +439,10 @@ function addPlacesLayers() {
 
 // --- Popup (shared between map click and table click) ---
 
-function renderValue(val) {
+function renderValue(val, property) {
+  if (property === "instagram" && val) {
+    return `<a href="https://instagram.com/${val}" target="_blank" rel="noopener">@${val}</a>`;
+  }
   if (typeof val === "string" && val.startsWith("http")) {
     return `<a href="${val}" target="_blank" rel="noopener">${val}</a>`;
   }
@@ -460,7 +463,7 @@ function showPopup(feature) {
         const cls = n >= 90 ? "score-badge-green" : n >= 70 ? "score-badge-yellow" : "score-badge-red";
         val = `<span class="score-badge ${cls}">${n}/100</span>`;
       } else {
-        val = renderValue(val);
+        val = renderValue(val, f.property);
       }
       return `<div class="popup-row"><strong>${f.label}:</strong>&nbsp;${val}</div>`;
     })
@@ -581,7 +584,14 @@ function updateTable(features) {
     CONFIG.columns.forEach(col => {
       const td = document.createElement("td");
       const val = p[col.property] ?? "";
-      if (typeof val === "string" && val.startsWith("http")) {
+      if (col.property === "instagram" && val) {
+        const a = document.createElement("a");
+        a.href = `https://instagram.com/${val}`;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = `@${val}`;
+        td.appendChild(a);
+      } else if (typeof val === "string" && val.startsWith("http")) {
         const a = document.createElement("a");
         a.href = val;
         a.target = "_blank";
