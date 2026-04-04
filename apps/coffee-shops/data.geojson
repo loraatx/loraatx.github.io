@@ -1,0 +1,5114 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74297,
+          30.268267
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.268267,
+        "lng": -97.74297,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741178,
+          30.271876
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.271876,
+        "lng": -97.741178,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.878822,
+          30.202643
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "9600 F Escarpment Boulevard, Austin, TX",
+        "phone": "(512) 288-2309",
+        "lat": 30.202643,
+        "lng": -97.878822,
+        "inspection_score": 94,
+        "inspection_date": "2024-11-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.726396,
+          30.401991
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "11410 Century Oaks Terrace, Austin, TX",
+        "phone": "(737) 207-1987",
+        "lat": 30.401991,
+        "lng": -97.726396,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74164,
+          30.3158
+        ]
+      },
+      "properties": {
+        "name": "Upper Crust Bakery",
+        "type": "Independent",
+        "lat": 30.3158,
+        "lng": -97.74164,
+        "inspection_score": 95,
+        "inspection_date": "2026-02-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.740601,
+          30.317379
+        ]
+      },
+      "properties": {
+        "name": "Pacha",
+        "type": "Independent",
+        "lat": 30.317379,
+        "lng": -97.740601,
+        "inspection_score": 100,
+        "inspection_date": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.727289,
+          30.354055
+        ]
+      },
+      "properties": {
+        "name": "Genuine Joe Coffeehouse",
+        "type": "Independent",
+        "lat": 30.354055,
+        "lng": -97.727289,
+        "inspection_score": 96,
+        "inspection_date": "2024-04-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.745164,
+          30.306568
+        ]
+      },
+      "properties": {
+        "name": "Teo's Gelato and Espresso",
+        "type": "Independent",
+        "lat": 30.306568,
+        "lng": -97.745164,
+        "inspection_score": 77,
+        "inspection_date": "2025-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.760199,
+          30.332705
+        ]
+      },
+      "properties": {
+        "name": "Russell's Bakery",
+        "type": "Independent",
+        "lat": 30.332705,
+        "lng": -97.760199,
+        "inspection_score": 87,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.743278,
+          30.295368
+        ]
+      },
+      "properties": {
+        "name": "Counter Cafe",
+        "type": "Independent",
+        "address": "603 West 29th Street, Austin, TX",
+        "lat": 30.295368,
+        "lng": -97.743278,
+        "inspection_score": 81,
+        "inspection_date": "2025-12-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742826,
+          30.294867
+        ]
+      },
+      "properties": {
+        "name": "Ken's Donuts",
+        "type": "Independent",
+        "lat": 30.294867,
+        "lng": -97.742826,
+        "inspection_score": 93,
+        "inspection_date": "2026-02-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738612,
+          30.301689
+        ]
+      },
+      "properties": {
+        "name": "La Tazza Fresca",
+        "type": "Independent",
+        "lat": 30.301689,
+        "lng": -97.738612,
+        "inspection_score": 95,
+        "inspection_date": "2025-05-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.832796,
+          30.141679
+        ]
+      },
+      "properties": {
+        "name": "Chuck's Deli",
+        "type": "Independent",
+        "lat": 30.141679,
+        "lng": -97.832796,
+        "inspection_score": 84,
+        "inspection_date": "2026-03-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.847197,
+          30.18523
+        ]
+      },
+      "properties": {
+        "name": "Texenza Coffie",
+        "type": "Independent",
+        "address": "110 Brodie Lane, Austin",
+        "lat": 30.18523,
+        "lng": -97.847197,
+        "inspection_score": 97,
+        "inspection_date": "2026-01-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.724504,
+          30.318532
+        ]
+      },
+      "properties": {
+        "name": "Epoch Coffee",
+        "type": "Independent",
+        "address": "221 West North Loop Boulevard, Austin",
+        "lat": 30.318532,
+        "lng": -97.724504,
+        "inspection_score": 99,
+        "inspection_date": "2026-01-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.752534,
+          30.394918
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "9722 Great Hills Trail, Austin, TX",
+        "phone": "(512) 795-1965",
+        "lat": 30.394918,
+        "lng": -97.752534,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.732451,
+          30.284684
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.284684,
+        "lng": -97.732451,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.806464,
+          30.446335
+        ]
+      },
+      "properties": {
+        "name": "Big City Bagels & Subs",
+        "type": "Independent",
+        "lat": 30.446335,
+        "lng": -97.806464
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.765758,
+          30.25121
+        ]
+      },
+      "properties": {
+        "name": "Picnik",
+        "type": "Independent",
+        "lat": 30.25121,
+        "lng": -97.765758,
+        "inspection_score": 82,
+        "inspection_date": "2024-07-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.763597,
+          30.252259
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1509 South Lamar Boulevard, Austin, TX",
+        "phone": "(512) 912-7919",
+        "lat": 30.252259,
+        "lng": -97.763597,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.746203,
+          30.256106
+        ]
+      },
+      "properties": {
+        "name": "Bennu Coffee Shop",
+        "type": "Independent",
+        "address": "515 South Congress Avenue, Austin",
+        "phone": "(512) 448-3919",
+        "lat": 30.256106,
+        "lng": -97.746203,
+        "inspection_score": 96,
+        "inspection_date": "2024-07-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.758364,
+          30.243942
+        ]
+      },
+      "properties": {
+        "name": "Fair Bean Coffee",
+        "type": "Independent",
+        "lat": 30.243942,
+        "lng": -97.758364,
+        "inspection_score": 90,
+        "inspection_date": "2025-05-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75699,
+          30.244809
+        ]
+      },
+      "properties": {
+        "name": "Once Over Coffee Bar",
+        "type": "Independent",
+        "lat": 30.244809,
+        "lng": -97.75699,
+        "inspection_score": 93,
+        "inspection_date": "2025-05-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.764843,
+          30.233209
+        ]
+      },
+      "properties": {
+        "name": "Summermoon Coffee Bar",
+        "type": "Independent",
+        "address": "3115 South 1st Street, Austin",
+        "lat": 30.233209,
+        "lng": -97.764843,
+        "inspection_score": 90,
+        "inspection_date": "2025-11-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7275,
+          30.395903
+        ]
+      },
+      "properties": {
+        "name": "Yogurt Planet",
+        "type": "Independent",
+        "lat": 30.395903,
+        "lng": -97.7275,
+        "inspection_score": 96,
+        "inspection_date": "2025-12-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.749373,
+          30.395218
+        ]
+      },
+      "properties": {
+        "name": "FireBowlCafe",
+        "type": "Independent",
+        "lat": 30.395218,
+        "lng": -97.749373,
+        "inspection_score": 91,
+        "inspection_date": "2025-12-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.749103,
+          30.398701
+        ]
+      },
+      "properties": {
+        "name": "Yogertz",
+        "type": "Independent",
+        "lat": 30.398701,
+        "lng": -97.749103
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.748365,
+          30.399934
+        ]
+      },
+      "properties": {
+        "name": "Great Harvest Bread Co.",
+        "type": "Independent",
+        "lat": 30.399934,
+        "lng": -97.748365,
+        "inspection_score": 94,
+        "inspection_date": "2026-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.704181,
+          30.4001
+        ]
+      },
+      "properties": {
+        "name": "Cafe Java",
+        "type": "Independent",
+        "address": "11900 Metric Boulevard, Austin, TX",
+        "phone": "(512) 339-7677",
+        "lat": 30.4001,
+        "lng": -97.704181,
+        "inspection_score": 79,
+        "inspection_date": "2025-11-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.7134,
+          30.407561
+        ]
+      },
+      "properties": {
+        "name": "sodade",
+        "type": "Independent",
+        "lat": 30.407561,
+        "lng": -97.7134
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.720244,
+          30.394281
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee Bar",
+        "type": "Independent",
+        "lat": 30.394281,
+        "lng": -97.720244,
+        "inspection_score": 96,
+        "inspection_date": "2026-01-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.719987,
+          30.313834
+        ]
+      },
+      "properties": {
+        "name": "Flightpath Coffee House",
+        "type": "Independent",
+        "address": "5011 Duval Street, Austin",
+        "lat": 30.313834,
+        "lng": -97.719987,
+        "inspection_score": 92,
+        "inspection_date": "2025-10-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.817221,
+          30.462309
+        ]
+      },
+      "properties": {
+        "name": "Mojo Coffee",
+        "type": "Independent",
+        "address": "12206 North FM 620 Road, Austin, TX",
+        "lat": 30.462309,
+        "lng": -97.817221,
+        "inspection_score": 95,
+        "inspection_date": "2026-02-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.754019,
+          30.269901
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "907 West 5th Street, Austin, TX",
+        "phone": "(512) 708-9103",
+        "lat": 30.269901,
+        "lng": -97.754019,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741362,
+          30.264375
+        ]
+      },
+      "properties": {
+        "name": "Revoluci\u00f3n Coffee + Juice",
+        "type": "Independent",
+        "address": "207 San Jacinto Boulevard, Austin, TX",
+        "lat": 30.264375,
+        "lng": -97.741362,
+        "inspection_score": 78,
+        "inspection_date": "2025-07-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741897,
+          30.263847
+        ]
+      },
+      "properties": {
+        "name": "Le Caf\u00e9 Cr\u00eape",
+        "type": "Independent",
+        "address": "200 San Jacinto Boulevard, Austin, TX",
+        "phone": "(512) 480-0084",
+        "lat": 30.263847,
+        "lng": -97.741897,
+        "inspection_score": 88,
+        "inspection_date": "2026-01-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.750779,
+          30.276545
+        ]
+      },
+      "properties": {
+        "name": "Fete Accompli",
+        "type": "Independent",
+        "lat": 30.276545,
+        "lng": -97.750779
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74529,
+          30.302703
+        ]
+      },
+      "properties": {
+        "name": "34th St Cafe",
+        "type": "Independent",
+        "lat": 30.302703,
+        "lng": -97.74529,
+        "inspection_score": 86,
+        "inspection_date": "2025-03-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.371023,
+          30.345866
+        ]
+      },
+      "properties": {
+        "name": "Regulators Sports Bar & Grill",
+        "type": "Independent",
+        "lat": 30.345866,
+        "lng": -97.371023,
+        "inspection_score": 90,
+        "inspection_date": "2025-11-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.744901,
+          30.282939
+        ]
+      },
+      "properties": {
+        "name": "Conscious Cravings",
+        "type": "Independent",
+        "address": "1901 Rio Grande, Austin, TX",
+        "phone": "(512) 782-0546",
+        "lat": 30.282939,
+        "lng": -97.744901
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.745694,
+          30.266973
+        ]
+      },
+      "properties": {
+        "name": "Halcyon",
+        "type": "Independent",
+        "lat": 30.266973,
+        "lng": -97.745694,
+        "inspection_score": 83,
+        "inspection_date": "2025-09-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.421526,
+          30.567597
+        ]
+      },
+      "properties": {
+        "name": "West End Cafe",
+        "type": "Independent",
+        "lat": 30.567597,
+        "lng": -97.421526,
+        "inspection_score": 97,
+        "inspection_date": "2025-12-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.768473,
+          30.201242
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.201242,
+        "lng": -97.768473,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.688227,
+          30.413273
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1701 West Parmer Lane, Austin, TX",
+        "phone": "(512) 833-7272",
+        "lat": 30.413273,
+        "lng": -97.688227,
+        "inspection_score": 97,
+        "inspection_date": "2025-11-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.718375,
+          30.284145
+        ]
+      },
+      "properties": {
+        "name": "El Chilito Cafe y Cantina",
+        "type": "Independent",
+        "address": "2219 Manor Road, Austin",
+        "lat": 30.284145,
+        "lng": -97.718375,
+        "inspection_score": 74,
+        "inspection_date": "2026-02-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.834179,
+          30.481701
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1525 Cypress Creek Road, Cedar Park, TX",
+        "phone": "(512) 401-9985",
+        "lat": 30.481701,
+        "lng": -97.834179,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.739527,
+          30.327745
+        ]
+      },
+      "properties": {
+        "name": "Monkey Nest",
+        "type": "Independent",
+        "phone": "(512) 505-8033",
+        "lat": 30.327745,
+        "lng": -97.739527,
+        "inspection_score": 87,
+        "inspection_date": "2025-10-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741118,
+          30.286074
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.286074,
+        "lng": -97.741118,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.740414,
+          30.265449
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "300 East 4th Street, Austin, TX",
+        "phone": "(512) 236-8008",
+        "lat": 30.265449,
+        "lng": -97.740414,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.756342,
+          30.354672
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "3637 Far West Boulevard, Austin, TX",
+        "phone": "(512) 342-1089",
+        "lat": 30.354672,
+        "lng": -97.756342,
+        "inspection_score": 94,
+        "inspection_date": "2025-07-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.788159,
+          30.165602
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "9300 South I-35 Service Road South, Austin, TX",
+        "phone": "(512) 291-8365",
+        "lat": 30.165602,
+        "lng": -97.788159,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.800558,
+          30.273146
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee",
+        "type": "Independent",
+        "address": "3201 Bee Caves Road, Austin, TX",
+        "phone": "(512) 582-0103",
+        "lat": 30.273146,
+        "lng": -97.800558,
+        "inspection_score": 90,
+        "inspection_date": "2026-01-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.716053,
+          30.293549
+        ]
+      },
+      "properties": {
+        "name": "Cherrywood Coffee House",
+        "type": "Independent",
+        "address": "1400 E 38th 1/2 St., Austin, TX",
+        "phone": "(512) 538-1991",
+        "lat": 30.293549,
+        "lng": -97.716053,
+        "inspection_score": 94,
+        "inspection_date": "2024-06-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.721396,
+          30.37013
+        ]
+      },
+      "properties": {
+        "name": "Mikki's Replay Cafe",
+        "type": "Independent",
+        "lat": 30.37013,
+        "lng": -97.721396,
+        "inspection_score": 91,
+        "inspection_date": "2025-04-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.746977,
+          30.401978
+        ]
+      },
+      "properties": {
+        "name": "Signature Cafe",
+        "type": "Independent",
+        "lat": 30.401978,
+        "lng": -97.746977,
+        "inspection_score": 90,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.746874,
+          30.401983
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "10900 Research Boulevard, Austin, TX",
+        "phone": "(512) 342-2737",
+        "lat": 30.401983,
+        "lng": -97.746874,
+        "inspection_score": 98,
+        "inspection_date": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.735698,
+          30.35958
+        ]
+      },
+      "properties": {
+        "name": "San Francisco Bakery & Cafe",
+        "type": "Independent",
+        "address": "2900 West Anderson Lane, Austin, TX",
+        "phone": "(512) 302-3420",
+        "lat": 30.35958,
+        "lng": -97.735698,
+        "inspection_score": 82,
+        "inspection_date": "2025-10-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741283,
+          30.268835
+        ]
+      },
+      "properties": {
+        "name": "Slake Cafe",
+        "type": "Independent",
+        "lat": 30.268835,
+        "lng": -97.741283,
+        "inspection_score": 90,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741927,
+          30.27972
+        ]
+      },
+      "properties": {
+        "name": "Arturo's",
+        "type": "Independent",
+        "address": "314 West 17th Street, Austin",
+        "lat": 30.27972,
+        "lng": -97.741927,
+        "inspection_score": 92,
+        "inspection_date": "2026-01-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738559,
+          30.302625
+        ]
+      },
+      "properties": {
+        "name": "YaYa Cafe",
+        "type": "Independent",
+        "address": "3706 Guadalupe Street, Austin",
+        "phone": "(512) 297-2612",
+        "lat": 30.302625,
+        "lng": -97.738559,
+        "inspection_score": 86,
+        "inspection_date": "2025-12-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.869813,
+          30.20047
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon",
+        "type": "Independent",
+        "address": "5701 West Slaughter Lane, Austin",
+        "lat": 30.20047,
+        "lng": -97.869813,
+        "inspection_score": 90,
+        "inspection_date": "2025-12-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.792558,
+          30.237654
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "4006 South Lamar Boulevard, Austin, TX",
+        "phone": "(512) 416-7509",
+        "lat": 30.237654,
+        "lng": -97.792558,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.708002,
+          30.305821
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1201 Barbara Jordan Boulevard, Austin, TX",
+        "phone": "(512) 391-1801",
+        "lat": 30.305821,
+        "lng": -97.708002,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.837314,
+          30.222115
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "6600 South Mopac Expressway, Austin, TX",
+        "phone": "(512) 358-9471",
+        "lat": 30.222115,
+        "lng": -97.837314,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.750673,
+          30.393758
+        ]
+      },
+      "properties": {
+        "name": "Corner Bakery",
+        "type": "Corporate",
+        "lat": 30.393758,
+        "lng": -97.750673,
+        "inspection_score": 95,
+        "inspection_date": "2025-04-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.679097,
+          30.407144
+        ]
+      },
+      "properties": {
+        "name": "Shahi Cafe",
+        "type": "Independent",
+        "address": "12410 North Lamar Boulevard, Austin, TX",
+        "phone": "(512) 837-8669",
+        "lat": 30.407144,
+        "lng": -97.679097,
+        "inspection_score": 72,
+        "inspection_date": "2025-08-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.740007,
+          30.310607
+        ]
+      },
+      "properties": {
+        "name": "Houndstooth",
+        "type": "Independent",
+        "address": "4200 North Lamar Boulevard, Austin, TX",
+        "phone": "(512) 531-9417",
+        "lat": 30.310607,
+        "lng": -97.740007,
+        "inspection_score": 96,
+        "inspection_date": "2025-12-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.719627,
+          30.279798
+        ]
+      },
+      "properties": {
+        "name": "Bennu Coffee",
+        "type": "Independent",
+        "address": "2001 East Martin Luther King Jr Boulevard, Austin, TX",
+        "phone": "(512) 478-4700",
+        "lat": 30.279798,
+        "lng": -97.719627,
+        "inspection_score": 95,
+        "inspection_date": "2025-12-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.783535,
+          30.242217
+        ]
+      },
+      "properties": {
+        "name": "Kerbey Lane Cafe",
+        "type": "Independent",
+        "address": "3003 South Lamar Boulevard, Austin, TX",
+        "phone": "(512) 445-4451",
+        "lat": 30.242217,
+        "lng": -97.783535,
+        "inspection_score": 81,
+        "inspection_date": "2025-07-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74608,
+          30.265042
+        ]
+      },
+      "properties": {
+        "name": "Jo's Coffee",
+        "type": "Independent",
+        "address": "242 West 2nd Street, Austin",
+        "phone": "(512) 462-9003",
+        "lat": 30.265042,
+        "lng": -97.74608,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.756227,
+          30.232602
+        ]
+      },
+      "properties": {
+        "name": "Jo's Coffee",
+        "type": "Independent",
+        "address": "3001 South Congress Avenue, Austin",
+        "lat": 30.232602,
+        "lng": -97.756227,
+        "inspection_score": 94,
+        "inspection_date": "2025-03-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.743114,
+          30.266284
+        ]
+      },
+      "properties": {
+        "name": "Houndstooth",
+        "type": "Independent",
+        "address": "401 Congress Avenue, Austin",
+        "lat": 30.266284,
+        "lng": -97.743114,
+        "inspection_score": 91,
+        "inspection_date": "2026-01-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.727762,
+          30.264284
+        ]
+      },
+      "properties": {
+        "name": "Revival Coffee",
+        "type": "Independent",
+        "address": "1405 East 7th Street, Austin, TX",
+        "lat": 30.264284,
+        "lng": -97.727762,
+        "inspection_score": 100,
+        "inspection_date": "2025-07-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74651,
+          30.265849
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "301 West 3rd Street, Austin, TX",
+        "phone": "(512) 391-1895",
+        "lat": 30.265849,
+        "lng": -97.74651,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.814445,
+          30.526873
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1335 East Whitestone Boulevard, Cedar Park, TX",
+        "phone": "(512) 528-0425",
+        "lat": 30.526873,
+        "lng": -97.814445,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.820444,
+          30.525203
+        ]
+      },
+      "properties": {
+        "name": "Kung Fu Tea",
+        "type": "Independent",
+        "lat": 30.525203,
+        "lng": -97.820444,
+        "inspection_score": 70,
+        "inspection_date": "2025-10-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.733041,
+          30.264449
+        ]
+      },
+      "properties": {
+        "name": "Wright Bros. Brew & Brew",
+        "type": "Independent",
+        "address": "500 San Marcos Street, Austin, TX",
+        "phone": "(512) 493-0963",
+        "lat": 30.264449,
+        "lng": -97.733041,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.733706,
+          30.260505
+        ]
+      },
+      "properties": {
+        "name": "Cenote",
+        "type": "Independent",
+        "address": "1010 East Cesar Chavez Street, Austin",
+        "phone": "(512) 524-1311",
+        "lat": 30.260505,
+        "lng": -97.733706,
+        "inspection_score": 84,
+        "inspection_date": "2025-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.815423,
+          30.207946
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "6816 West Gate Boulevard, Austin, TX",
+        "phone": "(512) 444-7494",
+        "lat": 30.207946,
+        "lng": -97.815423,
+        "inspection_score": 95,
+        "inspection_date": "2024-11-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.71942,
+          30.284423
+        ]
+      },
+      "properties": {
+        "name": "Thunderbird Coffee",
+        "type": "Independent",
+        "address": "2200 Manor Road, Austin, TX",
+        "lat": 30.284423,
+        "lng": -97.71942,
+        "inspection_score": 85,
+        "inspection_date": "2025-12-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.686572,
+          30.508196
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "110 North Interstate 35, Round Rock, TX",
+        "phone": "(512) 828-4212",
+        "lat": 30.508196,
+        "lng": -97.686572,
+        "inspection_score": 95,
+        "inspection_date": "2025-02-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.744248,
+          30.264819
+        ]
+      },
+      "properties": {
+        "name": "Caff\u00e9 Medici",
+        "type": "Independent",
+        "lat": 30.264819,
+        "lng": -97.744248,
+        "inspection_score": 93,
+        "inspection_date": "2026-02-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.717491,
+          30.338992
+        ]
+      },
+      "properties": {
+        "name": "Barrett's Coffee",
+        "type": "Independent",
+        "address": "713 West Saint John's Avenue, Austin, TX",
+        "phone": "(512) 677-7667",
+        "lat": 30.338992,
+        "lng": -97.717491,
+        "inspection_score": 87,
+        "inspection_date": "2025-08-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.722135,
+          30.317485
+        ]
+      },
+      "properties": {
+        "name": "Double Trouble",
+        "type": "Independent",
+        "address": "103 East North Loop Boulevard, Austin",
+        "phone": "(512) 270-1955",
+        "lat": 30.317485,
+        "lng": -97.722135,
+        "inspection_score": 82,
+        "inspection_date": "2025-07-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.730564,
+          30.255304
+        ]
+      },
+      "properties": {
+        "name": "Gati",
+        "type": "Independent",
+        "address": "1512 Holly Street, Austin, TX",
+        "phone": "(512) 220-1077",
+        "lat": 30.255304,
+        "lng": -97.730564,
+        "inspection_score": 86,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738972,
+          30.318904
+        ]
+      },
+      "properties": {
+        "name": "Picnik",
+        "type": "Independent",
+        "address": "4801 Burnet Road, Austin",
+        "phone": "(737) 226-0644",
+        "lat": 30.318904,
+        "lng": -97.738972,
+        "inspection_score": 86,
+        "inspection_date": "2025-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742533,
+          30.268134
+        ]
+      },
+      "properties": {
+        "name": "Capital One Caf\u00e9",
+        "type": "Independent",
+        "address": "601 Congress Avenue, Austin, TX",
+        "lat": 30.268134,
+        "lng": -97.742533,
+        "inspection_score": 92,
+        "inspection_date": "2025-03-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742287,
+          30.270247
+        ]
+      },
+      "properties": {
+        "name": "Fleet Coffee",
+        "type": "Independent",
+        "address": "802 Congress Avenue, Austin, TX",
+        "lat": 30.270247,
+        "lng": -97.742287,
+        "inspection_score": 97,
+        "inspection_date": "2026-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.79637,
+          30.217993
+        ]
+      },
+      "properties": {
+        "name": "Captain quackenbush's coffeehouse",
+        "type": "Independent",
+        "address": "5320 Manchaca Road, Austin",
+        "lat": 30.217993,
+        "lng": -97.79637,
+        "inspection_score": 94,
+        "inspection_date": "2026-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.796455,
+          30.217862
+        ]
+      },
+      "properties": {
+        "name": "Captain Quakenbush's Coffeehouse",
+        "type": "Independent",
+        "address": "5324 Manchaca Road, Austin",
+        "lat": 30.217862,
+        "lng": -97.796455,
+        "inspection_score": 94,
+        "inspection_date": "2026-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.796492,
+          30.217802
+        ]
+      },
+      "properties": {
+        "name": "Lazydaze",
+        "type": "Independent",
+        "address": "5326 Manchaca Road, Austin",
+        "lat": 30.217802,
+        "lng": -97.796492,
+        "inspection_score": 86,
+        "inspection_date": "2026-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.796552,
+          30.217809
+        ]
+      },
+      "properties": {
+        "name": "lazydazy",
+        "type": "Independent",
+        "address": "5328 Manchaca Road, Austin",
+        "lat": 30.217809,
+        "lng": -97.796552,
+        "inspection_score": 86,
+        "inspection_date": "2026-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75418,
+          30.251009
+        ]
+      },
+      "properties": {
+        "name": "Holy cacao",
+        "type": "Independent",
+        "lat": 30.251009,
+        "lng": -97.75418,
+        "inspection_score": 99,
+        "inspection_date": "2025-04-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.728418,
+          30.2897
+        ]
+      },
+      "properties": {
+        "name": "Red River Cafe",
+        "type": "Independent",
+        "lat": 30.2897,
+        "lng": -97.728418,
+        "inspection_score": 87,
+        "inspection_date": "2026-02-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.734673,
+          30.359367
+        ]
+      },
+      "properties": {
+        "name": "Epoch Coffee",
+        "type": "Independent",
+        "address": "2700 West Anderson Lane, Austin, TX",
+        "lat": 30.359367,
+        "lng": -97.734673,
+        "inspection_score": 95,
+        "inspection_date": "2025-11-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.783565,
+          30.53282
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "2800 East Whitestone Boulevard, Cedar Park, TX",
+        "phone": "(512) 260-1627",
+        "lat": 30.53282,
+        "lng": -97.783565,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.687788,
+          30.413078
+        ]
+      },
+      "properties": {
+        "name": "Teapioca Lounge",
+        "type": "Independent",
+        "address": "1700 West Parmer Lane, Austin, TX",
+        "phone": "(512) 833-7888",
+        "lat": 30.413078,
+        "lng": -97.687788,
+        "inspection_score": 87,
+        "inspection_date": "2025-11-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.722851,
+          30.400552
+        ]
+      },
+      "properties": {
+        "name": "Houndstooth Coffee",
+        "type": "Independent",
+        "lat": 30.400552,
+        "lng": -97.722851,
+        "inspection_score": 91,
+        "inspection_date": "2026-01-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.720324,
+          30.402584
+        ]
+      },
+      "properties": {
+        "name": "EBar",
+        "type": "Independent",
+        "lat": 30.402584,
+        "lng": -97.720324,
+        "inspection_score": 91,
+        "inspection_date": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.726776,
+          30.401181
+        ]
+      },
+      "properties": {
+        "name": "Nespresso",
+        "type": "Independent",
+        "address": "11410 Century Oaks Terrace, Austin, TX",
+        "lat": 30.401181,
+        "lng": -97.726776,
+        "inspection_score": 93,
+        "inspection_date": "2025-03-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.726848,
+          30.400726
+        ]
+      },
+      "properties": {
+        "name": "The Yard Milkshake Bar",
+        "type": "Independent",
+        "address": "3400 Esperanza Crossing, Austin, TX",
+        "lat": 30.400726,
+        "lng": -97.726848,
+        "inspection_score": 89,
+        "inspection_date": "2025-07-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.699908,
+          30.301612
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1801 East 51st Street, Austin, TX",
+        "phone": "(512) 480-0684",
+        "lat": 30.301612,
+        "lng": -97.699908,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.873648,
+          30.185785
+        ]
+      },
+      "properties": {
+        "name": "Wildflower Cafe",
+        "type": "Independent",
+        "lat": 30.185785,
+        "lng": -97.873648,
+        "inspection_score": 90,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.82983,
+          30.482721
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1400 Cypress Creek Road, Cedar Park, TX",
+        "phone": "(512) 506-9118",
+        "lat": 30.482721,
+        "lng": -97.82983,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742689,
+          30.267442
+        ]
+      },
+      "properties": {
+        "name": "My Name Is Joe Coffee",
+        "type": "Independent",
+        "address": "503 Colorado Street, Austin",
+        "lat": 30.267442,
+        "lng": -97.742689,
+        "inspection_score": 94,
+        "inspection_date": "2025-12-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.735614,
+          30.231843
+        ]
+      },
+      "properties": {
+        "name": "Caf\u00e9 Cr\u00e8me",
+        "type": "Independent",
+        "phone": "(512) 710-9473",
+        "lat": 30.231843,
+        "lng": -97.735614,
+        "inspection_score": 85,
+        "inspection_date": "2026-03-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.670084,
+          30.202095
+        ]
+      },
+      "properties": {
+        "name": "Ruta Maya",
+        "type": "Independent",
+        "lat": 30.202095,
+        "lng": -97.670084,
+        "inspection_score": 100,
+        "inspection_date": "2025-11-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.670025,
+          30.202292
+        ]
+      },
+      "properties": {
+        "name": "Annie's",
+        "type": "Independent",
+        "lat": 30.202292,
+        "lng": -97.670025,
+        "inspection_score": 98,
+        "inspection_date": "2026-03-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.666858,
+          30.202045
+        ]
+      },
+      "properties": {
+        "name": "Austin Java",
+        "type": "Independent",
+        "lat": 30.202045,
+        "lng": -97.666858,
+        "inspection_score": 85,
+        "inspection_date": "2026-01-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.665345,
+          30.202133
+        ]
+      },
+      "properties": {
+        "name": "Ruta Maya",
+        "type": "Independent",
+        "lat": 30.202133,
+        "lng": -97.665345,
+        "inspection_score": 100,
+        "inspection_date": "2025-11-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.66503,
+          30.202365
+        ]
+      },
+      "properties": {
+        "name": "Cuvee Coffee",
+        "type": "Independent",
+        "lat": 30.202365,
+        "lng": -97.66503,
+        "inspection_score": 95,
+        "inspection_date": "2025-04-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.694312,
+          30.510356
+        ]
+      },
+      "properties": {
+        "name": "Lamppost Coffee",
+        "type": "Independent",
+        "lat": 30.510356,
+        "lng": -97.694312,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.718753,
+          30.338688
+        ]
+      },
+      "properties": {
+        "name": "Fat Cats: Organic Coffee & Desserts",
+        "type": "Independent",
+        "address": "7020 Easy Wind Drive, Austin, TX",
+        "lat": 30.338688,
+        "lng": -97.718753,
+        "inspection_score": 97,
+        "inspection_date": "2025-10-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.806931,
+          30.470595
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "11200 Lakeline Mall Drive, Cedar Park, TX",
+        "phone": "(512) 902-0175",
+        "lat": 30.470595,
+        "lng": -97.806931,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.829092,
+          30.47985
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee",
+        "type": "Independent",
+        "address": "2011 Little Elm Trail, Cedar Park, TX",
+        "lat": 30.47985,
+        "lng": -97.829092,
+        "inspection_score": 90,
+        "inspection_date": "2026-01-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.677579,
+          30.508782
+        ]
+      },
+      "properties": {
+        "name": "Star Coffee",
+        "type": "Independent",
+        "address": "201 East Main Street, Round Rock, TX",
+        "lat": 30.508782,
+        "lng": -97.677579,
+        "inspection_score": 76,
+        "inspection_date": "2025-12-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.630943,
+          30.443071
+        ]
+      },
+      "properties": {
+        "name": "Donut Palace",
+        "type": "Independent",
+        "address": "100 12th Street, Pflugerville, TX",
+        "lat": 30.443071,
+        "lng": -97.630943,
+        "inspection_score": 94,
+        "inspection_date": "2025-10-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.698035,
+          30.437845
+        ]
+      },
+      "properties": {
+        "name": "Johnny Beans",
+        "type": "Independent",
+        "lat": 30.437845,
+        "lng": -97.698035,
+        "inspection_score": 79,
+        "inspection_date": "2025-08-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.825123,
+          30.292395
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "701 South Capitol of Texas Highway, Village at Westlake, Austin, TX",
+        "phone": "(512) 347-0033",
+        "lat": 30.292395,
+        "lng": -97.825123,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.650281,
+          30.388603
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1606 East Parmer Lane, Austin, TX",
+        "phone": "(512) 339-6496",
+        "lat": 30.388603,
+        "lng": -97.650281,
+        "inspection_score": 99,
+        "inspection_date": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742058,
+          30.288567
+        ]
+      },
+      "properties": {
+        "name": "Lucky Lab Coffee",
+        "type": "Independent",
+        "address": "2421 San Antonio Street, Austin, TX",
+        "lat": 30.288567,
+        "lng": -97.742058,
+        "inspection_score": 88,
+        "inspection_date": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738529,
+          30.312715
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "4400 North Lamar Boulevard, Austin, TX",
+        "phone": "(512) 374-9784",
+        "lat": 30.312715,
+        "lng": -97.738529,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741685,
+          30.283568
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "2021 Guadalupe Street, Austin, TX",
+        "phone": "(512) 651-1262",
+        "lat": 30.283568,
+        "lng": -97.741685,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742009,
+          30.285442
+        ]
+      },
+      "properties": {
+        "name": "Medici Roasting",
+        "type": "Independent",
+        "address": "2222 Guadalupe Street, Austin, TX",
+        "lat": 30.285442,
+        "lng": -97.742009,
+        "inspection_score": 93,
+        "inspection_date": "2026-02-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.721144,
+          30.261436
+        ]
+      },
+      "properties": {
+        "name": "Cuv\u00e9e Coffee",
+        "type": "Independent",
+        "lat": 30.261436,
+        "lng": -97.721144,
+        "inspection_score": 95,
+        "inspection_date": "2025-04-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.719949,
+          30.266883
+        ]
+      },
+      "properties": {
+        "name": "Figure 8 Coffee Purveyors",
+        "type": "Independent",
+        "address": "1111 Chicon Street, Austin, TX",
+        "lat": 30.266883,
+        "lng": -97.719949,
+        "inspection_score": 93,
+        "inspection_date": "2025-12-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.806309,
+          30.205356
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee Bar",
+        "type": "Independent",
+        "address": "6711 Manchaca Road, Austin, TX",
+        "lat": 30.205356,
+        "lng": -97.806309,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.760577,
+          30.357294
+        ]
+      },
+      "properties": {
+        "name": "Epoch Coffee",
+        "type": "Independent",
+        "lat": 30.357294,
+        "lng": -97.760577,
+        "inspection_score": 99,
+        "inspection_date": "2026-01-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.758525,
+          30.271278
+        ]
+      },
+      "properties": {
+        "name": "Better Half Coffee & Cocktails",
+        "type": "Independent",
+        "lat": 30.271278,
+        "lng": -97.758525,
+        "inspection_score": 84,
+        "inspection_date": "2025-07-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.796659,
+          30.217569
+        ]
+      },
+      "properties": {
+        "name": "Austin Java",
+        "type": "Independent",
+        "lat": 30.217569,
+        "lng": -97.796659,
+        "inspection_score": 85,
+        "inspection_date": "2026-01-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741674,
+          30.260507
+        ]
+      },
+      "properties": {
+        "name": "The Perch",
+        "type": "Independent",
+        "lat": 30.260507,
+        "lng": -97.741674,
+        "inspection_score": 97,
+        "inspection_date": "2026-03-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.697839,
+          30.261137
+        ]
+      },
+      "properties": {
+        "name": "Old Rail Coffee Pub",
+        "type": "Independent",
+        "lat": 30.261137,
+        "lng": -97.697839,
+        "inspection_score": 99,
+        "inspection_date": "2025-04-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.687272,
+          30.377405
+        ]
+      },
+      "properties": {
+        "name": "Bambu",
+        "type": "Independent",
+        "address": "10901 North Lamar Boulevard, Austin, TX",
+        "phone": "(512) 832-8886",
+        "lat": 30.377405,
+        "lng": -97.687272,
+        "inspection_score": 88,
+        "inspection_date": "2024-09-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.727566,
+          30.26845
+        ]
+      },
+      "properties": {
+        "name": "Paperboy",
+        "type": "Independent",
+        "address": "1203 East 11th Street, Austin",
+        "phone": "(512) 910-3010",
+        "lat": 30.26845,
+        "lng": -97.727566,
+        "inspection_score": 80,
+        "inspection_date": "2025-09-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.731695,
+          30.318766
+        ]
+      },
+      "properties": {
+        "name": "SquareR\u00fct Kava Bar",
+        "type": "Independent",
+        "lat": 30.318766,
+        "lng": -97.731695,
+        "inspection_score": 89,
+        "inspection_date": "2026-02-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.739394,
+          30.289278
+        ]
+      },
+      "properties": {
+        "name": "Littlefield Patio Cafe",
+        "type": "Independent",
+        "address": "2503 Whitis Avenue, Austin, TX",
+        "lat": 30.289278,
+        "lng": -97.739394,
+        "inspection_score": 98,
+        "inspection_date": "2024-09-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.966611,
+          30.346967
+        ]
+      },
+      "properties": {
+        "name": "Vivel Crepes & Coffee",
+        "type": "Independent",
+        "lat": 30.346967,
+        "lng": -97.966611,
+        "inspection_score": 76,
+        "inspection_date": "2025-12-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.556001,
+          30.54288
+        ]
+      },
+      "properties": {
+        "name": "baked'nsconed",
+        "type": "Independent",
+        "address": "143 Exchange Boulevard, Hutto, TX",
+        "lat": 30.54288,
+        "lng": -97.556001,
+        "inspection_score": 100,
+        "inspection_date": "2026-02-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.717706,
+          30.362104
+        ]
+      },
+      "properties": {
+        "name": "Mr. Brew Coffee",
+        "type": "Independent",
+        "lat": 30.362104,
+        "lng": -97.717706,
+        "inspection_score": 90,
+        "inspection_date": "2025-05-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.863443,
+          30.015664
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "5401 South FM 1626, Kyle, TX",
+        "phone": "(512) 268-6595",
+        "lat": 30.015664,
+        "lng": -97.863443,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.716717,
+          30.425292
+        ]
+      },
+      "properties": {
+        "name": "Kolache Factory",
+        "type": "Independent",
+        "address": "4101 West Parmer Lane, Austin, TX",
+        "lat": 30.425292,
+        "lng": -97.716717,
+        "inspection_score": 94,
+        "inspection_date": "2026-01-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.715888,
+          30.424914
+        ]
+      },
+      "properties": {
+        "name": "Austin Grind",
+        "type": "Independent",
+        "address": "4005 West Parmer Lane, Austin, TX",
+        "phone": "(512) 833-5858",
+        "lat": 30.424914,
+        "lng": -97.715888,
+        "inspection_score": 96,
+        "inspection_date": "2026-01-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.709846,
+          30.388084
+        ]
+      },
+      "properties": {
+        "name": "Kiefer's Cafe and Catering",
+        "type": "Independent",
+        "address": "2007 Kramer Lane, Austin, TX",
+        "phone": "(512) 719-5550",
+        "lat": 30.388084,
+        "lng": -97.709846,
+        "inspection_score": 97,
+        "inspection_date": "2025-12-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.741349,
+          30.283403
+        ]
+      },
+      "properties": {
+        "name": "Gong Cha",
+        "type": "Independent",
+        "address": "Guadalupe Street, Austin, TX",
+        "lat": 30.283403,
+        "lng": -97.741349,
+        "inspection_score": 94,
+        "inspection_date": "2025-03-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.777268,
+          30.49857
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee",
+        "type": "Independent",
+        "address": "14900 Avery Ranch Boulevard, Austin, TX",
+        "phone": "(512) 467-4683",
+        "lat": 30.49857,
+        "lng": -97.777268,
+        "inspection_score": 96,
+        "inspection_date": "2026-01-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.749895,
+          30.266831
+        ]
+      },
+      "properties": {
+        "name": "Intelligentsia",
+        "type": "Independent",
+        "address": "607 West 3rd Street, Austin, TX",
+        "lat": 30.266831,
+        "lng": -97.749895,
+        "inspection_score": 97,
+        "inspection_date": "2026-01-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.714291,
+          30.262848
+        ]
+      },
+      "properties": {
+        "name": "Fleet Coffee",
+        "type": "Independent",
+        "address": "2427 Webberville Road, Austin, TX",
+        "lat": 30.262848,
+        "lng": -97.714291,
+        "inspection_score": 89,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.723285,
+          30.400215
+        ]
+      },
+      "properties": {
+        "name": "Gong Cha",
+        "type": "Independent",
+        "address": "3210 Esperanza Crossing, Austin, TX",
+        "phone": "(512) 243-8151",
+        "lat": 30.400215,
+        "lng": -97.723285,
+        "inspection_score": 94,
+        "inspection_date": "2025-03-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.786215,
+          30.446115
+        ]
+      },
+      "properties": {
+        "name": "Sharetea",
+        "type": "Independent",
+        "address": "13343 North US Highway 183, Austin, TX",
+        "lat": 30.446115,
+        "lng": -97.786215,
+        "inspection_score": 94,
+        "inspection_date": "2025-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.714978,
+          30.257682
+        ]
+      },
+      "properties": {
+        "name": "Greater Goods",
+        "type": "Independent",
+        "lat": 30.257682,
+        "lng": -97.714978,
+        "inspection_score": 99,
+        "inspection_date": "2026-02-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.6939,
+          30.267724
+        ]
+      },
+      "properties": {
+        "name": "Medici Roasting",
+        "type": "Independent",
+        "address": "1023 Springdale Road, Austin, TX",
+        "lat": 30.267724,
+        "lng": -97.6939,
+        "inspection_score": 81,
+        "inspection_date": "2025-08-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.693112,
+          30.267353
+        ]
+      },
+      "properties": {
+        "name": "Zhi Tea",
+        "type": "Independent",
+        "address": "1023 Springdale Road, Austin, TX",
+        "phone": "(512) 220-3839",
+        "lat": 30.267353,
+        "lng": -97.693112,
+        "inspection_score": 97,
+        "inspection_date": "2025-08-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.709648,
+          30.281371
+        ]
+      },
+      "properties": {
+        "name": "Houndstooth Coffee",
+        "type": "Independent",
+        "lat": 30.281371,
+        "lng": -97.709648,
+        "inspection_score": 91,
+        "inspection_date": "2026-01-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.724537,
+          30.371509
+        ]
+      },
+      "properties": {
+        "name": "Emerald Tavern Games and Cafe",
+        "type": "Independent",
+        "address": "9012 Research Boulevard, Austin, TX",
+        "phone": "(512) 994-4649",
+        "lat": 30.371509,
+        "lng": -97.724537,
+        "inspection_score": 88,
+        "inspection_date": "2025-12-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.687496,
+          30.279312
+        ]
+      },
+      "properties": {
+        "name": "Palomino Coffee",
+        "type": "Independent",
+        "address": "4136 East 12th Street, Austin, TX",
+        "lat": 30.279312,
+        "lng": -97.687496,
+        "inspection_score": 89,
+        "inspection_date": "2025-07-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.717669,
+          30.336596
+        ]
+      },
+      "properties": {
+        "name": "85\u00b0C",
+        "type": "Independent",
+        "address": "6929 Airport Boulevard, Austin, TX",
+        "phone": "(512) 436-8189",
+        "lat": 30.336596,
+        "lng": -97.717669,
+        "inspection_score": 97,
+        "inspection_date": "2025-11-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.813403,
+          30.528489
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1101 C-Bar Ranch Trail, Cedar Park, TX",
+        "phone": "(512) 456-2933",
+        "lat": 30.528489,
+        "lng": -97.813403,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.748201,
+          30.265297
+        ]
+      },
+      "properties": {
+        "name": "Yummi Joy",
+        "type": "Independent",
+        "lat": 30.265297,
+        "lng": -97.748201,
+        "inspection_score": 94,
+        "inspection_date": "2025-03-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.736612,
+          30.295292
+        ]
+      },
+      "properties": {
+        "name": "Square Peg Coffee",
+        "type": "Independent",
+        "address": "104 East 31st Street, Austin, TX",
+        "lat": 30.295292,
+        "lng": -97.736612,
+        "inspection_score": 95,
+        "inspection_date": "2025-04-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.668551,
+          30.260771
+        ]
+      },
+      "properties": {
+        "name": "Little Loaf Roasting Co.",
+        "type": "Independent",
+        "address": "7000 Hester Road, Austin, TX",
+        "lat": 30.260771,
+        "lng": -97.668551
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.758729,
+          30.262145
+        ]
+      },
+      "properties": {
+        "name": "Hot L Coffee",
+        "type": "Independent",
+        "address": "400 Josephine Street, Austin, TX",
+        "phone": "(512) 682-5300",
+        "lat": 30.262145,
+        "lng": -97.758729,
+        "inspection_score": 94,
+        "inspection_date": "2025-03-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.680659,
+          30.561104
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "455 University Boulevard, Round Rock, TX",
+        "phone": "(512) 626-2159",
+        "lat": 30.561104,
+        "lng": -97.680659,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.681176,
+          30.558886
+        ]
+      },
+      "properties": {
+        "name": "Palkis Cafe",
+        "type": "Independent",
+        "address": "425 University Boulevard, Round Rock, TX",
+        "phone": "(512) 246-7235",
+        "lat": 30.558886,
+        "lng": -97.681176,
+        "inspection_score": 87,
+        "inspection_date": "2025-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.689838,
+          30.560087
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Woodfired Coffee",
+        "type": "Independent",
+        "address": "200 University Boulevard, Round Rock, TX",
+        "phone": "(512) 843-4269",
+        "lat": 30.560087,
+        "lng": -97.689838,
+        "inspection_score": 95,
+        "inspection_date": "2025-12-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.795777,
+          30.137193
+        ]
+      },
+      "properties": {
+        "name": "Opera Caf\u00e9 & Coffeehouse",
+        "type": "Independent",
+        "address": "11215 South Interstate 35, Austin, TX",
+        "phone": "(512) 296-2755",
+        "lat": 30.137193,
+        "lng": -97.795777,
+        "inspection_score": 93,
+        "inspection_date": "2025-12-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.727543,
+          30.24241
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1920 East Riverside Drive, Austin, TX",
+        "phone": "(512) 592-9727",
+        "lat": 30.24241,
+        "lng": -97.727543,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.68796,
+          30.509079
+        ]
+      },
+      "properties": {
+        "name": "Corner Bakery",
+        "type": "Corporate",
+        "address": "110 North Interstate 35, Round Rock, TX",
+        "phone": "(512) 582-8938",
+        "lat": 30.509079,
+        "lng": -97.68796,
+        "inspection_score": 88,
+        "inspection_date": "2026-01-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.805104,
+          30.476927
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "14028 183A Toll Road, Cedar Park, TX",
+        "phone": "(512) 249-0820",
+        "lat": 30.476927,
+        "lng": -97.805104,
+        "inspection_score": 98,
+        "inspection_date": "2024-11-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.800432,
+          30.478409
+        ]
+      },
+      "properties": {
+        "name": "Teapioca",
+        "type": "Independent",
+        "address": "11301 Lakeline Boulevard, Austin, TX",
+        "phone": "(512) 646-8970",
+        "lat": 30.478409,
+        "lng": -97.800432,
+        "inspection_score": 89,
+        "inspection_date": "2025-12-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.799892,
+          30.479441
+        ]
+      },
+      "properties": {
+        "name": "85\u00b0C",
+        "type": "Independent",
+        "address": "11301 Lakeline Boulevard, Austin, TX",
+        "phone": "(512) 614-1331",
+        "lat": 30.479441,
+        "lng": -97.799892,
+        "inspection_score": 95,
+        "inspection_date": "2025-12-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.739051,
+          30.300998
+        ]
+      },
+      "properties": {
+        "name": "Civil Goat Coffee",
+        "type": "Independent",
+        "address": "3423 Guadalupe Street, Austin, TX",
+        "lat": 30.300998,
+        "lng": -97.739051,
+        "inspection_score": 90,
+        "inspection_date": "2026-01-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.801567,
+          30.563471
+        ]
+      },
+      "properties": {
+        "name": "Whipped Bakery & Cafe",
+        "type": "Independent",
+        "address": "15609 Ronald W Reagan Boulevard, Leander, TX",
+        "phone": "(512) 986-7988",
+        "lat": 30.563471,
+        "lng": -97.801567,
+        "inspection_score": 82,
+        "inspection_date": "2025-10-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.71481,
+          30.325124
+        ]
+      },
+      "properties": {
+        "name": "Bennu Coffee",
+        "type": "Independent",
+        "address": "109 Jacob Fontaine Lane, Austin, TX",
+        "phone": "(512) 520-2525",
+        "lat": 30.325124,
+        "lng": -97.71481,
+        "inspection_score": 92,
+        "inspection_date": "2026-01-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.713763,
+          30.323916
+        ]
+      },
+      "properties": {
+        "name": "Feng Cha",
+        "type": "Independent",
+        "address": "609 Clayton Lane, Austin, TX",
+        "phone": "(512) 551-3386",
+        "lat": 30.323916,
+        "lng": -97.713763,
+        "inspection_score": 91,
+        "inspection_date": "2025-05-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738886,
+          30.260105
+        ]
+      },
+      "properties": {
+        "name": "Caf\u00e9 605",
+        "type": "Independent",
+        "address": "605 Davis Street, Austin, TX",
+        "lat": 30.260105,
+        "lng": -97.738886,
+        "inspection_score": 91,
+        "inspection_date": "2025-12-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.752141,
+          30.267566
+        ]
+      },
+      "properties": {
+        "name": "Merit Coffee",
+        "type": "Independent",
+        "address": "222 West Avenue, Austin, TX",
+        "lat": 30.267566,
+        "lng": -97.752141,
+        "inspection_score": 93,
+        "inspection_date": "2025-06-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.791914,
+          30.233279
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "2300 West Ben White Boulevard, Austin, TX",
+        "phone": "(512) 445-2266",
+        "lat": 30.233279,
+        "lng": -97.791914,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.793505,
+          30.163101
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "9500 South I-35, Feeder Road, Austin, TX",
+        "phone": "(572) 687-0634",
+        "lat": 30.163101,
+        "lng": -97.793505,
+        "inspection_score": 99,
+        "inspection_date": "2025-01-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.828445,
+          30.234039
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "5300 South Mopac Expressway, Austin, TX",
+        "phone": "(512) 892-5535",
+        "lat": 30.234039,
+        "lng": -97.828445,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.598488,
+          30.467291
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "18700 Limestone Commercial Drive, Pflugerville, TX",
+        "phone": "(512) 687-2064",
+        "lat": 30.467291,
+        "lng": -97.598488,
+        "inspection_score": 96,
+        "inspection_date": "2025-09-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.751423,
+          30.266099
+        ]
+      },
+      "properties": {
+        "name": "Caf\u00e9 Cr\u00e8me",
+        "type": "Independent",
+        "address": "710 West Cesar Chavez Street, Austin, TX",
+        "lat": 30.266099,
+        "lng": -97.751423,
+        "inspection_score": 85,
+        "inspection_date": "2026-03-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.719101,
+          30.334826
+        ]
+      },
+      "properties": {
+        "name": "604 Coffee",
+        "type": "Independent",
+        "address": "604 Williams Street, Austin, TX",
+        "phone": "(512) 351-4004",
+        "lat": 30.334826,
+        "lng": -97.719101,
+        "inspection_score": 90,
+        "inspection_date": "2025-11-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.679415,
+          30.490302
+        ]
+      },
+      "properties": {
+        "name": "Teapioca Lounge",
+        "type": "Independent",
+        "address": "2000 South Interstate 35, Round Rock, TX",
+        "phone": "(512) 887-4883",
+        "lat": 30.490302,
+        "lng": -97.679415,
+        "inspection_score": 92,
+        "inspection_date": "2024-09-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.678886,
+          30.486686
+        ]
+      },
+      "properties": {
+        "name": "Unicorniverse Bakery & Cafe",
+        "type": "Independent",
+        "address": "2400 South Interstate 35, Round Rock, TX",
+        "phone": "(512) 330-4001",
+        "lat": 30.486686,
+        "lng": -97.678886,
+        "inspection_score": 82,
+        "inspection_date": "2025-10-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.717078,
+          30.325972
+        ]
+      },
+      "properties": {
+        "name": "Spokesman - Highland",
+        "type": "Independent",
+        "address": "6015 Dillard Circle, Austin, TX",
+        "phone": "(512) 586-9657",
+        "lat": 30.325972,
+        "lng": -97.717078,
+        "inspection_score": 99,
+        "inspection_date": "2026-01-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.670491,
+          30.539322
+        ]
+      },
+      "properties": {
+        "name": "Sunrise Teahouse",
+        "type": "Independent",
+        "lat": 30.539322,
+        "lng": -97.670491,
+        "inspection_score": 97,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.747114,
+          30.260684
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "208 Barton Springs Road, Austin, TX",
+        "phone": "(512) 477-1234",
+        "lat": 30.260684,
+        "lng": -97.747114,
+        "inspection_score": 94,
+        "inspection_date": "2024-11-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.864907,
+          30.544617
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1820 Crystal Falls Parkway, Leander, TX",
+        "phone": "(512) 568-8692",
+        "lat": 30.544617,
+        "lng": -97.864907,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.843911,
+          30.556315
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1805 South Highway 183, Leander, TX",
+        "phone": "(512) 259-5941",
+        "lat": 30.556315,
+        "lng": -97.843911,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.713825,
+          30.263065
+        ]
+      },
+      "properties": {
+        "name": "Desnudo Coffee",
+        "type": "Independent",
+        "lat": 30.263065,
+        "lng": -97.713825,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.815111,
+          30.550424
+        ]
+      },
+      "properties": {
+        "name": "Red Horn Coffee House and Brewing Company",
+        "type": "Independent",
+        "lat": 30.550424,
+        "lng": -97.815111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.668822,
+          30.202119
+        ]
+      },
+      "properties": {
+        "name": "Caribou Coffee",
+        "type": "Corporate",
+        "lat": 30.202119,
+        "lng": -97.668822,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.79264,
+          30.454215
+        ]
+      },
+      "properties": {
+        "name": "Cure Bakery & Coffee",
+        "type": "Independent",
+        "lat": 30.454215,
+        "lng": -97.79264,
+        "inspection_score": 87,
+        "inspection_date": "2025-12-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.966619,
+          30.341152
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "2301 Ranch Road 620 South, Lakeway, TX",
+        "phone": "(512) 263-6420",
+        "lat": 30.341152,
+        "lng": -97.966619,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.740918,
+          30.550274
+        ]
+      },
+      "properties": {
+        "name": "Mojo Coffee",
+        "type": "Independent",
+        "lat": 30.550274,
+        "lng": -97.740918,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.880948,
+          29.989153
+        ]
+      },
+      "properties": {
+        "name": "Kyle's Daily Grind",
+        "type": "Independent",
+        "address": "607 West Center Street, Kyle, TX",
+        "phone": "(512) 268-9901",
+        "lat": 29.989153,
+        "lng": -97.880948
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.734812,
+          30.277468
+        ]
+      },
+      "properties": {
+        "name": "Nourish",
+        "type": "Independent",
+        "lat": 30.277468,
+        "lng": -97.734812,
+        "inspection_score": 73,
+        "inspection_date": "2025-12-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742193,
+          30.268787
+        ]
+      },
+      "properties": {
+        "name": "The Coffehouse at Caroline",
+        "type": "Independent",
+        "address": "109 East 7th Street, Austin, TX",
+        "lat": 30.268787,
+        "lng": -97.742193
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742167,
+          30.295748
+        ]
+      },
+      "properties": {
+        "name": "Organic Coffee",
+        "type": "Independent",
+        "lat": 30.295748,
+        "lng": -97.742167,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.749778,
+          30.247725
+        ]
+      },
+      "properties": {
+        "name": "Ma\u00f1ana",
+        "type": "Independent",
+        "lat": 30.247725,
+        "lng": -97.749778,
+        "inspection_score": 96,
+        "inspection_date": "2025-07-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.762374,
+          30.25576
+        ]
+      },
+      "properties": {
+        "name": "Medici Roasting",
+        "type": "Independent",
+        "address": "1100 South Lamar Boulevard, Austin, TX",
+        "lat": 30.25576,
+        "lng": -97.762374,
+        "inspection_score": 93,
+        "inspection_date": "2025-07-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.776148,
+          30.282934
+        ]
+      },
+      "properties": {
+        "name": "Lake Austin's Coffee Spot",
+        "type": "Independent",
+        "address": "2652 Lake Austin Boulevard, Austin, TX",
+        "lat": 30.282934,
+        "lng": -97.776148,
+        "inspection_score": 92,
+        "inspection_date": "2025-11-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.753255,
+          30.27049
+        ]
+      },
+      "properties": {
+        "name": "La Colombe Coffee Roasters",
+        "type": "Independent",
+        "lat": 30.27049,
+        "lng": -97.753255,
+        "inspection_score": 84,
+        "inspection_date": "2025-11-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.665466,
+          30.202262
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "3600 Presidential Boulevard, Austin, TX",
+        "phone": "(737) 239-7338",
+        "lat": 30.202262,
+        "lng": -97.665466,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.392778,
+          30.351413
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "1380 West US Highway 290, Elgin, TX",
+        "phone": "(737) 537-2053",
+        "lat": 30.351413,
+        "lng": -97.392778,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.774682,
+          30.247815
+        ]
+      },
+      "properties": {
+        "name": "Purr-Fecto Cat Lounge",
+        "type": "Independent",
+        "address": "2300 South Lamar Boulevard, Austin, TX",
+        "lat": 30.247815,
+        "lng": -97.774682
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.371289,
+          30.349242
+        ]
+      },
+      "properties": {
+        "name": "Chemn Cafe",
+        "type": "Independent",
+        "address": "114 North Main Street, Elgin, TX",
+        "phone": "(512) 827-9747",
+        "lat": 30.349242,
+        "lng": -97.371289,
+        "inspection_score": 84,
+        "inspection_date": "2026-01-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.709145,
+          30.306381
+        ]
+      },
+      "properties": {
+        "name": "La Madeleine",
+        "type": "Independent",
+        "address": "1201 Barbara Jordan Boulevard, Austin, TX",
+        "phone": "(512) 366-3825",
+        "lat": 30.306381,
+        "lng": -97.709145,
+        "inspection_score": 95,
+        "inspection_date": "2026-03-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.713921,
+          30.32236
+        ]
+      },
+      "properties": {
+        "name": "Kick Butt Coffee",
+        "type": "Independent",
+        "address": "5775 Airport Boulevard, Austin",
+        "phone": "(512) 454-5425",
+        "lat": 30.32236,
+        "lng": -97.713921,
+        "inspection_score": 93,
+        "inspection_date": "2026-02-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.742823,
+          30.265392
+        ]
+      },
+      "properties": {
+        "name": "Mirandas Cafe",
+        "type": "Independent",
+        "address": "301 Congress Avenue, Austin, TX",
+        "lat": 30.265392,
+        "lng": -97.742823,
+        "inspection_score": 91,
+        "inspection_date": "2025-08-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.76642,
+          30.478018
+        ]
+      },
+      "properties": {
+        "name": "Cuppa Austin Coffee",
+        "type": "Independent",
+        "address": "9225 West Parmer Lane, Austin, TX",
+        "phone": "(512) 382-6729",
+        "lat": 30.478018,
+        "lng": -97.76642,
+        "inspection_score": 90,
+        "inspection_date": "2025-06-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.894979,
+          30.249631
+        ]
+      },
+      "properties": {
+        "name": "Sunrise at Shore",
+        "type": "Independent",
+        "lat": 30.249631,
+        "lng": -97.894979,
+        "inspection_score": 96,
+        "inspection_date": "2025-09-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.722316,
+          30.27351
+        ]
+      },
+      "properties": {
+        "name": "El Tigre",
+        "type": "Independent",
+        "address": "1614 E 12th Street, Austin, TX",
+        "phone": "(512) 387-6712",
+        "lat": 30.27351,
+        "lng": -97.722316,
+        "inspection_score": 86,
+        "inspection_date": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.744736,
+          30.28508
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "611 West 22nd Street, Austin, TX",
+        "phone": "(512) 768-0910",
+        "lat": 30.28508,
+        "lng": -97.744736,
+        "inspection_score": 100,
+        "inspection_date": "2026-01-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.74492,
+          30.286841
+        ]
+      },
+      "properties": {
+        "name": "TSAOCAA",
+        "type": "Independent",
+        "address": "2222 Rio Grande Street, Austin, TX",
+        "lat": 30.286841,
+        "lng": -97.74492,
+        "inspection_score": 88,
+        "inspection_date": "2025-09-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.761715,
+          30.468079
+        ]
+      },
+      "properties": {
+        "name": "Rocket Coffee",
+        "type": "Independent",
+        "address": "8701 West Parmer Lane, Austin, TX",
+        "phone": "(512) 551-2655",
+        "lat": 30.468079,
+        "lng": -97.761715,
+        "inspection_score": 97,
+        "inspection_date": "2025-11-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.797663,
+          30.215817
+        ]
+      },
+      "properties": {
+        "name": "Jo's Coffee",
+        "type": "Independent",
+        "lat": 30.215817,
+        "lng": -97.797663,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.866889,
+          30.015157
+        ]
+      },
+      "properties": {
+        "name": "Black Rock Coffee",
+        "type": "Independent",
+        "address": "5160 South FM 1626, Kyle, TX",
+        "phone": "(214) 463-2721",
+        "lat": 30.015157,
+        "lng": -97.866889,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.827047,
+          30.453205
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "11521 Ranch Road 620 North, Austin, TX",
+        "phone": "(512) 250-8066",
+        "lat": 30.453205,
+        "lng": -97.827047,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.800079,
+          30.27592
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "3300 Bee Caves Road, Austin, TX",
+        "phone": "(512) 306-8744",
+        "lat": 30.27592,
+        "lng": -97.800079,
+        "inspection_score": 100,
+        "inspection_date": "2024-05-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.75453,
+          30.267287
+        ]
+      },
+      "properties": {
+        "name": "Ma\u0148ana",
+        "type": "Independent",
+        "address": "111 Sandra Muraida Way, Austin, TX",
+        "lat": 30.267287,
+        "lng": -97.75453,
+        "inspection_score": 96,
+        "inspection_date": "2025-07-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.718704,
+          30.338783
+        ]
+      },
+      "properties": {
+        "name": "Hui Lau Shan",
+        "type": "Independent",
+        "address": "7020 Easy Wind Drive, Austin, TX",
+        "lat": 30.338783,
+        "lng": -97.718704
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.678879,
+          30.508102
+        ]
+      },
+      "properties": {
+        "name": "Mi z",
+        "type": "Independent",
+        "lat": 30.508102,
+        "lng": -97.678879,
+        "inspection_score": 87,
+        "inspection_date": "2026-03-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.841203,
+          30.476319
+        ]
+      },
+      "properties": {
+        "name": "mr. boba",
+        "type": "Independent",
+        "address": "2051 Cypress Creek Road, Cedar Park, TX",
+        "phone": "(512) 294-2175",
+        "lat": 30.476319,
+        "lng": -97.841203,
+        "inspection_score": 80,
+        "inspection_date": "2025-11-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.765193,
+          30.275527
+        ]
+      },
+      "properties": {
+        "name": "Heartland City Club",
+        "type": "Independent",
+        "address": "1717 West 6th Street, Austin, TX",
+        "lat": 30.275527,
+        "lng": -97.765193
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.877757,
+          30.027335
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee",
+        "type": "Independent",
+        "address": "4217 Benner Road, Kyle, TX",
+        "phone": "(512) 504-3039",
+        "lat": 30.027335,
+        "lng": -97.877757,
+        "inspection_score": 90,
+        "inspection_date": "2026-01-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.699127,
+          30.416867
+        ]
+      },
+      "properties": {
+        "name": "Heaven's Bistro Bakery",
+        "type": "Independent",
+        "lat": 30.416867,
+        "lng": -97.699127,
+        "inspection_score": 87,
+        "inspection_date": "2025-11-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.689915,
+          30.412097
+        ]
+      },
+      "properties": {
+        "name": "Sip Munch Cafe",
+        "type": "Independent",
+        "lat": 30.412097,
+        "lng": -97.689915,
+        "inspection_score": 91,
+        "inspection_date": "2025-06-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72646,
+          30.401926
+        ]
+      },
+      "properties": {
+        "name": "Sweet Paris",
+        "type": "Independent",
+        "lat": 30.401926,
+        "lng": -97.72646,
+        "inspection_score": 88,
+        "inspection_date": "2025-12-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.749672,
+          30.276536
+        ]
+      },
+      "properties": {
+        "name": "Idlewild Coffee",
+        "type": "Independent",
+        "address": "824 West 12th Street, Austin, TX",
+        "lat": 30.276536,
+        "lng": -97.749672,
+        "inspection_score": 94,
+        "inspection_date": "2025-09-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.841464,
+          30.474598
+        ]
+      },
+      "properties": {
+        "name": "Coffeyeh",
+        "type": "Independent",
+        "address": "2100 Cypress Creek Road, Cedar Park, TX",
+        "lat": 30.474598,
+        "lng": -97.841464
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.664333,
+          30.202246
+        ]
+      },
+      "properties": {
+        "name": "Zocalo Cafe",
+        "type": "Independent",
+        "lat": 30.202246,
+        "lng": -97.664333,
+        "inspection_score": 90,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.711584,
+          30.285679
+        ]
+      },
+      "properties": {
+        "name": "Fleet Coffee",
+        "type": "Independent",
+        "address": "2806 Manor Road, Austin, TX",
+        "lat": 30.285679,
+        "lng": -97.711584,
+        "inspection_score": 89,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.721246,
+          30.402758
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "lat": 30.402758,
+        "lng": -97.721246,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.756751,
+          30.221319
+        ]
+      },
+      "properties": {
+        "name": "Austea",
+        "type": "Independent",
+        "lat": 30.221319,
+        "lng": -97.756751,
+        "inspection_score": 85,
+        "inspection_date": "2025-06-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738396,
+          30.265263
+        ]
+      },
+      "properties": {
+        "name": "Starbucks",
+        "type": "Corporate",
+        "address": "555 East 4th Street, Austin, TX",
+        "lat": 30.265263,
+        "lng": -97.738396,
+        "inspection_score": 100,
+        "inspection_date": "2025-02-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.744878,
+          30.274006
+        ]
+      },
+      "properties": {
+        "name": "Phoebe's Diner",
+        "type": "Independent",
+        "lat": 30.274006,
+        "lng": -97.744878,
+        "inspection_score": 92,
+        "inspection_date": "2026-03-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738848,
+          30.279989
+        ]
+      },
+      "properties": {
+        "name": "The Star Cafe",
+        "type": "Independent",
+        "lat": 30.279989,
+        "lng": -97.738848,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.830573,
+          30.484808
+        ]
+      },
+      "properties": {
+        "name": "Malone Coffee",
+        "type": "Independent",
+        "address": "1310 Cypress Creek Road, Cedar Park, TX",
+        "lat": 30.484808,
+        "lng": -97.830573,
+        "inspection_score": 89,
+        "inspection_date": "2025-12-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.746478,
+          30.269345
+        ]
+      },
+      "properties": {
+        "name": "Black Sheep Coffee",
+        "type": "Independent",
+        "lat": 30.269345,
+        "lng": -97.746478,
+        "inspection_score": 85,
+        "inspection_date": "2026-02-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.725791,
+          30.342803
+        ]
+      },
+      "properties": {
+        "name": "The Violet Crown Wine Bar & Coffee Shop",
+        "type": "Independent",
+        "address": "7100 Woodrow Avenue, Austin",
+        "lat": 30.342803,
+        "lng": -97.725791,
+        "inspection_score": 94,
+        "inspection_date": "2025-10-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.730202,
+          30.355539
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon Coffee",
+        "type": "Independent",
+        "address": "2301 W Anderson Ln, Austin",
+        "phone": "(512) 582-0879",
+        "lat": 30.355539,
+        "lng": -97.730202,
+        "inspection_score": 90,
+        "inspection_date": "2026-01-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.725422,
+          30.262774
+        ]
+      },
+      "properties": {
+        "name": "Klerj\u0113 Coffee",
+        "type": "Independent",
+        "lat": 30.262774,
+        "lng": -97.725422,
+        "inspection_score": 80,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.725601,
+          30.262837
+        ]
+      },
+      "properties": {
+        "name": "LOVE Bubble Tea",
+        "type": "Independent",
+        "lat": 30.262837,
+        "lng": -97.725601,
+        "inspection_score": 97,
+        "inspection_date": "2025-02-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.761792,
+          30.26198
+        ]
+      },
+      "properties": {
+        "name": "Love Lamp Matcha",
+        "type": "Independent",
+        "address": "1601 Barton Springs Road, Austin, TX",
+        "lat": 30.26198,
+        "lng": -97.761792
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.744829,
+          30.268439
+        ]
+      },
+      "properties": {
+        "name": "Thistle Cafe",
+        "type": "Independent",
+        "address": "221 West 6th Street, Austin, TX",
+        "phone": "(512) 474-5222",
+        "lat": 30.268439,
+        "lng": -97.744829,
+        "inspection_score": 88,
+        "inspection_date": "2025-07-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.662031,
+          30.301356
+        ]
+      },
+      "properties": {
+        "name": "Dutch Bros. Coffee",
+        "type": "Corporate",
+        "address": "6216 Ed Bluestein Boulevard, Austin, TX",
+        "lat": 30.301356,
+        "lng": -97.662031,
+        "inspection_score": 98,
+        "inspection_date": "2025-12-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.72096,
+          30.261905
+        ]
+      },
+      "properties": {
+        "name": "Terrazzo Tea",
+        "type": "Independent",
+        "address": "1923 East 7th Street, Austin, TX",
+        "phone": "(512) 363-5630",
+        "lat": 30.261905,
+        "lng": -97.72096,
+        "inspection_score": 97,
+        "inspection_date": "2025-02-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.760313,
+          30.311887
+        ]
+      },
+      "properties": {
+        "name": "Cafe Americana",
+        "type": "Independent",
+        "lat": 30.311887,
+        "lng": -97.760313,
+        "inspection_score": 90,
+        "inspection_date": "2026-03-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.966748,
+          30.346565
+        ]
+      },
+      "properties": {
+        "name": "Fing Cha Boba",
+        "type": "Independent",
+        "lat": 30.346565,
+        "lng": -97.966748,
+        "inspection_score": 85,
+        "inspection_date": "2025-12-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.624779,
+          30.528746
+        ]
+      },
+      "properties": {
+        "name": "Summer Moon",
+        "type": "Independent",
+        "address": "3800 Palm Valley Boulevard, Round Rock, TX",
+        "lat": 30.528746,
+        "lng": -97.624779,
+        "inspection_score": 90,
+        "inspection_date": "2025-12-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.945557,
+          30.307016
+        ]
+      },
+      "properties": {
+        "name": "Austin Tea Xchange Cafe",
+        "type": "Independent",
+        "address": "13011 Shops Parkway, Bee Cave, TX",
+        "phone": "(737) 209-0083",
+        "lat": 30.307016,
+        "lng": -97.945557,
+        "inspection_score": 95,
+        "inspection_date": "2025-11-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.667336,
+          30.518723
+        ]
+      },
+      "properties": {
+        "name": "Cuba Bakery & Caf\u00e9",
+        "type": "Independent",
+        "lat": 30.518723,
+        "lng": -97.667336,
+        "inspection_score": 86,
+        "inspection_date": "2026-03-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.649519,
+          30.483452
+        ]
+      },
+      "properties": {
+        "name": "Dutch Brothers",
+        "type": "Corporate",
+        "address": "2630 South A W Grimes Boulevard, Austin",
+        "lat": 30.483452,
+        "lng": -97.649519,
+        "inspection_score": 70,
+        "inspection_date": "2025-12-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.788911,
+          30.23919
+        ]
+      },
+      "properties": {
+        "name": "Barley Bean",
+        "type": "Independent",
+        "address": "3600 South Lamar Boulevard, Austin, TX",
+        "lat": 30.23919,
+        "lng": -97.788911,
+        "inspection_score": 82,
+        "inspection_date": "2025-03-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.756971,
+          30.264213
+        ]
+      },
+      "properties": {
+        "name": "Caf\u00e9 at the Loren",
+        "type": "Independent",
+        "address": "1211 West Riverside Drive, Austin, TX",
+        "lat": 30.264213,
+        "lng": -97.756971,
+        "inspection_score": 96,
+        "inspection_date": "2026-02-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.835996,
+          30.086604
+        ]
+      },
+      "properties": {
+        "name": "Embrace The Grind",
+        "type": "Independent",
+        "address": "824 North Main Street, Buda, TX",
+        "lat": 30.086604,
+        "lng": -97.835996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.766783,
+          30.435046
+        ]
+      },
+      "properties": {
+        "name": "Super Burrito at The Water Tank",
+        "type": "Independent",
+        "address": "7309 McNeil Drive, Austin, TX",
+        "phone": "(512) 765-2699",
+        "lat": 30.435046,
+        "lng": -97.766783
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.725303,
+          30.393304
+        ]
+      },
+      "properties": {
+        "name": "Medici Roasting",
+        "type": "Independent",
+        "address": "10727 Domain Drive, Austin, TX",
+        "lat": 30.393304,
+        "lng": -97.725303,
+        "inspection_score": 85,
+        "inspection_date": "2025-06-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.692308,
+          30.267253
+        ]
+      },
+      "properties": {
+        "name": "Medici Roasting",
+        "type": "Independent",
+        "address": "1023 Springdale Road, Austin, TX",
+        "lat": 30.267253,
+        "lng": -97.692308,
+        "inspection_score": 81,
+        "inspection_date": "2025-08-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.797209,
+          30.446359
+        ]
+      },
+      "properties": {
+        "name": "Godsent Coffee",
+        "type": "Independent",
+        "address": "9817 Anderson Mill Road, Austin, TX",
+        "lat": 30.446359,
+        "lng": -97.797209,
+        "inspection_score": 95,
+        "inspection_date": "2025-11-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.730072,
+          30.319608
+        ]
+      },
+      "properties": {
+        "name": "Muse Coffee Co",
+        "type": "Independent",
+        "address": "5201 North Lamar Boulevard, Austin, TX",
+        "lat": 30.319608,
+        "lng": -97.730072,
+        "inspection_score": 85,
+        "inspection_date": "2025-12-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.834591,
+          30.14411
+        ]
+      },
+      "properties": {
+        "name": "Polyphonic Coffee",
+        "type": "Independent",
+        "address": "12000 Menchaca Road, Austin, TX",
+        "lat": 30.14411,
+        "lng": -97.834591,
+        "inspection_score": 100,
+        "inspection_date": "2025-11-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.633117,
+          30.401991
+        ]
+      },
+      "properties": {
+        "name": "Hecho Amano Coffee",
+        "type": "Independent",
+        "lat": 30.401991,
+        "lng": -97.633117,
+        "inspection_score": 97,
+        "inspection_date": "2025-03-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.808687,
+          30.526771
+        ]
+      },
+      "properties": {
+        "name": "The Alley Cedar Park",
+        "type": "Independent",
+        "address": "1468 East Whitestone Boulevard, Cedar Park, TX",
+        "lat": 30.526771,
+        "lng": -97.808687
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.692949,
+          30.25401
+        ]
+      },
+      "properties": {
+        "name": "The Lion's Den Tea",
+        "type": "Independent",
+        "address": "760 Airport Boulevard, Austin, TX",
+        "phone": "(737) 235-7737",
+        "lat": 30.25401,
+        "lng": -97.692949
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.736944,
+          30.282962
+        ]
+      },
+      "properties": {
+        "name": "Jester Java",
+        "type": "Independent",
+        "lat": 30.282962,
+        "lng": -97.736944,
+        "inspection_score": 84,
+        "inspection_date": "2026-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.737861,
+          30.283087
+        ]
+      },
+      "properties": {
+        "name": "Prufrock's",
+        "type": "Independent",
+        "lat": 30.283087,
+        "lng": -97.737861,
+        "inspection_score": 98,
+        "inspection_date": "2026-03-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.743456,
+          30.282327
+        ]
+      },
+      "properties": {
+        "name": "Haraz Coffee House",
+        "type": "Independent",
+        "address": "500 West Martin Luther King Jr Boulevard, Austin",
+        "lat": 30.282327,
+        "lng": -97.743456,
+        "inspection_score": 93,
+        "inspection_date": "2025-12-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.738111,
+          30.301888
+        ]
+      },
+      "properties": {
+        "name": "Lau Lau",
+        "type": "Independent",
+        "address": "3701$ Guadalupe Street, Austin",
+        "lat": 30.301888,
+        "lng": -97.738111,
+        "inspection_score": 91,
+        "inspection_date": "2024-09-20"
+      }
+    }
+  ]
+}
