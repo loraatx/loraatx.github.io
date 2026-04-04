@@ -172,7 +172,7 @@ function initTopoOverlay() {
     type: "raster",
     source: "usgs-topo",
     layout: { visibility: "none" },
-    paint: { "raster-opacity": 0.75 }
+    paint: { "raster-opacity": 0.9 }
   }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
   map.addControl({
