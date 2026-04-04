@@ -60,6 +60,45 @@ function initSatellite() {
   }, "top-left");
 }
 
+// --- Elevation / 3D terrain toggle ---
+
+function initElevation() {
+  map.addSource("terrain-dem", {
+    type: "raster-dem",
+    url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
+    tileSize: 256
+  });
+
+  map.addLayer({
+    id: "hillshade-layer",
+    type: "hillshade",
+    source: "terrain-dem",
+    layout: { visibility: "none" },
+    paint: { "hillshade-shadow-color": "#473B24" }
+  });
+
+  let elevationOn = false;
+
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      this._btn = document.createElement("button");
+      this._btn.className = "satellite-btn";
+      this._btn.textContent = "Elevation";
+      this._btn.onclick = () => {
+        elevationOn = !elevationOn;
+        map.setTerrain(elevationOn ? { source: "terrain-dem", exaggeration: 2.5 } : null);
+        map.setLayoutProperty("hillshade-layer", "visibility", elevationOn ? "visible" : "none");
+        this._btn.classList.toggle("active", elevationOn);
+      };
+      this._container.appendChild(this._btn);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "top-left");
+}
+
 // --- Draw tools (terra-draw) ---
 
 function initDraw() {
@@ -287,6 +326,7 @@ async function init() {
     add3DBuildings();
     initViewToggle();
     initSatellite();
+    initElevation();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
     addPlacesLayers();
