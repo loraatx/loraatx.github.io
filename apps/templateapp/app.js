@@ -88,7 +88,7 @@ function initElevation() {
       this._btn.textContent = "Elevation";
       this._btn.onclick = () => {
         elevationOn = !elevationOn;
-        map.setTerrain(elevationOn ? { source: "terrain-dem", exaggeration: 2.5 } : null);
+        map.setTerrain(elevationOn ? { source: "terrain-dem", exaggeration: 8 } : null);
         map.setLayoutProperty("hillshade-layer", "visibility", elevationOn ? "visible" : "none");
         this._btn.classList.toggle("active", elevationOn);
       };
