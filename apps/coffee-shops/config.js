@@ -36,15 +36,13 @@ const CONFIG = {
     { property: "outdoor_seating", label: "Outdoor Seating" }
   ],
 
-  // Table columns (lat/lng excluded from CSV via csv:false)
+  // Table columns
   columns: [
     { property: "name",    header: "Name" },
     { property: "type",    header: "Type" },
     { property: "address", header: "Address" },
     { property: "phone",   header: "Phone" },
-    { property: "website", header: "Website" },
-    { property: "lat",     header: "Lat", csv: false },
-    { property: "lng",     header: "Lng", csv: false }
+    { property: "website", header: "Website" }
   ],
 
   // Popup detail rows (name is always shown as the title)

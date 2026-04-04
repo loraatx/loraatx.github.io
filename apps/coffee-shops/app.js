@@ -273,13 +273,13 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
 
 async function initOverlay() {
   if (CONFIG.overlayLabel) {
-    await addOverlayControl("../../shared/SecondData.geojson", "overlay", CONFIG.overlayLabel, CONFIG.overlayColorProperty);
+    await addOverlayControl("../shared/SecondData.geojson", "overlay", CONFIG.overlayLabel, CONFIG.overlayColorProperty);
   }
   if (CONFIG.overlay2Label) {
-    await addOverlayControl("../../shared/floodzone.geojson", "overlay2", CONFIG.overlay2Label, CONFIG.overlay2ColorProperty);
+    await addOverlayControl("../shared/floodzone.geojson", "overlay2", CONFIG.overlay2Label, CONFIG.overlay2ColorProperty);
   }
   if (CONFIG.overlay3Label) {
-    await addOverlayControl("../../shared/Council_Districts.geojson", "overlay3", CONFIG.overlay3Label, CONFIG.overlay3ColorProperty);
+    await addOverlayControl("../shared/Council_Districts.geojson", "overlay3", CONFIG.overlay3Label, CONFIG.overlay3ColorProperty);
   }
 }
 
