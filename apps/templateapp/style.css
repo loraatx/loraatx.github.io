@@ -724,3 +724,17 @@ tbody tr:last-child td {
 [data-theme="dark"] .report-field-item {
   color: #ccc;
 }
+
+/* ── Health score badge ─────────────────────────────── */
+
+.score-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+}
+.score-badge-green  { background: #22863a; }
+.score-badge-yellow { background: #b08800; }
+.score-badge-red    { background: #cb2431; }

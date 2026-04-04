@@ -32,17 +32,20 @@ const CONFIG = {
 
   // Filters — each becomes a dropdown; values auto-populated from data
   filters: [
-    { property: "type", label: "Type" }
+    { property: "type",             label: "Type" },
+    { property: "wifi",             label: "Wi-Fi" },
+    { property: "outdoor_seating",  label: "Outdoor Seating" }
   ],
 
-  // Table columns (lat/lng included so users can see location coordinates)
+  // Table columns (lat/lng excluded from CSV via csv:false)
   columns: [
     { property: "name",    header: "Name" },
     { property: "type",    header: "Type" },
     { property: "address", header: "Address" },
     { property: "phone",   header: "Phone" },
-    { property: "lat",     header: "Lat" },
-    { property: "lng",     header: "Lng" }
+    { property: "website", header: "Website" },
+    { property: "lat",     header: "Lat", csv: false },
+    { property: "lng",     header: "Lng", csv: false }
   ],
 
   // Popup detail rows (name is always shown as the title)
@@ -50,6 +53,10 @@ const CONFIG = {
     { property: "type",             label: "Type" },
     { property: "address",          label: "Address" },
     { property: "phone",            label: "Phone" },
+    { property: "website",          label: "Website" },
+    { property: "wifi",             label: "Wi-Fi" },
+    { property: "outdoor_seating",  label: "Outdoor Seating" },
+    { property: "drive_through",    label: "Drive-Through" },
     { property: "inspection_score", label: "Health Score" },
     { property: "inspection_date",  label: "Last Inspected" }
   ]

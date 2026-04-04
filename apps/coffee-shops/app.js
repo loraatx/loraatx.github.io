@@ -430,6 +430,13 @@ function addPlacesLayers() {
 
 // --- Popup (shared between map click and table click) ---
 
+function renderValue(val) {
+  if (typeof val === "string" && val.startsWith("http")) {
+    return `<a href="${val}" target="_blank" rel="noopener">${val}</a>`;
+  }
+  return val;
+}
+
 function showPopup(feature) {
   const props = feature.properties;
   const [lng, lat] = feature.geometry.coordinates;
@@ -439,7 +446,13 @@ function showPopup(feature) {
     .filter(f => props[f.property] !== null && props[f.property] !== undefined && props[f.property] !== "")
     .map(f => {
       let val = props[f.property];
-      if (f.property === "inspection_score") val = `${val}/100`;
+      if (f.property === "inspection_score") {
+        const n = Number(val);
+        const cls = n >= 90 ? "score-badge-green" : n >= 70 ? "score-badge-yellow" : "score-badge-red";
+        val = `<span class="score-badge ${cls}">${n}/100</span>`;
+      } else {
+        val = renderValue(val);
+      }
       return `<div class="popup-row"><strong>${f.label}:</strong>&nbsp;${val}</div>`;
     })
     .join("");
@@ -557,7 +570,17 @@ function updateTable(features) {
 
     CONFIG.columns.forEach(col => {
       const td = document.createElement("td");
-      td.textContent = p[col.property] || "";
+      const val = p[col.property] ?? "";
+      if (typeof val === "string" && val.startsWith("http")) {
+        const a = document.createElement("a");
+        a.href = val;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = val;
+        td.appendChild(a);
+      } else {
+        td.textContent = val;
+      }
       row.appendChild(td);
     });
 
@@ -732,10 +755,11 @@ function exportMap() {
 // --- CSV export (filtered table) ---
 
 function exportCSV() {
-  const headers = CONFIG.columns.map(c => c.header);
+  const csvColumns = CONFIG.columns.filter(c => c.csv !== false);
+  const headers = csvColumns.map(c => c.header);
   const rows = filteredFeatures.map(f => {
     const p = f.properties;
-    return CONFIG.columns.map(c => {
+    return csvColumns.map(c => {
       let val = (p[c.property] ?? "").toString();
       if (val.includes(",") || val.includes('"') || val.includes("\n")) {
         val = '"' + val.replace(/"/g, '""') + '"';

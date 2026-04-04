@@ -298,6 +298,23 @@ def main():
         elif len(digits) == 11 and digits[0] == "1":
             phone = f"({digits[1:4]}) {digits[4:7]}-{digits[7:]}"
 
+        # Website
+        website = (tags.get("website") or tags.get("contact:website") or "").strip()
+        if website and not website.startswith("http"):
+            website = "https://" + website
+
+        # Wi-Fi (OSM internet_access tag)
+        ia = tags.get("internet_access", "")
+        wifi = "Yes" if ia in ("wlan", "yes", "wifi") else ("No" if ia == "no" else None)
+
+        # Outdoor seating
+        os_raw = tags.get("outdoor_seating", "")
+        outdoor_seating = "Yes" if os_raw == "yes" else ("No" if os_raw == "no" else None)
+
+        # Drive-through
+        dt_raw = tags.get("drive_through", "")
+        drive_through = "Yes" if dt_raw == "yes" else ("No" if dt_raw == "no" else None)
+
         # Try health record match
         best_rec, match_score = match_health_record(name, address, health_index)
 
@@ -335,6 +352,10 @@ def main():
             "type": biz_type,
             "address": address or None,
             "phone": phone or None,
+            "website": website or None,
+            "wifi": wifi,
+            "outdoor_seating": outdoor_seating,
+            "drive_through": drive_through,
             "lat": round(lat, 6),
             "lng": round(lon, 6),
         }
