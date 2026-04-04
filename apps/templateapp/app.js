@@ -200,8 +200,13 @@ function initTopoOverlay() {
 // --- Polygon overlays ---
 
 async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
-  var res = await fetch(geojsonPath);
-  if (!res.ok) return;
+  var res;
+  try { res = await fetch(geojsonPath); } catch (e) {
+    console.warn("Overlay fetch error:", geojsonPath, e); return;
+  }
+  if (!res.ok) {
+    console.warn("Overlay fetch failed:", geojsonPath, res.status); return;
+  }
   var data = await res.json();
 
   var palette = ["#4285f4","#ea4335","#fbbc04","#34a853","#ff6d00","#46bdc6","#7b1fa2","#f06292"];
@@ -215,26 +220,30 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
     colorExpr = matchExpr;
   }
 
-  map.addSource(sourceId, { type: "geojson", data: data });
-  map.addLayer({ id: sourceId + "-fill", type: "fill", source: sourceId,
-    layout: { visibility: "none" },
-    paint: { "fill-color": colorExpr, "fill-opacity": 0.2 }
-  }, "places-shadow");
-  map.addLayer({ id: sourceId + "-line", type: "line", source: sourceId,
-    layout: { visibility: "none" },
-    paint: { "line-color": colorExpr, "line-width": 1.5 }
-  }, "places-shadow");
-  if (colorProperty) {
-    map.addLayer({ id: sourceId + "-labels", type: "symbol", source: sourceId,
-      layout: {
-        visibility: "none",
-        "text-field": ["get", colorProperty],
-        "text-size": 11,
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-        "text-max-width": 8
-      },
-      paint: { "text-color": "#222", "text-halo-color": "#fff", "text-halo-width": 1.5 }
+  try {
+    map.addSource(sourceId, { type: "geojson", data: data });
+    map.addLayer({ id: sourceId + "-fill", type: "fill", source: sourceId,
+      layout: { visibility: "none" },
+      paint: { "fill-color": colorExpr, "fill-opacity": 0.2 }
     }, "places-shadow");
+    map.addLayer({ id: sourceId + "-line", type: "line", source: sourceId,
+      layout: { visibility: "none" },
+      paint: { "line-color": colorExpr, "line-width": 1.5 }
+    }, "places-shadow");
+    if (colorProperty) {
+      map.addLayer({ id: sourceId + "-labels", type: "symbol", source: sourceId,
+        layout: {
+          visibility: "none",
+          "text-field": ["get", colorProperty],
+          "text-size": 11,
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+          "text-max-width": 8
+        },
+        paint: { "text-color": "#222", "text-halo-color": "#fff", "text-halo-width": 1.5 }
+      }, "places-shadow");
+    }
+  } catch (e) {
+    console.error("Overlay layer error:", sourceId, e); return;
   }
 
   map.addControl({
@@ -502,6 +511,7 @@ function buildFilters() {
 
     select.addEventListener("change", applyFilters);
 
+    group.appendChild(label);
     group.appendChild(select);
     container.appendChild(group);
   });

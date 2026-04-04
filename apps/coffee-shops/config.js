@@ -32,9 +32,8 @@ const CONFIG = {
 
   // Filters — each becomes a dropdown; values auto-populated from data
   filters: [
-    { property: "type",             label: "Type" },
-    { property: "wifi",             label: "Wi-Fi" },
-    { property: "outdoor_seating",  label: "Outdoor Seating" }
+    { property: "type",            label: "Type" },
+    { property: "outdoor_seating", label: "Outdoor Seating" }
   ],
 
   // Table columns (lat/lng excluded from CSV via csv:false)
