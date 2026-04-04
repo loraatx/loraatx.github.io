@@ -60,50 +60,6 @@ function initSatellite() {
   }, "top-left");
 }
 
-// --- Elevation / 3D terrain toggle ---
-
-function initElevation() {
-  map.addSource("terrain-dem", {
-    type: "raster-dem",
-    url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
-    tileSize: 256
-  });
-
-  // Insert hillshade below the first label layer so street names stay visible
-  const firstLabelLayer = map.getStyle().layers.find(
-    l => l.type === "symbol" && l.layout && l.layout["text-field"]
-  );
-
-  map.addLayer({
-    id: "hillshade-layer",
-    type: "hillshade",
-    source: "terrain-dem",
-    layout: { visibility: "none" },
-    paint: { "hillshade-shadow-color": "#473B24" }
-  }, firstLabelLayer ? firstLabelLayer.id : undefined);
-
-  let elevationOn = false;
-
-  map.addControl({
-    onAdd() {
-      this._container = document.createElement("div");
-      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
-      this._btn = document.createElement("button");
-      this._btn.className = "satellite-btn";
-      this._btn.textContent = "Elevation";
-      this._btn.onclick = () => {
-        elevationOn = !elevationOn;
-        map.setTerrain(elevationOn ? { source: "terrain-dem", exaggeration: 8 } : null);
-        map.setLayoutProperty("hillshade-layer", "visibility", elevationOn ? "visible" : "none");
-        this._btn.classList.toggle("active", elevationOn);
-      };
-      this._container.appendChild(this._btn);
-      return this._container;
-    },
-    onRemove() { this._container.parentNode.removeChild(this._container); }
-  }, "top-left");
-}
-
 // --- Draw tools (terra-draw) ---
 
 function initDraw() {
@@ -195,6 +151,50 @@ function initMeasure() {
   });
 
   document.getElementById("clearDrawBtn").addEventListener("click", clearMeasure);
+}
+
+// --- USGS Topo overlay ---
+
+function initTopoOverlay() {
+  map.addSource("usgs-topo", {
+    type: "raster",
+    tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
+    tileSize: 256,
+    attribution: "USGS National Map"
+  });
+
+  const firstLabelLayer = map.getStyle().layers.find(
+    l => l.type === "symbol" && l.layout && l.layout["text-field"]
+  );
+
+  map.addLayer({
+    id: "usgs-topo-layer",
+    type: "raster",
+    source: "usgs-topo",
+    layout: { visibility: "none" },
+    paint: { "raster-opacity": 0.75 }
+  }, firstLabelLayer ? firstLabelLayer.id : undefined);
+
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      var lbl = document.createElement("label");
+      lbl.className = "overlay-ctrl-label";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.addEventListener("change", function () {
+        map.setLayoutProperty("usgs-topo-layer", "visibility", this.checked ? "visible" : "none");
+      });
+      var span = document.createElement("span");
+      span.textContent = "Topo";
+      lbl.appendChild(checkbox);
+      lbl.appendChild(span);
+      this._container.appendChild(lbl);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "bottom-left");
 }
 
 // --- Polygon overlays ---
@@ -331,10 +331,10 @@ async function init() {
     add3DBuildings();
     initViewToggle();
     initSatellite();
-    initElevation();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
     addPlacesLayers();
+    initTopoOverlay();
     initOverlay();
     buildFilters();
     buildTableHead();
