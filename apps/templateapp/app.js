@@ -69,13 +69,18 @@ function initElevation() {
     tileSize: 256
   });
 
+  // Insert hillshade below the first label layer so street names stay visible
+  const firstLabelLayer = map.getStyle().layers.find(
+    l => l.type === "symbol" && l.layout && l.layout["text-field"]
+  );
+
   map.addLayer({
     id: "hillshade-layer",
     type: "hillshade",
     source: "terrain-dem",
     layout: { visibility: "none" },
     paint: { "hillshade-shadow-color": "#473B24" }
-  });
+  }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
   let elevationOn = false;
 
