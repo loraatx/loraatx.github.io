@@ -439,6 +439,19 @@ function addPlacesLayers() {
 
 // --- Popup (shared between map click and table click) ---
 
+function switchPopupTab(btn, paneId) {
+  const content = btn.closest(".maplibregl-popup-content");
+  content.querySelectorAll(".popup-tab-btn").forEach(b => b.classList.remove("active"));
+  content.querySelectorAll(".popup-tab-pane").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  content.querySelector("#" + paneId).classList.add("active");
+  // Lazy-load the Street View iframe on first click to avoid wasting API quota
+  if (paneId === "popup-pane-sv") {
+    const iframe = content.querySelector(".sv-iframe");
+    if (iframe && !iframe.src) iframe.src = iframe.dataset.src;
+  }
+}
+
 function renderValue(val, property) {
   if (property === "instagram" && val) {
     return `<a href="https://instagram.com/${val}" target="_blank" rel="noopener">@${val}</a>`;
@@ -454,6 +467,7 @@ function showPopup(feature) {
   const [lng, lat] = feature.geometry.coordinates;
   const name = props[CONFIG.nameField] || "";
 
+  // --- Info tab ---
   const rows = CONFIG.popupFields
     .filter(f => props[f.property] !== null && props[f.property] !== undefined && props[f.property] !== "")
     .map(f => {
@@ -476,11 +490,35 @@ function showPopup(feature) {
       <a class="popup-nav-waze" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener">Waze</a>
     </div>`;
 
+  // --- Street View tab ---
+  const svContent = CONFIG.googleMapsApiKey
+    ? `<iframe class="sv-iframe"
+         data-src="https://www.google.com/maps/embed/v1/streetview?key=${CONFIG.googleMapsApiKey}&location=${lat},${lng}&heading=0&pitch=0&fov=90"
+         frameborder="0" allowfullscreen
+         style="width:100%;height:220px;border:0;display:block;"></iframe>`
+    : `<div class="sv-no-key">
+         Street View requires an API key.<br>
+         <a href="https://www.google.com/maps/@${lat},${lng},3a,90y/data=!3m4!1e1" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+       </div>`;
+
+  const html = `
+    <div class="popup-title">${name}</div>
+    <div class="popup-tab-bar">
+      <button class="popup-tab-btn active" onclick="switchPopupTab(this,'popup-pane-info')">Info</button>
+      <button class="popup-tab-btn" onclick="switchPopupTab(this,'popup-pane-sv')">Street View</button>
+    </div>
+    <div id="popup-pane-info" class="popup-tab-pane active">
+      ${rows}${navHtml}
+    </div>
+    <div id="popup-pane-sv" class="popup-tab-pane">
+      ${svContent}
+    </div>`;
+
   if (currentPopup) currentPopup.remove();
 
-  currentPopup = new maplibregl.Popup({ maxWidth: "280px" })
+  currentPopup = new maplibregl.Popup({ maxWidth: "300px" })
     .setLngLat([lng, lat])
-    .setHTML(`<div class="popup-title">${name}</div>${rows}${navHtml}`)
+    .setHTML(html)
     .addTo(map);
 }
 

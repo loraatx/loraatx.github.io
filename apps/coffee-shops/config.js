@@ -3,6 +3,10 @@
 // change between deployments. Everything else stays untouched.
 // ============================================================
 const CONFIG = {
+  // Google Maps Embed API key — required for the Street View popup tab
+  // Get one at https://console.cloud.google.com/ (Maps Embed API)
+  googleMapsApiKey: "",
+
   // Page text
   title: "Austin Coffee Shops",
   eyebrow: "Austin Metro",
