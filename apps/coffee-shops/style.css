@@ -304,6 +304,70 @@ tbody tr:last-child td {
 .popup-nav-apple  { background: #2c2c2e; }
 .popup-nav-waze   { background: #33CCFF; color: #111 !important; }
 
+/* ── Popup tabs ───────────────────────────────────── */
+
+.popup-tab-bar {
+  display: flex;
+  gap: 4px;
+  margin: 6px 0 10px;
+}
+
+.popup-tab-btn {
+  flex: 1;
+  padding: 5px 0;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.popup-tab-btn:hover {
+  border-color: #aaa;
+  background: #f0f0f0;
+}
+
+.popup-tab-btn.active {
+  background: #e8f0fe;
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.popup-tab-pane { display: none; }
+.popup-tab-pane.active { display: block; }
+
+.sv-no-key {
+  padding: 20px 0;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  line-height: 1.7;
+}
+
+[data-theme="dark"] .popup-tab-btn {
+  border-color: #3a3a5a;
+  color: #aaa;
+}
+
+[data-theme="dark"] .popup-tab-btn:hover {
+  background: #2a2a4a;
+  border-color: #5a5a7a;
+  color: #ddd;
+}
+
+[data-theme="dark"] .popup-tab-btn.active {
+  background: #1a2a4a;
+  border-color: #4285f4;
+  color: #7baff4;
+}
+
+[data-theme="dark"] .sv-no-key {
+  color: #8888aa;
+}
+
 /* ── Export ───────────────────────────────────────── */
 
 .export-btn {
