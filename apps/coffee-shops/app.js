@@ -5,6 +5,19 @@ let currentPopup;
 let draw;
 let measuring = false;
 
+// --- Info panel toggle ---
+
+function toggleInfoPanel() {
+  document.getElementById("infoPanel").classList.toggle("open");
+}
+
+document.addEventListener("click", function (e) {
+  if (!e.target.closest(".info-btn-wrap")) {
+    const panel = document.getElementById("infoPanel");
+    if (panel) panel.classList.remove("open");
+  }
+});
+
 // --- 2D/3D view toggle ---
 
 let is3D = true;
