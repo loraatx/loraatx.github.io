@@ -18,6 +18,12 @@
         <h1 id="pageTitle"></h1>
       </div>
       <div class="toolbar">
+        <div class="info-btn-wrap">
+          <button class="toolbar-btn info-btn" onclick="toggleInfoPanel()" aria-label="About this map">ⓘ</button>
+          <div class="info-panel" id="infoPanel">
+            <p>This map showcases coffee shops, cafés, and tea houses across the Austin metro area. Each pin reflects a real location with available details such as health inspection scores, contact info, outdoor seating, and more. Use the filters below the map to narrow results, or click any marker or table row to explore a location in depth.</p>
+          </div>
+        </div>
         <button class="toolbar-btn" id="viewToggle" aria-label="Toggle 2D/3D view">2D</button>
         <button class="toolbar-btn" id="themeToggle" aria-label="Toggle dark mode"></button>
       </div>
