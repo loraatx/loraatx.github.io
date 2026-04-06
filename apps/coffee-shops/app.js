@@ -501,7 +501,7 @@ function showPopup(feature) {
       <a class="popup-nav-google" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener">Google</a>
       <a class="popup-nav-apple" href="https://maps.apple.com/?q=${lat},${lng}" target="_blank" rel="noopener">Apple</a>
       <a class="popup-nav-waze" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener">Waze</a>
-      <a class="popup-nav-reddit" href="https://www.reddit.com/search/?q=${encodeURIComponent(name)}" target="_blank" rel="noopener">Reddit</a>
+      <a class="popup-nav-reddit" href="https://www.reddit.com/search/?q=${encodeURIComponent(name + ' Austin')}" target="_blank" rel="noopener">Reddit</a>
     </div>`;
 
   // --- Street View tab ---
