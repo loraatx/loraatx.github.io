@@ -376,9 +376,9 @@ tbody tr:last-child td {
 }
 
 .info-btn {
-  width: 38px;
-  height: 38px;
-  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
   font-weight: 400;
 }
 
