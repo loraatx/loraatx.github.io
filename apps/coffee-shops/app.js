@@ -169,6 +169,12 @@ function initMeasure() {
 // --- Buildings toggle ---
 
 function initBuildingsToggle() {
+  // Collect all building-related layer ids from the style + our custom 3d layer
+  const buildingLayers = map.getStyle().layers
+    .filter(l => l.id.includes("building"))
+    .map(l => l.id)
+    .concat(["3d-buildings"]);
+
   map.addControl({
     onAdd() {
       this._container = document.createElement("div");
@@ -179,7 +185,10 @@ function initBuildingsToggle() {
       checkbox.type = "checkbox";
       checkbox.checked = true;
       checkbox.addEventListener("change", function () {
-        map.setLayoutProperty("3d-buildings", "visibility", this.checked ? "visible" : "none");
+        const vis = this.checked ? "visible" : "none";
+        buildingLayers.forEach(id => {
+          if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis);
+        });
       });
       var span = document.createElement("span");
       span.textContent = "Buildings";
