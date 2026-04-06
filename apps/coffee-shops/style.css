@@ -300,9 +300,10 @@ tbody tr:last-child td {
   opacity: 0.82;
 }
 
-.popup-nav-google { background: #4285F4; }
-.popup-nav-apple  { background: #2c2c2e; }
-.popup-nav-waze   { background: #33CCFF; color: #111 !important; }
+.popup-nav-google  { background: #4285F4; }
+.popup-nav-apple   { background: #2c2c2e; }
+.popup-nav-waze    { background: #33CCFF; color: #111 !important; }
+.popup-nav-reddit  { background: #FF4500; }
 
 /* ── Popup tabs ───────────────────────────────────── */
 
