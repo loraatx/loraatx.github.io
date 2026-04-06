@@ -166,6 +166,32 @@ function initMeasure() {
   document.getElementById("clearDrawBtn").addEventListener("click", clearMeasure);
 }
 
+// --- Buildings toggle ---
+
+function initBuildingsToggle() {
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      var lbl = document.createElement("label");
+      lbl.className = "overlay-ctrl-label";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.addEventListener("change", function () {
+        map.setLayoutProperty("3d-buildings", "visibility", this.checked ? "visible" : "none");
+      });
+      var span = document.createElement("span");
+      span.textContent = "Buildings";
+      lbl.appendChild(checkbox);
+      lbl.appendChild(span);
+      this._container.appendChild(lbl);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "bottom-left");
+}
+
 // --- USGS Topo overlay + elevation exaggeration ---
 
 function initTopoOverlay() {
@@ -458,6 +484,7 @@ async function init() {
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
     addPlacesLayers();
+    initBuildingsToggle();
     initTopoOverlay();
     initOverlay();
     buildFilters();
