@@ -215,12 +215,35 @@ function initTopoOverlay() {
       lbl.className = "overlay-ctrl-label";
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
+
+      function enableTerrain() {
+        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
+        map.setLayoutProperty("hillshade-layer", "visibility", "visible");
+        map.setTerrain({ source: "terrain-dem", exaggeration: 50 });
+        map.easeTo({ pitch: 65, duration: 800 });
+      }
+
       checkbox.addEventListener("change", function () {
-        const on = this.checked;
-        map.setLayoutProperty("usgs-topo-layer", "visibility", on ? "visible" : "none");
-        map.setLayoutProperty("hillshade-layer", "visibility", on ? "visible" : "none");
-        map.setTerrain(on ? { source: "terrain-dem", exaggeration: 20 } : null);
+        if (!this.checked) {
+          map.setLayoutProperty("usgs-topo-layer", "visibility", "none");
+          map.setLayoutProperty("hillshade-layer", "visibility", "none");
+          map.setTerrain(null);
+          return;
+        }
+        // Wait for the DEM source to have loaded tiles before setting terrain,
+        // otherwise setTerrain() can fire before any elevation data is ready.
+        if (map.isSourceLoaded("terrain-dem")) {
+          enableTerrain();
+        } else {
+          map.once("sourcedata", function onDemReady(e) {
+            if (e.sourceId === "terrain-dem" && map.isSourceLoaded("terrain-dem")) {
+              map.off("sourcedata", onDemReady);
+              enableTerrain();
+            }
+          });
+        }
       });
+
       var span = document.createElement("span");
       span.textContent = "Topo";
       lbl.appendChild(checkbox);
