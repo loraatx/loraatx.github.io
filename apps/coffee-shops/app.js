@@ -166,9 +166,10 @@ function initMeasure() {
   document.getElementById("clearDrawBtn").addEventListener("click", clearMeasure);
 }
 
-// --- USGS Topo overlay ---
+// --- USGS Topo overlay + elevation exaggeration ---
 
 function initTopoOverlay() {
+  // Topo raster
   map.addSource("usgs-topo", {
     type: "raster",
     tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
@@ -188,6 +189,21 @@ function initTopoOverlay() {
     paint: { "raster-opacity": 0.9 }
   }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
+  // Terrain DEM + hillshade (for elevation exaggeration)
+  map.addSource("terrain-dem", {
+    type: "raster-dem",
+    url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
+    tileSize: 256
+  });
+
+  map.addLayer({
+    id: "hillshade-layer",
+    type: "hillshade",
+    source: "terrain-dem",
+    layout: { visibility: "none" },
+    paint: { "hillshade-shadow-color": "#473B24" }
+  });
+
   map.addControl({
     onAdd() {
       this._container = document.createElement("div");
@@ -197,7 +213,10 @@ function initTopoOverlay() {
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.addEventListener("change", function () {
-        map.setLayoutProperty("usgs-topo-layer", "visibility", this.checked ? "visible" : "none");
+        const on = this.checked;
+        map.setLayoutProperty("usgs-topo-layer", "visibility", on ? "visible" : "none");
+        map.setLayoutProperty("hillshade-layer", "visibility", on ? "visible" : "none");
+        map.setTerrain(on ? { source: "terrain-dem", exaggeration: 8 } : null);
       });
       var span = document.createElement("span");
       span.textContent = "Topo";
