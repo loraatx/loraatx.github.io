@@ -219,7 +219,7 @@ function initTopoOverlay() {
       function enableTerrain() {
         map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
         map.setLayoutProperty("hillshade-layer", "visibility", "visible");
-        map.setTerrain({ source: "terrain-dem", exaggeration: 25 });
+        map.setTerrain({ source: "terrain-dem", exaggeration: 10 });
         map.easeTo({ pitch: 65, duration: 800 });
       }
 
