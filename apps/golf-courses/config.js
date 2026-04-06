@@ -4,7 +4,7 @@
 // ============================================================
 const CONFIG = {
   // ── Identity ──────────────────────────────────────────────
-  title:    "Austin Golf Courses",
+  title:    "Austin Golf Course",
   eyebrow:  "Austin Metro",
   subtitle: "20 courses",
 
