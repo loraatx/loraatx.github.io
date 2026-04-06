@@ -4,7 +4,7 @@
 // ============================================================
 const CONFIG = {
   // ── Identity ──────────────────────────────────────────────
-  title:    "Austin Golf Course",
+  title:    "Austin Golf Courses",
   eyebrow:  "Austin Metro",
   subtitle: "20 courses",
 
@@ -19,7 +19,7 @@ const CONFIG = {
   markerColor: "#e03424",
 
   // ── Geographic bounds lock ────────────────────────────────
-  maxBounds: null,
+  maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
 
   // ── Reddit search ─────────────────────────────────────────
   redditCity: "Austin",
