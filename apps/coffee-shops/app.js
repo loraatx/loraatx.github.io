@@ -190,10 +190,13 @@ function initTopoOverlay() {
   }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
   // Terrain DEM + hillshade (for elevation exaggeration)
+  // AWS Terrarium tiles — higher resolution than demo tiles, good coverage for Austin
   map.addSource("terrain-dem", {
     type: "raster-dem",
-    url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
-    tileSize: 256
+    tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+    tileSize: 256,
+    encoding: "terrarium",
+    maxzoom: 14
   });
 
   map.addLayer({
@@ -216,7 +219,7 @@ function initTopoOverlay() {
         const on = this.checked;
         map.setLayoutProperty("usgs-topo-layer", "visibility", on ? "visible" : "none");
         map.setLayoutProperty("hillshade-layer", "visibility", on ? "visible" : "none");
-        map.setTerrain(on ? { source: "terrain-dem", exaggeration: 8 } : null);
+        map.setTerrain(on ? { source: "terrain-dem", exaggeration: 20 } : null);
       });
       var span = document.createElement("span");
       span.textContent = "Topo";
