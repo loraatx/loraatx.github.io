@@ -73,6 +73,46 @@ function initSatellite() {
   }, "top-left");
 }
 
+// --- Spanish language toggle ---
+
+function initLanguageToggle() {
+  const textLayers = map.getStyle().layers
+    .filter(l => l.layout && l.layout["text-field"])
+    .map(l => l.id);
+
+  const originals = {};
+  textLayers.forEach(id => {
+    originals[id] = map.getLayoutProperty(id, "text-field");
+  });
+
+  let isSpanish = false;
+
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      this._btn = document.createElement("button");
+      this._btn.className = "satellite-btn";
+      this._btn.textContent = "Español";
+      this._btn.onclick = () => {
+        isSpanish = !isSpanish;
+        textLayers.forEach(id => {
+          if (!map.getLayer(id)) return;
+          if (isSpanish) {
+            map.setLayoutProperty(id, "text-field", ["coalesce", ["get", "name:es"], ["get", "name"]]);
+          } else {
+            map.setLayoutProperty(id, "text-field", originals[id]);
+          }
+        });
+        this._btn.classList.toggle("active", isSpanish);
+      };
+      this._container.appendChild(this._btn);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "top-left");
+}
+
 // --- Draw tools (terra-draw) ---
 
 function initDraw() {
@@ -489,6 +529,7 @@ async function init() {
     add3DBuildings();
     initViewToggle();
     initSatellite();
+    initLanguageToggle();
     initLayersPanel();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
