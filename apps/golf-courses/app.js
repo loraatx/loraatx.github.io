@@ -545,7 +545,6 @@ async function init() {
     initViewToggle();
     initSatellite();
     initLanguageToggle();
-    initLightingPresets();
     initLayersPanel();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
@@ -599,69 +598,16 @@ function add3DBuildings() {
 
 // --- Sky, Lighting & Atmosphere ---
 
-var lightingPresets = {
-  day: {
-    sky: { "sky-color": "#88C6FC", "horizon-color": "#f0e8d8", "fog-color": "#e8e0d8", "fog-ground-blend": 0.1, "horizon-fog-blend": 0.8, "sky-horizon-blend": 0.5 },
-    light: { anchor: "viewport", color: "#ffffff", intensity: 0.4, position: [1.5, 210, 30] },
-    buildingColor: "#d4d0cc"
-  },
-  dusk: {
-    sky: { "sky-color": "#5c3a6e", "horizon-color": "#e8a87c", "fog-color": "#c8907a", "fog-ground-blend": 0.15, "horizon-fog-blend": 0.7, "sky-horizon-blend": 0.4 },
-    light: { anchor: "viewport", color: "#ffd4a0", intensity: 0.3, position: [1.2, 250, 20] },
-    buildingColor: "#b8a898"
-  },
-  dawn: {
-    sky: { "sky-color": "#7ca8d4", "horizon-color": "#f0c8a0", "fog-color": "#d8c8b0", "fog-ground-blend": 0.12, "horizon-fog-blend": 0.75, "sky-horizon-blend": 0.45 },
-    light: { anchor: "viewport", color: "#ffe8c0", intensity: 0.35, position: [1.3, 150, 25] },
-    buildingColor: "#c4c0b8"
-  },
-  night: {
-    sky: { "sky-color": "#0a1628", "horizon-color": "#1a2840", "fog-color": "#101828", "fog-ground-blend": 0.2, "horizon-fog-blend": 0.6, "sky-horizon-blend": 0.3 },
-    light: { anchor: "viewport", color: "#4a6080", intensity: 0.15, position: [1.0, 210, 40] },
-    buildingColor: "#3a4050"
-  }
-};
-
-var currentPreset = "day";
-
-function applyLightingPreset(name) {
-  var p = lightingPresets[name];
-  if (!p) return;
-  currentPreset = name;
-  map.setSky(p.sky);
-  map.setLight(p.light);
-  if (map.getLayer("3d-buildings")) {
-    map.setPaintProperty("3d-buildings", "fill-extrusion-color", p.buildingColor);
-  }
-}
-
 function initSkyAndLighting() {
-  applyLightingPreset("day");
-}
-
-function initLightingPresets() {
-  var presetNames = ["day", "dusk", "dawn", "night"];
-  var idx = 0;
-
-  map.addControl({
-    onAdd() {
-      this._container = document.createElement("div");
-      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
-      this._btn = document.createElement("button");
-      this._btn.className = "satellite-btn";
-      this._btn.textContent = "Day";
-      this._btn.onclick = () => {
-        idx = (idx + 1) % presetNames.length;
-        var name = presetNames[idx];
-        applyLightingPreset(name);
-        this._btn.textContent = name.charAt(0).toUpperCase() + name.slice(1);
-        this._btn.classList.toggle("active", name !== "day");
-      };
-      this._container.appendChild(this._btn);
-      return this._container;
-    },
-    onRemove() { this._container.parentNode.removeChild(this._container); }
-  }, "top-left");
+  map.setSky({
+    "sky-color": "#88C6FC",
+    "horizon-color": "#f0e8d8",
+    "fog-color": "#e8e0d8",
+    "fog-ground-blend": 0.1,
+    "horizon-fog-blend": 0.8,
+    "sky-horizon-blend": 0.5
+  });
+  map.setLight({ anchor: "viewport", color: "#ffffff", intensity: 0.4, position: [1.5, 210, 30] });
 }
 
 // --- Color Refinement (Mapbox Standard palette) ---
