@@ -243,6 +243,51 @@ function initBuildingsToggle() {
 
 // --- USGS Topo overlay + elevation exaggeration ---
 
+// --- Always-on terrain + hillshade ---
+
+function initDefaultTerrain() {
+  // AWS Terrarium tiles — higher resolution, good coverage for Austin
+  map.addSource("terrain-dem", {
+    type: "raster-dem",
+    tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+    tileSize: 256,
+    encoding: "terrarium",
+    maxzoom: 14
+  });
+
+  map.addLayer({
+    id: "hillshade-layer",
+    type: "hillshade",
+    source: "terrain-dem",
+    layout: { visibility: "visible" },
+    paint: {
+      "hillshade-shadow-color": "#473B24",
+      "hillshade-highlight-color": "#ffffff",
+      "hillshade-accent-color": "#5a714c",
+      "hillshade-illumination-direction": 335,
+      "hillshade-exaggeration": 0.3
+    }
+  });
+
+  // Enable terrain with subtle exaggeration (always on)
+  function enableDefaultTerrain() {
+    map.setTerrain({ source: "terrain-dem", exaggeration: 1 });
+  }
+
+  if (map.isSourceLoaded("terrain-dem")) {
+    enableDefaultTerrain();
+  } else {
+    map.on("sourcedata", function onDemReady(e) {
+      if (e.sourceId === "terrain-dem" && map.isSourceLoaded("terrain-dem")) {
+        map.off("sourcedata", onDemReady);
+        enableDefaultTerrain();
+      }
+    });
+  }
+}
+
+// --- Topo overlay (USGS raster + exaggeration bump) ---
+
 function initTopoOverlay() {
   // Topo raster
   map.addSource("usgs-topo", {
@@ -264,24 +309,6 @@ function initTopoOverlay() {
     paint: { "raster-opacity": 0.9 }
   }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
-  // Terrain DEM + hillshade (for elevation exaggeration)
-  // AWS Terrarium tiles — higher resolution than demo tiles, good coverage for Austin
-  map.addSource("terrain-dem", {
-    type: "raster-dem",
-    tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
-    tileSize: 256,
-    encoding: "terrarium",
-    maxzoom: 14
-  });
-
-  map.addLayer({
-    id: "hillshade-layer",
-    type: "hillshade",
-    source: "terrain-dem",
-    layout: { visibility: "none" },
-    paint: { "hillshade-shadow-color": "#473B24" }
-  });
-
   map.addControl({
     onAdd() {
       this._container = document.createElement("div");
@@ -291,31 +318,16 @@ function initTopoOverlay() {
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
 
-      function enableTerrain() {
-        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
-        map.setLayoutProperty("hillshade-layer", "visibility", "visible");
-        map.setTerrain({ source: "terrain-dem", exaggeration: 2 });
-      }
-
       checkbox.addEventListener("change", function () {
         if (!this.checked) {
           map.setLayoutProperty("usgs-topo-layer", "visibility", "none");
-          map.setLayoutProperty("hillshade-layer", "visibility", "none");
-          map.setTerrain(null);
+          // Restore default terrain exaggeration
+          map.setTerrain({ source: "terrain-dem", exaggeration: 1 });
           return;
         }
-        // Wait for the DEM source to have loaded tiles before setting terrain,
-        // otherwise setTerrain() can fire before any elevation data is ready.
-        if (map.isSourceLoaded("terrain-dem")) {
-          enableTerrain();
-        } else {
-          map.once("sourcedata", function onDemReady(e) {
-            if (e.sourceId === "terrain-dem" && map.isSourceLoaded("terrain-dem")) {
-              map.off("sourcedata", onDemReady);
-              enableTerrain();
-            }
-          });
-        }
+        // Show topo raster and bump exaggeration
+        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
+        map.setTerrain({ source: "terrain-dem", exaggeration: 2 });
       });
 
       var span = document.createElement("span");
@@ -527,9 +539,13 @@ async function init() {
 
   map.on("load", () => {
     add3DBuildings();
+    initSkyAndLighting();
+    applyStandardColors();
+    initDefaultTerrain();
     initViewToggle();
     initSatellite();
     initLanguageToggle();
+    initLightingPresets();
     initLayersPanel();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
@@ -563,7 +579,7 @@ function add3DBuildings() {
       type: "fill-extrusion",
       minzoom: 13,
       paint: {
-        "fill-extrusion-color": "#c8cdd4",
+        "fill-extrusion-color": "#d4d0cc",
         "fill-extrusion-height": [
           "interpolate", ["linear"], ["zoom"],
           13, 0,
@@ -574,11 +590,110 @@ function add3DBuildings() {
           13, 0,
           15, ["coalesce", ["get", "render_min_height"], 0]
         ],
-        "fill-extrusion-opacity": 0.65
+        "fill-extrusion-opacity": 0.8
       }
     },
     labelLayerId
   );
+}
+
+// --- Sky, Lighting & Atmosphere ---
+
+var lightingPresets = {
+  day: {
+    sky: { "sky-color": "#88C6FC", "horizon-color": "#f0e8d8", "fog-color": "#e8e0d8", "fog-ground-blend": 0.1, "horizon-fog-blend": 0.8, "sky-horizon-blend": 0.5 },
+    light: { anchor: "viewport", color: "#ffffff", intensity: 0.4, position: [1.5, 210, 30] },
+    buildingColor: "#d4d0cc"
+  },
+  dusk: {
+    sky: { "sky-color": "#5c3a6e", "horizon-color": "#e8a87c", "fog-color": "#c8907a", "fog-ground-blend": 0.15, "horizon-fog-blend": 0.7, "sky-horizon-blend": 0.4 },
+    light: { anchor: "viewport", color: "#ffd4a0", intensity: 0.3, position: [1.2, 250, 20] },
+    buildingColor: "#b8a898"
+  },
+  dawn: {
+    sky: { "sky-color": "#7ca8d4", "horizon-color": "#f0c8a0", "fog-color": "#d8c8b0", "fog-ground-blend": 0.12, "horizon-fog-blend": 0.75, "sky-horizon-blend": 0.45 },
+    light: { anchor: "viewport", color: "#ffe8c0", intensity: 0.35, position: [1.3, 150, 25] },
+    buildingColor: "#c4c0b8"
+  },
+  night: {
+    sky: { "sky-color": "#0a1628", "horizon-color": "#1a2840", "fog-color": "#101828", "fog-ground-blend": 0.2, "horizon-fog-blend": 0.6, "sky-horizon-blend": 0.3 },
+    light: { anchor: "viewport", color: "#4a6080", intensity: 0.15, position: [1.0, 210, 40] },
+    buildingColor: "#3a4050"
+  }
+};
+
+var currentPreset = "day";
+
+function applyLightingPreset(name) {
+  var p = lightingPresets[name];
+  if (!p) return;
+  currentPreset = name;
+  map.setSky(p.sky);
+  map.setLight(p.light);
+  if (map.getLayer("3d-buildings")) {
+    map.setPaintProperty("3d-buildings", "fill-extrusion-color", p.buildingColor);
+  }
+}
+
+function initSkyAndLighting() {
+  applyLightingPreset("day");
+}
+
+function initLightingPresets() {
+  var presetNames = ["day", "dusk", "dawn", "night"];
+  var idx = 0;
+
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      this._btn = document.createElement("button");
+      this._btn.className = "satellite-btn";
+      this._btn.textContent = "Day";
+      this._btn.onclick = () => {
+        idx = (idx + 1) % presetNames.length;
+        var name = presetNames[idx];
+        applyLightingPreset(name);
+        this._btn.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+        this._btn.classList.toggle("active", name !== "day");
+      };
+      this._container.appendChild(this._btn);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "top-left");
+}
+
+// --- Color Refinement (Mapbox Standard palette) ---
+
+function applyStandardColors() {
+  // Background — cooler gray-cream
+  if (map.getLayer("background")) map.setPaintProperty("background", "background-color", "#f1f0ec");
+
+  // Water — softer blue
+  if (map.getLayer("water")) map.setPaintProperty("water", "fill-color", "#a4c2f4");
+
+  // Parks — softer green
+  if (map.getLayer("park")) map.setPaintProperty("park", "fill-color", "#c8e6c0");
+
+  // Buildings 2D — cooler gray
+  if (map.getLayer("building")) map.setPaintProperty("building", "fill-color", "#e0ddd8");
+
+  // Roads — muted palette (iterate relevant road layers)
+  var roadFills = map.getStyle().layers.filter(function(l) {
+    return l.type === "line" && /^(road|highway)/.test(l.id) && !/_casing/.test(l.id) && !/bridge/.test(l.id) && !/tunnel/.test(l.id);
+  });
+  roadFills.forEach(function(l) {
+    try { map.setPaintProperty(l.id, "line-color", "#f0e8d0"); } catch(e) {}
+  });
+
+  // Road casings — subtle gray
+  var roadCasings = map.getStyle().layers.filter(function(l) {
+    return l.type === "line" && /_casing/.test(l.id);
+  });
+  roadCasings.forEach(function(l) {
+    try { map.setPaintProperty(l.id, "line-color", "#d8d0c4"); } catch(e) {}
+  });
 }
 
 // --- Places source + marker layers ---
