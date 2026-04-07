@@ -642,22 +642,14 @@ function showPopup(feature) {
       <a class="popup-nav-reddit" href="https://www.reddit.com/search/?q=${encodeURIComponent(name + (CONFIG.redditCity ? ' ' + CONFIG.redditCity : ''))}" target="_blank" rel="noopener">Reddit</a>
     </div>`;
 
-  // --- Street View tab ---
-  const svContent = CONFIG.googleMapsApiKey
-    ? `<iframe class="sv-iframe"
-         data-src="https://www.google.com/maps/embed/v1/streetview?key=${CONFIG.googleMapsApiKey}&location=${lat},${lng}&heading=0&pitch=0&fov=90"
-         frameborder="0" allowfullscreen
-         style="width:100%;height:220px;border:0;display:block;"></iframe>`
-    : `<div class="sv-no-key">
-         Street View requires an API key.<br>
-         <a href="https://www.google.com/maps/@${lat},${lng},3a,90y/data=!3m4!1e1" target="_blank" rel="noopener">Open in Google Maps ↗</a>
-       </div>`;
+  // --- Course App tab ---
+  const svContent = ``;
 
   const html = `
     <div class="popup-title">${name}</div>
     <div class="popup-tab-bar">
       <button class="popup-tab-btn active" onclick="switchPopupTab(this,'popup-pane-info')">Info</button>
-      <button class="popup-tab-btn" onclick="switchPopupTab(this,'popup-pane-sv')">Street View</button>
+      <button class="popup-tab-btn" onclick="switchPopupTab(this,'popup-pane-sv')">Course App</button>
     </div>
     <div id="popup-pane-info" class="popup-tab-pane active">
       ${rows}${navHtml}
