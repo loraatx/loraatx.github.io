@@ -16,7 +16,7 @@ const CONFIG = {
   zoom:        10,
   pitch:       45,
   bearing:     -15,
-  markerColor: "#e03424",
+  markerColor: "#2d7a1a",
 
   // ── Geographic bounds lock ────────────────────────────────
   maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
