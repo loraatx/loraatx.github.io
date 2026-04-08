@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scaled Template</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page">
+
+    <header class="page-header">
+      <div class="header-left">
+        <div class="eyebrow" id="pageEyebrow"></div>
+        <h1 id="pageTitle"></h1>
+      </div>
+      <div class="toolbar">
+        <div class="info-btn-wrap">
+          <button class="toolbar-btn info-btn" onclick="toggleInfoPanel()" aria-label="About this map">ⓘ</button>
+          <div class="info-panel" id="infoPanel">
+            <p id="infoPanelText"></p>
+          </div>
+        </div>
+        <button class="toolbar-btn" id="viewToggle" aria-label="Toggle 2D/3D view">2D</button>
+        <button class="toolbar-btn" id="themeToggle" aria-label="Toggle dark mode"></button>
+      </div>
+    </header>
+
+    <section class="map-card">
+      <div id="map"></div>
+    </section>
+
+    <section class="draw-bar">
+      <button class="draw-tb-btn" data-draw-mode="linestring">Draw</button>
+      <button class="draw-tb-btn" id="clearDrawBtn">Clear</button>
+      <button class="draw-tb-btn" id="measureBtn">Measure</button>
+      <button class="draw-tb-btn" id="exportMapBtn" onclick="exportMap()">Map PNG</button>
+      <button class="draw-tb-btn" onclick="openReportModal()">Report</button>
+    </section>
+
+    <div id="reportModal" class="report-modal-overlay">
+      <div class="report-modal">
+        <h3 class="report-modal-title">Select up to 3 fields for report</h3>
+        <div id="reportFieldList" class="report-field-list"></div>
+        <div class="report-modal-actions">
+          <button class="draw-tb-btn" id="reportCancelBtn">Cancel</button>
+          <button class="draw-tb-btn active" id="reportGenerateBtn" disabled>Generate</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="table-section">
+      <div class="table-header">
+        <h2>Locations</h2>
+        <div class="table-header-right">
+          <div id="resultCount">0 results</div>
+          <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="table-wrap">
+        <table>
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div class="social-icons" id="socialIcons"></div>
+    </footer>
+
+  </div>
+
+  <script src="https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/terra-draw/dist/terra-draw.umd.js"></script>
+  <script src="https://unpkg.com/terra-draw-maplibre-gl-adapter/dist/terra-draw-maplibre-gl-adapter.umd.js"></script>
+<script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
