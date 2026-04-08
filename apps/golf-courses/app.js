@@ -674,75 +674,62 @@ function applyStandardColors() {
   });
 }
 
-// --- Vegetation (tree pattern + billboard icons) ---
+// --- Vegetation (tree billboard icons) ---
 
 function initVegetation() {
-  const layers = map.getStyle().layers;
-  let labelLayerId;
-  for (const layer of layers) {
-    if (layer.type === "symbol" && layer.layout && layer.layout["text-field"]) {
-      labelLayerId = layer.id;
-      break;
-    }
-  }
-
-  // Create a small repeating dot pattern to suggest foliage on green areas
-  const size = 32;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#6ea85a";
-  ctx.globalAlpha = 0.4;
-  ctx.beginPath();
-  ctx.arc(7, 7, 2.5, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(22, 13, 3, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(13, 25, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  map.addImage("tree-dot-pattern", {
-    width: size, height: size,
-    data: new Uint8Array(ctx.getImageData(0, 0, size, size).data.buffer)
-  });
-
-  // Subtle dot pattern over parks, wood, and grass landcover polygons
-  map.addLayer({
-    id: "vegetation-pattern",
-    type: "fill",
-    source: "openmaptiles",
-    "source-layer": "landcover",
-    filter: ["in", ["get", "class"], ["literal", ["grass", "wood", "forest"]]],
-    minzoom: 12,
-    paint: {
-      "fill-pattern": "tree-dot-pattern",
-      "fill-opacity": ["interpolate", ["linear"], ["zoom"], 12, 0, 13.5, 0.7]
-    }
-  }, labelLayerId);
-
-  // Tree billboard icons at parks/gardens from the POI layer
+  const treeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32"><path d="M12 2 L4 14 H8.5 L3.5 24 H10.5 V30 H13.5 V24 H20.5 L15.5 14 H20 Z" fill="#5a8a48" opacity="0.75"/></svg>`;
   const treeImg = new Image(24, 32);
   treeImg.onload = function() {
     if (!map.hasImage("tree-icon")) map.addImage("tree-icon", treeImg);
+
+    // Layer 1: park/garden POI points (specific locations already in tile data)
     map.addLayer({
-      id: "park-trees",
+      id: "trees-poi",
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "poi",
       filter: ["in", ["get", "class"], ["literal", ["park", "garden"]]],
-      minzoom: 14,
+      minzoom: 13,
       layout: {
         "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 14, 0.35, 18, 0.9],
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.3, 18, 0.9],
+        "icon-allow-overlap": false,
+        "symbol-z-order": "viewport-y"
+      }
+    });
+
+    // Layer 2: landuse park/wood polygons (centroid per polygon — covers large parks near river)
+    map.addLayer({
+      id: "trees-landuse",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "landuse",
+      filter: ["in", ["get", "class"], ["literal", ["park", "wood", "grass"]]],
+      minzoom: 12,
+      layout: {
+        "icon-image": "tree-icon",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 12, 0.25, 17, 0.75],
+        "icon-allow-overlap": false,
+        "symbol-z-order": "viewport-y"
+      }
+    });
+
+    // Layer 3: landcover wood/forest/grass polygons (fills in denser tree coverage)
+    map.addLayer({
+      id: "trees-landcover",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "landcover",
+      filter: ["in", ["get", "class"], ["literal", ["wood", "forest", "grass"]]],
+      minzoom: 12,
+      layout: {
+        "icon-image": "tree-icon",
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 12, 0.2, 17, 0.65],
         "icon-allow-overlap": false,
         "symbol-z-order": "viewport-y"
       }
     });
   };
-  const treeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32"><path d="M12 2 L4 14 H8.5 L3.5 24 H10.5 V30 H13.5 V24 H20.5 L15.5 14 H20 Z" fill="#5a8a48" opacity="0.75"/></svg>`;
   treeImg.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treeSvg);
 }
 
