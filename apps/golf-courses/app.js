@@ -361,16 +361,21 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
     colorExpr = matchExpr;
   }
 
+  var firstLabelLayer = map.getStyle().layers.find(
+    function(l) { return l.type === "symbol" && l.layout && l.layout["text-field"]; }
+  );
+  var beforeLayer = firstLabelLayer ? firstLabelLayer.id : undefined;
+
   try {
     map.addSource(sourceId, { type: "geojson", data: data });
     map.addLayer({ id: sourceId + "-fill", type: "fill", source: sourceId,
       layout: { visibility: "none" },
       paint: { "fill-color": colorExpr, "fill-opacity": 0.2 }
-    }, "places-shadow");
+    }, beforeLayer);
     map.addLayer({ id: sourceId + "-line", type: "line", source: sourceId,
       layout: { visibility: "none" },
       paint: { "line-color": colorExpr, "line-width": 1.5 }
-    }, "places-shadow");
+    }, beforeLayer);
     if (colorProperty) {
       map.addLayer({ id: sourceId + "-labels", type: "symbol", source: sourceId,
         layout: {
@@ -381,7 +386,7 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
           "text-max-width": 8
         },
         paint: { "text-color": "#222", "text-halo-color": "#fff", "text-halo-width": 1.5 }
-      }, "places-shadow");
+      }, beforeLayer);
     }
   } catch (e) {
     console.error("Overlay layer error:", sourceId, e); return;
