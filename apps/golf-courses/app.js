@@ -502,7 +502,6 @@ async function init() {
     initSkyAndLighting();
     applyStandardColors();
     initDefaultTerrain();
-    initVegetation();
     initViewToggle();
     initSatellite();
     initLayersPanel();
@@ -631,65 +630,6 @@ function applyStandardColors() {
       } catch(e) {}
     }
   });
-}
-
-// --- Vegetation (tree billboard icons) ---
-
-function initVegetation() {
-  const treeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32"><path d="M12 2 L4 14 H8.5 L3.5 24 H10.5 V30 H13.5 V24 H20.5 L15.5 14 H20 Z" fill="#5a8a48" opacity="0.75"/></svg>`;
-  const treeImg = new Image(24, 32);
-  treeImg.onload = function() {
-    if (!map.hasImage("tree-icon")) map.addImage("tree-icon", treeImg);
-
-    // Layer 1: park/garden POI points (specific locations already in tile data)
-    map.addLayer({
-      id: "trees-poi",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "poi",
-      filter: ["in", ["get", "class"], ["literal", ["park", "garden"]]],
-      minzoom: 14,
-      layout: {
-        "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 14, 0.3, 18, 0.9],
-        "icon-allow-overlap": false,
-        "symbol-z-order": "viewport-y"
-      }
-    });
-
-    // Layer 2: landuse park/wood polygons (centroid per polygon — covers large parks near river)
-    map.addLayer({
-      id: "trees-landuse",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "landuse",
-      filter: ["in", ["get", "class"], ["literal", ["park", "wood", "grass"]]],
-      minzoom: 13,
-      layout: {
-        "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.25, 17, 0.75],
-        "icon-allow-overlap": false,
-        "symbol-z-order": "viewport-y"
-      }
-    });
-
-    // Layer 3: landcover wood/forest/grass polygons (fills in denser tree coverage)
-    map.addLayer({
-      id: "trees-landcover",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "landcover",
-      filter: ["in", ["get", "class"], ["literal", ["wood", "forest", "grass"]]],
-      minzoom: 13,
-      layout: {
-        "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.2, 17, 0.65],
-        "icon-allow-overlap": false,
-        "symbol-z-order": "viewport-y"
-      }
-    });
-  };
-  treeImg.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treeSvg);
 }
 
 // --- Places source + marker layers ---
