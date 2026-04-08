@@ -73,46 +73,6 @@ function initSatellite() {
   }, "top-left");
 }
 
-// --- Spanish language toggle ---
-
-function initLanguageToggle() {
-  const textLayers = map.getStyle().layers
-    .filter(l => l.layout && l.layout["text-field"])
-    .map(l => l.id);
-
-  const originals = {};
-  textLayers.forEach(id => {
-    originals[id] = map.getLayoutProperty(id, "text-field");
-  });
-
-  let isSpanish = false;
-
-  map.addControl({
-    onAdd() {
-      this._container = document.createElement("div");
-      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
-      this._btn = document.createElement("button");
-      this._btn.className = "satellite-btn";
-      this._btn.textContent = "Español";
-      this._btn.onclick = () => {
-        isSpanish = !isSpanish;
-        textLayers.forEach(id => {
-          if (!map.getLayer(id)) return;
-          if (isSpanish) {
-            map.setLayoutProperty(id, "text-field", ["coalesce", ["get", "name:es"], ["get", "name"]]);
-          } else {
-            map.setLayoutProperty(id, "text-field", originals[id]);
-          }
-        });
-        this._btn.classList.toggle("active", isSpanish);
-      };
-      this._container.appendChild(this._btn);
-      return this._container;
-    },
-    onRemove() { this._container.parentNode.removeChild(this._container); }
-  }, "top-left");
-}
-
 // --- Draw tools (terra-draw) ---
 
 function initDraw() {
@@ -545,7 +505,6 @@ async function init() {
     initVegetation();
     initViewToggle();
     initSatellite();
-    initLanguageToggle();
     initLayersPanel();
     try { initDraw(); } catch (e) { console.error("Draw init failed:", e); }
     initMeasure();
@@ -689,10 +648,10 @@ function initVegetation() {
       source: "openmaptiles",
       "source-layer": "poi",
       filter: ["in", ["get", "class"], ["literal", ["park", "garden"]]],
-      minzoom: 13,
+      minzoom: 14,
       layout: {
         "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.3, 18, 0.9],
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 14, 0.3, 18, 0.9],
         "icon-allow-overlap": false,
         "symbol-z-order": "viewport-y"
       }
@@ -705,10 +664,10 @@ function initVegetation() {
       source: "openmaptiles",
       "source-layer": "landuse",
       filter: ["in", ["get", "class"], ["literal", ["park", "wood", "grass"]]],
-      minzoom: 12,
+      minzoom: 13,
       layout: {
         "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 12, 0.25, 17, 0.75],
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.25, 17, 0.75],
         "icon-allow-overlap": false,
         "symbol-z-order": "viewport-y"
       }
@@ -721,10 +680,10 @@ function initVegetation() {
       source: "openmaptiles",
       "source-layer": "landcover",
       filter: ["in", ["get", "class"], ["literal", ["wood", "forest", "grass"]]],
-      minzoom: 12,
+      minzoom: 13,
       layout: {
         "icon-image": "tree-icon",
-        "icon-size": ["interpolate", ["linear"], ["zoom"], 12, 0.2, 17, 0.65],
+        "icon-size": ["interpolate", ["linear"], ["zoom"], 13, 0.2, 17, 0.65],
         "icon-allow-overlap": false,
         "symbol-z-order": "viewport-y"
       }
