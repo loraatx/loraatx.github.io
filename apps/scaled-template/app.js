@@ -201,6 +201,56 @@ function initBuildingsToggle() {
   }, "bottom-left");
 }
 
+// --- Proposed Buildings (305 South Congress / Statesman site) ---
+
+function initProposedBuildings() {
+  map.addSource("proposed-buildings", {
+    type: "geojson",
+    data: "./proposed-buildings.geojson"
+  });
+
+  map.addLayer({
+    id: "proposed-buildings-layer",
+    type: "fill-extrusion",
+    source: "proposed-buildings",
+    paint: {
+      "fill-extrusion-color":   ["get", "color"],
+      "fill-extrusion-height":  ["get", "height"],
+      "fill-extrusion-base":    ["get", "base_height"],
+      "fill-extrusion-opacity": 0.75,
+      "fill-extrusion-vertical-gradient": true
+    }
+  });
+}
+
+function initProposedBuildingsToggle() {
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      var lbl = document.createElement("label");
+      lbl.className = "overlay-ctrl-label";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.addEventListener("change", function () {
+        map.setLayoutProperty(
+          "proposed-buildings-layer",
+          "visibility",
+          this.checked ? "visible" : "none"
+        );
+      });
+      var span = document.createElement("span");
+      span.textContent = "Proposed";
+      lbl.appendChild(checkbox);
+      lbl.appendChild(span);
+      this._container.appendChild(lbl);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "bottom-left");
+}
+
 // --- USGS Topo overlay + elevation exaggeration ---
 
 // --- Always-on terrain + hillshade ---
@@ -514,6 +564,8 @@ async function init() {
     initMeasure();
     addPlacesLayers();
     initBuildingsToggle();
+    initProposedBuildings();
+    initProposedBuildingsToggle();
     initTopoOverlay();
     initOverlay();
     buildFilters();
