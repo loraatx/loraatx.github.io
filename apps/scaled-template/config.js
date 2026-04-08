@@ -11,14 +11,14 @@ const CONFIG = {
   infoPanelText: "",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:      [-97.750, 30.258],
-  zoom:        14,
+  center:      [-97.743, 30.256],
+  zoom:        16,
   pitch:       45,
   bearing:     -15,
   markerColor: "#2d7a1a",
 
   // Constrained to downtown Austin / both sides of Lady Bird Lake
-  maxBounds: [[-97.800, 30.220], [-97.700, 30.295]],
+  maxBounds: [[-97.753, 30.248], [-97.733, 30.264]],
 
   // ── Geographic bounds lock ────────────────────────────────
 
