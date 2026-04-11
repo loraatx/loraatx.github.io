@@ -1,6 +1,6 @@
 # Siteplan Deployment Spec
 
-> **Template:** `apps/siteplan/` -- Parcel-scale map (zoom 14-18, tight site bounds)
+> **Template:** `apps/templates/siteplan/` -- Parcel-scale map (zoom 14-18, tight site bounds)
 > **Deploys to:** `apps/siteplan/<folder_name>/`
 > **To deploy:** Fill out every field below, provide `data.geojson`, and give this file to Claude.
 > Optionally provide `proposed-buildings.geojson` for 3D proposed development visualization.

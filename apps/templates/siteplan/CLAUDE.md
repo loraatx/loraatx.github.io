@@ -1,13 +1,13 @@
-# Citywide Template — Deployment Instructions
+# Siteplan Template — Deployment Instructions
 
 ## What to do
-1. Copy `apps/citywide/` to `apps/citywide/<folder_name>/`
-2. In the new folder, edit **only** `config.js`, `index.html` `<title>`, and `data.geojson`
-3. **Do NOT modify** `app.js` or `style.css`
+1. Copy `apps/templates/siteplan/` to `apps/siteplan/<folder_name>/`
+2. In the new folder, edit **only** `config.js`, `index.html` `<title>`, `data.geojson`, and optionally `proposed-buildings.geojson`
+3. **Do NOT modify** `app.js`, `style.css`, or `index.html` beyond the `<title>` tag
 
 ## Step 1: Copy
 ```
-cp -r apps/citywide/ apps/citywide/<folder_name>/
+cp -r apps/templates/siteplan/ apps/siteplan/<folder_name>/
 ```
 
 ## Step 2: config.js
@@ -35,7 +35,7 @@ Map every spec field to its config key. Coordinates are always `[lng, lat]`.
 | UI flags (Yes/No) | `features: { drawTools, measure, exportPNG, exportCSV, reportPDF, streetView, satellite, topo, darkMode, geolocation }` | true/false |
 | social links | `socialLinks: [{ platform, url }]` | empty string hides icon |
 
-**IMPORTANT:** Overlay file paths in deployments must use `../../shared/` (two levels up) since the deployment is at `apps/citywide/<name>/`.
+Overlay paths: `../../shared/` resolves correctly from both the template and any deployment folder.
 
 ## Step 3: index.html
 Change only `<title>` to match the spec title.
@@ -43,21 +43,29 @@ Change only `<title>` to match the spec title.
 ## Step 4: data.geojson
 Replace with provided GeoJSON. Must be `FeatureCollection` with `Point` features, coords `[lng, lat]`.
 
-## Step 5: Verify
+## Step 5: proposed-buildings.geojson (optional)
+If the spec includes a proposed buildings file, replace `proposed-buildings.geojson`.
+Each feature needs properties: `color` (hex), `height` (meters), `base_height` (meters).
+If no proposed buildings data is provided, the existing placeholder file is fine.
+
+## Step 6: Verify
 - Config values match spec; no placeholders left
 - Property names in filters/columns/popups match GeoJSON keys
 - Bounds are `[lng, lat]` not `[lat, lng]`
-- Overlay paths use `../../shared/` (not `../shared/`)
 - `app.js` and `style.css` unchanged
 
-## Step 6: Commit & Push
+## Step 7: Commit & Push
 ```
-git add apps/citywide/<folder_name>/
-git commit -m "Deploy <title> map app"
-git push -u origin <branch>
+git add apps/siteplan/<folder_name>/
+git commit -m "Deploy <title> siteplan app"
+git push -u origin main
 ```
 
-Live at `anatomy.city/apps/citywide/<folder_name>/`
+Live at `anatomy.city/apps/siteplan/<folder_name>/`
+
+## Siteplan-specific features (beyond citywide)
+- **Proposed Buildings**: 3D fill-extrusion layer from `proposed-buildings.geojson` with toggle
+- **Contour Lines**: Vector contour lines + elevation labels (feet), toggled with Topo checkbox
 
 ## Data notes
 - Instagram handles: store without `@` (app auto-links)

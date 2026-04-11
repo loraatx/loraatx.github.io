@@ -1,6 +1,6 @@
 # Citywide Deployment Spec
 
-> **Template:** `apps/citywide/` -- Metro-scale map (zoom 9-12, city/region bounds)
+> **Template:** `apps/templates/citywide/` -- Metro-scale map (zoom 9-12, city/region bounds)
 > **Deploys to:** `apps/citywide/<folder_name>/`
 > **To deploy:** Fill out every field below, provide `data.geojson`, and give this file to Claude.
 
