@@ -4,6 +4,7 @@ let filteredFeatures = [];
 let currentPopup;
 let draw;
 let measuring = false;
+let contourDemSource;
 
 // --- Info panel toggle ---
 
@@ -203,29 +204,10 @@ function initBuildingsToggle() {
 
 // --- USGS Topo overlay + elevation exaggeration ---
 
-function initTopoOverlay() {
-  // Topo raster
-  map.addSource("usgs-topo", {
-    type: "raster",
-    tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
-    tileSize: 256,
-    attribution: "USGS National Map"
-  });
+// --- Always-on terrain + hillshade ---
 
-  const firstLabelLayer = map.getStyle().layers.find(
-    l => l.type === "symbol" && l.layout && l.layout["text-field"]
-  );
-
-  map.addLayer({
-    id: "usgs-topo-layer",
-    type: "raster",
-    source: "usgs-topo",
-    layout: { visibility: "none" },
-    paint: { "raster-opacity": 0.9 }
-  }, firstLabelLayer ? firstLabelLayer.id : undefined);
-
-  // Terrain DEM + hillshade (for elevation exaggeration)
-  // AWS Terrarium tiles — higher resolution than demo tiles, good coverage for Austin
+function initDefaultTerrain() {
+  // AWS Terrarium tiles — higher resolution, good coverage for Austin
   map.addSource("terrain-dem", {
     type: "raster-dem",
     tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
@@ -238,8 +220,88 @@ function initTopoOverlay() {
     id: "hillshade-layer",
     type: "hillshade",
     source: "terrain-dem",
+    layout: { visibility: "visible" },
+    paint: {
+      "hillshade-shadow-color": "#473B24",
+      "hillshade-highlight-color": "#ffffff",
+      "hillshade-accent-color": "#5a714c",
+      "hillshade-illumination-direction": 335,
+      "hillshade-exaggeration": 0.3
+    }
+  });
+
+  // Enable terrain with subtle exaggeration (always on)
+  function enableDefaultTerrain() {
+    map.setTerrain({ source: "terrain-dem", exaggeration: 1 });
+  }
+
+  if (map.isSourceLoaded("terrain-dem")) {
+    enableDefaultTerrain();
+  } else {
+    map.on("sourcedata", function onDemReady(e) {
+      if (e.sourceId === "terrain-dem" && map.isSourceLoaded("terrain-dem")) {
+        map.off("sourcedata", onDemReady);
+        enableDefaultTerrain();
+      }
+    });
+  }
+}
+
+// --- Topo overlay (contour lines + terrain exaggeration) ---
+
+function initTopoOverlay() {
+  if (!contourDemSource) return;
+
+  map.addSource("contour-source", {
+    type: "vector",
+    tiles: [contourDemSource.contourProtocolUrl({
+      multiplier: 3.28084,
+      overzoom: 1,
+      thresholds: {
+        11: [200, 1000],
+        12: [100, 500],
+        13: [100, 500],
+        14: [50, 200],
+        15: [20, 100]
+      },
+      elevationKey: "ele",
+      levelKey: "level",
+      contourLayer: "contours"
+    })],
+    maxzoom: 15
+  });
+
+  map.addLayer({
+    id: "contour-lines",
+    type: "line",
+    source: "contour-source",
+    "source-layer": "contours",
     layout: { visibility: "none" },
-    paint: { "hillshade-shadow-color": "#473B24" }
+    paint: {
+      "line-color": "#5a3a1a",
+      "line-opacity": 0.7,
+      "line-width": ["match", ["get", "level"], 1, 2, 0.8]
+    }
+  });
+
+  map.addLayer({
+    id: "contour-labels",
+    type: "symbol",
+    source: "contour-source",
+    "source-layer": "contours",
+    filter: [">", ["get", "level"], 0],
+    layout: {
+      visibility: "none",
+      "symbol-placement": "line",
+      "text-size": 12,
+      "text-field": ["concat", ["number-format", ["get", "ele"], {}], "'"],
+      "text-font": ["Noto Sans Regular"]
+    },
+    paint: {
+      "text-color": "#5a3a1a",
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.5
+    }
   });
 
   map.addControl({
@@ -251,31 +313,11 @@ function initTopoOverlay() {
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
 
-      function enableTerrain() {
-        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
-        map.setLayoutProperty("hillshade-layer", "visibility", "visible");
-        map.setTerrain({ source: "terrain-dem", exaggeration: 2 });
-      }
-
       checkbox.addEventListener("change", function () {
-        if (!this.checked) {
-          map.setLayoutProperty("usgs-topo-layer", "visibility", "none");
-          map.setLayoutProperty("hillshade-layer", "visibility", "none");
-          map.setTerrain(null);
-          return;
-        }
-        // Wait for the DEM source to have loaded tiles before setting terrain,
-        // otherwise setTerrain() can fire before any elevation data is ready.
-        if (map.isSourceLoaded("terrain-dem")) {
-          enableTerrain();
-        } else {
-          map.once("sourcedata", function onDemReady(e) {
-            if (e.sourceId === "terrain-dem" && map.isSourceLoaded("terrain-dem")) {
-              map.off("sourcedata", onDemReady);
-              enableTerrain();
-            }
-          });
-        }
+        var vis = this.checked ? "visible" : "none";
+        if (map.getLayer("contour-lines")) map.setLayoutProperty("contour-lines", "visibility", vis);
+        if (map.getLayer("contour-labels")) map.setLayoutProperty("contour-labels", "visibility", vis);
+        map.setTerrain({ source: "terrain-dem", exaggeration: this.checked ? 2 : 1 });
       });
 
       var span = document.createElement("span");
@@ -349,16 +391,21 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
     colorExpr = matchExpr;
   }
 
+  var firstLabelLayer = map.getStyle().layers.find(
+    function(l) { return l.type === "symbol" && l.layout && l.layout["text-field"]; }
+  );
+  var beforeLayer = firstLabelLayer ? firstLabelLayer.id : undefined;
+
   try {
     map.addSource(sourceId, { type: "geojson", data: data });
     map.addLayer({ id: sourceId + "-fill", type: "fill", source: sourceId,
       layout: { visibility: "none" },
       paint: { "fill-color": colorExpr, "fill-opacity": 0.2 }
-    }, "places-shadow");
+    }, beforeLayer);
     map.addLayer({ id: sourceId + "-line", type: "line", source: sourceId,
       layout: { visibility: "none" },
       paint: { "line-color": colorExpr, "line-width": 1.5 }
-    }, "places-shadow");
+    }, beforeLayer);
     if (colorProperty) {
       map.addLayer({ id: sourceId + "-labels", type: "symbol", source: sourceId,
         layout: {
@@ -369,7 +416,7 @@ async function addOverlayControl(geojsonPath, sourceId, label, colorProperty) {
           "text-max-width": 8
         },
         paint: { "text-color": "#222", "text-halo-color": "#fff", "text-halo-width": 1.5 }
-      }, "places-shadow");
+      }, beforeLayer);
     }
   } catch (e) {
     console.error("Overlay layer error:", sourceId, e); return;
@@ -460,6 +507,17 @@ async function init() {
     });
   }
 
+  // Set up maplibre-contour DEM source (registers custom protocol)
+  if (window.mlcontour && !contourDemSource) {
+    contourDemSource = new mlcontour.DemSource({
+      url: "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      encoding: "terrarium",
+      maxzoom: 14,
+      worker: true
+    });
+    contourDemSource.setupMaplibre(maplibregl);
+  }
+
   // Create map
   map = new maplibregl.Map({
     container: "map",
@@ -487,6 +545,9 @@ async function init() {
 
   map.on("load", () => {
     add3DBuildings();
+    initSkyAndLighting();
+    applyStandardColors();
+    initDefaultTerrain();
     initViewToggle();
     initSatellite();
     initLayersPanel();
@@ -522,22 +583,99 @@ function add3DBuildings() {
       type: "fill-extrusion",
       minzoom: 13,
       paint: {
-        "fill-extrusion-color": "#c8cdd4",
+        // Height-based color: short=warm light gray, mid=cooler, tall=cool taupe
+        "fill-extrusion-color": [
+          "interpolate", ["linear"],
+          ["coalesce", ["to-number", ["get", "render_height"]], 0],
+          0,   "#d9d6cf",
+          50,  "#cfcac0",
+          200, "#bfb8ab"
+        ],
+        // Smooth fade-in: buildings grow over a wider zoom range
         "fill-extrusion-height": [
           "interpolate", ["linear"], ["zoom"],
-          13, 0,
-          15, ["coalesce", ["get", "render_height"], 10]
+          14, 0,
+          16, ["coalesce", ["to-number", ["get", "render_height"]], 0]
         ],
         "fill-extrusion-base": [
           "interpolate", ["linear"], ["zoom"],
-          13, 0,
-          15, ["coalesce", ["get", "render_min_height"], 0]
+          14, 0,
+          16, ["coalesce", ["to-number", ["get", "render_min_height"]], 0]
         ],
-        "fill-extrusion-opacity": 0.65
+        "fill-extrusion-opacity": 0.9,
+        "fill-extrusion-vertical-gradient": true
       }
     },
     labelLayerId
   );
+}
+
+// --- Sky, Lighting & Atmosphere ---
+
+function initSkyAndLighting() {
+  map.setSky({
+    "sky-color": "#88C6FC",
+    "horizon-color": "#f0e8d8",
+    "fog-color": "#e8e0d8",
+    "fog-ground-blend": 0.1,
+    "horizon-fog-blend": 0.8,
+    "sky-horizon-blend": 0.5
+  });
+  map.setLight({ anchor: "viewport", color: "#ffffff", intensity: 0.4, position: [1.5, 210, 30] });
+}
+
+// --- Color Refinement (Mapbox Standard palette) ---
+
+function applyStandardColors() {
+  // Background — cooler gray-cream
+  if (map.getLayer("background")) map.setPaintProperty("background", "background-color", "#f1f0ec");
+
+  // Water — softer blue with subtle highlight outline
+  if (map.getLayer("water")) {
+    map.setPaintProperty("water", "fill-color", "#9cb8e8");
+    map.setPaintProperty("water", "fill-outline-color", "#85a8d8");
+  }
+
+  // Parks — softer green
+  if (map.getLayer("park")) map.setPaintProperty("park", "fill-color", "#c8e6c0");
+
+  // Buildings 2D — cooler gray
+  if (map.getLayer("building")) map.setPaintProperty("building", "fill-color", "#e0ddd8");
+
+  // Roads — muted palette (iterate relevant road layers)
+  var roadFills = map.getStyle().layers.filter(function(l) {
+    return l.type === "line" && /^(road|highway)/.test(l.id) && !/_casing/.test(l.id) && !/bridge/.test(l.id) && !/tunnel/.test(l.id);
+  });
+  roadFills.forEach(function(l) {
+    try { map.setPaintProperty(l.id, "line-color", "#f0e8d0"); } catch(e) {}
+  });
+
+  // Road casings — subtle gray
+  var roadCasings = map.getStyle().layers.filter(function(l) {
+    return l.type === "line" && /_casing/.test(l.id);
+  });
+  roadCasings.forEach(function(l) {
+    try { map.setPaintProperty(l.id, "line-color", "#d8d0c4"); } catch(e) {}
+  });
+
+  // Label hierarchy — bold important labels, soften secondary ones
+  ["label_city", "label_city_capital", "label_town"].forEach(function(id) {
+    if (map.getLayer(id)) {
+      try {
+        map.setPaintProperty(id, "text-color", "#1a1a1a");
+        map.setPaintProperty(id, "text-halo-color", "#ffffff");
+        map.setPaintProperty(id, "text-halo-width", 1.5);
+      } catch(e) {}
+    }
+  });
+  ["label_village", "label_other"].forEach(function(id) {
+    if (map.getLayer(id)) {
+      try {
+        map.setPaintProperty(id, "text-color", "#666666");
+        map.setPaintProperty(id, "text-halo-width", 1);
+      } catch(e) {}
+    }
+  });
 }
 
 // --- Places source + marker layers ---
@@ -548,44 +686,27 @@ function addPlacesLayers() {
     data: { type: "FeatureCollection", features: allFeatures }
   });
 
-  // Shadow
-  map.addLayer({
-    id: "places-shadow",
-    type: "circle",
-    source: "places",
-    paint: {
-      "circle-radius": 10,
-      "circle-color": "rgba(0,0,0,0.25)",
-      "circle-blur": 0.8,
-      "circle-translate": [1, 2]
-    }
-  });
-
-  // Marker
-  map.addLayer({
-    id: "places-layer",
-    type: "circle",
-    source: "places",
-    paint: {
-      "circle-radius": 8,
-      "circle-color": CONFIG.markerColor,
-      "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 2.5,
-      "circle-pitch-alignment": "map"
-    }
-  });
-
-  map.on("click", "places-layer", (e) => {
-    showPopup(e.features[0]);
-  });
-
-  map.on("mouseenter", "places-layer", () => {
-    map.getCanvas().style.cursor = "pointer";
-  });
-
-  map.on("mouseleave", "places-layer", () => {
-    map.getCanvas().style.cursor = "";
-  });
+  // Load golf-ball-tee SVG as a map icon, then add the symbol layer
+  const svgSrc = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="36" height="48"><path fill="${CONFIG.markerColor}" d="M384 192c0 66.8-34.1 125.6-85.8 160L85.8 352C34.1 317.6 0 258.8 0 192C0 86 86 0 192 0S384 86 384 192zM242.1 256.6c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zm-52.3-49.3c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4c0 18.5-15 33.5-33.5 33.5zm113.5-17.5c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zM96 416c0-17.7 14.3-32 32-32l64 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-16 0c-8.8 0-16 7.2-16 16l0 16c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-16c0-8.8-7.2-16-16-16l-16 0c-17.7 0-32-14.3-32-32z"/></svg>`;
+  const img = new Image(36, 48);
+  img.onload = () => {
+    if (!map.hasImage("golf-ball-icon")) map.addImage("golf-ball-icon", img);
+    map.addLayer({
+      id: "places-layer",
+      type: "symbol",
+      source: "places",
+      layout: {
+        "icon-image": "golf-ball-icon",
+        "icon-size": 0.75,
+        "icon-anchor": "bottom",
+        "icon-allow-overlap": true
+      }
+    });
+    map.on("click", "places-layer", (e) => { showPopup(e.features[0]); });
+    map.on("mouseenter", "places-layer", () => { map.getCanvas().style.cursor = "pointer"; });
+    map.on("mouseleave", "places-layer", () => { map.getCanvas().style.cursor = ""; });
+  };
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgSrc);
 }
 
 // --- Popup (shared between map click and table click) ---
@@ -642,22 +763,14 @@ function showPopup(feature) {
       <a class="popup-nav-reddit" href="https://www.reddit.com/search/?q=${encodeURIComponent(name + (CONFIG.redditCity ? ' ' + CONFIG.redditCity : ''))}" target="_blank" rel="noopener">Reddit</a>
     </div>`;
 
-  // --- Street View tab ---
-  const svContent = CONFIG.googleMapsApiKey
-    ? `<iframe class="sv-iframe"
-         data-src="https://www.google.com/maps/embed/v1/streetview?key=${CONFIG.googleMapsApiKey}&location=${lat},${lng}&heading=0&pitch=0&fov=90"
-         frameborder="0" allowfullscreen
-         style="width:100%;height:220px;border:0;display:block;"></iframe>`
-    : `<div class="sv-no-key">
-         Street View requires an API key.<br>
-         <a href="https://www.google.com/maps/@${lat},${lng},3a,90y/data=!3m4!1e1" target="_blank" rel="noopener">Open in Google Maps ↗</a>
-       </div>`;
+  // --- Course App tab ---
+  const svContent = ``;
 
   const html = `
     <div class="popup-title">${name}</div>
     <div class="popup-tab-bar">
       <button class="popup-tab-btn active" onclick="switchPopupTab(this,'popup-pane-info')">Info</button>
-      <button class="popup-tab-btn" onclick="switchPopupTab(this,'popup-pane-sv')">Street View</button>
+      <button class="popup-tab-btn" onclick="switchPopupTab(this,'popup-pane-sv')">Course App</button>
     </div>
     <div id="popup-pane-info" class="popup-tab-pane active">
       ${rows}${navHtml}

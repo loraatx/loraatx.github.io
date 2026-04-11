@@ -4,6 +4,7 @@ let filteredFeatures = [];
 let currentPopup;
 let draw;
 let measuring = false;
+let contourDemSource;
 
 // --- Info panel toggle ---
 
@@ -201,6 +202,56 @@ function initBuildingsToggle() {
   }, "bottom-left");
 }
 
+// --- Proposed Buildings (305 South Congress / Statesman site) ---
+
+function initProposedBuildings() {
+  map.addSource("proposed-buildings", {
+    type: "geojson",
+    data: "./proposed-buildings.geojson"
+  });
+
+  map.addLayer({
+    id: "proposed-buildings-layer",
+    type: "fill-extrusion",
+    source: "proposed-buildings",
+    paint: {
+      "fill-extrusion-color":   ["get", "color"],
+      "fill-extrusion-height":  ["get", "height"],
+      "fill-extrusion-base":    ["get", "base_height"],
+      "fill-extrusion-opacity": 0.75,
+      "fill-extrusion-vertical-gradient": true
+    }
+  });
+}
+
+function initProposedBuildingsToggle() {
+  map.addControl({
+    onAdd() {
+      this._container = document.createElement("div");
+      this._container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+      var lbl = document.createElement("label");
+      lbl.className = "overlay-ctrl-label";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.addEventListener("change", function () {
+        map.setLayoutProperty(
+          "proposed-buildings-layer",
+          "visibility",
+          this.checked ? "visible" : "none"
+        );
+      });
+      var span = document.createElement("span");
+      span.textContent = "Proposed";
+      lbl.appendChild(checkbox);
+      lbl.appendChild(span);
+      this._container.appendChild(lbl);
+      return this._container;
+    },
+    onRemove() { this._container.parentNode.removeChild(this._container); }
+  }, "bottom-left");
+}
+
 // --- USGS Topo overlay + elevation exaggeration ---
 
 // --- Always-on terrain + hillshade ---
@@ -246,28 +297,62 @@ function initDefaultTerrain() {
   }
 }
 
-// --- Topo overlay (USGS raster + exaggeration bump) ---
+// --- Topo overlay (contour lines + terrain exaggeration) ---
 
 function initTopoOverlay() {
-  // Topo raster
-  map.addSource("usgs-topo", {
-    type: "raster",
-    tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
-    tileSize: 256,
-    attribution: "USGS National Map"
+  if (!contourDemSource) return;
+
+  map.addSource("contour-source", {
+    type: "vector",
+    tiles: [contourDemSource.contourProtocolUrl({
+      multiplier: 3.28084,
+      overzoom: 1,
+      thresholds: {
+        11: [200, 1000],
+        12: [100, 500],
+        13: [100, 500],
+        14: [50, 200],
+        15: [20, 100]
+      },
+      elevationKey: "ele",
+      levelKey: "level",
+      contourLayer: "contours"
+    })],
+    maxzoom: 15
   });
 
-  const firstLabelLayer = map.getStyle().layers.find(
-    l => l.type === "symbol" && l.layout && l.layout["text-field"]
-  );
+  map.addLayer({
+    id: "contour-lines",
+    type: "line",
+    source: "contour-source",
+    "source-layer": "contours",
+    layout: { visibility: "none" },
+    paint: {
+      "line-color": "#5a3a1a",
+      "line-opacity": 0.7,
+      "line-width": ["match", ["get", "level"], 1, 2, 0.8]
+    }
+  });
 
   map.addLayer({
-    id: "usgs-topo-layer",
-    type: "raster",
-    source: "usgs-topo",
-    layout: { visibility: "none" },
-    paint: { "raster-opacity": 0.9 }
-  }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    id: "contour-labels",
+    type: "symbol",
+    source: "contour-source",
+    "source-layer": "contours",
+    filter: [">", ["get", "level"], 0],
+    layout: {
+      visibility: "none",
+      "symbol-placement": "line",
+      "text-size": 12,
+      "text-field": ["concat", ["number-format", ["get", "ele"], {}], "'"],
+      "text-font": ["Noto Sans Regular"]
+    },
+    paint: {
+      "text-color": "#5a3a1a",
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.5
+    }
+  });
 
   map.addControl({
     onAdd() {
@@ -279,15 +364,10 @@ function initTopoOverlay() {
       checkbox.type = "checkbox";
 
       checkbox.addEventListener("change", function () {
-        if (!this.checked) {
-          map.setLayoutProperty("usgs-topo-layer", "visibility", "none");
-          // Restore default terrain exaggeration
-          map.setTerrain({ source: "terrain-dem", exaggeration: 1 });
-          return;
-        }
-        // Show topo raster and bump exaggeration
-        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
-        map.setTerrain({ source: "terrain-dem", exaggeration: 2 });
+        var vis = this.checked ? "visible" : "none";
+        if (map.getLayer("contour-lines")) map.setLayoutProperty("contour-lines", "visibility", vis);
+        if (map.getLayer("contour-labels")) map.setLayoutProperty("contour-labels", "visibility", vis);
+        map.setTerrain({ source: "terrain-dem", exaggeration: this.checked ? 2 : 1 });
       });
 
       var span = document.createElement("span");
@@ -477,6 +557,18 @@ async function init() {
     });
   }
 
+  // Set up maplibre-contour DEM source (registers custom protocol) so the topo
+  // overlay can add vector contour tiles on demand.
+  if (window.mlcontour && !contourDemSource) {
+    contourDemSource = new mlcontour.DemSource({
+      url: "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      encoding: "terrarium",
+      maxzoom: 14,
+      worker: true
+    });
+    contourDemSource.setupMaplibre(maplibregl);
+  }
+
   // Create map
   map = new maplibregl.Map({
     container: "map",
@@ -514,6 +606,8 @@ async function init() {
     initMeasure();
     addPlacesLayers();
     initBuildingsToggle();
+    initProposedBuildings();
+    initProposedBuildingsToggle();
     initTopoOverlay();
     initOverlay();
     buildFilters();

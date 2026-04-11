@@ -4,22 +4,23 @@
 // ============================================================
 const CONFIG = {
   // ── Identity ──────────────────────────────────────────────
-  title:    "Austin Golf Courses",
-  eyebrow:  "Austin Metro",
-  subtitle: "20 courses",
+  title:    "Siteplan Template",
+  eyebrow:  "Site Location",
+  subtitle: "",
 
-  // Text shown in the ⓘ info flyout panel
-  infoPanelText: "This map covers public, municipal, and resort golf courses across the Austin metro area. From classic city munis like Lions and Hancock to hill-country resort layouts, each pin links to course details including type, holes, price tier, and designer notes. Use the filters to narrow by course type, number of holes, or area of town.",
+  infoPanelText: "",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:      [-97.743, 30.267],
-  zoom:        10,
+  center:      [-97.743, 30.256],
+  zoom:        16,
   pitch:       45,
   bearing:     -15,
   markerColor: "#2d7a1a",
 
+  // Constrained to downtown Austin / both sides of Lady Bird Lake
+  maxBounds: [[-97.753, 30.248], [-97.733, 30.264]],
+
   // ── Geographic bounds lock ────────────────────────────────
-  maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
 
   // ── Reddit search ─────────────────────────────────────────
   redditCity: "Austin",
@@ -51,9 +52,9 @@ const CONFIG = {
 
   // ── Overlay layers ────────────────────────────────────────
   overlays: [
-    { label: "Zip Codes",    file: "../shared/SecondData.geojson",        colorProperty: "zipcode"       },
-    { label: "Flood Zone",   file: "../shared/floodzone.geojson",         colorProperty: "flood_zone"    },
-    { label: "City Council", file: "../shared/Council_Districts.geojson", colorProperty: "district_name" },
+    { label: "Zip Codes",    file: "../../shared/SecondData.geojson",        colorProperty: "zipcode"       },
+    { label: "Flood Zone",   file: "../../shared/floodzone.geojson",         colorProperty: "flood_zone"    },
+    { label: "City Council", file: "../../shared/Council_Districts.geojson", colorProperty: "district_name" },
   ],
 
   // ── Data schema ───────────────────────────────────────────
