@@ -1,13 +1,13 @@
 # Citywide Template — Deployment Instructions
 
 ## What to do
-1. Copy `apps/citywide/` to `apps/<folder_name>/`
+1. Copy `apps/citywide/` to `apps/citywide/<folder_name>/`
 2. In the new folder, edit **only** `config.js`, `index.html` `<title>`, and `data.geojson`
 3. **Do NOT modify** `app.js` or `style.css`
 
 ## Step 1: Copy
 ```
-cp -r apps/citywide/ apps/<folder_name>/
+cp -r apps/citywide/ apps/citywide/<folder_name>/
 ```
 
 ## Step 2: config.js
@@ -31,9 +31,11 @@ Map every spec field to its config key. Coordinates are always `[lng, lat]`.
 | filter_N | `filters: [{ property, label }]` | skip blanks |
 | column_N | `columns: [{ property, header }]` | skip blanks |
 | popup_N | `popupFields: [{ property, label }]` | skip blanks |
-| overlay_N | `overlays: [{ label, file, colorProperty }]` | skip blanks |
+| overlay_N | `overlays: [{ label, file, colorProperty }]` | skip blanks; use `../../shared/` paths |
 | UI flags (Yes/No) | `features: { drawTools, measure, exportPNG, exportCSV, reportPDF, streetView, satellite, topo, darkMode, geolocation }` | true/false |
 | social links | `socialLinks: [{ platform, url }]` | empty string hides icon |
+
+**IMPORTANT:** Overlay file paths in deployments must use `../../shared/` (two levels up) since the deployment is at `apps/citywide/<name>/`.
 
 ## Step 3: index.html
 Change only `<title>` to match the spec title.
@@ -45,16 +47,17 @@ Replace with provided GeoJSON. Must be `FeatureCollection` with `Point` features
 - Config values match spec; no placeholders left
 - Property names in filters/columns/popups match GeoJSON keys
 - Bounds are `[lng, lat]` not `[lat, lng]`
+- Overlay paths use `../../shared/` (not `../shared/`)
 - `app.js` and `style.css` unchanged
 
 ## Step 6: Commit & Push
 ```
-git add apps/<folder_name>/
+git add apps/citywide/<folder_name>/
 git commit -m "Deploy <title> map app"
 git push -u origin <branch>
 ```
 
-Live at `anatomy.city/apps/<folder_name>/`
+Live at `anatomy.city/apps/citywide/<folder_name>/`
 
 ## Data notes
 - Instagram handles: store without `@` (app auto-links)

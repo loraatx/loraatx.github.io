@@ -297,86 +297,62 @@ function initDefaultTerrain() {
   }
 }
 
-// --- Topo overlay (USGS raster + exaggeration bump) ---
+// --- Topo overlay (contour lines + terrain exaggeration) ---
 
 function initTopoOverlay() {
-  // Topo raster
-  map.addSource("usgs-topo", {
-    type: "raster",
-    tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
-    tileSize: 256,
-    attribution: "USGS National Map"
+  if (!contourDemSource) return;
+
+  map.addSource("contour-source", {
+    type: "vector",
+    tiles: [contourDemSource.contourProtocolUrl({
+      multiplier: 3.28084,
+      overzoom: 1,
+      thresholds: {
+        11: [200, 1000],
+        12: [100, 500],
+        13: [100, 500],
+        14: [50, 200],
+        15: [20, 100]
+      },
+      elevationKey: "ele",
+      levelKey: "level",
+      contourLayer: "contours"
+    })],
+    maxzoom: 15
   });
 
-  const firstLabelLayer = map.getStyle().layers.find(
-    l => l.type === "symbol" && l.layout && l.layout["text-field"]
-  );
+  map.addLayer({
+    id: "contour-lines",
+    type: "line",
+    source: "contour-source",
+    "source-layer": "contours",
+    layout: { visibility: "none" },
+    paint: {
+      "line-color": "#5a3a1a",
+      "line-opacity": 0.7,
+      "line-width": ["match", ["get", "level"], 1, 2, 0.8]
+    }
+  });
 
   map.addLayer({
-    id: "usgs-topo-layer",
-    type: "raster",
-    source: "usgs-topo",
-    layout: { visibility: "none" },
-    paint: { "raster-opacity": 0.9 }
-  }, firstLabelLayer ? firstLabelLayer.id : undefined);
-
-  // Vector contour lines via maplibre-contour (generated client-side from DEM)
-  var contourLayerIds = [];
-  if (contourDemSource) {
-    map.addSource("contour-source", {
-      type: "vector",
-      tiles: [contourDemSource.contourProtocolUrl({
-        multiplier: 3.28084, // meters -> feet
-        overzoom: 1,
-        thresholds: {
-          11: [200, 1000],
-          12: [100, 500],
-          13: [100, 500],
-          14: [50, 200],
-          15: [20, 100]
-        },
-        elevationKey: "ele",
-        levelKey: "level",
-        contourLayer: "contours"
-      })],
-      maxzoom: 15
-    });
-
-    map.addLayer({
-      id: "contour-lines",
-      type: "line",
-      source: "contour-source",
-      "source-layer": "contours",
-      layout: { visibility: "none" },
-      paint: {
-        "line-color": "#6b4423",
-        "line-opacity": 0.5,
-        "line-width": ["match", ["get", "level"], 1, 1, 0.5]
-      }
-    });
-
-    map.addLayer({
-      id: "contour-labels",
-      type: "symbol",
-      source: "contour-source",
-      "source-layer": "contours",
-      filter: [">", ["get", "level"], 0],
-      layout: {
-        visibility: "none",
-        "symbol-placement": "line",
-        "text-size": 10,
-        "text-field": ["concat", ["number-format", ["get", "ele"], {}], "'"],
-        "text-font": ["Noto Sans Regular"]
-      },
-      paint: {
-        "text-color": "#6b4423",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1
-      }
-    });
-
-    contourLayerIds = ["contour-lines", "contour-labels"];
-  }
+    id: "contour-labels",
+    type: "symbol",
+    source: "contour-source",
+    "source-layer": "contours",
+    filter: [">", ["get", "level"], 0],
+    layout: {
+      visibility: "none",
+      "symbol-placement": "line",
+      "text-size": 12,
+      "text-field": ["concat", ["number-format", ["get", "ele"], {}], "'"],
+      "text-font": ["Noto Sans Regular"]
+    },
+    paint: {
+      "text-color": "#5a3a1a",
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.5
+    }
+  });
 
   map.addControl({
     onAdd() {
@@ -388,21 +364,10 @@ function initTopoOverlay() {
       checkbox.type = "checkbox";
 
       checkbox.addEventListener("change", function () {
-        if (!this.checked) {
-          map.setLayoutProperty("usgs-topo-layer", "visibility", "none");
-          contourLayerIds.forEach(function (id) {
-            if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", "none");
-          });
-          // Restore default terrain exaggeration
-          map.setTerrain({ source: "terrain-dem", exaggeration: 1 });
-          return;
-        }
-        // Show topo raster, contour lines, and bump exaggeration
-        map.setLayoutProperty("usgs-topo-layer", "visibility", "visible");
-        contourLayerIds.forEach(function (id) {
-          if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", "visible");
-        });
-        map.setTerrain({ source: "terrain-dem", exaggeration: 2 });
+        var vis = this.checked ? "visible" : "none";
+        if (map.getLayer("contour-lines")) map.setLayoutProperty("contour-lines", "visibility", vis);
+        if (map.getLayer("contour-labels")) map.setLayoutProperty("contour-labels", "visibility", vis);
+        map.setTerrain({ source: "terrain-dem", exaggeration: this.checked ? 2 : 1 });
       });
 
       var span = document.createElement("span");

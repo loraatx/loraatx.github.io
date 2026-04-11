@@ -51,9 +51,9 @@ const CONFIG = {
 
   // ── Overlay layers ────────────────────────────────────────
   overlays: [
-    { label: "Zip Codes",    file: "../shared/SecondData.geojson",        colorProperty: "zipcode"       },
-    { label: "Flood Zone",   file: "../shared/floodzone.geojson",         colorProperty: "flood_zone"    },
-    { label: "City Council", file: "../shared/Council_Districts.geojson", colorProperty: "district_name" },
+    { label: "Zip Codes",    file: "../../shared/SecondData.geojson",        colorProperty: "zipcode"       },
+    { label: "Flood Zone",   file: "../../shared/floodzone.geojson",         colorProperty: "flood_zone"    },
+    { label: "City Council", file: "../../shared/Council_Districts.geojson", colorProperty: "district_name" },
   ],
 
   // ── Data schema ───────────────────────────────────────────

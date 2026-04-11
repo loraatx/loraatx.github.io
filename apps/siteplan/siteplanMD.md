@@ -1,6 +1,7 @@
 # Siteplan Deployment Spec
 
 > **Template:** `apps/siteplan/` -- Parcel-scale map (zoom 14-18, tight site bounds)
+> **Deploys to:** `apps/siteplan/<folder_name>/`
 > **To deploy:** Fill out every field below, provide `data.geojson`, and give this file to Claude.
 > Optionally provide `proposed-buildings.geojson` for 3D proposed development visualization.
 
@@ -62,13 +63,13 @@ popup_8:
 
 ## Overlay Layers (leave blank lines to skip)
 overlay_1_label: Zip Codes
-overlay_1_file: ../shared/SecondData.geojson
+overlay_1_file: ../../shared/SecondData.geojson
 overlay_1_color_property: zipcode
 overlay_2_label: Flood Zone
-overlay_2_file: ../shared/floodzone.geojson
+overlay_2_file: ../../shared/floodzone.geojson
 overlay_2_color_property: flood_zone
 overlay_3_label: City Council
-overlay_3_file: ../shared/Council_Districts.geojson
+overlay_3_file: ../../shared/Council_Districts.geojson
 overlay_3_color_property: district_name
 overlay_4_label:
 overlay_4_file:
@@ -87,8 +88,7 @@ overlay_5_color_property:
 
 ### Map Controls
 - Satellite Imagery Toggle: Yes
-- Topo Overlay Toggle (USGS raster + contour lines + terrain bump): Yes
-- Contour Lines (elevation labels in feet, bundled with Topo toggle): Yes
+- Topo Overlay Toggle (contour lines + terrain bump): Yes
 - Buildings Toggle: Yes
 - Proposed Buildings (3D fill-extrusion from proposed-buildings.geojson): Yes
 - Proposed Buildings Toggle: Yes

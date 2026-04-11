@@ -1,6 +1,7 @@
 # Citywide Deployment Spec
 
 > **Template:** `apps/citywide/` -- Metro-scale map (zoom 9-12, city/region bounds)
+> **Deploys to:** `apps/citywide/<folder_name>/`
 > **To deploy:** Fill out every field below, provide `data.geojson`, and give this file to Claude.
 
 ## Deploy
@@ -61,13 +62,13 @@ popup_8:
 
 ## Overlay Layers (leave blank lines to skip)
 overlay_1_label: Zip Codes
-overlay_1_file: ../shared/SecondData.geojson
+overlay_1_file: ../../shared/SecondData.geojson
 overlay_1_color_property: zipcode
 overlay_2_label: Flood Zone
-overlay_2_file: ../shared/floodzone.geojson
+overlay_2_file: ../../shared/floodzone.geojson
 overlay_2_color_property: flood_zone
 overlay_3_label: City Council
-overlay_3_file: ../shared/Council_Districts.geojson
+overlay_3_file: ../../shared/Council_Districts.geojson
 overlay_3_color_property: district_name
 overlay_4_label:
 overlay_4_file:
@@ -86,7 +87,7 @@ overlay_5_color_property:
 
 ### Map Controls
 - Satellite Imagery Toggle: Yes
-- Topo Overlay Toggle (USGS raster + terrain bump): Yes
+- Topo Overlay Toggle (contour lines + terrain bump): Yes
 - Buildings Toggle: Yes
 - Geolocation Button: Yes
 - Layers Panel (polygon overlays): Yes
