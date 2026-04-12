@@ -126,4 +126,46 @@ reddit:
 patreon:
 discord:
 
+## Field Handling
+
+How to map raw GeoJSON properties into `filter_N`, `column_N`, and `popup_N` slots above. Property names must match GeoJSON keys **exactly**, including spaces and capitalization (e.g. `Pool Name`, not `pool_name`).
+
+### Filters — categorical only, ≤ ~12 unique values
+Good filter fields are short categorical values that group features into meaningful buckets:
+- **Use:** status, type, size, category, district, zone, year, season
+- **Avoid:** names (every value unique), URLs, phone numbers, free-text addresses, raw hours strings, IDs, coordinates, mostly-null fields
+
+If a field has 30+ unique values, it's not a filter — it's a column or popup row. If a field is 90%+ null, skip it as a filter (the dropdown will be useless).
+
+### Columns — short, scannable, table-friendly
+The data table shows 4–6 columns. First column is usually the name field. Pick categorical or short-text fields that fit a narrow cell:
+- **Use:** name, status, type, short address, neighborhood, price tier
+- **Avoid:** long URLs, multi-sentence descriptions, raw lat/lng, hours strings with multiple time ranges
+
+### Popups — anything users want when they click a pin
+Popups are roomy, so include everything useful — even long fields. Phone numbers and websites belong here even though they're bad filters. Don't repeat the name field (it's already shown in the popup header). Skip latitude/longitude (the marker is already on the map).
+
+### Null handling
+Fields that are mostly null (e.g. a `Closure Days` field that's null for 44 of 46 features) are fine in popups but should not become filters or columns — the dropdown/table cell will just show empty.
+
+### Worked example — Austin Pool Openings (46 features, 13 raw properties)
+
+| Property        | Unique | Decision           |
+|-----------------|--------|--------------------|
+| `Pool Name`     | 46     | `nameField`, column |
+| `Status`        | 3      | filter, column, popup |
+| `Pool Type`     | 5      | filter, column, popup (this is the "size" filter) |
+| `Open Date`     | 8      | filter, column, popup |
+| `Weekday`       | 8      | popup only (long hours strings) |
+| `Weekend`       | 6      | popup only |
+| `Closure Days`  | 2      | popup only (mostly null) |
+| `Phone`         | 35     | popup only |
+| `Website`       | 46     | popup only (URL) |
+| `address`       | 44     | column, popup |
+| `Location 1`    | 45     | skip (duplicate of address) |
+| `latitude`      | n/a    | skip (geometry) |
+| `longitude`     | n/a    | skip (geometry) |
+
+13 properties → 3 filters, 5 columns, 9 popup rows. See `apps/citywide/PoolOpenings/config.js` for the resulting config.
+
 ## Notes
