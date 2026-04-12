@@ -22,6 +22,14 @@ const CONFIG = {
   // ── Geographic bounds lock ────────────────────────────────
   maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
 
+  // ── Theme ─────────────────────────────────────────────────
+  theme: {
+    headerBg:    "#005f8e",   // ocean blue header
+    pageBg:      "#e8f4fd",   // light sky-blue page background
+    fontHeading: "Fredoka",   // rounded, fun, summer-y
+    fontBody:    "Nunito",    // friendly and readable
+  },
+
   // ── Reddit search ─────────────────────────────────────────
   redditCity: "Austin",
 
