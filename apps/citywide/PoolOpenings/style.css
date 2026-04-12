@@ -1,11 +1,19 @@
+/* ── Theme variables (overridden at runtime via CONFIG.theme in app.js) ── */
+:root {
+  --font-heading:    'Oswald', sans-serif;
+  --font-body:       'Barlow', Arial, Helvetica, sans-serif;
+  --color-header-bg: #1a4d0e;
+  --color-page-bg:   #e4ede0;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Barlow', Arial, Helvetica, sans-serif;
-  background: #e4ede0;
+  font-family: var(--font-body);
+  background: var(--color-page-bg);
   color: #1a2e12;
 }
 
@@ -16,7 +24,7 @@ body {
 /* ── Header (compact — above map) ────────────────── */
 
 .page-header {
-  background: #1a4d0e;
+  background: var(--color-header-bg);
   border-bottom: 3px solid #122f08;
   padding: 14px 28px 12px;
   display: flex;
@@ -55,7 +63,7 @@ body {
 }
 
 .eyebrow {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 1.8px;
@@ -65,7 +73,7 @@ body {
 }
 
 .page-header h1 {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   margin: 0;
   font-size: 30px;
   font-weight: 700;
@@ -111,7 +119,7 @@ body {
 }
 
 .filter-group label {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -131,7 +139,7 @@ body {
   background-size: 11px;
   appearance: none;
   -webkit-appearance: none;
-  font-family: 'Barlow', Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   color: #1a2e12;
   cursor: pointer;
@@ -177,7 +185,7 @@ body {
 
 .table-section {
   padding: 22px 24px;
-  background: #e4ede0;
+  background: var(--color-page-bg);
 }
 
 .table-header {
@@ -195,7 +203,7 @@ body {
 }
 
 .table-header h2 {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   margin: 0;
   font-size: 20px;
   font-weight: 600;
@@ -236,7 +244,7 @@ td {
 }
 
 th {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.8px;
@@ -260,7 +268,7 @@ tbody tr:last-child td {
 /* ── Popups ──────────────────────────────────────── */
 
 .maplibregl-popup-content {
-  font-family: 'Barlow', Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   min-width: 220px;
   padding: 14px 16px 12px;
   border-radius: 14px;
@@ -268,7 +276,7 @@ tbody tr:last-child td {
 }
 
 .popup-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 600;
   color: #1a4d0e;
@@ -423,7 +431,7 @@ tbody tr:last-child td {
 
 .export-btn {
   padding: 7px 16px;
-  font-family: 'Barlow', Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   color: #2d6a1a;
@@ -770,7 +778,7 @@ tbody tr:last-child td {
   border-radius: 7px;
   background: #fff;
   cursor: pointer;
-  font-family: 'Barlow', Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   color: #2d6a1a;
@@ -832,7 +840,7 @@ tbody tr:last-child td {
 }
 
 .report-modal-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-heading);
   margin: 0 0 16px;
   font-size: 16px;
   font-weight: 600;

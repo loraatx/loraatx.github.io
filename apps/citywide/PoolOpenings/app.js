@@ -6,6 +6,45 @@ let draw;
 let measuring = false;
 let contourDemSource;
 
+// --- Theme: apply CONFIG.theme overrides to CSS variables ---
+
+function applyTheme() {
+  const t = CONFIG.theme || {};
+  const root = document.documentElement.style;
+  if (t.headerBg)    root.setProperty("--color-header-bg", t.headerBg);
+  if (t.pageBg)      root.setProperty("--color-page-bg",   t.pageBg);
+  if (t.fontHeading) {
+    root.setProperty("--font-heading", `'${t.fontHeading}', sans-serif`);
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.fontHeading)}:wght@400;500;600;700&display=swap`;
+    document.head.appendChild(l);
+  }
+  if (t.fontBody) {
+    root.setProperty("--font-body", `'${t.fontBody}', Arial, sans-serif`);
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.fontBody)}:wght@400;500;600&display=swap`;
+    document.head.appendChild(l);
+  }
+}
+applyTheme();
+
+// --- Marker icon SVG by style ---
+
+function makeMarkerSvg(color, style) {
+  if (style === "drop") {
+    // Water drop with inner ring — pool / water theme
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="36" height="48"><path fill="${color}" fill-rule="evenodd" d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.2 4.4 181.3 0 192 0s19.8 4.4 25.4 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zm72-192a72 72 0 1 0-144 0 72 72 0 0 0 144 0z"/></svg>`;
+  }
+  if (style === "pin") {
+    // Simple map pin
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="36" height="48"><path fill="${color}" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0z"/></svg>`;
+  }
+  // default: golf ball tee
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="36" height="48"><path fill="${color}" d="M384 192c0 66.8-34.1 125.6-85.8 160L85.8 352C34.1 317.6 0 258.8 0 192C0 86 86 0 192 0S384 86 384 192zM242.1 256.6c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zm-52.3-49.3c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4c0 18.5-15 33.5-33.5 33.5zm113.5-17.5c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zM96 416c0-17.7 14.3-32 32-32l64 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-16 0c-8.8 0-16 7.2-16 16l0 16c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-16c0-8.8-7.2-16-16-16l-16 0c-17.7 0-32-14.3-32-32z"/></svg>`;
+}
+
 // --- Info panel toggle ---
 
 function toggleInfoPanel() {
@@ -686,17 +725,17 @@ function addPlacesLayers() {
     data: { type: "FeatureCollection", features: allFeatures }
   });
 
-  // Load golf-ball-tee SVG as a map icon, then add the symbol layer
-  const svgSrc = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="36" height="48"><path fill="${CONFIG.markerColor}" d="M384 192c0 66.8-34.1 125.6-85.8 160L85.8 352C34.1 317.6 0 258.8 0 192C0 86 86 0 192 0S384 86 384 192zM242.1 256.6c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zm-52.3-49.3c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4c0 18.5-15 33.5-33.5 33.5zm113.5-17.5c0 18.5-15 33.5-33.5 33.5c-4.9 0-9.1 5.1-5.4 8.4c5.9 5.2 13.7 8.4 22.1 8.4c18.5 0 33.5-15 33.5-33.5c0-8.5-3.2-16.2-8.4-22.1c-3.3-3.7-8.4 .5-8.4 5.4zM96 416c0-17.7 14.3-32 32-32l64 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-16 0c-8.8 0-16 7.2-16 16l0 16c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-16c0-8.8-7.2-16-16-16l-16 0c-17.7 0-32-14.3-32-32z"/></svg>`;
+  // Load marker SVG as a map icon, then add the symbol layer
+  const svgSrc = makeMarkerSvg(CONFIG.markerColor, CONFIG.markerIconStyle);
   const img = new Image(36, 48);
   img.onload = () => {
-    if (!map.hasImage("golf-ball-icon")) map.addImage("golf-ball-icon", img);
+    if (!map.hasImage("marker-icon")) map.addImage("marker-icon", img);
     map.addLayer({
       id: "places-layer",
       type: "symbol",
       source: "places",
       layout: {
-        "icon-image": "golf-ball-icon",
+        "icon-image": "marker-icon",
         "icon-size": 0.75,
         "icon-anchor": "bottom",
         "icon-allow-overlap": true

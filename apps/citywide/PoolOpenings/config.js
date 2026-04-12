@@ -12,11 +12,12 @@ const CONFIG = {
   infoPanelText: "Austin public pools and splash pads. Filter by open/closed status, pool size, and opening date.",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:      [-97.737, 30.286],
-  zoom:        10,
-  pitch:       45,
-  bearing:     -15,
-  markerColor: "#2d7a1a",
+  center:          [-97.737, 30.286],
+  zoom:            10,
+  pitch:           45,
+  bearing:         -15,
+  markerColor:     "#0077bb",
+  markerIconStyle: "drop",
 
   // ── Geographic bounds lock ────────────────────────────────
   maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
