@@ -1,85 +1,142 @@
 # Citywide Deployment Spec
 
-> **Template:** `apps/templates/citywide/` -- Metro-scale map (zoom 9-12, city/region bounds)
+> **Template:** `apps/templates/citywide/` — Metro-scale map (zoom 9–12, city/region bounds)
 > **Deploys to:** `apps/citywide/<folder_name>/`
-> **To deploy:** Fill out every field below, provide `data.geojson`, and give this file to Claude.
+> **To deploy:** Fill in every section below, place `data.geojson` in the folder, and hand this file to Claude.
+
+---
 
 ## Deploy
+```
 folder_name:
 template: citywide
+```
+
+---
 
 ## Identity
-title:
-eyebrow:
-subtitle:
-info_panel_text:
+```
+title:             # page title shown in the header bar
+eyebrow:           # small caps label above the title (e.g. Austin Metro)
+subtitle:          # one-line description shown below the filters
+info_panel_text:   # paragraph shown in the ⓘ flyout (can be left blank)
+```
 
-## Map Defaults
-center_lat: 30.267
-center_lng: -97.743
-zoom: 10
-pitch: 45
-bearing: -15
-marker_color: #2d7a1a
+---
 
-## Bounds (Greater Austin metro area default)
+## Map View
+```
+center_lat: 30.267    # starting latitude
+center_lng: -97.743   # starting longitude
+zoom: 10              # 9=city  10=metro  11=district  12=neighborhood
+pitch: 45             # tilt: 0=flat  45=angled  60=steep
+bearing: -15          # rotation in degrees (0 = north up)
+marker_color: #2d7a1a # pin/icon fill color (hex)
+marker_icon: golf     # icon shape: golf | drop (water/pool) | pin (simple dot)
+```
+
+## Map Bounds  *(locks scroll/zoom to this box — defaults cover Greater Austin metro)*
+```
 bounds_sw_lat: 29.97
 bounds_sw_lng: -98.04
 bounds_ne_lat: 30.62
 bounds_ne_lng: -97.47
+```
 
-## Data Fields
-name_field:
+---
+
+## Data
+```
+name_field:               # GeoJSON property used as the feature name (e.g. Pool Name)
 reddit_city: Austin
-google_maps_api_key:
+google_maps_api_key:      # leave blank — Street View shows a fallback link
+```
 
-## Filters (leave blank lines to skip)
-filter_1: Property | Label
-filter_2: Property | Label
-filter_3: Property | Label
+---
+
+## Filters  *(format: `GeoJSON property name | Dropdown label`)*
+*Use categorical fields with ≤12 unique values. Skip URL/phone/name/mostly-null fields.*
+```
+filter_1:
+filter_2:
+filter_3:
 filter_4:
 filter_5:
+```
+**Examples:** `Status | Status`   `Pool Type | Size`   `District | Council District`
 
-## Table Columns (leave blank lines to skip)
-column_1: Property | Header
-column_2: Property | Header
-column_3: Property | Header
-column_4: Property | Header
+---
+
+## Table Columns  *(format: `GeoJSON property name | Column header`)*
+*4–6 columns work best. First column is usually the name field.*
+```
+column_1:
+column_2:
+column_3:
+column_4:
 column_5:
 column_6:
 column_7:
 column_8:
+```
 
-## Popup Fields (leave blank lines to skip)
-popup_1: Property | Label
-popup_2: Property | Label
-popup_3: Property | Label
-popup_4: Property | Label
+---
+
+## Popup Fields  *(format: `GeoJSON property name | Row label`)*
+*Include everything a user might want — phone, website, hours, address, etc.*
+```
+popup_1:
+popup_2:
+popup_3:
+popup_4:
 popup_5:
 popup_6:
 popup_7:
 popup_8:
+```
 
-## Overlay Layers (leave blank lines to skip)
+---
+
+## Overlay Layers  *(shared polygon layers — edit or leave defaults)*
+```
 overlay_1_label: Zip Codes
 overlay_1_file: ../../shared/SecondData.geojson
 overlay_1_color_property: zipcode
+
 overlay_2_label: Flood Zone
 overlay_2_file: ../../shared/floodzone.geojson
 overlay_2_color_property: flood_zone
+
 overlay_3_label: City Council
 overlay_3_file: ../../shared/Council_Districts.geojson
 overlay_3_color_property: district_name
+
 overlay_4_label:
 overlay_4_file:
 overlay_4_color_property:
+
 overlay_5_label:
 overlay_5_file:
 overlay_5_color_property:
+```
 
-## UI Elements & Feature Flags (Yes / No)
+---
 
-### Header Bar
+## Theme  *(leave blank to keep the default green — Google Font names only)*
+```
+header_bg:           # header bar color      default: #1a4d0e (dark green)
+page_bg:             # page background color  default: #e4ede0 (light green-gray)
+font_heading: Oswald # display/title font     any Google Font name
+font_body: Barlow    # body/data font         any Google Font name
+```
+*Changing a font: just write the Google Font name (e.g. `Montserrat`, `Roboto Condensed`).
+The font will be loaded from Google Fonts automatically at runtime.*
+
+---
+
+## UI Elements  *(Yes / No)*
+
+### Header
 - Header Title Bar: Yes
 - Info Panel (i button): Yes
 - 2D/3D View Toggle: Yes
@@ -92,7 +149,7 @@ overlay_5_color_property:
 - Geolocation Button: Yes
 - Layers Panel (polygon overlays): Yes
 
-### Toolbar (Draw Bar)
+### Toolbar
 - Draw Tool (freehand line): Yes
 - Clear Drawing Button: Yes
 - Measure Tool (distance in miles): Yes
@@ -117,7 +174,10 @@ overlay_5_color_property:
 ### Footer
 - Social Links Bar: Yes
 
-## Social Links (leave blank to hide icon)
+---
+
+## Social Links  *(leave blank to hide icon)*
+```
 youtube:
 x:
 facebook:
@@ -125,47 +185,27 @@ instagram:
 reddit:
 patreon:
 discord:
+```
 
-## Field Handling
+---
 
-How to map raw GeoJSON properties into `filter_N`, `column_N`, and `popup_N` slots above. Property names must match GeoJSON keys **exactly**, including spaces and capitalization (e.g. `Pool Name`, not `pool_name`).
+## Field Handling Reference
 
-### Filters — categorical only, ≤ ~12 unique values
-Good filter fields are short categorical values that group features into meaningful buckets:
-- **Use:** status, type, size, category, district, zone, year, season
-- **Avoid:** names (every value unique), URLs, phone numbers, free-text addresses, raw hours strings, IDs, coordinates, mostly-null fields
+Property names in `filters`, `columns`, and `popups` must match GeoJSON keys **exactly** — spaces and capitalization count (`Pool Name` not `pool_name`).
 
-If a field has 30+ unique values, it's not a filter — it's a column or popup row. If a field is 90%+ null, skip it as a filter (the dropdown will be useless).
+**Filters** — categorical fields with ≤12 unique values only.
+Good: status, type, zone, district, year, category.
+Skip: names (unique per row), URLs, phone numbers, long text, mostly-null fields, raw coordinates.
 
-### Columns — short, scannable, table-friendly
-The data table shows 4–6 columns. First column is usually the name field. Pick categorical or short-text fields that fit a narrow cell:
-- **Use:** name, status, type, short address, neighborhood, price tier
-- **Avoid:** long URLs, multi-sentence descriptions, raw lat/lng, hours strings with multiple time ranges
+**Columns** — short values that fit a table cell. Usually name + 3–4 categorical fields. Skip long URLs or long text descriptions.
 
-### Popups — anything users want when they click a pin
-Popups are roomy, so include everything useful — even long fields. Phone numbers and websites belong here even though they're bad filters. Don't repeat the name field (it's already shown in the popup header). Skip latitude/longitude (the marker is already on the map).
+**Popups** — include everything a user might want when clicking a pin: phone, website, hours, address. Don't repeat the name field (it's in the popup header). Skip latitude/longitude (already shown on the map).
 
-### Null handling
-Fields that are mostly null (e.g. a `Closure Days` field that's null for 44 of 46 features) are fine in popups but should not become filters or columns — the dropdown/table cell will just show empty.
+**Null handling** — fields that are mostly null are fine in popups but bad as filters (the dropdown becomes useless).
 
-### Worked example — Austin Pool Openings (46 features, 13 raw properties)
+**Worked example (Austin Pool Openings — 13 raw properties → 3 filters / 5 columns / 9 popup rows):**
+See `apps/citywide/PoolOpenings/config.js`
 
-| Property        | Unique | Decision           |
-|-----------------|--------|--------------------|
-| `Pool Name`     | 46     | `nameField`, column |
-| `Status`        | 3      | filter, column, popup |
-| `Pool Type`     | 5      | filter, column, popup (this is the "size" filter) |
-| `Open Date`     | 8      | filter, column, popup |
-| `Weekday`       | 8      | popup only (long hours strings) |
-| `Weekend`       | 6      | popup only |
-| `Closure Days`  | 2      | popup only (mostly null) |
-| `Phone`         | 35     | popup only |
-| `Website`       | 46     | popup only (URL) |
-| `address`       | 44     | column, popup |
-| `Location 1`    | 45     | skip (duplicate of address) |
-| `latitude`      | n/a    | skip (geometry) |
-| `longitude`     | n/a    | skip (geometry) |
-
-13 properties → 3 filters, 5 columns, 9 popup rows. See `apps/citywide/PoolOpenings/config.js` for the resulting config.
+---
 
 ## Notes

@@ -12,14 +12,24 @@ const CONFIG = {
   infoPanelText: "",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:      [-97.743, 30.267],
-  zoom:        10,
-  pitch:       45,
-  bearing:     -15,
-  markerColor: "#2d7a1a",
+  center:          [-97.743, 30.267],
+  zoom:            10,
+  pitch:           45,
+  bearing:         -15,
+  markerColor:     "#2d7a1a",
+  // markerIconStyle: "golf" | "drop" (water) | "pin" (simple) — default: "golf"
+  markerIconStyle: "golf",
 
   // ── Geographic bounds lock ────────────────────────────────
   maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
+
+  // ── Theme overrides (leave undefined to use defaults) ────────
+  // theme: {
+  //   headerBg:    "#1a4d0e",   // header bar background
+  //   pageBg:      "#e4ede0",   // page / table background
+  //   fontHeading: "Oswald",    // heading font (Google Font name)
+  //   fontBody:    "Barlow",    // body font (Google Font name)
+  // },
 
   // ── Reddit search ─────────────────────────────────────────
   redditCity: "Austin",
