@@ -2,7 +2,7 @@
 
 ## Workflow at a glance
 
-1. **User copies the folder.** `apps/templates/citywide/` → `apps/citywide/<NewName>/` (via the Copy citywide template GitHub Action, a Codespace, or local `cp -r`).
+1. **User copies the folder manually.** `apps/templates/citywide/` → `apps/citywide/<NewName>/`. The template is fully self-contained — all paths in `index.html`, `app.js`, and `config.js` are relative, so the live URL `https://anatomy.city/apps/citywide/<NewName>/` works as soon as the folder exists on `main`.
 2. **User drops `data.geojson` into the new folder** (and optionally a `NOTES.md` — see below).
 3. **User says:** "deploy `apps/citywide/<NewName>/`".
 4. **Claude reads `data.geojson` directly**, profiles the properties, then edits `config.js` and `index.html` `<title>` in place.
