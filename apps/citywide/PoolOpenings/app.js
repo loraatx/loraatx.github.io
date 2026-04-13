@@ -8,7 +8,7 @@ let contourDemSource;
 
 // --- Theme: apply CONFIG.theme overrides to CSS variables ---
 
-function applyTheme() {
+function applyConfigTheme() {
   const t = CONFIG.theme || {};
   const root = document.documentElement.style;
   if (t.headerBg)    root.setProperty("--color-header-bg", t.headerBg);
@@ -28,7 +28,7 @@ function applyTheme() {
     document.head.appendChild(l);
   }
 }
-applyTheme();
+applyConfigTheme();
 
 // --- Marker icon SVG by style ---
 
