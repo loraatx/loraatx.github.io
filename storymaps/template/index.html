@@ -12,11 +12,10 @@
   <!-- Full-screen map -->
   <div id="map"></div>
 
-  <!-- Story title overlay — top-left -->
-  <div id="sm-title-overlay" class="sm-title-overlay" hidden>
-    <p class="sm-story-eyebrow">City Anatomy</p>
-    <h1 id="sm-story-title" class="sm-story-title"></h1>
-    <p id="sm-story-subtitle" class="sm-story-subtitle"></p>
+  <!-- Brand card — top-right (title + back link combined) -->
+  <div class="sm-brand-card">
+    <a href="/" class="sm-brand-link">City Anatomy <span aria-hidden="true">↗</span></a>
+    <p id="sm-story-name" class="sm-brand-title"></p>
   </div>
 
   <!-- Play/Pause button — bottom-left -->
@@ -40,9 +39,6 @@
       <rect x="17" y="5" width="2" height="14" rx="1"/>
     </svg>
   </button>
-
-  <!-- Back link — top-right -->
-  <a href="/" class="sm-back-link">City Anatomy ↗</a>
 
   <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
   <script src="engine.js"></script>

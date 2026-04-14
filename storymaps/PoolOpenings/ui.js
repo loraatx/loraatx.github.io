@@ -2,22 +2,17 @@
 // No playback logic here; all state lives in engine.js.
 
 function initUI(engine) {
-  const playBtn      = document.getElementById('sm-play-btn');
-  const iconPause    = playBtn.querySelector('.sm-icon-pause');
-  const iconPlay     = playBtn.querySelector('.sm-icon-play');
-  const nextBtn      = document.getElementById('sm-next-btn');
-  const dotsNav      = document.getElementById('sm-dots');
-  const titleOverlay = document.getElementById('sm-title-overlay');
-  const titleEl      = document.getElementById('sm-story-title');
-  const subtitleEl   = document.getElementById('sm-story-subtitle');
+  const playBtn    = document.getElementById('sm-play-btn');
+  const iconPause  = playBtn.querySelector('.sm-icon-pause');
+  const iconPlay   = playBtn.querySelector('.sm-icon-play');
+  const nextBtn    = document.getElementById('sm-next-btn');
+  const dotsNav    = document.getElementById('sm-dots');
+  const brandTitle = document.getElementById('sm-story-name');
 
-  // ── Populate title overlay ──────────────────────────────────────
+  // ── Populate brand card title ───────────────────────────────────
   const s = engine.story;
-  if (s?.title) {
-    titleEl.textContent = s.title;
-    subtitleEl.textContent = s.subtitle ?? '';
-    subtitleEl.hidden = !s.subtitle;
-    titleOverlay.hidden = false;
+  if (s?.title && brandTitle) {
+    brandTitle.textContent = s.title;
   }
 
   // ── Build scene dot buttons ─────────────────────────────────────
@@ -27,7 +22,6 @@ function initUI(engine) {
     dot.setAttribute('aria-label',
       `Scene ${i + 1}${scene.popup?.title ? ': ' + scene.popup.title : ''}`);
     dot.addEventListener('click', () => {
-      // Clicking a dot respects the current paused state (same as Next)
       engine.goToScene(i, engine.paused);
     });
     dotsNav.appendChild(dot);
@@ -50,9 +44,6 @@ function initUI(engine) {
   }
 
   // ── Next button ─────────────────────────────────────────────────
-  // If playing: fly to next scene and continue auto-advancing.
-  // If paused:  fly to next scene and stop there; user must click Next
-  //             again or hit Play to continue.
   nextBtn.addEventListener('click', () => engine.stepNext());
 
   // ── Listen to engine events ─────────────────────────────────────
