@@ -327,8 +327,7 @@ class StoryEngine {
     }
 
     if (p.link?.href) {
-      const target = p.link.external ? ' target="_blank" rel="noopener"' : '';
-      html += `<a class="sm-popup-link" href="${p.link.href}"${target}>${p.link.text ?? 'View →'}</a>`;
+      html += `<a class="sm-popup-link" href="${p.link.href}" target="_blank" rel="noopener noreferrer">${p.link.text ?? 'View →'}</a>`;
     }
 
     html += '</div>';
