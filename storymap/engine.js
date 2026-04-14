@@ -35,7 +35,6 @@ class StoryEngine {
       return;
     }
 
-    // Set initial camera if provided
     const ic = this.story.initialCamera;
     if (ic) {
       this.map.jumpTo({
@@ -54,7 +53,6 @@ class StoryEngine {
     if (!this.paused && this.state !== 'IDLE') return;
 
     if (this.state === 'IDLE') {
-      // First play
       this.paused = false;
       const token = ++this._abortToken;
       this._runScene(0, token);
@@ -66,7 +64,8 @@ class StoryEngine {
     this.paused = false;
 
     if (this.state === 'TRANSITIONING') {
-      // Re-run the transition for the current scene (map.stop() discarded the old flyTo)
+      // map.stop() already fired moveend and resolved _doTransition early.
+      // Re-run the camera transition for the current scene.
       const token = ++this._abortToken;
       this._doTransition(this.scenes[this.currentIndex], token).then(() => {
         if (token !== this._abortToken) return;
@@ -77,7 +76,11 @@ class StoryEngine {
         else this._startAdvanceTimer(scene, token);
       });
     } else if (this.state === 'SHOWING') {
-      if (this.ytPlayer?.playVideo) this.ytPlayer.playVideo();
+      // Resume YouTube if present
+      if (this.ytPlayer?.playVideo) {
+        try { this.ytPlayer.playVideo(); } catch (e) {}
+      }
+      // Resume or start the advance timer (_timerRemaining is always set by _startAdvanceTimer)
       this._resumeTimer();
     }
 
@@ -88,10 +91,8 @@ class StoryEngine {
     if (this.paused) return;
     this.paused = true;
 
-    // Abort in-progress map animation
-    this.map.stop();
+    this.map.stop(); // fires moveend immediately; _runScene checks paused after await
 
-    // Pause YouTube
     if (this.ytPlayer?.pauseVideo) {
       try { this.ytPlayer.pauseVideo(); } catch (e) {}
     }
@@ -105,26 +106,32 @@ class StoryEngine {
     else this.pause();
   }
 
-  goToScene(index) {
+  // keepPaused: true when the Next button is clicked while paused —
+  // fly to the next scene and stop there; don't auto-advance further.
+  goToScene(index, keepPaused = false) {
     if (index < 0 || index >= this.scenes.length) return;
     const token = ++this._abortToken;
-    this.paused = false;
+
+    if (!keepPaused) this.paused = false;
+
     this._clearTimer();
     this._clearYTPoll();
     if (this.ytPlayer) { try { this.ytPlayer.stopVideo(); } catch (e) {} }
     if (this.popup) { this.popup.remove(); this.popup = null; }
+
     this._runScene(index, token);
-    this._emit('playstate-change', { playing: true });
+
+    if (!keepPaused) this._emit('playstate-change', { playing: true });
+    // When keepPaused, the play button icon stays as-is (already showing ▶).
   }
 
-  next() {
-    const next = (this.currentIndex + 1) % this.scenes.length;
-    this.goToScene(next);
-  }
+  next() { this.goToScene((this.currentIndex + 1) % this.scenes.length); }
+  prev() { this.goToScene((this.currentIndex - 1 + this.scenes.length) % this.scenes.length); }
 
-  prev() {
-    const prev = (this.currentIndex - 1 + this.scenes.length) % this.scenes.length;
-    this.goToScene(prev);
+  // Called by Next button in the UI — respects current paused state.
+  stepNext() {
+    const nextIndex = (this.currentIndex + 1) % this.scenes.length;
+    this.goToScene(nextIndex, this.paused);
   }
 
   // ── Core scene runner ───────────────────────────────────────────
@@ -144,15 +151,15 @@ class StoryEngine {
     if (scene.showLayers?.length) this._setLayerVisibility(scene.showLayers, true);
     if (scene.hideLayers?.length) this._setLayerVisibility(scene.hideLayers, false);
 
-    // Camera transition
     await this._doTransition(scene, token);
 
-    // Stale check — goToScene() was called while we were flying
+    // Stale check — goToScene() was called while flying
     if (token !== this._abortToken) return;
 
-    // Pause check — map.stop() resolved the transition early
+    // Pause check — map.stop() resolved the transition early.
+    // Stay in TRANSITIONING so play() re-runs the transition.
     if (this.paused) {
-      this._setState('TRANSITIONING'); // stay here so play() re-runs the transition
+      this._setState('TRANSITIONING');
       return;
     }
 
@@ -172,8 +179,12 @@ class StoryEngine {
       const cam = scene.camera ?? {};
       const t = scene.transition ?? 'fly';
 
+      // Offset the viewport so the popup (which floats above its anchor)
+      // appears visually centred — equivalent to pulling the anchor point
+      // slightly below screen centre.
+      const padding = { top: 200, bottom: 0, left: 0, right: 0 };
+
       const onMoveEnd = () => {
-        // Always resolve — stale check happens in _runScene after await
         this._setState('WAITING');
         resolve();
       };
@@ -190,13 +201,17 @@ class StoryEngine {
       }
 
       if (t === 'ease') {
+        // For in-place reveals the author may omit camera.center.
+        // Fall back to the popup's lngLat so the point stays on screen.
+        const center = cam.center ?? scene.popup?.lngLat;
         const opts = {
           zoom: cam.zoom,
           pitch: cam.pitch,
           bearing: cam.bearing,
           duration: cam.duration ?? 1200,
+          padding,
         };
-        if (cam.center) opts.center = cam.center;
+        if (center) opts.center = center;
         this.map.easeTo(opts);
         this.map.once('moveend', onMoveEnd);
         return;
@@ -210,6 +225,7 @@ class StoryEngine {
         bearing: cam.bearing ?? 0,
         speed: cam.speed ?? 0.8,
         curve: cam.curve ?? 1.4,
+        padding,
       });
       this.map.once('moveend', onMoveEnd);
     });
@@ -242,18 +258,34 @@ class StoryEngine {
       }
     });
 
-    // YouTube scene: inject player after popup is in DOM
     if (p.youtube) {
-      await this._loadYouTubeAPI();
-      if (token !== this._abortToken) return;
+      try {
+        // Guard against a blocked or slow YT API script
+        await Promise.race([
+          this._loadYouTubeAPI(),
+          new Promise((_, rej) => setTimeout(() => rej(new Error('YT API timeout')), 6000)),
+        ]);
+        if (token !== this._abortToken) return;
 
-      const placeholderId = `yt-player-${token}`;
-      await this._createYTPlayer(placeholderId, p.youtube.videoId, p.youtube.startAt, p.youtube.mute);
-      if (token !== this._abortToken) return;
+        const placeholderId = `yt-player-${token}`;
+        await Promise.race([
+          this._createYTPlayer(placeholderId, p.youtube.videoId, p.youtube.startAt, p.youtube.mute),
+          new Promise((_, rej) => setTimeout(() => rej(new Error('YT Player timeout')), 8000)),
+        ]);
+        if (token !== this._abortToken) return;
 
-      if (p.youtube.stopAt != null) {
-        this._pollYTForStopAt(p.youtube.stopAt, token);
-      } else {
+        // In step/paused mode pause the video immediately after it loads
+        if (this.paused && this.ytPlayer?.pauseVideo) {
+          try { this.ytPlayer.pauseVideo(); } catch (e) {}
+        }
+
+        if (p.youtube.stopAt != null) {
+          this._pollYTForStopAt(p.youtube.stopAt, token);
+        } else {
+          this._startAdvanceTimer(scene, token);
+        }
+      } catch (e) {
+        console.warn('StoryEngine: YouTube failed, using duration fallback.', e.message);
         this._startAdvanceTimer(scene, token);
       }
     } else {
@@ -279,7 +311,6 @@ class StoryEngine {
     }
 
     if (p.youtube) {
-      // Placeholder div — YT player injected after popup is in DOM
       html += `<div class="sm-popup-video-wrap"><div id="yt-player-${token}" class="sm-yt-placeholder"></div></div>`;
     }
 
@@ -314,7 +345,6 @@ class StoryEngine {
         this.map.addSource(layerDef.id, { type: 'geojson', data: layerDef.source });
       }
 
-      // Force opacity to 0 so all layers start hidden
       const paint = { ...layerDef.paint };
       const opacityProp = this._opacityProp(layerDef.type);
       if (opacityProp) paint[opacityProp] = 0;
@@ -347,7 +377,7 @@ class StoryEngine {
       const targetOpacity = visible ? (layerDef.transitionOpacity ?? 0.6) : 0;
       const duration = layerDef.transitionDuration ?? 500;
 
-      // Both calls must be synchronous for MapLibre to tween
+      // Both calls must be synchronous for MapLibre to tween the value
       this.map.setPaintProperty(id, `${opacityProp}-transition`, { duration, delay: 0 });
       this.map.setPaintProperty(id, opacityProp, targetOpacity);
     });
@@ -376,6 +406,9 @@ class StoryEngine {
       this._timerRemaining = null;
       this._advance(token);
     }, ms);
+
+    // Step/pause mode: store the duration but freeze the timer immediately
+    if (this.paused) this._pauseTimer();
   }
 
   _pauseTimer() {
@@ -420,7 +453,7 @@ class StoryEngine {
 
   _loadYouTubeAPI() {
     if (this.ytReady) return Promise.resolve();
-    if (this._ytAPIPromise) return this._ytAPIPromise;
+    if (this._ytAPIPromise) return this._ytAPIPromise; // reuse if mid-load
 
     this._ytAPIPromise = new Promise(resolve => {
       window.onYouTubeIframeAPIReady = () => {
@@ -440,7 +473,10 @@ class StoryEngine {
       this.ytPlayer = null;
     }
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
+      const el = document.getElementById(containerId);
+      if (!el) { reject(new Error('YT placeholder not found')); return; }
+
       this.ytPlayer = new YT.Player(containerId, {
         videoId,
         playerVars: {
@@ -457,6 +493,9 @@ class StoryEngine {
             event.target.playVideo();
             resolve(event.target);
           },
+          onError: event => {
+            reject(new Error(`YT player error: ${event.data}`));
+          },
         },
       });
     });
@@ -466,12 +505,17 @@ class StoryEngine {
     this._clearYTPoll();
     this._ytPollInterval = setInterval(() => {
       if (token !== this._abortToken) { this._clearYTPoll(); return; }
-      if (this.paused) return;
+      if (this.paused) return; // freeze while paused; poll resumes when play() called
       if (!this.ytPlayer?.getCurrentTime) return;
-      const t = this.ytPlayer.getCurrentTime();
-      if (t >= stopAt) {
+      try {
+        const t = this.ytPlayer.getCurrentTime();
+        if (t >= stopAt) {
+          this._clearYTPoll();
+          this._advance(token);
+        }
+      } catch (e) {
         this._clearYTPoll();
-        this._advance(token);
+        this._advance(token); // if player errors, advance anyway
       }
     }, 250);
   }

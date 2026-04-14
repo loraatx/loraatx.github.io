@@ -2,13 +2,14 @@
 // No playback logic here; all state lives in engine.js.
 
 function initUI(engine) {
-  const playBtn     = document.getElementById('sm-play-btn');
-  const iconPause   = playBtn.querySelector('.sm-icon-pause');
-  const iconPlay    = playBtn.querySelector('.sm-icon-play');
-  const dotsNav     = document.getElementById('sm-dots');
+  const playBtn      = document.getElementById('sm-play-btn');
+  const iconPause    = playBtn.querySelector('.sm-icon-pause');
+  const iconPlay     = playBtn.querySelector('.sm-icon-play');
+  const nextBtn      = document.getElementById('sm-next-btn');
+  const dotsNav      = document.getElementById('sm-dots');
   const titleOverlay = document.getElementById('sm-title-overlay');
-  const titleEl     = document.getElementById('sm-story-title');
-  const subtitleEl  = document.getElementById('sm-story-subtitle');
+  const titleEl      = document.getElementById('sm-story-title');
+  const subtitleEl   = document.getElementById('sm-story-subtitle');
 
   // ── Populate title overlay ──────────────────────────────────────
   const s = engine.story;
@@ -25,7 +26,10 @@ function initUI(engine) {
     dot.className = 'sm-dot';
     dot.setAttribute('aria-label',
       `Scene ${i + 1}${scene.popup?.title ? ': ' + scene.popup.title : ''}`);
-    dot.addEventListener('click', () => engine.goToScene(i));
+    dot.addEventListener('click', () => {
+      // Clicking a dot respects the current paused state (same as Next)
+      engine.goToScene(i, engine.paused);
+    });
     dotsNav.appendChild(dot);
   });
 
@@ -45,11 +49,17 @@ function initUI(engine) {
     playBtn.title = playing ? 'Pause' : 'Play';
   }
 
+  // ── Next button ─────────────────────────────────────────────────
+  // If playing: fly to next scene and continue auto-advancing.
+  // If paused:  fly to next scene and stop there; user must click Next
+  //             again or hit Play to continue.
+  nextBtn.addEventListener('click', () => engine.stepNext());
+
   // ── Listen to engine events ─────────────────────────────────────
-  window.addEventListener('sm:scene-change',    e => updateDots(e.detail.index));
+  window.addEventListener('sm:scene-change',     e => updateDots(e.detail.index));
   window.addEventListener('sm:playstate-change', e => updatePlayBtn(e.detail.playing));
 
-  // Set initial state (autoplay = playing)
+  // Initialise UI state
   updatePlayBtn(engine.story?.autoplay !== false);
   updateDots(0);
 }
