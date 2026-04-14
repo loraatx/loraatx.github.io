@@ -150,9 +150,9 @@ main {
 
 .map-hero {
   position: relative;
-  flex: 0 0 55vh;
+  flex: 0 0 65vh;
   display: flex;
-  height: 55vh;
+  height: 65vh;
   border-bottom: none;
   overflow: hidden;
 }
@@ -171,7 +171,7 @@ main {
 
 #map {
   flex: 1;
-  height: 55vh;
+  height: 65vh;
   width: 100%;
 }
 
@@ -338,16 +338,12 @@ main {
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding: 18px 28px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  text-align: center;
 }
 
 .social-icons {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 16px;
 }
 
