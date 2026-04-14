@@ -4,13 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>City Anatomy</title>
-  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
-    rel="stylesheet"
-  />
   <link href="style.css" rel="stylesheet" />
 </head>
 <body>
@@ -37,9 +30,19 @@
 
   <main>
     <section class="map-hero">
-      <div id="map" role="application" aria-label="3D map of Austin, Texas"></div>
+      <iframe
+        id="storymap-frame"
+        class="storymap-frame"
+        src=""
+        title="Story Map"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </section>
 
+    <section class="storymap-nav-bar">
+      <div id="storymap-nav" class="storymap-nav" role="group" aria-label="Story map selector"></div>
+    </section>
   </main>
 
   <footer class="page-footer">
@@ -52,132 +55,68 @@
       <a href="#" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4.5a8.1 8.1 0 1 0 0 16.2 8.1 8.1 0 0 0 0-16.2zM.5.5h3.8v23H.5z"/></svg></a>
       <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A18.5 18.5 0 0 0 15.7 3a13 13 0 0 0-.6 1.2 17.2 17.2 0 0 0-5.1 0A12 12 0 0 0 9.4 3a18.5 18.5 0 0 0-4.6 1.4A19.5 19.5 0 0 0 1.5 19a18.7 18.7 0 0 0 5.7 2.9 14 14 0 0 0 1.2-2 12 12 0 0 1-1.9-.9l.5-.4a13.3 13.3 0 0 0 11.4 0l.5.4a12 12 0 0 1-1.9.9 14 14 0 0 0 1.2 2 18.6 18.6 0 0 0 5.7-2.9A19.4 19.4 0 0 0 20.3 4.4zM8.3 16c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3zm7.4 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3z"/></svg></a>
     </div>
-    <p>&copy; 2025 City Anatomy &bull; Powered by <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a></p>
   </footer>
 
-  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
   <script>
-    const map = new maplibregl.Map({
-      container: 'map',
-      style: 'https://tiles.openfreemap.org/styles/liberty',
-      center: [-97.7431, 30.2672], // Austin, TX
-      zoom: 15,
-      pitch: 60,
-      bearing: -17.6,
-      antialias: true
-    });
+    // ── Story map selector ─────────────────────────────────────────
+    (function () {
+      const frame = document.getElementById('storymap-frame');
+      const nav   = document.getElementById('storymap-nav');
 
-    // Add zoom/rotation controls
-    map.addControl(new maplibregl.NavigationControl(), 'top-right');
-
-    // Wait for the map to load before adding 3D buildings
-    map.on('load', () => {
-      // Find the first symbol layer so we can insert buildings underneath labels
-      const layers = map.getStyle().layers;
-      let labelLayerId;
-      for (const layer of layers) {
-        if (layer.type === 'symbol' && layer.layout['text-field']) {
-          labelLayerId = layer.id;
-          break;
-        }
-      }
-
-      // Add 3D building layer
-      map.addLayer(
-        {
-          id: '3d-buildings',
-          source: 'openmaptiles',
-          'source-layer': 'building',
-          filter: ['==', ['get', 'extrude'], 'true'],
-          type: 'fill-extrusion',
-          minzoom: 15,
-          paint: {
-            'fill-extrusion-color': '#aaa',
-            'fill-extrusion-height': ['get', 'render_height'],
-            'fill-extrusion-base': ['get', 'render_min_height'],
-            'fill-extrusion-opacity': 0.7
-          }
-        },
-        labelLayerId
-      );
-
-      // ── Animated tour ──────────────────────────────────────
-      fetch('tour.geojson')
+      fetch('/storymaps/index.json')
         .then(r => r.json())
-        .then(data => {
-          const stops = data.features;
-          if (!stops.length) return;
+        .then(maps => {
+          if (!maps.length) return;
 
-          let idx = 0;
-          let tourPopup = null;
+          // Load the first story map
+          frame.src = '/storymaps/' + maps[0].id + '/';
 
-          function flyToStop() {
-            const feature = stops[idx];
-            idx = (idx + 1) % stops.length;
-            const [lng, lat] = feature.geometry.coordinates;
-            const p = feature.properties;
-
-            if (tourPopup) { tourPopup.remove(); tourPopup = null; }
-
-            map.flyTo({
-              center: [lng, lat],
-              zoom:    p.zoom    ?? 16.5,
-              pitch:   p.pitch   ?? 60,
-              bearing: p.bearing ?? 0,
-              speed: 0.8,
-              curve: 1.4
+          maps.forEach((map, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'sm-nav-btn' + (i === 0 ? ' is-active' : '');
+            btn.textContent = map.label;
+            btn.addEventListener('click', () => {
+              const target = '/storymaps/' + map.id + '/';
+              if (frame.src.endsWith(target)) return;
+              frame.src = target;
+              nav.querySelectorAll('.sm-nav-btn').forEach(b => b.classList.remove('is-active'));
+              btn.classList.add('is-active');
             });
-
-            map.once('moveend', () => {
-              let html = `<strong>${p.name}</strong>`;
-              if (p.image) html += `<img src="${p.image}" alt="${p.name}" />`;
-              if (p.description) html += `<p>${p.description}</p>`;
-              if (p.link) html += `<a class="tour-link" href="${p.link}">View Report →</a>`;
-
-              tourPopup = new maplibregl.Popup({
-                closeButton: false,
-                closeOnClick: false,
-                anchor: 'bottom',
-                offset: 12
-              })
-                .setLngLat([lng, lat])
-                .setHTML(html)
-                .addTo(map);
-
-              setTimeout(flyToStop, 4500);
-            });
-          }
-
-          setTimeout(flyToStop, 1500);
+            nav.appendChild(btn);
+          });
+        })
+        .catch(() => {
+          // If the config can't be fetched, hide the selector bar gracefully
+          document.querySelector('.storymap-nav-bar')?.remove();
         });
-    });
+    }());
 
+    // ── Theme toggle ───────────────────────────────────────────────
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
     const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
     document.documentElement.dataset.theme = initialTheme;
 
     const themeToggle = document.querySelector('.theme-toggle');
-    const toggleIcon = themeToggle.querySelector('.toggle-icon');
+    const toggleIcon  = themeToggle.querySelector('.toggle-icon');
     const toggleLabel = themeToggle.querySelector('.toggle-label');
 
     const updateToggleUI = (theme) => {
-      toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggleIcon.textContent  = theme === 'dark' ? '🌙' : '☀️';
       toggleLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
     };
-
     updateToggleUI(initialTheme);
 
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.dataset.theme;
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.dataset.theme = nextTheme;
-      localStorage.setItem('theme', nextTheme);
-      updateToggleUI(nextTheme);
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
+      updateToggleUI(next);
     });
 
+    // ── Mobile nav ─────────────────────────────────────────────────
     const primaryNav = document.querySelector('.primary-nav');
-    const navToggle = document.querySelector('.nav-toggle');
+    const navToggle  = document.querySelector('.nav-toggle');
 
     navToggle?.addEventListener('click', () => {
       if (!primaryNav) return;
@@ -185,7 +124,7 @@
       navToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    primaryNav?.querySelectorAll('a').forEach((link) => {
+    primaryNav?.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 900 && primaryNav.classList.contains('is-open')) {
           primaryNav.classList.remove('is-open');
