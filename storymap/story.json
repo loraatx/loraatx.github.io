@@ -1,0 +1,230 @@
+{
+  "title": "Austin's Public Pools",
+  "subtitle": "A City Anatomy Story",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.7431, 30.2672],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "pool-areas",
+      "type": "fill",
+      "source": "data/pool-areas.geojson",
+      "paint": {
+        "fill-color": "#0067c5",
+        "fill-opacity": 0
+      },
+      "transitionOpacity": 0.35,
+      "transitionDuration": 700,
+      "insertBefore": "road-label"
+    },
+    {
+      "id": "parks",
+      "type": "fill",
+      "source": "data/parks.geojson",
+      "paint": {
+        "fill-color": "#2b8a3e",
+        "fill-opacity": 0
+      },
+      "transitionOpacity": 0.2,
+      "transitionDuration": 700,
+      "insertBefore": "road-label"
+    },
+    {
+      "id": "creek-corridors",
+      "type": "line",
+      "source": "data/creek-corridors.geojson",
+      "paint": {
+        "line-color": "#1d8ca0",
+        "line-opacity": 0,
+        "line-width": 3
+      },
+      "transitionOpacity": 0.9,
+      "transitionDuration": 800
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7431, 30.2672],
+        "zoom": 10.5,
+        "pitch": 35,
+        "bearing": -10,
+        "speed": 0.5,
+        "curve": 1.2
+      },
+      "showLayers": ["parks"],
+      "hideLayers": ["pool-areas", "creek-corridors"],
+      "popup": {
+        "lngLat": [-97.7431, 30.2672],
+        "anchor": "bottom",
+        "title": "Austin's Public Pool Network",
+        "subtitle": "22 facilities across the city",
+        "body": "<p>Austin operates one of the most diverse public swimming programs in Texas — from century-old spring-fed pools to modern splash pads in every council district.</p>",
+        "stats": [
+          { "label": "Total Facilities", "value": "22" },
+          { "label": "Splash Pads", "value": "9" },
+          { "label": "Lap Pools", "value": "4" }
+        ],
+        "link": {
+          "href": "/apps/citywide/PoolOpenings/",
+          "text": "View Pool Status Map →"
+        }
+      }
+    },
+
+    {
+      "id": "barton-springs",
+      "transition": "fly",
+      "duration": 6000,
+      "camera": {
+        "center": [-97.7698, 30.2629],
+        "zoom": 16.5,
+        "pitch": 55,
+        "bearing": 90,
+        "speed": 0.75,
+        "curve": 1.4
+      },
+      "showLayers": ["pool-areas", "creek-corridors"],
+      "hideLayers": ["parks"],
+      "popup": {
+        "lngLat": [-97.7698, 30.2629],
+        "title": "Barton Springs Pool",
+        "subtitle": "900 Barton Springs Rd · Zilker Park",
+        "body": "<p>Fed by underground springs at a constant 68°F, Barton Springs has been Austin's outdoor living room since 1917. The 3-acre pool draws over 800,000 visitors annually.</p>",
+        "stats": [
+          { "label": "Water Temp", "value": "68°F year-round" },
+          { "label": "Pool Size", "value": "~3 acres" },
+          { "label": "Open Since", "value": "1917" }
+        ],
+        "link": {
+          "href": "/apps/citywide/PoolOpenings/",
+          "text": "Check Current Status →"
+        }
+      }
+    },
+
+    {
+      "id": "barton-drone-reveal",
+      "transition": "ease",
+      "duration": 5500,
+      "camera": {
+        "zoom": 17.5,
+        "pitch": 72,
+        "bearing": 200,
+        "duration": 3000
+      },
+      "showLayers": ["pool-areas"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7698, 30.2629],
+        "title": "Barton Springs from Above",
+        "subtitle": "In the heart of Zilker Park",
+        "youtube": {
+          "videoId": "F-3bPOhHEDk",
+          "startAt": 4,
+          "stopAt": 28,
+          "mute": true
+        },
+        "body": "<p>The natural spring outflow carved these curves — the pool boundary follows Barton Creek's original floodplain geometry.</p>"
+      }
+    },
+
+    {
+      "id": "deep-eddy",
+      "transition": "fly",
+      "duration": 6500,
+      "camera": {
+        "center": [-97.7707, 30.2819],
+        "zoom": 16,
+        "pitch": 50,
+        "bearing": -45,
+        "speed": 0.7
+      },
+      "showLayers": ["pool-areas"],
+      "hideLayers": ["creek-corridors"],
+      "popup": {
+        "lngLat": [-97.7707, 30.2819],
+        "title": "Deep Eddy Pool",
+        "subtitle": "401 Deep Eddy Ave · West Austin",
+        "body": "<p>Built in 1915, Deep Eddy holds the title of Texas's oldest public pool. Its lakeside location made it a natural gathering spot during the early 20th century.</p>",
+        "stats": [
+          { "label": "Established", "value": "1915" },
+          { "label": "Lane Length", "value": "25 yards" },
+          { "label": "Admission", "value": "$3 adults" }
+        ]
+      }
+    },
+
+    {
+      "id": "citywide-access",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.7431, 30.3050],
+        "zoom": 11,
+        "pitch": 45,
+        "bearing": 15,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["parks", "pool-areas"],
+      "hideLayers": ["creek-corridors"],
+      "popup": {
+        "lngLat": [-97.7431, 30.3050],
+        "title": "Citywide Pool Access",
+        "subtitle": "Distribution by council district",
+        "body": "<p>Districts 1, 2, and 3 — covering East and Southeast Austin — have fewer facilities per capita than the west side. The city's Aquatics Plan proposes two new splash pads in District 1 by 2027.</p>",
+        "stats": [
+          { "label": "District 1", "value": "2 pools" },
+          { "label": "District 6", "value": "5 pools" },
+          { "label": "Drive time gap", "value": "~12 min" }
+        ],
+        "link": {
+          "href": "/apps/citywide/PoolOpenings/",
+          "text": "Explore the Interactive Map →"
+        }
+      }
+    },
+
+    {
+      "id": "barton-creek-watershed",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.8100, 30.2450],
+        "zoom": 12,
+        "pitch": 40,
+        "bearing": -20,
+        "speed": 0.6
+      },
+      "showLayers": ["creek-corridors", "parks"],
+      "hideLayers": ["pool-areas"],
+      "popup": {
+        "lngLat": [-97.8100, 30.2450],
+        "title": "Barton Creek Watershed",
+        "subtitle": "The source of Austin's spring water",
+        "body": "<p>Barton Springs owes its clarity to the Edwards Aquifer recharge zone — 97 sq mi of Hill Country limestone that filters rainfall before it resurfaces at the Barton Springs fault.</p>",
+        "stats": [
+          { "label": "Watershed Area", "value": "97 sq mi" },
+          { "label": "Spring Flow", "value": "40–60 cfs" },
+          { "label": "Water Temp", "value": "68°F constant" }
+        ],
+        "link": {
+          "href": "https://www.bseacd.org",
+          "text": "Barton Springs Edwards Aquifer District →",
+          "external": true
+        }
+      }
+    }
+  ]
+}
