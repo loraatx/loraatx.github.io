@@ -152,7 +152,7 @@ main {
   position: relative;
   flex: 1;
   display: flex;
-  height: 560px;
+  height: 448px;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -171,7 +171,7 @@ main {
 
 #map {
   flex: 1;
-  height: 560px;
+  height: 448px;
   width: 100%;
 }
 
@@ -501,7 +501,7 @@ main {
 
   .map-hero,
   #map {
-    height: 380px;
+    height: 304px;
   }
 
   .cta-group {
