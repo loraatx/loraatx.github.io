@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Story Map · City Anatomy</title>
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Full-screen map -->
+  <div id="map"></div>
+
+  <!-- Story title overlay — top-left -->
+  <div id="sm-title-overlay" class="sm-title-overlay" hidden>
+    <p class="sm-story-eyebrow">City Anatomy</p>
+    <h1 id="sm-story-title" class="sm-story-title"></h1>
+    <p id="sm-story-subtitle" class="sm-story-subtitle"></p>
+  </div>
+
+  <!-- Play/Pause button — bottom-left -->
+  <button id="sm-play-btn" class="sm-play-btn" aria-label="Pause story" title="Pause">
+    <svg class="sm-icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <rect x="6" y="4" width="4" height="16" rx="1"/>
+      <rect x="14" y="4" width="4" height="16" rx="1"/>
+    </svg>
+    <svg class="sm-icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
+
+  <!-- Scene dot indicators — bottom-center -->
+  <nav id="sm-dots" class="sm-dots" aria-label="Story scenes"></nav>
+
+  <!-- Next button — right center -->
+  <button id="sm-next-btn" class="sm-next-btn" aria-label="Next scene" title="Next">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5l8 7-8 7V5z"/>
+      <rect x="17" y="5" width="2" height="14" rx="1"/>
+    </svg>
+  </button>
+
+  <!-- Back link — top-right -->
+  <a href="/" class="sm-back-link">City Anatomy ↗</a>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
+  <script src="engine.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-97.7431, 30.2672],
+      zoom: 10,
+      pitch: 0,
+      bearing: 0,
+      antialias: true
+    });
+
+    const engine = new StoryEngine(map);
+
+    map.on('load', () => {
+      // 3D buildings (same as homepage)
+      const layers = map.getStyle().layers;
+      let labelLayerId;
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+      map.addLayer({
+        id: '3d-buildings',
+        source: 'openmaptiles',
+        'source-layer': 'building',
+        filter: ['==', ['get', 'extrude'], 'true'],
+        type: 'fill-extrusion',
+        minzoom: 15,
+        paint: {
+          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-height': ['get', 'render_height'],
+          'fill-extrusion-base': ['get', 'render_min_height'],
+          'fill-extrusion-opacity': 0.7
+        }
+      }, labelLayerId);
+
+      engine.load('story.json').then(() => {
+        initUI(engine);
+        if (engine.story?.autoplay !== false) {
+          engine.play();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

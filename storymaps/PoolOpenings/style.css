@@ -1,0 +1,403 @@
+/* ── CSS variables (light + dark, self-contained) ─────────────── */
+:root {
+  --background: #f5f7fa;
+  --text: #1c1c28;
+  --accent: #0067c5;
+  --accent-light: #5ba8ff;
+  --surface: #ffffff;
+  --muted: #6f7780;
+  --border: #e1e6ee;
+  --shadow: rgba(15, 25, 45, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0e1117;
+    --text: #f5f7fa;
+    --accent: #4cc3ff;
+    --accent-light: #8ad7ff;
+    --surface: #161b23;
+    --muted: #c0c7d1;
+    --border: #2a3040;
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* ── Page reset — full-screen map ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--background);
+}
+
+#map {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Story title overlay — top-left ───────────────────────────── */
+.sm-title-overlay {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px var(--shadow);
+  max-width: 280px;
+  pointer-events: none;
+}
+.sm-title-overlay[hidden] { display: none; }
+
+.sm-story-eyebrow {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sm-story-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.sm-story-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── Play/Pause button — bottom-left ─────────────────────────── */
+.sm-play-btn {
+  position: fixed;
+  bottom: 32px;
+  left: 20px;
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px var(--shadow);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.15s ease;
+  padding: 0;
+}
+.sm-play-btn:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 10px 24px var(--shadow);
+  border-color: var(--accent);
+}
+.sm-play-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ── Scene dot indicators — bottom-center ────────────────────── */
+.sm-dots {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 14px;
+  box-shadow: 0 4px 14px var(--shadow);
+}
+
+.sm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, width 0.25s ease, border-radius 0.25s ease;
+  flex-shrink: 0;
+}
+.sm-dot:hover {
+  background: var(--muted);
+  transform: scale(1.25);
+}
+.sm-dot.is-active {
+  background: var(--accent);
+  width: 22px;
+  border-radius: 99px;
+  transform: none;
+}
+
+/* ── Next button — right center ──────────────────────────────── */
+.sm-next-btn {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px var(--shadow);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.15s ease;
+  padding: 0;
+}
+.sm-next-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 10px 24px var(--shadow);
+  border-color: var(--accent);
+}
+.sm-next-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ── Back link — top-right ───────────────────────────────────── */
+.sm-back-link {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.sm-back-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── MapLibre popup overrides ────────────────────────────────── */
+.maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: 0 12px 32px var(--shadow);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-width: 220px;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: var(--surface) !important;
+}
+
+.maplibregl-popup-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+  padding: 8px 11px;
+  line-height: 1;
+  border-radius: 0 14px 0 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.maplibregl-popup-close-button:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--border) 40%, transparent);
+}
+
+/* ── Rich popup inner layout ─────────────────────────────────── */
+.sm-popup {
+  padding: 14px 16px 16px;
+}
+
+.sm-popup-header {
+  margin-bottom: 10px;
+  padding-right: 20px; /* clear close button */
+}
+.sm-popup-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.sm-popup-subtitle {
+  margin: 3px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Image — bleeds to popup edges */
+.sm-popup-figure {
+  margin: -14px -16px 12px;
+  padding: 0;
+}
+.sm-popup-img {
+  width: 100%;
+  display: block;
+  max-height: 160px;
+  object-fit: cover;
+}
+.sm-popup-figure figcaption {
+  font-size: 0.72rem;
+  color: var(--muted);
+  padding: 4px 10px 2px;
+  text-align: right;
+}
+
+/* YouTube embed — full-width bleed, 16:9 */
+.sm-popup-video-wrap {
+  margin: 0 -16px 12px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+.sm-yt-placeholder,
+.sm-popup-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  display: block;
+}
+
+/* Body text */
+.sm-popup-body {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.sm-popup-body p { margin: 0 0 6px; }
+.sm-popup-body p:last-child { margin-bottom: 0; }
+
+/* Stats table */
+.sm-popup-stats {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+  border-top: 1px solid var(--border);
+}
+.sm-popup-stats tr + tr td,
+.sm-popup-stats tr + tr th {
+  border-top: 1px solid var(--border);
+}
+.sm-popup-stats th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 5px 8px 5px 0;
+  white-space: nowrap;
+  width: 42%;
+}
+.sm-popup-stats td {
+  text-align: right;
+  color: var(--text);
+  padding: 5px 0;
+  font-weight: 700;
+}
+
+/* CTA link — full-width filled button */
+.sm-popup-link {
+  display: block;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.1s ease;
+  margin-top: 2px;
+}
+.sm-popup-link:hover {
+  background: color-mix(in srgb, var(--accent) 80%, #000);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+/* ── Mobile tweaks ───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .sm-title-overlay {
+    max-width: calc(100vw - 100px); /* leave room for back link */
+    padding: 10px 14px;
+  }
+  .sm-story-title { font-size: 0.92rem; }
+
+  .maplibregl-popup-content {
+    max-width: 280px;
+  }
+
+  .sm-play-btn {
+    bottom: 24px;
+    left: 14px;
+  }
+
+  .sm-dots {
+    bottom: 28px;
+    gap: 6px;
+    padding: 6px 12px;
+  }
+
+  .sm-back-link {
+    top: 14px;
+    right: 14px;
+    font-size: 0.76rem;
+    padding: 5px 10px;
+  }
+}
