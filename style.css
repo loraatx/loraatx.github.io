@@ -787,3 +787,51 @@ main {
     min-height: 320px;
   }
 }
+
+/* ── Tour popup ─────────────────────────────── */
+.maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px var(--shadow);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-width: 180px;
+  max-width: 240px;
+}
+
+.maplibregl-popup-content strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.maplibregl-popup-content img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.maplibregl-popup-content p {
+  margin: 0 0 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.tour-link {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.tour-link:hover {
+  color: var(--accent-light);
+}
+
+.maplibregl-popup-tip {
+  border-top-color: var(--surface) !important;
+}

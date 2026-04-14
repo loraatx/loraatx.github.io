@@ -99,6 +99,56 @@
         },
         labelLayerId
       );
+
+      // ── Animated tour ──────────────────────────────────────
+      fetch('tour.geojson')
+        .then(r => r.json())
+        .then(data => {
+          const stops = data.features;
+          if (!stops.length) return;
+
+          let idx = 0;
+          let tourPopup = null;
+
+          function flyToStop() {
+            const feature = stops[idx];
+            idx = (idx + 1) % stops.length;
+            const [lng, lat] = feature.geometry.coordinates;
+            const p = feature.properties;
+
+            if (tourPopup) { tourPopup.remove(); tourPopup = null; }
+
+            map.flyTo({
+              center: [lng, lat],
+              zoom:    p.zoom    ?? 16.5,
+              pitch:   p.pitch   ?? 60,
+              bearing: p.bearing ?? 0,
+              speed: 0.8,
+              curve: 1.4
+            });
+
+            map.once('moveend', () => {
+              let html = `<strong>${p.name}</strong>`;
+              if (p.image) html += `<img src="${p.image}" alt="${p.name}" />`;
+              if (p.description) html += `<p>${p.description}</p>`;
+              if (p.link) html += `<a class="tour-link" href="${p.link}">View Report →</a>`;
+
+              tourPopup = new maplibregl.Popup({
+                closeButton: false,
+                closeOnClick: false,
+                anchor: 'bottom',
+                offset: 12
+              })
+                .setLngLat([lng, lat])
+                .setHTML(html)
+                .addTo(map);
+
+              setTimeout(flyToStop, 4500);
+            });
+          }
+
+          setTimeout(flyToStop, 1500);
+        });
     });
 
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
