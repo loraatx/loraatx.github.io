@@ -150,7 +150,7 @@ main {
 
 .map-hero {
   position: relative;
-  flex: 1;
+  flex: 0 0 38vh;
   display: flex;
   height: 38vh;
   border-bottom: none;
