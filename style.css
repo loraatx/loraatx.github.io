@@ -338,12 +338,16 @@ main {
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding: 18px 28px 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .social-icons {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 16px;
 }
 
