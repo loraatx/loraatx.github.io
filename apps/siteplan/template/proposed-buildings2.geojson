@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower A",
+        "description": "525 ft / 160 m — northwest block near Congress Ave",
+        "height": 160,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7480, 30.2583],
+          [-97.7471, 30.2583],
+          [-97.7471, 30.2575],
+          [-97.7480, 30.2575],
+          [-97.7480, 30.2583]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower B",
+        "description": "375 ft / 114 m — north center block",
+        "height": 114,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7467, 30.2583],
+          [-97.7458, 30.2583],
+          [-97.7458, 30.2575],
+          [-97.7467, 30.2575],
+          [-97.7467, 30.2583]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower C",
+        "description": "295 ft / 90 m — northeast block near lake trail",
+        "height": 90,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7454, 30.2583],
+          [-97.7445, 30.2583],
+          [-97.7445, 30.2575],
+          [-97.7454, 30.2575],
+          [-97.7454, 30.2583]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower D",
+        "description": "445 ft / 136 m — southwest block near Congress Ave",
+        "height": 136,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7480, 30.2571],
+          [-97.7471, 30.2571],
+          [-97.7471, 30.2563],
+          [-97.7480, 30.2563],
+          [-97.7480, 30.2571]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower E",
+        "description": "365 ft / 111 m — south center block",
+        "height": 111,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7467, 30.2571],
+          [-97.7458, 30.2571],
+          [-97.7458, 30.2563],
+          [-97.7467, 30.2563],
+          [-97.7467, 30.2571]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tower F",
+        "description": "215 ft / 66 m — southeast block near lake trail",
+        "height": 66,
+        "base_height": 0,
+        "color": "#a8c4d4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.7454, 30.2571],
+          [-97.7445, 30.2571],
+          [-97.7445, 30.2563],
+          [-97.7454, 30.2563],
+          [-97.7454, 30.2571]
+        ]]
+      }
+    }
+  ]
+}
