@@ -196,17 +196,18 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .footnotes li { margin-bottom: 6px; }
 .fn-back { margin-left: 4px; text-decoration: none; }
 
-/* Site link at the very top — recognizable hyperlink, classic blue */
+/* Site link — sits a couple lines under the title, typographically paired with it */
 .site-link {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
-  margin: 0 0 24px;
+  margin: 28px 0 32px;
+  font-family: Georgia, "Iowan Old Style", "Source Serif Pro", serif;
+  font-size: 36px;
+  line-height: 1.15;
+  font-weight: 700;
 }
 .site-link a {
   color: #1a6cdb;
   text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 500;
+  text-underline-offset: 4px;
 }
 .site-link a:hover { color: #0a4fa8; }
 
@@ -268,12 +269,12 @@ HTML_TMPL = """<!DOCTYPE html>
 </head>
 <body>
 <article class="report">
-  {site_link_html}
   <header class="report-header">
     {eyebrow_html}
     <h1 class="title">{title_esc}</h1>
     {subtitle_html}
   </header>
+  {site_link_html}
   {nav_html}
   {cover_html}
   {body_html}
