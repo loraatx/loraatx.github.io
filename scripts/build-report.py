@@ -196,6 +196,40 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .footnotes li { margin-bottom: 6px; }
 .fn-back { margin-left: 4px; text-decoration: none; }
 
+/* Related-content nav (three link cards at the top of the report) */
+.report-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.report-nav a {
+  flex: 1 1 160px;
+  min-width: 140px;
+  padding: 9px 13px 11px;
+  background: color-mix(in srgb, var(--bg) 85%, var(--accent) 6%);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.report-nav a:hover, .report-nav a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+  outline: none;
+}
+.report-nav .rn-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+.report-nav .rn-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+}
+
 /* Print-specific (Save as PDF) */
 @media print {
   body { background: white; font-size: 12pt; }
@@ -205,6 +239,7 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
   h2:first-of-type { page-break-before: avoid; }
   a { color: var(--ink); text-decoration: none; }
   .footnotes { page-break-before: always; }
+  .report-nav { display: none !important; }
 }
 """
 
@@ -223,6 +258,7 @@ HTML_TMPL = """<!DOCTYPE html>
     <h1 class="title">{title_esc}</h1>
     {subtitle_html}
   </header>
+  {nav_html}
   {cover_html}
   {body_html}
 </article>
@@ -231,8 +267,31 @@ HTML_TMPL = """<!DOCTYPE html>
 """
 
 
+def _nav_html(app_url: str, storymap_url: str, home_url: str) -> str:
+    """Render the three-link nav that sits above the cover. Hidden in print CSS."""
+    links: list[tuple[str, str, str]] = []
+    if app_url:
+        links.append(("Explore", "Interactive map →", app_url))
+    if storymap_url:
+        links.append(("Watch", "Story map →", storymap_url))
+    if home_url:
+        links.append(("Home", "City Anatomy →", home_url))
+
+    if not links:
+        return ""
+
+    items = "".join(
+        f'<a href="{html.escape(href)}" target="_blank" rel="noopener">'
+        f'<span class="rn-eyebrow">{html.escape(eb)}</span>'
+        f'<span class="rn-label">{html.escape(lbl)}</span></a>'
+        for eb, lbl, href in links
+    )
+    return f'<nav class="report-nav" aria-label="Related content">{items}</nav>'
+
+
 def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
-          eyebrow: str = "", cover_image: Path | None = None) -> None:
+          eyebrow: str = "", cover_image: Path | None = None,
+          app_url: str = "", storymap_url: str = "", home_url: str = "/") -> None:
     md_text = md_path.read_text(encoding="utf-8")
 
     # If the report begins with an H1, drop it (we render our own from --title)
@@ -256,11 +315,13 @@ def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
 
     eyebrow_html = f'<p class="eyebrow">{html.escape(eyebrow)}</p>' if eyebrow else ""
     subtitle_html = f'<p class="subtitle">{html.escape(subtitle)}</p>' if subtitle else ""
+    nav_html = _nav_html(app_url, storymap_url, home_url)
 
     out = HTML_TMPL.format(
         title_esc=html.escape(title),
         eyebrow_html=eyebrow_html,
         subtitle_html=subtitle_html,
+        nav_html=nav_html,
         cover_html=cover_html,
         body_html=body_html,
         css=CSS,
@@ -277,6 +338,11 @@ def main() -> int:
     p.add_argument("--subtitle", default="")
     p.add_argument("--eyebrow", default="")
     p.add_argument("--cover-image", default="")
+    p.add_argument("--slug", default="",
+                   help="If set, derives --app-url=/apps/citywide/<slug>/ and --storymap-url=/storymaps/<slug>/.")
+    p.add_argument("--app-url", default="", help="Override the Explore → app link.")
+    p.add_argument("--storymap-url", default="", help="Override the Watch → storymap link.")
+    p.add_argument("--home-url", default="/", help="Home link target (default: /).")
     args = p.parse_args()
 
     md_path = Path(args.markdown).resolve()
@@ -287,7 +353,11 @@ def main() -> int:
         print(f"ERROR: markdown file not found: {md_path}", file=sys.stderr)
         return 1
 
-    build(md_path, out_path, args.title, args.subtitle, args.eyebrow, cover)
+    app_url = args.app_url or (f"/apps/citywide/{args.slug}/" if args.slug else "")
+    storymap_url = args.storymap_url or (f"/storymaps/{args.slug}/" if args.slug else "")
+
+    build(md_path, out_path, args.title, args.subtitle, args.eyebrow, cover,
+          app_url=app_url, storymap_url=storymap_url, home_url=args.home_url)
     return 0
 
 

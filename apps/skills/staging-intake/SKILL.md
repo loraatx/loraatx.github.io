@@ -117,8 +117,14 @@ python scripts/build-report.py \
   --title    "<title>" \
   --subtitle "<subtitle>" \
   --eyebrow  "<eyebrow>" \
+  --slug     "<slug>" \
   [--cover-image "<first image in staging>"]
 ```
+
+Passing `--slug` auto-generates the three "Explore / Watch / Home" link cards
+at the top of the report (`/apps/citywide/<slug>/`, `/storymaps/<slug>/`,
+`/`). They open in new tabs and are hidden when the user "Save as PDF"s from
+the browser. Use `--app-url` / `--storymap-url` / `--home-url` to override.
 
 The script handles footnotes-as-endnotes and is print-friendly so the user
 can open it on their phone and "Save as PDF" via the browser.
