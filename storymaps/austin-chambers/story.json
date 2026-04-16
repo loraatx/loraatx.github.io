@@ -1,0 +1,254 @@
+{
+  "title": "Austin's Chambers of Commerce",
+  "subtitle": "A regional, affinity, and corridor tour",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.727, 30.379],
+    "zoom": 9.5,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "chambers",
+      "type": "circle",
+      "source": "data/austin-chambers.geojson",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": "#6f4e37",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0
+      },
+      "transitionOpacity": 0.95,
+      "transitionDuration": 700
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.727, 30.379],
+        "zoom": 9.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.727, 30.379],
+        "anchor": "bottom",
+        "title": "The Greater Austin Chamber Network",
+        "subtitle": "Twelve organizations, one regional economy",
+        "body": "<p>Austin's chamber ecosystem spans a regional hub, four affinity chambers serving Asian Pacific American, Hispanic, Black, and LGBTQ+ businesses, a young-professionals chamber, and geographically focused chambers across West Austin, Lake Travis, Westlake, Buda, Pflugerville, and Round Rock.</p>",
+        "stats": [
+          { "label": "Chambers profiled", "value": "12" },
+          { "label": "Mapped here",       "value": "5"  },
+          { "label": "Counties served",   "value": "Travis, Williamson, Hays" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-chambers/",
+          "text": "Open the chamber map →"
+        }
+      }
+    },
+
+    {
+      "id": "regional-hub",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.737844, 30.265423],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.737844, 30.265423],
+        "anchor": "bottom",
+        "title": "Austin Chamber of Commerce",
+        "subtitle": "535 E 5th St · Downtown",
+        "body": "<p>The regional hub. Headquartered at 535 East 5th Street, the Austin Chamber leads economic development for the Greater Austin region — from business recruitment and Opportunity Austin to advocacy at the local and state level.</p>",
+        "stats": [
+          { "label": "Focus", "value": "Regional" },
+          { "label": "Region", "value": "Greater Austin" }
+        ],
+        "link": {
+          "href": "https://www.austinchamber.com",
+          "text": "austinchamber.com →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "affinity-lgbt",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7449999, 30.2673437],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7449999, 30.2673437],
+        "anchor": "bottom",
+        "title": "Austin LGBT Chamber of Commerce",
+        "subtitle": "201 W 5th St · Downtown",
+        "body": "<p>One of four affinity chambers in DECA — the Diversity and Ethnic Chamber Alliance — alongside the Greater Austin Asian, Hispanic, and Black chambers. Founded in the late 1990s, it empowers LGBTQ+ and allied businesses through marketing, education, and signature events like Pride in Local Music.</p>",
+        "stats": [
+          { "label": "Focus",   "value": "Affinity (LGBTQ+)" },
+          { "label": "Founded", "value": "Late 1990s"        }
+        ],
+        "link": {
+          "href": "https://austinlgbtchamber.com",
+          "text": "austinlgbtchamber.com →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "geographic-west",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.8516247, 30.4100428],
+        "zoom": 13.5,
+        "pitch": 50,
+        "bearing": 90,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.8516247, 30.4100428],
+        "anchor": "bottom",
+        "title": "West Austin Chamber of Commerce",
+        "subtitle": "7710 N FM 620 Rd · Northwest Austin",
+        "body": "<p>Represents the West Austin business corridor — ZIPs 78726, 78730, 78732, 78750, and 78759. Hosts monthly networking and education events, and serves as a unified voice on transportation and land-use issues affecting the FM 620 / Lake Travis corridor.</p>",
+        "stats": [
+          { "label": "Focus",      "value": "Geographic"               },
+          { "label": "ZIPs served", "value": "78726, 78730, 78732, 78750, 78759" }
+        ],
+        "link": {
+          "href": "https://westaustinchamber.org",
+          "text": "westaustinchamber.org →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "geographic-pflugerville",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.6224215, 30.4404205],
+        "zoom": 14,
+        "pitch": 50,
+        "bearing": -60,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.6224215, 30.4404205],
+        "anchor": "bottom",
+        "title": "Pflugerville Chamber of Commerce",
+        "subtitle": "101 S 3rd St · Pflugerville",
+        "body": "<p>Serves Pflugerville and the surrounding area along the Travis–Williamson county line. Now also the city's official Convention and Visitors Bureau, making it the front door for both business support and visitor promotion.</p>",
+        "stats": [
+          { "label": "Focus", "value": "Geographic"  },
+          { "label": "Also",  "value": "City CVB"    }
+        ],
+        "link": {
+          "href": "https://www.pfchamber.com",
+          "text": "pfchamber.com →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "geographic-round-rock",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.6773783, 30.5093417],
+        "zoom": 14,
+        "pitch": 55,
+        "bearing": 25,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.6773783, 30.5093417],
+        "anchor": "bottom",
+        "title": "Round Rock Chamber of Commerce",
+        "subtitle": "212 E Main St · Downtown Round Rock",
+        "body": "<p>Williamson County's economic-development chamber. Leads business recruitment, expansion, and advocacy for the northern Austin metro — historically the chamber that brought Dell to Round Rock.</p>",
+        "stats": [
+          { "label": "Focus",  "value": "Geographic / Economic Development" },
+          { "label": "County", "value": "Williamson"                        }
+        ],
+        "link": {
+          "href": "https://www.roundrockchamber.org",
+          "text": "roundrockchamber.org →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.727, 30.379],
+        "zoom": 9.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["chambers"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.727, 30.379],
+        "anchor": "bottom",
+        "title": "The full picture",
+        "subtitle": "Read the deep-research report",
+        "body": "<p>Seven additional chambers — Greater Austin Asian, Hispanic, Black, Lake Travis, Westlake, Austin Young, and Buda — are profiled in the full report but are not yet on the map (missing geocoded coordinates in the staging CSV).</p>",
+        "stats": [
+          { "label": "On the map",   "value": "5 / 12" },
+          { "label": "In the report", "value": "12"     }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    }
+  ]
+}
