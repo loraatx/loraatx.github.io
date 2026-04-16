@@ -1,4 +1,5 @@
 [
-  { "id": "PoolOpenings", "label": "Pool Openings" },
-  { "id": "template",     "label": "Austin Pools" }
+  { "id": "PoolOpenings",    "label": "Pool Openings" },
+  { "id": "austin-chambers", "label": "Austin Chambers" },
+  { "id": "template",        "label": "Austin Pools" }
 ]
