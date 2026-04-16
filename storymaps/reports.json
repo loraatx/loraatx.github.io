@@ -14,5 +14,13 @@
     "blurb": "A survey of central, historic, and master-planned Austin communities.",
     "href": "/storymaps/austin-neighborhoods/report.html",
     "accent": "#2B6CB0"
+  },
+  {
+    "id": "austin-horseback-riding",
+    "title": "Recreational Horseback Riding in Greater Austin",
+    "eyebrow": "Austin Metro · Report",
+    "blurb": "Trail rides, lesson barns, and equine experiences across the region.",
+    "href": "/storymaps/austin-horseback-riding/report.html",
+    "accent": "#8B4513"
   }
 ]

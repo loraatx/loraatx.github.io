@@ -1,6 +1,7 @@
 [
-  { "id": "PoolOpenings",          "label": "Pool Openings"       },
-  { "id": "austin-chambers",       "label": "Austin Chambers"     },
-  { "id": "austin-neighborhoods",  "label": "Austin Neighborhoods" },
-  { "id": "template",              "label": "Austin Pools"        }
+  { "id": "PoolOpenings",              "label": "Pool Openings"        },
+  { "id": "austin-chambers",           "label": "Austin Chambers"      },
+  { "id": "austin-neighborhoods",      "label": "Austin Neighborhoods"  },
+  { "id": "austin-horseback-riding",   "label": "Horseback Riding"     },
+  { "id": "template",                  "label": "Austin Pools"         }
 ]
