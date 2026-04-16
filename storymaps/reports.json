@@ -6,5 +6,13 @@
     "blurb": "Regional, affinity, and corridor chambers mapped across Greater Austin.",
     "href": "/storymaps/austin-chambers/report.html",
     "accent": "#6f4e37"
+  },
+  {
+    "id": "austin-neighborhoods",
+    "title": "Historic and Emerging Neighborhoods of Austin, Texas",
+    "eyebrow": "Austin Metro · Report",
+    "blurb": "A survey of central, historic, and master-planned Austin communities.",
+    "href": "/storymaps/austin-neighborhoods/report.html",
+    "accent": "#2B6CB0"
   }
 ]

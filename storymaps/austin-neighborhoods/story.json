@@ -1,0 +1,222 @@
+{
+  "title": "Austin's Neighborhoods",
+  "subtitle": "Historic, eclectic, and master-planned communities",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.754, 30.264],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "neighborhoods",
+      "type": "circle",
+      "source": "data/austin-neighborhoods.geojson",
+      "paint": {
+        "circle-radius": 9,
+        "circle-color": "#2B6CB0",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0
+      },
+      "transitionOpacity": 0.95,
+      "transitionDuration": 700
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.754, 30.264],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.754, 30.264],
+        "anchor": "bottom",
+        "title": "Austin's Layered Urban Landscape",
+        "subtitle": "From freedmen's settlements to net-zero master plans",
+        "body": "<p>Austin's neighborhoods form a layered urban landscape where 19th-century freedmen's settlements, early streetcar suburbs, postwar bungalow districts, and 21st-century master-planned communities all coexist within a rapidly growing metropolitan area. This tour surveys historic and newer neighborhoods across central, east, south, north, and fringe areas of the city.</p>",
+        "stats": [
+          { "label": "Neighborhoods surveyed", "value": "33" },
+          { "label": "Mapped here",             "value": "8"  },
+          { "label": "Eras represented",        "value": "1871 – present" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-neighborhoods/",
+          "text": "Open the neighborhood map →"
+        }
+      }
+    },
+
+    {
+      "id": "central-historic",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.73, 30.306],
+        "zoom": 13.5,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.73, 30.306],
+        "anchor": "bottom",
+        "title": "Central Historic Core",
+        "subtitle": "Hyde Park, Clarksville, and Austin's earliest suburbs",
+        "body": "<p>Hyde Park — Austin's first planned streetcar suburb, created in the 1890s — set the template for tree-lined residential living north of UT. Nearby Clarksville, founded in 1871 by Charles Clark, is one of the first freedmen's towns established west of the Mississippi, preserving a critical chapter of Austin's African American history even after highway construction substantially reduced its footprint.</p>",
+        "stats": [
+          { "label": "Hyde Park founded",      "value": "1890s" },
+          { "label": "Clarksville founded",    "value": "1871"  },
+          { "label": "Area",                   "value": "Central" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-neighborhoods/",
+          "text": "Explore the map →"
+        }
+      }
+    },
+
+    {
+      "id": "south-austin",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.767, 30.25],
+        "zoom": 13.5,
+        "pitch": 55,
+        "bearing": -30,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.767, 30.25],
+        "anchor": "bottom",
+        "title": "South and South-Central Austin",
+        "subtitle": "Garden suburbs, greenbelts, and South Congress culture",
+        "body": "<p>Travis Heights, a hilly \"garden suburb\" south of Lady Bird Lake, and adjacent Zilker, anchored by Barton Springs Pool and 400+ acres of parkland, define South Austin's blend of historic residential fabric and outdoor lifestyle. Bouldin Creek and Barton Hills extend the neighborhood's eclectic, walkable character into the greenbelt corridors.</p>",
+        "stats": [
+          { "label": "Travis Heights era",  "value": "1920s–40s" },
+          { "label": "Zilker Park opened",  "value": "1917"      },
+          { "label": "Area",               "value": "South Central" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-neighborhoods/",
+          "text": "Explore the map →"
+        }
+      }
+    },
+
+    {
+      "id": "east-austin",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.72, 30.265],
+        "zoom": 12,
+        "pitch": 45,
+        "bearing": 60,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.72, 30.265],
+        "anchor": "bottom",
+        "title": "East Austin",
+        "subtitle": "Historic communities, displacement, and cultural resilience",
+        "body": "<p>East Austin — shaped by decades of racial segregation policies that pushed Black and Mexican American residents east of I-35 — is home to the East Cesar Chavez corridor (a center of Mexican American life), Rosewood and Chestnut (tied to African American civic history), and Holly (transitioning from an industrial waterfront to residential parkland). Rapid gentrification and infill now challenge long-time residents and cultural anchors across the area.</p>",
+        "stats": [
+          { "label": "Key divide",          "value": "I-35"                },
+          { "label": "Neighborhoods",       "value": "E. Cesar Chavez, Holly, Rosewood, Montopolis" },
+          { "label": "Planning focus",      "value": "Equity & displacement" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-neighborhoods/",
+          "text": "Explore the map →"
+        }
+      }
+    },
+
+    {
+      "id": "master-planned",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.704, 30.300],
+        "zoom": 12.5,
+        "pitch": 50,
+        "bearing": -45,
+        "speed": 0.75,
+        "curve": 1.35
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.704, 30.300],
+        "anchor": "bottom",
+        "title": "Master-Planned Communities",
+        "subtitle": "Mueller, The Domain, Circle C Ranch, and Easton Park",
+        "body": "<p>Mueller — built on the former municipal airport — is one of the country's most prominent new-urbanist infill redevelopments, targeting thousands of mixed-income homes with a fine-grained street grid and parks. The Domain in north Austin functions as a second downtown for tech employment and upscale retail. Circle C Ranch (1980s) and Easton Park (ongoing) represent large-scale suburban planning at the city's edges, while Whisper Valley in far east Austin pursues net-zero sustainability through shared geothermal and solar infrastructure.</p>",
+        "stats": [
+          { "label": "Mueller site",        "value": "700+ acres" },
+          { "label": "The Domain",          "value": "303 acres"  },
+          { "label": "Circle C built",      "value": "1980s–present" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-neighborhoods/",
+          "text": "Explore the map →"
+        }
+      }
+    },
+
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.754, 30.264],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["neighborhoods"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.754, 30.264],
+        "anchor": "bottom",
+        "title": "The full picture",
+        "subtitle": "Read the deep-research report",
+        "body": "<p>Twenty-four additional neighborhoods — including Clarksville, Bouldin Creek, Allandale, North Loop, Cherrywood, Whisper Valley, and more — are profiled in the full report but are not yet mapped (missing geocoded coordinates in the staging CSV).</p>",
+        "stats": [
+          { "label": "On the map",    "value": "8 / 32"  },
+          { "label": "In the report", "value": "33"      }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    }
+  ]
+}
