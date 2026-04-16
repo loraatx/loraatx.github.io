@@ -196,7 +196,21 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .footnotes li { margin-bottom: 6px; }
 .fn-back { margin-left: 4px; text-decoration: none; }
 
-/* Related-content nav (three link cards at the top of the report) */
+/* Site link at the very top — recognizable hyperlink, classic blue */
+.site-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+.site-link a {
+  color: #1a6cdb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+.site-link a:hover { color: #0a4fa8; }
+
+/* Related-content nav (link cards at the top of the report) */
 .report-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
 .report-nav a {
   flex: 1 1 160px;
@@ -240,6 +254,7 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
   a { color: var(--ink); text-decoration: none; }
   .footnotes { page-break-before: always; }
   .report-nav { display: none !important; }
+  .site-link { display: none !important; }
 }
 """
 
@@ -253,6 +268,7 @@ HTML_TMPL = """<!DOCTYPE html>
 </head>
 <body>
 <article class="report">
+  {site_link_html}
   <header class="report-header">
     {eyebrow_html}
     <h1 class="title">{title_esc}</h1>
@@ -267,15 +283,13 @@ HTML_TMPL = """<!DOCTYPE html>
 """
 
 
-def _nav_html(app_url: str, storymap_url: str, home_url: str) -> str:
-    """Render the three-link nav that sits above the cover. Hidden in print CSS."""
+def _nav_html(app_url: str, storymap_url: str) -> str:
+    """Render the two-card nav that sits above the cover. Hidden in print CSS."""
     links: list[tuple[str, str, str]] = []
     if app_url:
         links.append(("Explore", "Interactive map →", app_url))
     if storymap_url:
         links.append(("Watch", "Story map →", storymap_url))
-    if home_url:
-        links.append(("Home", "City Anatomy →", home_url))
 
     if not links:
         return ""
@@ -287,6 +301,17 @@ def _nav_html(app_url: str, storymap_url: str, home_url: str) -> str:
         for eb, lbl, href in links
     )
     return f'<nav class="report-nav" aria-label="Related content">{items}</nav>'
+
+
+def _site_link_html(home_url: str, label: str = "City Anatomy") -> str:
+    """Render the small "City Anatomy" hyperlink at the very top. Hidden in print."""
+    if not home_url:
+        return ""
+    return (
+        f'<p class="site-link">'
+        f'<a href="{html.escape(home_url)}">{html.escape(label)}</a>'
+        f'</p>'
+    )
 
 
 def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
@@ -315,12 +340,14 @@ def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
 
     eyebrow_html = f'<p class="eyebrow">{html.escape(eyebrow)}</p>' if eyebrow else ""
     subtitle_html = f'<p class="subtitle">{html.escape(subtitle)}</p>' if subtitle else ""
-    nav_html = _nav_html(app_url, storymap_url, home_url)
+    nav_html = _nav_html(app_url, storymap_url)
+    site_link_html = _site_link_html(home_url)
 
     out = HTML_TMPL.format(
         title_esc=html.escape(title),
         eyebrow_html=eyebrow_html,
         subtitle_html=subtitle_html,
+        site_link_html=site_link_html,
         nav_html=nav_html,
         cover_html=cover_html,
         body_html=body_html,

@@ -53,7 +53,21 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .footnotes li { margin-bottom: 6px; }
 .fn-back { margin-left: 4px; text-decoration: none; }
 
-/* Related-content nav (three link cards at the top of the report) */
+/* Site link at the very top — recognizable hyperlink, classic blue */
+.site-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+.site-link a {
+  color: #1a6cdb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+.site-link a:hover { color: #0a4fa8; }
+
+/* Related-content nav (link cards at the top of the report) */
 .report-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
 .report-nav a {
   flex: 1 1 160px;
@@ -97,17 +111,19 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
   a { color: var(--ink); text-decoration: none; }
   .footnotes { page-break-before: always; }
   .report-nav { display: none !important; }
+  .site-link { display: none !important; }
 }
 </style>
 </head>
 <body>
 <article class="report">
+  <p class="site-link"><a href="/">City Anatomy</a></p>
   <header class="report-header">
     <p class="eyebrow">Austin Metro</p>
     <h1 class="title">Austin-Area Chambers of Commerce</h1>
     <p class="subtitle">Regional and affinity chambers across Greater Austin</p>
   </header>
-  <nav class="report-nav" aria-label="Related content"><a href="/apps/citywide/austin-chambers/" target="_blank" rel="noopener"><span class="rn-eyebrow">Explore</span><span class="rn-label">Interactive map →</span></a><a href="/storymaps/austin-chambers/" target="_blank" rel="noopener"><span class="rn-eyebrow">Watch</span><span class="rn-label">Story map →</span></a><a href="/" target="_blank" rel="noopener"><span class="rn-eyebrow">Home</span><span class="rn-label">City Anatomy →</span></a></nav>
+  <nav class="report-nav" aria-label="Related content"><a href="/apps/citywide/austin-chambers/" target="_blank" rel="noopener"><span class="rn-eyebrow">Explore</span><span class="rn-label">Interactive map →</span></a><a href="/storymaps/austin-chambers/" target="_blank" rel="noopener"><span class="rn-eyebrow">Watch</span><span class="rn-label">Story map →</span></a></nav>
   
   <h2 id="executive-summary">Executive Summary</h2>
 <p>The Austin metropolitan area is served by a diverse network of chambers of commerce that support businesses by geography (city or corridor) and by affinity (ethnicity, age, or LGBTQ+ identity).<sup>1</sup><sup>2</sup> This report profiles major chambers in and around Austin, highlighting their locations, focus areas, and roles in regional economic and community development.<sup>3</sup></p>
