@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recreational Horseback Riding in Greater Austin, Texas</title>
+<style>
+:root {
+  --ink:    #1a1a1a;
+  --muted:  #555;
+  --rule:   #e5e5e5;
+  --accent: #6f4e37;
+  --bg:     #fafaf7;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Georgia, "Iowan Old Style", "Source Serif Pro", serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.report {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+}
+.report-header { border-bottom: 2px solid var(--ink); padding-bottom: 22px; margin-bottom: 36px; }
+.eyebrow { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+h1.title { font-family: Georgia, serif; font-size: 36px; line-height: 1.15; margin: 0 0 8px; font-weight: 700; }
+.subtitle { color: var(--muted); font-style: italic; font-size: 18px; margin: 0; }
+.cover { width: 100%; max-height: 320px; object-fit: cover; border-radius: 4px; margin: 0 0 36px; }
+h2 { font-family: Georgia, serif; font-size: 24px; margin: 48px 0 12px; padding-top: 8px; border-top: 1px solid var(--rule); }
+h3 { font-size: 19px; margin: 32px 0 10px; }
+h4 { font-size: 17px; margin: 24px 0 8px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+code { background: rgba(111, 78, 55, 0.08); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; font-family: "SF Mono", Menlo, monospace; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+ul, ol { margin: 0 0 14px; padding-left: 1.4em; }
+li { margin-bottom: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: rgba(111, 78, 55, 0.06); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+td a { word-break: break-word; }
+sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; font-size: 0.78em; padding: 0 1px; }
+.footnotes { margin-top: 56px; padding-top: 24px; border-top: 2px solid var(--ink); font-size: 14px; color: var(--muted); }
+.footnotes h2 { border-top: none; margin-top: 0; font-size: 18px; }
+.footnotes ol { padding-left: 1.6em; }
+.footnotes li { margin-bottom: 6px; }
+.fn-back { margin-left: 4px; text-decoration: none; }
+
+/* Site bar at the top of the header: just the social icons */
+.site-bar {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 24px;
+}
+.site-bar .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.site-bar .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+.site-bar .social-icons a:hover { color: var(--accent); }
+.site-bar .social-icons svg { width: 20px; height: 20px; }
+
+/* Home link occupies the eyebrow slot — same typography as the old eyebrow */
+.eyebrow a {
+  color: #1a6cdb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.eyebrow a:hover { color: #0a4fa8; }
+
+/* Related-content nav (link cards at the top of the report) */
+.report-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
+.report-nav a {
+  flex: 1 1 180px;
+  min-width: 160px;
+  padding: 12px 16px 14px;
+  background: color-mix(in srgb, var(--bg) 85%, var(--accent) 6%);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.report-nav a:hover, .report-nav a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+  outline: none;
+}
+.report-nav .rn-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+.report-nav .rn-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px; font-weight: 600; color: var(--ink);
+}
+
+/* Print-specific (Save as PDF) */
+@media print {
+  body { background: white; font-size: 12pt; }
+  .report { max-width: none; padding: 0; }
+  .cover { max-height: 240px; }
+  h2 { page-break-before: always; }
+  h2:first-of-type { page-break-before: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  .footnotes { page-break-before: always; }
+  .report-nav { display: none !important; }
+  .site-bar { display: none !important; }
+}
+</style>
+</head>
+<body>
+<article class="report">
+  <header class="report-header">
+    <div class="site-bar"><div class="social-icons"><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.25h3.5l-7.7 8.8L23 21.75h-7.1l-5.5-7.2-6.3 7.2H.6l8.2-9.4L.4 2.25H7.7l5 6.6 5.5-6.6zm-1.2 17.5h2L7.1 4.3H5L17 19.75z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9c-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.2 1.4A6 6 0 0 0 .6 4.1C.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.6 2.9.3.8.7 1.5 1.4 2.2.7.7 1.3 1.1 2.2 1.4.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.8.1s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.3 1.4-2.2.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.2A6 6 0 0 0 19.9.6C19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.9a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a><a href="#" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.1 13.8c0 .2.1.3.1.5 0 2.6-3 4.7-6.7 4.7-3.7 0-6.7-2.1-6.7-4.7 0-.2 0-.3.1-.5a1.6 1.6 0 0 1-.6-1.3 1.6 1.6 0 0 1 2.7-1.2 8.2 8.2 0 0 1 4.3-1.4l.8-3.8a.3.3 0 0 1 .4-.3l2.7.6a1.1 1.1 0 1 1-.1.6l-2.5-.5-.7 3.4a8.1 8.1 0 0 1 4.2 1.4 1.6 1.6 0 0 1 2.7 1.2c0 .5-.2 1-.7 1.3zM9.3 13a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5.4 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm-5.1 4.5c-.1-.1 0-.3.1-.3a6.4 6.4 0 0 0 4.6 0c.2-.1.3 0 .3.2s-.1.2-.2.3a6.7 6.7 0 0 1-4.6 0c-.1 0-.2-.1-.2-.2z"/></svg></a><a href="#" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4.5a8.1 8.1 0 1 0 0 16.2 8.1 8.1 0 0 0 0-16.2zM.5.5h3.8v23H.5z"/></svg></a><a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A18.5 18.5 0 0 0 15.7 3a13 13 0 0 0-.6 1.2 17.2 17.2 0 0 0-5.1 0A12 12 0 0 0 9.4 3a18.5 18.5 0 0 0-4.6 1.4A19.5 19.5 0 0 0 1.5 19a18.7 18.7 0 0 0 5.7 2.9 14 14 0 0 0 1.2-2 12 12 0 0 1-1.9-.9l.5-.4a13.3 13.3 0 0 0 11.4 0l.5.4a12 12 0 0 1-1.9.9 14 14 0 0 0 1.2 2 18.6 18.6 0 0 0 5.7-2.9A19.4 19.4 0 0 0 20.3 4.4zM8.3 16c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3zm7.4 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3z"/></svg></a></div></div>
+    <p class="eyebrow"><a href="/">City Anatomy</a></p>
+    <h1 class="title">Recreational Horseback Riding in Greater Austin, Texas</h1>
+    <p class="subtitle">Trail rides, lesson barns, and equine experiences across the region</p>
+  </header>
+  <nav class="report-nav" aria-label="Related content"><a href="/apps/citywide/austin-horseback-riding/" target="_blank" rel="noopener"><span class="rn-eyebrow">Explore</span><span class="rn-label">Interactive map →</span></a><a href="/storymaps/austin-horseback-riding/" target="_blank" rel="noopener"><span class="rn-eyebrow">Watch</span><span class="rn-label">Story map →</span></a></nav>
+  
+  <h2>Executive Summary</h2>
+<p>Greater Austin offers a dense cluster of recreational horseback riding options, ranging from urban trail rides minutes from downtown to structured hunter–jumper lesson barns and wellness-focused equine programs at a luxury resort.<sup>1</sup><sup>2</sup><sup>3</sup> Facilities are concentrated along four corridors: southeast Austin toward Bluff Springs and Lockhart, northeast toward Manor, west toward Bee Cave and Dripping Springs, and south toward Buda and Driftwood.<sup>4</sup><sup>5</sup><sup>6</sup> Recreational riders without their own horses can choose between guided trail rides, lesson programs with barn-owned horses, children’s camps, and one-off experiences like horse-drawn carriage tours.</p>
+<p>A structured scan of regional tourism guides, equestrian directories, and operator websites produced a consolidated list of 17 public-facing businesses that currently market horseback riding experiences or beginner-accessible lessons in the greater Austin area.<sup>2</sup><sup>7</sup><sup>8</sup> These range from high-volume trail-ride operators such as Texas Trail Rides, Southern Trails, Maverick Horseback Riding, and Willow Horseback Riding of Austin to lesson-focused barns like Tri-Star Farm, Bee Cave Riding Center, Manor Equestrian Center, White Fences Equestrian Center, Lone Star Stables, Scissortail Hill Equestrian, Switch Willo Stables, Rio Vista Farm, Lone Star Riding Club, Monarch Stables, and Coraggio Equestrian.<sup>9</sup><sup>10</sup><sup>11</sup><sup>6</sup><sup>3</sup> Miraval Austin’s equine program and Austin Carriage’s downtown carriage rides represent more specialized, resort- and tourism-oriented offerings.<sup>12</sup><sup>13</sup><sup>14</sup></p>
+<p>Because new barns open and older operations change ownership or programming, the inventory here is effectively a high-coverage snapshot rather than a legal registry; riders should always confirm current offerings, pricing, and age/weight restrictions directly with operators.</p>
+<h2>Methodology and Scope</h2>
+<p>The research combined:</p>
+<p>- Austin tourism and lifestyle round‑ups that list “best horseback riding” or “trail riding” options in the region.<sup>1</sup><sup>2</sup><sup>7</sup> - Equestrian business directories (Mad Barn, BarnBeacon, Texas Ranches, KidsOutAndAbout) to capture lesson barns, boarding facilities, and trail-ride operators not heavily advertised in tourism media.<sup>9</sup><sup>10</sup><sup>5</sup><sup>6</sup> - Individual operator websites and contact pages to verify phone numbers, websites, services, and approximate service areas.<sup>15</sup><sup>16</sup><sup>17</sup><sup>18</sup></p>
+<p>“Greater Austin” is defined as businesses within roughly an hour’s drive of downtown that actively market services to Austin residents and visitors (including nearby communities such as Manor, Bee Cave, Dripping Springs, Buda, Driftwood, Coupland, and Lockhart).<sup>4</sup><sup>5</sup><sup>16</sup> Only operations that clearly advertise lessons, guided rides, camps, equine experiences, or carriage rides to the general public were included; purely private barns and veterinary-only facilities were excluded.<sup>6</sup><sup>8</sup></p>
+<h2>Major Recreational Riding Corridors</h2>
+<h3>Southeast corridor: Bluff Springs, Lockhart, Del Valle</h3>
+<p>The southeast corridor mixes classic ranch environments with accessible trail rides and family-oriented programming.<sup>4</sup><sup>19</sup></p>
+<p>- <strong>Texas Trail Rides / Lone Star Ranch</strong> operates out of Lone Star Ranch on Bluff Springs Road in southeast Austin and focuses on family-friendly horseback trail rides led by experienced guides, along with ATV tours, skeet shooting, fishing, and corporate events.<sup>4</sup><sup>20</sup><sup>21</sup> - <strong>Maverick Horseback Riding</strong> runs trail rides and horsemanship experiences on a large ranch near Lockhart, about 30–40 minutes from downtown; riders can book structured ranch rides, BBQ rides that pair trail time with meals and small-town shopping, and private sessions.<sup>2</sup><sup>19</sup><sup>22</sup> - <strong>Rio Vista Farm</strong>, a long-running hunter–jumper barn serving Austin since the mid‑1990s, has relocated to Creek Road in Dripping Springs but historically drew riders from Del Valle and southeast Austin; it continues to offer English lessons, camps, and boarding for riders with or without their own horses.<sup>23</sup><sup>16</sup><sup>24</sup></p>
+<p>This corridor is the strongest fit for visitors seeking a classic “Texas ranch trail ride” experience within a short drive of downtown.</p>
+<h3>Northeast corridor: Manor and Decker Lake</h3>
+<p>To the northeast, Manor and the Decker Lake area host both lesson barns and trail-ride operators that cater to families and new riders.<sup>25</sup><sup>5</sup></p>
+<p>- <strong>Manor Equestrian Center</strong> on Cameron Road markets horseback riding, horse boarding, and summer camps, and directory listings emphasize its welcoming environment for families and beginners.<sup>25</sup><sup>10</sup> - <strong>White Fences Equestrian Center</strong> near Manor offers full-care boarding plus dressage and hunter/jumper lessons; its contact page lists a Manor address and a central phone number for lesson and boarding inquiries.<sup>3</sup><sup>26</sup><sup>27</sup> - <strong>Southern Trails</strong> operates highly rated guided trail rides from a ranch on Decker Lake Road in Manor, about 15 minutes from downtown; the operator highlights scenic 100–120‑acre ranch properties, family-friendly ranch rides, kids’ “Little Dude” rides, and sunset trail options.<sup>17</sup><sup>28</sup><sup>29</sup><sup>30</sup></p>
+<p>These northeastern options provide both recurring lesson programs and straightforward bookable trail rides that do not require horse ownership.</p>
+<h3>Western corridor: Bee Cave, Dripping Springs, Southwest Austin</h3>
+<p>The western corridor includes Hill Country barns that emphasize English riding, show programs, and premium boarding alongside recreational lessons.<sup>9</sup><sup>16</sup></p>
+<p>- <strong>Bee Cave Riding Center</strong> west of Austin, on Hamilton Pool Road, describes itself as a horseback riding education facility offering hunter/jumper, dressage, and western instruction for children and adults; multiple directories list its phone, email, and website consistently.<sup>9</sup><sup>31</sup><sup>32</sup><sup>33</sup> - <strong>Rio Vista Farm</strong> now operates from a new facility on Creek Road in Dripping Springs, touting large covered and outdoor arenas and long-standing status as one of Austin’s leading English riding barns that accepts riders who do not own a horse.<sup>23</sup><sup>16</sup><sup>24</sup> - <strong>Coraggio Equestrian</strong> is a premium boarding barn in the shaded Hill Country southwest of Austin, with over 100 acres of shaded trails, lighted arenas, and a focus on individualized horse care; while primarily a boarding facility, it also promotes customized training and access to trail riding on‑site.<sup>6</sup><sup>18</sup><sup>34</sup> - <strong>Lone Star Riding Club</strong>, based in Driftwood, is a United States Pony Club Riding Center with three Austin-area locations; it offers English and Western lessons, kids’ camps, and clinics using a large string of lesson horses.<sup>35</sup><sup>36</sup></p>
+<p>These barns cater heavily to recurring lesson students and show-oriented riders but still offer recreational pathways for adults and children seeking regular riding rather than one‑off trail rides.</p>
+<h3>North and northwest: Spicewood Springs and Lake Travis</h3>
+<p>North Austin and the Lake Travis area host a mix of lesson barns and a destination wellness resort with an equine program.<sup>37</sup><sup>13</sup></p>
+<p>- <strong>Tri-Star Farm</strong> maintains an Austin facility on Spicewood Springs Road and a Coupland ranch for trail rides; it advertises boarding, training, lessons for all levels, weekly trail rides, and summer camps, with additional details confirmed via equine directories and its own website.<sup>37</sup><sup>5</sup><sup>11</sup><sup>38</sup> - <strong>Switch Willo Stables</strong> in northwest Austin is a long‑established hunter/jumper show barn that has operated continuously since the 1960s and runs a state-certified youth riding camp alongside lessons and a competitive show program.<sup>39</sup><sup>40</sup><sup>41</sup> - <strong>Miraval Austin Resort & Spa</strong> is a wellness retreat on over 200 acres overlooking Lake Travis that features an equine center; its equine experiences include rhythmic riding, self‑leadership sessions using horses, and private trail rides or arena lessons for resort guests and day-pass visitors.<sup>42</sup><sup>12</sup><sup>13</sup><sup>43</sup></p>
+<p>Recreational riders in this corridor can combine lessons or trail rides with either a show-barn atmosphere or a wellness-focused resort stay.</p>
+<h3>South and central Austin: Westlake, Buda, downtown</h3>
+<p>South and central Austin concentrate several hunter–jumper barns, an eventing-focused academy, and downtown tourism options.<sup>44</sup><sup>45</sup></p>
+<p>- <strong>Lone Star Stables (Lone Star Equestrian Center)</strong> in Westlake offers hunter/jumper instruction, boarding, and instructional camps; directories describe a 22‑stall barn, covered arena, round pen, shaded turnout paddocks, and leases on lesson horses and ponies.<sup>44</sup><sup>46</sup><sup>47</sup><sup>48</sup> - <strong>Scissortail Hill Equestrian</strong> on South Highway 183 is a riding academy emphasizing safe, well-rounded horsemanship education with eventing and hunter/jumper instruction, schooling shows, and camps; directories and social profiles highlight its suitability for beginners and kids.<sup>49</sup><sup>50</sup><sup>51</sup><sup>52</sup> - <strong>Monarch Stables Austin</strong> in Buda is a 56‑acre hunter–jumper barn about 13 miles from downtown Austin that offers full-service boarding, hunter/jumper instruction for all levels, and leasing opportunities.<sup>53</sup><sup>54</sup><sup>55</sup> - <strong>Willow Horseback Riding of Austin</strong> operates from a central Austin address and markets guided trail rides through scenic Hill Country terrain, with booking pages and directories listing its phone number and Austin-based contact point.<sup>56</sup><sup>57</sup><sup>58</sup> - <strong>Austin Carriage Rides and Tours (Austin Carriage)</strong> runs horse-drawn carriage rides from a downtown base on Red River Street; equine directories list it as a carriage-ride provider with a dedicated website and phone number for reservations.<sup>14</sup><sup>59</sup><sup>60</sup></p>
+<p>This corridor accommodates riders seeking either structured hunter–jumper instruction or highly visible, tourist-oriented horse experiences in the urban core.</p>
+<h2>Operator-Level Profiles</h2>
+<h3>Trail-ride and tourism operators</h3>
+<p>These businesses focus on one-time or occasional guided rides suitable for visitors and casual riders.</p>
+<table><thead><tr><th>Operator</th><th>Primary area</th><th>Core offerings</th><th>Public accessibility</th></tr></thead><tbody><tr><td>Texas Trail Rides / Lone Star Ranch</td><td>Southeast Austin (Bluff Springs)</td><td>Family-friendly guided trail rides, riding lessons, ATV tours, skeet shooting, fishing and ranch events at Lone Star Ranch</td><td>Open to the public by reservation; popular for visitors, families, and corporate groups</td></tr><tr><td>Southern Trails</td><td>Manor (Decker Lake Road)</td><td>Ranch rides, kids’ “Little Dude” rides, sunset trail rides on a 100+ acre ranch near Austin</td><td>Public online booking with detailed ride menu and seasonal pricing</td></tr><tr><td>Maverick Horseback Riding</td><td>Lockhart / Central Texas</td><td>Trail rides, horsemanship lessons, ecology-focused ranch experiences, BBQ rides</td><td>Public booking for group, private, and themed rides; emphasizes environmental education</td></tr><tr><td>Willow Horseback Riding of Austin</td><td>Central Austin / Hill Country</td><td>Guided scenic rides, small-group adventures, photography add-ons</td><td>Online booking and phone-based reservations for visitors and locals</td></tr><tr><td>Tri-Star Farm (trail program)</td><td>Austin & Coupland</td><td>Weekly trail rides plus lessons and boarding</td><td>Trail riding available to lesson students and public riders via booking</td></tr><tr><td>Austin Carriage Rides and Tours</td><td>Downtown Austin</td><td>Horse-drawn carriage tours and event transport</td><td>Open to the public for historic and romantic rides by reservation and walk-up when operating</td></tr></tbody></table>
+<p>Austin tourism and lifestyle articles consistently highlight Texas Trail Rides, Maverick Horseback Riding, Miraval Austin, and Tri-Star Farm as top options for scenic horseback experiences in Central Texas.<sup>1</sup><sup>2</sup><sup>7</sup> Southern Trails and Willow Horseback Riding, while newer in tourist coverage, show strong online booking infrastructure and directory presence aimed at both locals and visitors.<sup>57</sup><sup>17</sup><sup>28</sup></p>
+<h3>Lesson-focused barns and riding academies</h3>
+<p>Lesson barns serve riders who want recurring instruction and deeper horsemanship skills, often with show or Pony Club pathways.</p>
+<table><thead><tr><th>Barn</th><th>Area</th><th>Disciplines and programs</th><th>Typical rider profile</th></tr></thead><tbody><tr><td>Bee Cave Riding Center</td><td>Bee Cave / West Austin</td><td>Hunter/jumper, dressage, and western riding for children and adults; group and private lessons; camps</td><td>Local families and adults pursuing ongoing English or Western lessons</td></tr><tr><td>Manor Equestrian Center</td><td>Manor</td><td>Horseback riding lessons, boarding, summer camps</td><td>East/northeast Austin families and riders seeking full-service barn</td></tr><tr><td>White Fences Equestrian Center</td><td>Manor / east Austin</td><td>Dressage and hunter/jumper training, full-care boarding, show preparation</td><td>Dressage- and show-focused riders committed to regular training</td></tr><tr><td>Lone Star Stables</td><td>Westlake</td><td>Hunter/jumper instruction, boarding, instructional camps, leases</td><td>West Austin riders seeking an established hunter/jumper program</td></tr><tr><td>Monarch Stables Austin</td><td>Buda</td><td>Hunter/jumper training, full-service boarding, leasing</td><td>South Austin and Hays County riders focused on English show disciplines</td></tr><tr><td>Scissortail Hill Equestrian</td><td>South Austin</td><td>Eventing and hunter/jumper lessons, schooling shows, camps</td><td>Beginners and youth riders building broad horsemanship skills</td></tr><tr><td>Switch Willo Stables</td><td>Northwest Austin</td><td>Hunter/jumper lessons, show program, long-running state-certified youth camp</td><td>Youth and adult riders in a competitive hunter/jumper track</td></tr><tr><td>Rio Vista Farm</td><td>Dripping Springs</td><td>Hunter/jumper programs, camps, boarding</td><td>Riders seeking a large, long-established English riding barn; many without their own horses</td></tr><tr><td>Lone Star Riding Club</td><td>Driftwood / multi-site</td><td>English and Western lessons, Pony Club curriculum, kids’ camps and clinics</td><td>Families wanting structured horsemanship education and Pony Club pathways</td></tr><tr><td>Coraggio Equestrian</td><td>Southwest Austin</td><td>Premium boarding with access to shaded trails and individualized training</td><td>Owners seeking high-touch boarding with some riding/training on-site</td></tr></tbody></table>
+<p>Directories and operator sites emphasize safety, school-horse strings, and beginner-friendly programs across these barns, making them viable entry points for new riders as well as show-focused students.<sup>9</sup><sup>10</sup><sup>11</sup><sup>39</sup><sup>40</sup></p>
+<h3>Resort- and wellness-oriented programs</h3>
+<p>Miraval Austin occupies a distinct niche as a wellness resort that integrates horseback riding into broader mindfulness and leadership programs.</p>
+<p>- Miraval Austin’s equine offerings include rhythmic riding, equine-assisted self‑leadership experiences, and private trail rides or arena sessions, all framed as components of holistic wellness rather than pure recreation or sport.<sup>42</sup><sup>12</sup><sup>13</sup><sup>43</sup> - Stays are typically sold as all-inclusive overnight packages or day passes that bundle lodging, meals, spa access, and a menu of activities including equine sessions.<sup>13</sup><sup>43</sup></p>
+<p>For riders who want horseback interactions within a structured retreat setting, Miraval is the primary option in the Austin region.</p>
+<h2>CSV Inventory of Opportunities</h2>
+<p>A structured CSV file compiles the most important public operators identified in this research, with columns for name, category, area, phone, website, primary activities, and notes.</p>
+<p>The file is named <code>austin_horseback_riding_opportunities.csv</code> and can be used for sorting, filtering, or importing into GIS or CRM tools.</p>
+<h2>How to Choose Among Options</h2>
+<h3>One-time trail ride vs. recurring lessons</h3>
+<p>Trail-ride operators (Texas Trail Rides, Southern Trails, Maverick, Willow) are optimized for visitors and residents who want a single scenic ride or occasional outings rather than long-term instruction.<sup>4</sup><sup>19</sup><sup>17</sup><sup>29</sup> Lesson barns and riding academies, by contrast, assume recurring weekly or monthly lessons and often encourage riders to lease or eventually purchase horses.<sup>9</sup><sup>10</sup><sup>11</sup><sup>39</sup></p>
+<p>A key decision point for riders in greater Austin is whether they want a one-off experience or to invest in ongoing lessons and the culture of a particular barn.</p>
+<h3>English vs. Western focus</h3>
+<p>Many Austin-area barns specialize in English disciplines (hunter/jumper, dressage, eventing) while others offer Western instruction or mixed programs.<sup>3</sup><sup>49</sup><sup>23</sup><sup>39</sup> Riders interested in shows, hunter/jumper circuits, or dressage will gravitate toward barns like White Fences, Rio Vista Farm, Switch Willo Stables, Lone Star Stables, and Monarch Stables.<sup>3</sup><sup>53</sup><sup>23</sup><sup>48</sup><sup>41</sup></p>
+<p>Those seeking Western trail-riding skills or a more ranch-style experience may prefer Texas Trail Rides, Southern Trails, Maverick, Lone Star Riding Club’s Western program, or mixed-discipline barns like Bee Cave Riding Center.<sup>4</sup><sup>9</sup><sup>35</sup><sup>17</sup><sup>29</sup></p>
+<h3>Distance from central Austin</h3>
+<p>Most of the identified operations fall within a 20–45 minute drive of downtown Austin, with the closest urban options being Texas Trail Rides (Bluff Springs), Tri-Star Farm (Spicewood Springs), Switch Willo Stables (northwest Austin), Scissortail Hill (south Austin), and various downtown carriage services.<sup>20</sup><sup>37</sup><sup>50</sup><sup>28</sup><sup>14</sup></p>
+<p>Lockhart, Dripping Springs, Buda, Driftwood, and some Hill Country barns extend the drive time but offer larger ranches, more open terrain, and a stronger sense of rural Texas landscape.<sup>2</sup><sup>5</sup><sup>16</sup><sup>6</sup></p>
+<h3>Age, weight, and experience restrictions</h3>
+<p>Many operators specify minimum ages (often 5–9 years) for independent trail riders, with younger children sometimes relegated to led-pony rides or “Little Dude” packages.<sup>20</sup><sup>29</sup> Trail-ride and resort operators also typically enforce weight limits for horse welfare and safety, and may group riders by experience or limit trotting/cantering on standard rides.<sup>19</sup><sup>29</sup></p>
+<p>Because policies vary and can change, riders should review each operator’s FAQ and booking pages carefully, especially when planning multi-generational or mixed-ability outings.</p>
+<h2>Limitations and Data Gaps</h2>
+<p>This inventory relies on publicly available websites, directories, tourism articles, and social profiles as of April 2026; it may omit smaller barns that rely solely on word-of-mouth or private Facebook groups.<sup>7</sup><sup>8</sup> Contact details, services, and locations can change due to ownership shifts, drought or weather impacts, insurance constraints, or land-use changes, so all information should be treated as indicative rather than definitive.</p>
+<p>Prospective riders are advised to:</p>
+<p>- Confirm availability, pricing, and safety requirements directly with operators via the phone numbers and websites in the CSV. - Ask about instructor credentials, helmet policies, and emergency procedures at lesson barns. - Clarify whether rides are walk-only or include trotting/cantering, and whether private or small-group upgrades are available.</p>
+<p>Despite these caveats, cross-checking across tourism guides, equine directories, and operator websites indicates that the businesses listed here represent the mainstream, publicly marketed horseback riding opportunities in the greater Austin region as of 2026.<sup>1</sup><sup>2</sup><sup>9</sup><sup>7</sup></p>
+<p>---</p>
+<h2>References</h2>
+<p>1. <a href="https://www.austintexas.org/austin-insider-blog/blog/post/horseback-riding-austin/">Horseback Riding in Austin, TX | Trails, Ranches & Resorts</a> - Wondering where to go horseback riding in Austin? Here are some of the best trail rides in Central T...</p>
+<p>2. <a href="https://www.austintexas.org/austin-insider-blog/post/horseback-riding-austin/">Horseback Riding in Austin, TX | Trails, Ranches & Resorts</a> - Wondering where to go horseback riding in Austin? Here are some of the best trail rides in Central T...</p>
+<p>3. <a href="https://whitefencesaustin.com">Full-Care Horse Boarding & Dressage Lessons Austin, Texas</a> - Experience expert full care horse boarding, dressage lessons and training. Beginner to advanced ride...</p>
+<p>4. <a href="https://places.travel/listing/lone-star-ranch-texas-trail-rides/">Lone Star Ranch (Texas Trail Rides) | Places to Travel in the USA</a></p>
+<p>5. <a href="https://texasranches.com/directory/tri-star-farm-7d1d6669">Tri-Star Farm | Texas Ranches</a></p>
+<p>6. <a href="https://madbarn.com/directory/coraggio-equestrian/">Coraggio Equestrian - Boarding Stable in Austin, TX | Equine Directory</a> - Phone: (512) 567-9723 ; Email: paigedbarnett@gmail.com ; Website: http://coraggio.org/ ; Address: 12...</p>
+<p>7. [The Absolute Best Horseback Riding in Austin [Updated 2025]](https://austinstaysweird.com/best-horseback-riding-in-austin) - From galloping through lush green trails to exploring stunning scenic routes, Austin offers a wide r...</p>
+<p>8. <a href="https://madbarn.com/location/austin-texas/">Equine Services in Austin, Texas - Mad Barn</a> - Austin Carriage Rides And Tours · Carriage Rides · Texas, Austin · Austin Dressage ... phone consult...</p>
+<p>9. <a href="https://madbarn.com/directory/bee-cave-riding-center/">Bee Cave Riding Center - Boarding Stable in Austin, Texas - Mad Barn</a> - Phone: (512) 632-7433 ; Email: info@ridinghorses.com ; Website: https://www.ridinghorses.com/ ; Addr...</p>
+<p>10. <a href="https://madbarn.com/directory/manor-equestrian-center/">Manor Equestrian Center - Equine Directory - Mad Barn</a> - 13406 Cameron Road, Manor, TX, United States, 78653. From force boarding, horseback riding lessons a...</p>
+<p>11. <a href="https://www.tristarfarm.com">Tri-Star Farm</a></p>
+<p>12. <a href="https://www.miravalresorts.com/austin/experiences">Inclusive Wellness Activities & Experiences | Miraval Austin</a> - Miraval Austin's trademark experiences include equine activities (no ... Contact Us. 855-690-8163 · ...</p>
+<p>13. <a href="https://theaustintourist.com/things-to-do-in-austin/life-changing-experience-in-austin-miraval-resort-amp-spa">Life-Changing Experience in Austin: Miraval Resort & Spa</a> - Sprawling across 220 acres of land overlooking Lake Travis, the resort features a variety of elevate...</p>
+<p>14. <a href="https://madbarn.com/directory/austin-carriage-rides-and-tours/">Austin Carriage Rides And Tours | Equine Directory - Mad Barn</a> - Austin Carriage Rides And Tours ; Phone: (512) 243-0044 ; Email: AustinCarriage@gmail.com ; Website:...</p>
+<p>15. <a href="https://whitefencesaustin.com/training/">Horse Training & Dressage Services in Austin, TX | White Fences</a> - At White Fences Equestrian Center, we specialize in professional horse training rooted in classical ...</p>
+<p>16. <a href="https://madbarn.com/directory/rio-vista-farm/">Rio Vista Farm - Horse Camps in Del Valle, Texas | Equine Directory</a> - Phone: (512) 247-2303 ; Email: smcmorris2@gmail.com ; Website: https://www.riovistafarm.net/ ; Addre...</p>
+<p>17. <a href="http://www.southerntrailrides.com/contact">Contact - Southern Trails</a> - You can complete the form here or call us. Either way, we'll make sure you get the help you need. Ph...</p>
+<p>18. <a href="http://coraggio.org">Coraggio Equestrian - Austin</a> - Coraggio offers personalized care in a calm, private setting—for show horses, retirees, and every ho...</p>
+<p>19. <a href="https://maverickhorsebackriding.com/trail-rides/">Book Online Now - Maverick Horseback Riding</a> - We book up online weeks in advance. You are always welcome to inquire about a private tour, event or...</p>
+<p>20. <a href="https://www.yelp.com/biz/texas-trail-rides-austin-4">Texas Trail Rides - Austin, TX</a> - Specialties: At Texas Trail Rides, we're proud to help you experience ranch life at its finest. We s...</p>
+<p>21. <a href="https://madbarn.com/directory/texas-trail-rides/">Texas Trail Rides - Riding Lesson in Austin, TX | Equine Directory</a> - Phone: (512) 697-9722 ; Website: https://www.texastrailrides.com/ ; Address: 8601 Bluff Springs Rd.,...</p>
+<p>22. <a href="https://maverickhorsebackriding.com">Maverick Horseback Riding - Trail Riding and Private Lessons</a> - Book Your Ride Today! 512-230-8413. We are currently in our peak season, if your phone call is not a...</p>
+<p>23. <a href="https://www.riovistafarm.net">Rio Vista Farm - Austin</a> - We are a full care Hunter Jumper Boarding and Hunter Jumper Training Facility serving the Austin are...</p>
+<p>24. <a href="https://www.riovistafarm.net/about">About — Rio Vista Farm</a> - Rio Vista Farm, newly relocated to 1225 Creek Road in Dripping Springs, has been in operation since ...</p>
+<p>25. <a href="https://barnbeacon.com/directory/manor-equestrian-center-austin-tx">Manor Equestrian Center | Horseback Riding Austin TX - BarnBeacon</a> - Located at 13406 Cameron Rd in Austin, Manor Equestrian Center provides horseback riding. Their 5.0-...</p>
+<p>26. <a href="https://madbarn.com/directory/white-fences-equestrian-center/">White Fences Equestrian Center - Equine Directory - Mad Barn</a> - Be the first to recommend White Fences Equestrian Center. Phone: (512) 865-8281. Email: info@whitefe...</p>
+<p>27. <a href="https://whitefencesaustin.com/contact/">Contact | Horse Boarding & Lessons in Austin, TX</a> - Contact White Fences Equestrian Center · 10908 Jones Rd. Manor, TX 78653 · (512) 865-8281 · info@whi...</p>
+<p>28. <a href="https://www.yelp.com/biz/southern-trails-manor">Southern Trails - 15701 Decker Lake Rd, Manor, Texas - Yelp</a> - More info about Southern Trails ; 15701 Decker Lake Rd. Manor, TX 78653. Directions ; (512) 649-5558...</p>
+<p>29. <a href="http://www.southerntrailrides.com/trail-riding">Horseback Trail Riding | Austin, TX | Canyon Lake, TX</a> - Highly rated Texas horseback trail rides near Austin, TX on a beautiful 100-acre ranch only 15 minut...</p>
+<p>30. <a href="https://www.tripadvisor.com/Attraction_Review-g56224-d13869392-Reviews-Southern_Trails-Manor_Texas.html">Southern Trails (2026) - All You MUST Know Before ... - Tripadvisor</a> - Located just 15 minutes from downtown Austin, We ride on one of the most beautiful 120 acre ranches ...</p>
+<p>31. <a href="https://barnbeacon.com/directory/bee-cave-riding-center-austin-tx">Bee Cave Riding Center - Austin, TX - BarnBeacon</a> - Bee Cave Riding Center at 15740 Hamilton Pool Rd in Austin, TX. Rated 4.9 stars from 8 reviews. Call...</p>
+<p>32. <a href="https://austin.kidsoutandabout.com/content/bee-cave-riding-center">Bee Cave Riding Center | Kids Out and About Austin</a> - Bee Cave Riding Center. Address: 15740 Hamilton Pool Rd. Austin , TX , 78738. Phone: 512-632-7433. 3...</p>
+<p>33. <a href="https://www.facebook.com/beecaveridingcenter/">Bee Cave Riding Center | Austin TX - Facebook</a> - Bee Cave Riding Center is a hunter jumper facility serving riders of all levels and background... Se...</p>
+<p>34. <a href="http://coraggio.org/horse-boarding-austin">Horse Boarding in Austin - Coraggio Equestrian</a> - Coraggio Equestrian offers horse boarding in Austin's beautiful shaded Hill Country in a private, re...</p>
+<p>35. <a href="https://www.lonestarridingclub.com">Lone Star Riding Club | Riding Lessons & Horse Camps in Austin, TX</a> - Lone Star Riding Club provides English and Western riding lessons, kids camps, horse camps, clinics,...</p>
+<p>36. <a href="https://www.yelp.com/biz/lone-star-riding-club-driftwood">LONE STAR RIDING CLUB - Updated April 2026 - Yelp - Yelp</a> - 10701 Darden Hill Rd. Driftwood, TX 78619. Directions ; (512) 697-9818. Call Now ; Visit Website. ht...</p>
+<p>37. <a href="https://www.yelp.com/biz/tri-star-farm-austin">Tri-Star Farm - Austin, TX</a> - Specialties: Tri-Star Farm offers a wide range of boarding and training options as well as riding le...</p>
+<p>38. <a href="https://madbarn.com/directory/tri-star-farm-austin-tx/">Tri-Star Farm – Austin, TX - Trail Rides in Austin, TX | Equine Directory</a> - Phone: (512) 956-1662 ; Website: https://www.tristarfarm.com/ ; Address: 6648 Spicewood Springs Rd.,...</p>
+<p>39. <a href="https://www.switchwillostable.com/camp">Register for Summer Camp Now - Austin - Switch Willo Stables</a> - Enroll your child in 2025 summer camp at Switch Willo Stables for horse riding, horsemanship, and fu...</p>
+<p>40. <a href="https://www.switchwillostable.com/camp-info">Camp Info | Discover, Learn, Ride Today - Switch Willo Stables</a> - Join our summer camp for kids 6-12 at Switch Willo Stables. Fun horsemanship, riding lessons, arts, ...</p>
+<p>41. <a href="https://www.switchwillostable.com">Switch Willo Stables</a> - Switch Willo Stables offers Unsurpassed Excellence in Hunter / Jumper Training and Competition. Loca...</p>
+<p>42. <a href="https://www.miravalresorts.com/blog/miraval-austin-wellness-in-the-texas-hills">Wellness in the Texas Hills | Miraval Austin Resort & Spa</a> - Our Equine program lets you ride horseback. Miraval Austin is the only Miraval Resorts property that...</p>
+<p>43. <a href="https://www.miravalresorts.com/austin">Miraval Austin Resort & Spa | Inclusive Luxury Wellness Retreat</a> - Equine. Common Ground: Self-Leadership for Effective Communication. Ayurveda ... Contact Us. 855-690...</p>
+<p>44. <a href="http://lonestarstablesaustin.com">Lone Star Equestrian Center - Home</a> - The paramount destination for perso nalized, professional hunter/jumper instruction just mere minute...</p>
+<p>45. <a href="https://www.yelp.com/biz/lone-star-ranch-and-rodeo-austin">Lone Star Ranch & Rodeo - Austin, Texas - Yelp</a> - LONE STAR RANCH & RODEO, 8601 Bluff Springs Rd, Austin, TX 78744, 65 Photos, (512) 697-9722, Mon - 8...</p>
+<p>46. <a href="https://madbarn.com/directory/lone-star-equestrian-center/">Lone Star Equestrian Center - Boarding Stable in Austin, TX</a> - Be the first to recommend Lone Star Equestrian Center. Phone: (512) 567-4984. Email: lonestarstables...</p>
+<p>47. <a href="https://www.facebook.com/p/Lone-Star-Stables-100034948766170/">Lone Star Stables | Austin TX - Facebook</a> - Lone Star Stables, Austin. 241 likes · 2 talking about this · 480 were here. Equestrian Center.</p>
+<p>48. <a href="https://texasranches.com/directory/lone-star-stables-047bb7cd">Lone Star Stables | Texas Ranches</a> - Lone Star Stables Austin, opened in 2007, provides hunter/jumper instruction for horse and rider. Th...</p>
+<p>49. <a href="https://www.scissortailhillequestrian.com">Scissortail Hill Equestrian</a> - We specialize in producing safe, stable, and confident riders who receive a well rounded solid horse...</p>
+<p>50. <a href="https://barnbeacon.com/directory/scissortail-hill-equestrian-austin-tx">Scissortail Hill Equestrian | Horseback Riding Austin TX - BarnBeacon</a> - Scissortail Hill Equestrian at 9513 S Hwy 183 in Austin, TX. Call (512) 243-2323.</p>
+<p>51. <a href="https://www.facebook.com/ScissortailHillEquestrian/">Scissortail Hill Equestrian | Austin TX - Facebook</a> - Scissortail Hill Equestrian is a riding academy located in Austin, TX. Just minutes from Austin thi....</p>
+<p>52. <a href="https://www.scissortailhillequestrian.com/contact">CONTACT US - Scissortail Hill Equestrian</a> - CONTACT US. CONTACT. 9513 South HWY 183. Austin, TX 78747. ​. scissortailhillequestrian@gmail.com · ...</p>
+<p>53. <a href="https://www.monarchstablesaustin.com">Monarch Stables Hunter Jumper Show Barn | Horse Care ...</a> - Monarch's facility is a 56 acres equine oasis located only 13 miles from downtown Austin and 12 mile...</p>
+<p>54. <a href="https://madbarn.com/directory/monarch-stables/">Monarch Stables - Boarding Stable in Buda, TX | Equine Directory</a> - Monarch Stables is a Boarding Stable in Buda, TX, United States. Visit the Mad Barn Equine Services ...</p>
+<p>55. <a href="https://www.monarchstablesaustin.com/contact-us.html">Monarch Stables</a> - Contact Monarch Stables to learn hunter jumper lessons to riders of all ages and skill levels on our...</p>
+<p>56. <a href="https://willowhorseriding.com/austin">Willow Horseback Riding of Austin</a> - Ride through Austin’s scenic trails with Willow Horseback Riding! Guided rides, lessons, and family-...</p>
+<p>57. <a href="https://barnbeacon.com/directory/willow-horseback-riding-of-austin-austin-tx">Willow Horseback Riding of - Austin, TX - BarnBeacon</a> - Willow Horseback Riding of Austin at 1201 W 6th St in Austin, TX. Call (737) 232-7281.</p>
+<p>58. <a href="https://www.yelp.com/biz/willow-horseback-riding-of-austin-austin">WILLOW HORSEBACK RIDING OF AUSTIN - Updated April 2026</a> - 1201 W 6th St. Austin, TX 78703. Directions ; (737) 232-7281. Call Now ; Visit Website. https://www....</p>
+<p>59. <a href="https://www.eventective.com/austin-tx/austin-carriage-272588.html">Austin Carriage - Austin, TX - Limousine - Eventective</a> - Horse drawn carriage transportation for all events. Website. Phone. 512-243-0044. Austin Carriage. 9...</p>
+<p>60. <a href="http://www.austincarriage.co/home.html">Austin Carriage</a> - Austin Carriage · Phone: 512-243-0044 or AustinCarriage@gmail.com · Check for our specials on Facebo...</p>
+</article>
+</body>
+</html>
