@@ -144,13 +144,31 @@ pointing to `/apps/citywide/<slug>/`, e.g.:
 
 (`page.js` listens for `.nav-link` clicks; `<a>` and `<button>` both work.)
 
+Also add a homepage **report card** entry by appending to
+`storymaps/reports.json` (create the file if it doesn't exist yet). Each entry
+drives one card in the homepage's `.report-cards` strip:
+
+```json
+{
+  "id": "<slug>",
+  "title": "<title>",
+  "eyebrow": "<eyebrow> · Report",
+  "blurb": "<one-sentence summary — same copy as the app's data-description works well>",
+  "href": "/storymaps/<slug>/report.html",
+  "accent": "<marker_color>"
+}
+```
+
+Keep the blurb ≤ ~110 characters so it fits in the card's two-line clamp. If
+front-matter doesn't give you a blurb, reuse the app's data-description.
+
 ### 6 — Commit and push
 
 Single commit on the working branch (`claude/review-staging-workflow-xfpEx`
 unless told otherwise):
 
 ```
-git add apps/citywide/<slug>/ storymaps/<slug>/ storymaps/index.json apps.html
+git add apps/citywide/<slug>/ storymaps/<slug>/ storymaps/index.json storymaps/reports.json apps.html
 git commit -m "Deploy <title> from staging (app + storymap + report)"
 git push -u origin claude/review-staging-workflow-xfpEx
 ```
