@@ -196,13 +196,11 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .footnotes li { margin-bottom: 6px; }
 .fn-back { margin-left: 4px; text-decoration: none; }
 
-/* Site bar at the top of the header: social icons on top, homepage link below */
+/* Site bar at the top of the header: just the social icons */
 .site-bar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 28px;
+  justify-content: center;
+  margin: 0 0 24px;
 }
 .site-bar .social-icons {
   display: flex;
@@ -220,21 +218,13 @@ sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; 
 .site-bar .social-icons a:hover { color: var(--accent); }
 .site-bar .social-icons svg { width: 20px; height: 20px; }
 
-/* Site link — title-scaled hyperlink sitting right under the icons */
-.site-link {
-  margin: 0;
-  font-family: Georgia, "Iowan Old Style", "Source Serif Pro", serif;
-  font-size: 36px;
-  line-height: 1.15;
-  font-weight: 700;
-  text-align: center;
-}
-.site-link a {
+/* Home link occupies the eyebrow slot — same typography as the old eyebrow */
+.eyebrow a {
   color: #1a6cdb;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
 }
-.site-link a:hover { color: #0a4fa8; }
+.eyebrow a:hover { color: #0a4fa8; }
 
 /* Related-content nav (link cards at the top of the report) */
 .report-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
@@ -344,16 +334,20 @@ def _nav_html(app_url: str, storymap_url: str) -> str:
     return f'<nav class="report-nav" aria-label="Related content">{items}</nav>'
 
 
-def _site_bar_html(home_url: str, label: str = "City Anatomy") -> str:
-    """Two-line bar at the top of the header: social icons, then homepage link."""
+def _site_bar_html() -> str:
+    """Row of social icons at the top of the header. Hidden in print."""
+    return f'<div class="site-bar">{SOCIAL_ICONS_HTML}</div>'
+
+
+def _eyebrow_link_html(home_url: str, label: str = "City Anatomy") -> str:
+    """Eyebrow-styled home link that sits where the old eyebrow rendered."""
     if not home_url:
         return ""
-    link_row = (
-        f'<p class="site-link">'
+    return (
+        f'<p class="eyebrow">'
         f'<a href="{html.escape(home_url)}">{html.escape(label)}</a>'
         f'</p>'
     )
-    return f'<div class="site-bar">{SOCIAL_ICONS_HTML}{link_row}</div>'
 
 
 def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
@@ -380,10 +374,14 @@ def build(md_path: Path, out_path: Path, title: str, subtitle: str = "",
             shutil.copy2(cover_image, cover_dest)
         cover_html = f'<img class="cover" src="{html.escape(cover_image.name)}" alt="" />'
 
-    eyebrow_html = f'<p class="eyebrow">{html.escape(eyebrow)}</p>' if eyebrow else ""
+    # The eyebrow slot now always hosts the "City Anatomy" home link. The
+    # --eyebrow CLI arg is still accepted for backward compatibility but is no
+    # longer rendered in the report header itself (it's still used by the
+    # homepage card manifest).
+    eyebrow_html = _eyebrow_link_html(home_url)
     subtitle_html = f'<p class="subtitle">{html.escape(subtitle)}</p>' if subtitle else ""
     nav_html = _nav_html(app_url, storymap_url)
-    site_bar_html = _site_bar_html(home_url)
+    site_bar_html = _site_bar_html()
 
     out = HTML_TMPL.format(
         title_esc=html.escape(title),
