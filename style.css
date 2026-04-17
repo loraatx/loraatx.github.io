@@ -241,7 +241,7 @@ main {
   align-items: stretch;
 }
 
-.report-card {
+.report-cards-inner .report-card {
   --card-accent: var(--accent);
   flex: 0 0 280px;
   max-width: 320px;
@@ -254,16 +254,33 @@ main {
   flex-direction: column;
   gap: 3px;
   color: var(--text);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
-.report-card:hover,
-.report-card:focus-visible {
+.report-cards-inner .report-card:hover,
+.report-cards-inner .report-card:focus-visible {
   color: var(--text);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px var(--shadow);
   border-color: var(--card-accent);
   outline: none;
+}
+
+.report-cards-inner .report-card.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  border-left-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 22px var(--shadow);
+}
+
+.report-cards-inner .report-card.is-active .report-card-eyebrow,
+.report-cards-inner .report-card.is-active .report-card-title,
+.report-cards-inner .report-card.is-active .report-card-blurb {
+  color: #fff;
 }
 
 .report-card-eyebrow {
