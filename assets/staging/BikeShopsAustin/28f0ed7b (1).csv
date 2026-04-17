@@ -1,0 +1,13 @@
+shop_name,city,address,latitude,longitude,type,sells_ebikes,offers_pro_fit,austin_energy_e_ride_rebate,notes
+ATX Bikes,Austin,"5701 W Slaughter Ln Ste A-110, Austin, TX 78749",,,independent,likely,yes,unknown,Full-service shop; some e-bikes; confirm inventory by phone.
+Mellow Johnny's Bike Shop,Austin,"115 Sandra Muraida Way Ste 102, Austin, TX 78703",,,independent,yes,yes,unknown,Downtown performance shop; carries some e-bikes; advanced fittings.
+Austin Tri Cyclist,Austin,"923 Barton Springs Rd, Austin, TX 78704",30.2596940,-97.7545250,independent,limited/unknown,yes,unknown,Tri/road-focused shop; primary inventory is non-e-bike.
+Austin Bike Farm,Austin,"5440 Burnet Rd, Austin, TX 78756",30.3295116,-97.7401945,independent,yes,unknown,unknown,New/used shop; stocks some Specialized Turbo e-bikes.
+Trek Bicycle Parmer,Austin,"9900 W Parmer Ln, Austin, TX 78717",30.4865913,-97.7701105,chain,yes,unknown,unknown,Trek/Electra dealer; multiple e-bike models in stock.
+Specialized Austin @ Domain Northside,Austin,"3200 Palm Way Ste 150, Austin, TX 78758",,,chain,yes,unknown,unknown,Specialized brand store; sells Turbo e-bikes at national MSRPs.
+REI Austin Gateway,Austin,"9901 N Capital of Texas Hwy, Austin, TX 78759",30.3893906,-97.7406300,chain,yes,unknown,reported participant,REI bike shop; stocks Co-op Cycles and other e-bikes; check Austin Energy list directly.
+Velorangutan,Austin,"3924 Woodbury Dr Ste A, Austin, TX 78704",,,independent,possible/limited,unknown,unknown,"High-end custom shop (Ibis, Scott, Orbea); main focus on analog/custom builds."
+Blur Cycleworks,Round Rock,"1011 Gattis School Rd Ste 100, Round Rock, TX 78664",,,independent,yes (likely),unknown,unknown,General shop; brands include Felt and KHS; e-bike mix unclear from web.
+Electric Avenue,Austin,"4616 Triangle Ave Ste 403, Austin, TX 78751",,,independent e-bike specialist,yes,unknown,very likely,"Dedicated e-bike shop (Gazelle, Riese & Müller, Tern, etc.); markets Austin Energy rebate-qualified models."
+MOD BIKES,Austin,"415 E St Elmo Rd Bldg 2, Austin, TX 78745",,,independent e-bike specialist,yes,unknown,unknown,Austin-based e-bike brand with showroom and full service garage.
+Rocket Electrics (closed),Austin,"1910 Aldrich St, Austin, TX 78723",30.3012038,-97.7031094,independent e-bike specialist (closed),n/a,n/a,n/a,Historically an all-e-bike shop; appears closed but included for historical planning context.
