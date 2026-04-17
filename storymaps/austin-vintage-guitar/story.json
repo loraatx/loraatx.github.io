@@ -1,0 +1,254 @@
+{
+  "title": "Vintage & Used Guitar Shops in Greater Austin",
+  "subtitle": "Specialists, boutiques, acoustics, and chains across the metro",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.762, 30.315],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "guitar-shops",
+      "type": "circle",
+      "source": "data/austin-vintage-guitar.geojson",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": "#7D4F00",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0
+      },
+      "transitionOpacity": 0.95,
+      "transitionDuration": 700
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.762, 30.315],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.762, 30.315],
+        "anchor": "bottom",
+        "title": "Greater Austin's guitar retail map",
+        "subtitle": "A tour of vintage specialists, boutiques, and chains",
+        "body": "<p>Austin's reputation as the Live Music Capital sustains an unusually dense guitar retail scene — 9 shops mapped here, ranging from a flagship vintage dealer on Red River to big-box chains, a boutique living-room showroom, and an acoustic-only specialist on West 35th.</p>",
+        "stats": [
+          { "label": "Shops mapped",       "value": "9"  },
+          { "label": "Vintage specialists", "value": "2"  },
+          { "label": "Acoustic specialist", "value": "1"  }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Open the guitar shop map →"
+        }
+      }
+    },
+
+    {
+      "id": "austin-vintage-guitars",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.72339, 30.30434],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": 30,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.72339, 30.30434],
+        "anchor": "bottom",
+        "title": "Austin Vintage Guitars",
+        "subtitle": "4306 Red River St · Hyde Park corridor",
+        "body": "<p>Austin's flagship dedicated vintage shop, under the same ownership since the late 1990s. Inventory skews toward pre-CBS Fenders, vintage Gibsons, period-correct amps, and effects — with Reverb listings that reach buyers nationwide. Full repair bench on-site.</p>",
+        "stats": [
+          { "label": "Type",   "value": "Vintage Specialist" },
+          { "label": "Focus",  "value": "Fender / Gibson / Amps" },
+          { "label": "Phone",  "value": "512-428-9100" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "south-austin-music",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.76355, 30.25276],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.76355, 30.25276],
+        "anchor": "bottom",
+        "title": "South Austin Music",
+        "subtitle": "1402 S Lamar Blvd · South Austin",
+        "body": "<p>Austin's longest-running independent guitar shop — on the same South Lamar corner since 1986. Known for a treasure-hunt mix of characterful mid-range instruments, used American Fenders, quirky off-brand finds, and in-house repairs. Lessons available.</p>",
+        "stats": [
+          { "label": "Type",      "value": "Independent"   },
+          { "label": "Since",     "value": "1986"          },
+          { "label": "Phone",     "value": "512-448-4992"  }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "austin-guitar-house",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.72955, 30.27233],
+        "zoom": 15.5,
+        "pitch": 50,
+        "bearing": 60,
+        "speed": 0.75,
+        "curve": 1.3
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.72955, 30.27233],
+        "anchor": "bottom",
+        "title": "Austin Guitar House",
+        "subtitle": "1104 E 12th St · East Austin",
+        "body": "<p>A boutique living-room showroom focused on high-end and luthier-built electrics and amps. The place to try boutique brands rarely found elsewhere in Austin — premium PRS-style electrics, custom builds, and boutique valve amps starting at the low-thousands.</p>",
+        "stats": [
+          { "label": "Type",   "value": "Boutique"       },
+          { "label": "Focus",  "value": "High-end / luthier" },
+          { "label": "Phone",  "value": "512-243-6036"   }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "fiddlers-green",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.75890, 30.31140],
+        "zoom": 15.5,
+        "pitch": 50,
+        "bearing": -50,
+        "speed": 0.75,
+        "curve": 1.3
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.75890, 30.31140],
+        "anchor": "bottom",
+        "title": "Fiddler's Green Music Shop",
+        "subtitle": "1809 W 35th St · Bryker Woods",
+        "body": "<p>Austin's dedicated acoustic specialist — a snug shop curating higher-end flattops, mandolins, and banjos. The go-to for bluegrass, old-time, and Americana players who want to compare boutique and luthier-built instruments in a focused environment rather than a general-purpose store.</p>",
+        "stats": [
+          { "label": "Type",    "value": "Acoustic Specialist"    },
+          { "label": "Focus",   "value": "Flattops / banjos / mandolins" },
+          { "label": "Phone",   "value": "512-452-3900"           }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "moon-music",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.73632, 30.35757],
+        "zoom": 15,
+        "pitch": 50,
+        "bearing": 20,
+        "speed": 0.75,
+        "curve": 1.3
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.73632, 30.35757],
+        "anchor": "bottom",
+        "title": "Moon Music Pro",
+        "subtitle": "2210 W Anderson Ln · North Central",
+        "body": "<p>The newest independent on this map — opened its physical door in 2022 after starting as an online shop in 2019. Quickly earned a reputation for personalized service, competitive setups, fair trade-ins, and a wide price range from beginner-friendly used gear to professional instruments.</p>",
+        "stats": [
+          { "label": "Type",    "value": "Independent"  },
+          { "label": "Opened",  "value": "2022 (physical)" },
+          { "label": "Phone",   "value": "512-291-3913" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-vintage-guitar/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.762, 30.315],
+        "zoom": 10,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["guitar-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.762, 30.315],
+        "anchor": "bottom",
+        "title": "The full picture",
+        "subtitle": "Two Strait Music locations, two Guitar Centers, and more",
+        "body": "<p>Beyond the shops spotlighted here, the map also plots Strait Music's Bee Caves Rd and North Austin locations — full-line family-owned stores with strong used sections — and both Guitar Center outlets, which carry the metro's highest-volume pre-owned inventory for mainstream brands.</p>",
+        "stats": [
+          { "label": "Shops on map",  "value": "9"  },
+          { "label": "Shop types",    "value": "5"  }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    }
+  ]
+}
