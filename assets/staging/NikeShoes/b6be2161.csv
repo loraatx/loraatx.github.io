@@ -1,0 +1,19 @@
+retailer,store_name,address,lat,lon
+Best Buy,Best Buy North Austin,"9607 Research Blvd, Austin, TX 78759",30.3792,-97.7395
+Best Buy,Best Buy Mueller Airport,"1201 Barbara Jordan Blvd, Austin, TX 78723",30.3029,-97.705
+Best Buy,Best Buy Southpark Meadows,"9600 S Interstate 35, Austin, TX 78748",30.161,-97.791
+Target,Target Austin North,"8601 Research Blvd, Austin, TX 78758",30.3623,-97.7158
+Target,Target Austin East,"5621 N Interstate 35, Austin, TX 78723",30.3153,-97.7053
+Target,Target Austin Lakeline Mall Dr,"10900 Lakeline Mall Dr, Austin, TX 78717",30.4704,-97.8005
+Target,Target Austin South Lamar,"2300 W Ben White Blvd, Austin, TX 78704",30.2309,-97.7839
+Walmart,Walmart Supercenter #1185,"1030 Norwood Park Blvd, Austin, TX 78753",30.3582,-97.6903
+Walmart,Walmart Supercenter #4554,"2525 W Anderson Ln, Austin, TX 78757",30.3521,-97.7323
+Costco,Costco South Austin,"4301 W William Cannon Dr Bldg A Ste 100, Austin, TX 78749",30.2166,-97.8292
+Costco,Costco North Austin,"10401 Research Blvd, Austin, TX 78759",30.3932,-97.7488
+Sam's Club,Sam's Club Austin (I-35),"9900 S I-35 Frontage Rd, Austin, TX 78748",30.1605,-97.7917
+Sam's Club,Sam's Club Austin (Hwy 290),"4970 W Highway 290, Austin, TX 78735",30.2339,-97.8356
+GameStop,GameStop Anderson Ln,"2525 W Anderson Ln Bldg 1-100, Austin, TX 78757",30.353,-97.7355
+GameStop,GameStop North Austin,"1030 Norwood Park Blvd Ste 400, Austin, TX 78753",30.3585,-97.6899
+GameStop,GameStop Barton Creek,"2901 S Capital of Texas Hwy Ste F2, Austin, TX 78746",30.2576,-97.8071
+Game Over Videogames,Game Over Videogames North,"911 W Anderson Ln Ste 106, Austin, TX 78757",30.3398,-97.7313
+Game Over Videogames,Game Over Videogames South Lamar,"2620 S Lamar Blvd Ste B, Austin, TX 78704",30.2443,-97.7825
