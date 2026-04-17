@@ -4,5 +4,6 @@
   { "id": "austin-neighborhoods",      "label": "Austin Neighborhoods"  },
   { "id": "austin-horseback-riding",   "label": "Horseback Riding"     },
   { "id": "template",                  "label": "Austin Pools"         },
-  { "id": "austin-golf-courses",       "label": "Golf in Austin"        }
+  { "id": "austin-golf-courses",       "label": "Golf in Austin"        },
+  { "id": "austin-ps5-bundles",        "label": "PS5 Slim Bundles"      }
 ]
