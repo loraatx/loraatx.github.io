@@ -3,5 +3,6 @@
   { "id": "austin-chambers",           "label": "Austin Chambers"      },
   { "id": "austin-neighborhoods",      "label": "Austin Neighborhoods"  },
   { "id": "austin-horseback-riding",   "label": "Horseback Riding"     },
-  { "id": "template",                  "label": "Austin Pools"         }
+  { "id": "template",                  "label": "Austin Pools"         },
+  { "id": "austin-golf-courses",       "label": "Golf in Austin"        }
 ]

@@ -22,5 +22,13 @@
     "blurb": "Trail rides, lesson barns, and equine experiences across the region.",
     "href": "/storymaps/austin-horseback-riding/report.html",
     "accent": "#8B4513"
+  },
+  {
+    "id": "austin-golf-courses",
+    "title": "Golf in the Austin Region",
+    "eyebrow": "Austin Metro · Report",
+    "blurb": "Municipal munis, Hill Country resorts, and 120 years of Austin golf history.",
+    "href": "/storymaps/austin-golf-courses/report.html",
+    "accent": "#2d7a1a"
   }
 ]
