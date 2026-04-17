@@ -1,0 +1,253 @@
+{
+  "title": "PS5 Slim Bundles in Austin",
+  "subtitle": "Big-box, warehouse club, and local used-game stops",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.756, 30.305],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "ps5-stores",
+      "type": "circle",
+      "source": "data/austin-ps5-bundles.geojson",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": "#003087",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0
+      },
+      "transitionOpacity": 0.95,
+      "transitionDuration": 700
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.756, 30.305],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.756, 30.305],
+        "anchor": "bottom",
+        "title": "Where to buy a PS5 Slim in Austin",
+        "subtitle": "18 retail stops across seven retailers",
+        "body": "<p>This map pins every Austin-area store regularly stocking PlayStation 5 Slim consoles and bundles — big-box chains, warehouse clubs, specialty game stores, and local used-game shops.</p>",
+        "stats": [
+          { "label": "Stores mapped", "value": "18" },
+          { "label": "Retailers",     "value": "7"  }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-ps5-bundles/",
+          "text": "Open the store map →"
+        }
+      }
+    },
+
+    {
+      "id": "best-buy-north",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7395, 30.3792],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7395, 30.3792],
+        "anchor": "bottom",
+        "title": "Best Buy North Austin",
+        "subtitle": "9607 Research Blvd · 78759",
+        "body": "<p>The widest selection of Slim SKUs in town — from the $549.99 1TB disc console and $499.99 Digital Edition to Fortnite Flowering Chaos and Cobalt Star bundles, plus loaded sports and Spider-Man 2 packs with extra controllers.</p>",
+        "stats": [
+          { "label": "Base disc",    "value": "$549.99" },
+          { "label": "Base digital", "value": "$499.99" }
+        ],
+        "link": {
+          "href": "https://www.bestbuy.com/site/playstation-5-slim-console-1tb-playstation-5/pcmcat1587395025973.c?id=pcmcat1587395025973",
+          "text": "View Best Buy bundles →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "target-north",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7158, 30.3623],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7158, 30.3623],
+        "anchor": "bottom",
+        "title": "Target Austin North",
+        "subtitle": "8601 Research Blvd · 78758",
+        "body": "<p>Target's Fortnite Flowering Chaos bundles are the aggressive deal right now — $449.99 for the 1TB disc console and $399.99 for the Digital Edition, both about $100 off MSRP. Order Pickup, Drive Up, and same-day Shipt delivery all supported.</p>",
+        "stats": [
+          { "label": "Disc bundle",    "value": "$449.99" },
+          { "label": "Digital bundle", "value": "$399.99" }
+        ],
+        "link": {
+          "href": "https://www.target.com/p/playstation-5-1tb-console-fortnite-flowering-chaos-bundle/-/A-94967680",
+          "text": "View Target bundle →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "costco-south",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.8292, 30.2166],
+        "zoom": 14.5,
+        "pitch": 50,
+        "bearing": 90,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.8292, 30.2166],
+        "anchor": "bottom",
+        "title": "Costco Wholesale · South Austin",
+        "subtitle": "4301 W William Cannon Dr · 78749",
+        "body": "<p>A members-only play. Costco's periodic Slim bundles have included a 1TB disc package near $599.99 and a Digital Edition pack with an extra DualSense and charging station at $434.99 during late-2024 promos.</p>",
+        "stats": [
+          { "label": "Disc bundle (snapshot)", "value": "$599.99" },
+          { "label": "Member promo",           "value": "$434.99" }
+        ],
+        "link": {
+          "href": "https://www.costco.com/sony-playstation-5-digital-slim-bundle.product.4000311565.html",
+          "text": "View Costco listing →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "gamestop-barton",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.8071, 30.2576],
+        "zoom": 15,
+        "pitch": 50,
+        "bearing": -60,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.8071, 30.2576],
+        "anchor": "bottom",
+        "title": "GameStop · Barton Creek",
+        "subtitle": "2901 S Capital of Texas Hwy · 78746",
+        "body": "<p>GameStop carries the ASTRO BOT bundles at their launch price points — $449.99 for the 1TB disc console and $399.99 for the Slim Digital — and rotates trade-in promotions that often stack on top.</p>",
+        "stats": [
+          { "label": "Disc ASTRO BOT",    "value": "$449.99" },
+          { "label": "Digital ASTRO BOT", "value": "$399.99" }
+        ],
+        "link": {
+          "href": "https://www.gamestop.com/consoles-hardware/playstation-5/consoles",
+          "text": "View GameStop consoles →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "game-over-north",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.7313, 30.3398],
+        "zoom": 15,
+        "pitch": 50,
+        "bearing": 15,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7313, 30.3398],
+        "anchor": "bottom",
+        "title": "Game Over Videogames · North",
+        "subtitle": "911 W Anderson Ln · 78757",
+        "body": "<p>Austin's retro specialist. Game Over doesn't stock official new Slim bundles, but their North Austin and South Lamar stores occasionally surface pre-owned PS5 hardware — worth a phone call before driving out.</p>",
+        "stats": [
+          { "label": "Focus",     "value": "Retro + used" },
+          { "label": "Locations", "value": "2 in Austin"  }
+        ],
+        "link": {
+          "href": "https://gameovervideogames.com",
+          "text": "gameovervideogames.com →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.756, 30.305],
+        "zoom": 10,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["ps5-stores"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.756, 30.305],
+        "anchor": "bottom",
+        "title": "The full Slim bundle lineup",
+        "subtitle": "Prices, SKUs, and store addresses",
+        "body": "<p>The full report breaks down every Slim bundle on offer at Best Buy, Target, Walmart, Costco, Sam's Club, and GameStop — with Austin store examples, current prices, and fulfillment options for each.</p>",
+        "stats": [
+          { "label": "Stores mapped", "value": "18" },
+          { "label": "Retailers",     "value": "7"  }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    }
+  ]
+}

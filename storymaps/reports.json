@@ -34,5 +34,14 @@
     "blurb": "Municipal munis, Hill Country resorts, and 120 years of Austin golf history.",
     "href": "/storymaps/austin-golf-courses/report.html",
     "accent": "#2d7a1a"
+  },
+  {
+    "id": "austin-ps5-bundles",
+    "category": "Shopping",
+    "title": "PS5 Slim Bundles in Austin",
+    "eyebrow": "Austin Shopping · Report",
+    "blurb": "Where to buy a PlayStation 5 Slim across 18 Austin-area retailers.",
+    "href": "/storymaps/austin-ps5-bundles/report.html",
+    "accent": "#003087"
   }
 ]
