@@ -1,6 +1,7 @@
 [
   {
     "id": "austin-chambers",
+    "category": "City Government",
     "title": "Austin-Area Chambers of Commerce",
     "eyebrow": "Austin Metro · Report",
     "blurb": "Regional, affinity, and corridor chambers mapped across Greater Austin.",
@@ -9,6 +10,7 @@
   },
   {
     "id": "austin-neighborhoods",
+    "category": "City Government",
     "title": "Historic and Emerging Neighborhoods of Austin, Texas",
     "eyebrow": "Austin Metro · Report",
     "blurb": "A survey of central, historic, and master-planned Austin communities.",
@@ -17,6 +19,7 @@
   },
   {
     "id": "austin-horseback-riding",
+    "category": "Recreation",
     "title": "Recreational Horseback Riding in Greater Austin",
     "eyebrow": "Austin Metro · Report",
     "blurb": "Trail rides, lesson barns, and equine experiences across the region.",
@@ -25,6 +28,7 @@
   },
   {
     "id": "austin-golf-courses",
+    "category": "Recreation",
     "title": "Golf in the Austin Region",
     "eyebrow": "Austin Metro · Report",
     "blurb": "Municipal munis, Hill Country resorts, and 120 years of Austin golf history.",
