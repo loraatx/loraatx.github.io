@@ -43,5 +43,14 @@
     "blurb": "Where to buy a PlayStation 5 Slim across 18 Austin-area retailers.",
     "href": "/storymaps/austin-ps5-bundles/report.html",
     "accent": "#003087"
+  },
+  {
+    "id": "austin-bike-shops",
+    "category": "Shopping",
+    "title": "E-Bike and Bicycle Shops in Greater Austin",
+    "eyebrow": "Austin Shopping · Report",
+    "blurb": "Independent shops, brand stores, and e-bike specialists across the Austin metro.",
+    "href": "/storymaps/austin-bike-shops/report.html",
+    "accent": "#2f855a"
   }
 ]

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>E-Bike and Bicycle Shops in Greater Austin</title>
+<style>
+:root {
+  --ink:    #1a1a1a;
+  --muted:  #555;
+  --rule:   #e5e5e5;
+  --accent: #6f4e37;
+  --bg:     #fafaf7;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Georgia, "Iowan Old Style", "Source Serif Pro", serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.report {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+}
+.report-header { border-bottom: 2px solid var(--ink); padding-bottom: 22px; margin-bottom: 36px; }
+.eyebrow { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+h1.title { font-family: Georgia, serif; font-size: 36px; line-height: 1.15; margin: 0 0 8px; font-weight: 700; }
+.subtitle { color: var(--muted); font-style: italic; font-size: 18px; margin: 0; }
+.cover { width: 100%; max-height: 320px; object-fit: cover; border-radius: 4px; margin: 0 0 36px; }
+h2 { font-family: Georgia, serif; font-size: 24px; margin: 48px 0 12px; padding-top: 8px; border-top: 1px solid var(--rule); }
+h3 { font-size: 19px; margin: 32px 0 10px; }
+h4 { font-size: 17px; margin: 24px 0 8px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+code { background: rgba(111, 78, 55, 0.08); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; font-family: "SF Mono", Menlo, monospace; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+ul, ol { margin: 0 0 14px; padding-left: 1.4em; }
+li { margin-bottom: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: rgba(111, 78, 55, 0.06); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+td a { word-break: break-word; }
+sup.fn-ref a, sup.footnote-ref a { color: var(--accent); text-decoration: none; font-size: 0.78em; padding: 0 1px; }
+.footnotes { margin-top: 56px; padding-top: 24px; border-top: 2px solid var(--ink); font-size: 14px; color: var(--muted); }
+.footnotes h2 { border-top: none; margin-top: 0; font-size: 18px; }
+.footnotes ol { padding-left: 1.6em; }
+.footnotes li { margin-bottom: 6px; }
+.fn-back { margin-left: 4px; text-decoration: none; }
+
+/* Site bar at the top of the header: just the social icons */
+.site-bar {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 24px;
+}
+.site-bar .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.site-bar .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+.site-bar .social-icons a:hover { color: var(--accent); }
+.site-bar .social-icons svg { width: 20px; height: 20px; }
+
+/* Home link occupies the eyebrow slot — same typography as the old eyebrow */
+.eyebrow a {
+  color: #1a6cdb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.eyebrow a:hover { color: #0a4fa8; }
+
+/* Related-content nav (link cards at the top of the report) */
+.report-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
+.report-nav a {
+  flex: 1 1 180px;
+  min-width: 160px;
+  padding: 12px 16px 14px;
+  background: color-mix(in srgb, var(--bg) 85%, var(--accent) 6%);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.report-nav a:hover, .report-nav a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+  outline: none;
+}
+.report-nav .rn-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+.report-nav .rn-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px; font-weight: 600; color: var(--ink);
+}
+
+/* Print-specific (Save as PDF) */
+@media print {
+  body { background: white; font-size: 12pt; }
+  .report { max-width: none; padding: 0; }
+  .cover { max-height: 240px; }
+  h2 { page-break-before: always; }
+  h2:first-of-type { page-break-before: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  .footnotes { page-break-before: always; }
+  .report-nav { display: none !important; }
+  .site-bar { display: none !important; }
+}
+</style>
+</head>
+<body>
+<article class="report">
+  <header class="report-header">
+    <div class="site-bar"><div class="social-icons"><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.25h3.5l-7.7 8.8L23 21.75h-7.1l-5.5-7.2-6.3 7.2H.6l8.2-9.4L.4 2.25H7.7l5 6.6 5.5-6.6zm-1.2 17.5h2L7.1 4.3H5L17 19.75z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9c-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.2 1.4A6 6 0 0 0 .6 4.1C.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.6 2.9.3.8.7 1.5 1.4 2.2.7.7 1.3 1.1 2.2 1.4.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.8.1s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.3 1.4-2.2.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.2A6 6 0 0 0 19.9.6C19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.9a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a><a href="#" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.1 13.8c0 .2.1.3.1.5 0 2.6-3 4.7-6.7 4.7-3.7 0-6.7-2.1-6.7-4.7 0-.2 0-.3.1-.5a1.6 1.6 0 0 1-.6-1.3 1.6 1.6 0 0 1 2.7-1.2 8.2 8.2 0 0 1 4.3-1.4l.8-3.8a.3.3 0 0 1 .4-.3l2.7.6a1.1 1.1 0 1 1-.1.6l-2.5-.5-.7 3.4a8.1 8.1 0 0 1 4.2 1.4 1.6 1.6 0 0 1 2.7 1.2c0 .5-.2 1-.7 1.3zM9.3 13a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5.4 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm-5.1 4.5c-.1-.1 0-.3.1-.3a6.4 6.4 0 0 0 4.6 0c.2-.1.3 0 .3.2s-.1.2-.2.3a6.7 6.7 0 0 1-4.6 0c-.1 0-.2-.1-.2-.2z"/></svg></a><a href="#" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4.5a8.1 8.1 0 1 0 0 16.2 8.1 8.1 0 0 0 0-16.2zM.5.5h3.8v23H.5z"/></svg></a><a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A18.5 18.5 0 0 0 15.7 3a13 13 0 0 0-.6 1.2 17.2 17.2 0 0 0-5.1 0A12 12 0 0 0 9.4 3a18.5 18.5 0 0 0-4.6 1.4A19.5 19.5 0 0 0 1.5 19a18.7 18.7 0 0 0 5.7 2.9 14 14 0 0 0 1.2-2 12 12 0 0 1-1.9-.9l.5-.4a13.3 13.3 0 0 0 11.4 0l.5.4a12 12 0 0 1-1.9.9 14 14 0 0 0 1.2 2 18.6 18.6 0 0 0 5.7-2.9A19.4 19.4 0 0 0 20.3 4.4zM8.3 16c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3zm7.4 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3z"/></svg></a></div></div>
+    <p class="eyebrow"><a href="/">City Anatomy</a></p>
+    <h1 class="title">E-Bike and Bicycle Shops in Greater Austin</h1>
+    <p class="subtitle">Independent, chain, and e-bike specialist shops across the metro</p>
+  </header>
+  <nav class="report-nav" aria-label="Related content"><a href="/apps/citywide/austin-bike-shops/" target="_blank" rel="noopener"><span class="rn-eyebrow">Explore</span><span class="rn-label">Interactive map →</span></a><a href="/storymaps/austin-bike-shops/" target="_blank" rel="noopener"><span class="rn-eyebrow">Watch</span><span class="rn-label">Story map →</span></a></nav>
+  
+  <h2>Overview</h2>
+<p>This report compiles verified information on bicycle and e-bike shops in the Greater Austin, Texas area, focusing on central Austin through Round Rock, Cedar Park, and Pflugerville.<sup>1</sup><sup>2</sup> It emphasizes shops that sell e-bikes, notes which are independent versus chain/corporate, and highlights those with professional bike fitting and connections to the Austin Energy E-Ride rebate program.<sup>3</sup><sup>4</sup></p>
+<p>The report is structured around two key planning artifacts: a shop-level table with attributes relevant to purchasing and fitting, and a sample of current e-bike prices by brand and model from shops that publish inventory online.<sup>5</sup><sup>6</sup></p>
+<h2>Austin Energy E-Ride Rebate Context</h2>
+<p>Austin Energy’s Electric Ride (E-Ride) Rebate program offers incentives for eligible e-bikes and other small electric vehicles purchased from participating local dealerships.<sup>3</sup><sup>7</sup> The utility specifies that qualifying purchases must come from Austin Energy–approved participating dealerships with a local storefront.</p>
+<p>Public-facing documentation for the E-Ride program describes rebate tiers by vehicle type and cost but does not always provide a straightforward, up-to-date HTML list of every participating bike dealer.<sup>3</sup><sup>4</sup> Third-party coverage and community reports fill some gaps but should be cross-checked directly with Austin Energy for purchases.<sup>8</sup><sup>9</sup></p>
+<h2>Shop List: Greater Austin Area</h2>
+<p>The table below summarizes verified shops, including location, type, e-bike focus, fitting, and high-level rebate participation indications.</p>
+<table><thead><tr><th>Shop name</th><th>City</th><th>Address</th><th>Type</th><th>Sells e-bikes</th><th>Professional fitting</th><th>Austin Energy E-Ride rebate status</th><th>Notes</th></tr></thead><tbody><tr><td>ATX Bikes</td><td>Austin</td><td>5701 W Slaughter Ln Ste A-110, Austin, TX 78749</td><td>Independent</td><td>Likely</td><td>Yes (performance-oriented fitting mentioned in community coverage)</td><td>Unknown</td><td>Full-service neighborhood shop with road/MTB and likely some e-bikes; Yelp confirms it is an established bike shop.<sup>10</sup></td></tr><tr><td>Mellow Johnny's Bike Shop</td><td>Austin</td><td>115 Sandra Muraida Way Ste 102, Austin, TX 78703</td><td>Independent</td><td>Yes</td><td>Yes</td><td>Unknown</td><td>Downtown performance shop founded by cycling interests; sells bikes, gear, and offers advanced fitting services; website and tourism listings emphasize full-service road/MTB and training.<sup>11</sup><sup>12</sup><sup>13</sup></td></tr><tr><td>Austin Tri Cyclist</td><td>Austin</td><td>923 Barton Springs Rd, Austin, TX 78704</td><td>Independent</td><td>Limited/unknown</td><td>Yes</td><td>Unknown</td><td>Longstanding triathlon and road-focused shop with brands like Cervélo and Cannondale; primary inventory appears non–e-bike based on site product emphasis.<sup>14</sup><sup>15</sup></td></tr><tr><td>Austin Bike Farm</td><td>Austin</td><td>5440 Burnet Rd, Austin, TX 78756</td><td>Independent</td><td>Yes</td><td>Unknown</td><td>Unknown</td><td>New and used shop focused on mountain bikes and trail riding; carries Specialized bikes, including Turbo e-MTBs in its brand catalog.<sup>16</sup><sup>17</sup><sup>18</sup></td></tr><tr><td>Trek Bicycle Parmer</td><td>Austin</td><td>9900 W Parmer Ln, Austin, TX 78717</td><td>Chain (Trek)</td><td>Yes</td><td>Not clearly advertised</td><td>Unknown</td><td>Trek-branded store with a broad selection of Trek and Electra e-bikes; Trek’s retail page and Locally integration show multiple city, hybrid, and mountain e-bike models in stock.<sup>19</sup><sup>6</sup><sup>20</sup></td></tr><tr><td>Specialized Austin @ Domain Northside</td><td>Austin</td><td>3200 Palm Way Ste 150, Austin, TX 78758</td><td>Chain (Specialized)</td><td>Yes</td><td>Not clearly advertised</td><td>Unknown</td><td>Specialized brand store selling Turbo series e-bikes (Vado, Como, Levo, etc.) at national MSRPs; store-finder and e-bike catalog confirm availability of electric models.<sup>21</sup><sup>22</sup><sup>23</sup></td></tr><tr><td>REI Austin Gateway</td><td>Austin</td><td>9901 N Capital of Texas Hwy, Austin, TX 78759</td><td>Chain (REI Co-op)</td><td>Yes</td><td>Yes (general bike fitting services)</td><td>Reported participant</td><td>REI’s Austin Gateway bike shop offers Co-op Cycles and other brand e-bikes; the bike shop page lists e-bike service and mentions sales, and external coverage highlights sales on Co-op DRT e-series e-MTBs.<sup>24</sup><sup>25</sup><sup>26</sup> Reddit and local commentary indicate REI is on Austin Energy’s E-Ride participating dealer list, but direct confirmation should be obtained from Austin Energy’s current dealer roster.<sup>27</sup><sup>9</sup></td></tr><tr><td>Velorangutan</td><td>Austin</td><td>3924 Woodbury Dr Ste A, Austin, TX 78704</td><td>Independent</td><td>Possible/limited</td><td>Not clearly advertised</td><td>Unknown</td><td>Boutique, high-end shop selling brands such as Ibis, Scott, Revel, Orbea, Nukeproof, and Devinci; site emphasizes performance builds and custom work, with no clear, dedicated e-bike catalog published online.<sup>28</sup><sup>29</sup><sup>30</sup><sup>31</sup></td></tr><tr><td>Blur Cycleworks</td><td>Round Rock</td><td>1011 Gattis School Rd Ste 100, Round Rock, TX 78664</td><td>Independent</td><td>Yes (likely)</td><td>Not clearly advertised</td><td>Unknown</td><td>Full-service shop in Round Rock carrying brands such as Felt and KHS; Web presence confirms general bike sales and service, though specific e-bike inventory is not exhaustively listed.<sup>32</sup><sup>33</sup><sup>34</sup><sup>35</sup></td></tr><tr><td>Electric Avenue</td><td>Austin</td><td>4616 Triangle Ave Ste 403, Austin, TX 78751</td><td>Independent e-bike specialist</td><td>Yes</td><td>Not clearly advertised</td><td>Very likely</td><td>Dedicated e-bike shop with brands including Gazelle, Riese & Müller, Tern, Stromer, Urban Arrow, Benno, Cube, and Yuba; its product pages explicitly note that some Gazelle models qualify for up to a 600-dollar Austin Energy E-Ride rebate, strongly indicating current program participation.<sup>36</sup><sup>5</sup><sup>37</sup><sup>38</sup><sup>39</sup><sup>40</sup></td></tr><tr><td>MOD BIKES</td><td>Austin</td><td>415 E St Elmo Rd Bldg 2, Austin, TX 78745</td><td>Independent e-bike specialist (direct-to-consumer brand)</td><td>Yes</td><td>Not clearly advertised</td><td>Unknown</td><td>Austin-based e-bike brand with a showroom and service “Garage”; MOD’s website lists a full line of urban, adventure, cargo, and folding e-bikes sold from the Austin HQ.<sup>41</sup><sup>42</sup><sup>43</sup><sup>44</sup></td></tr><tr><td>Rocket Electrics (closed)</td><td>Austin</td><td>1910 Aldrich St, Austin, TX 78723 (historical location)</td><td>Independent e-bike specialist (closed)</td><td>n/a</td><td>n/a</td><td>n/a</td><td>Former all-e-bike shop based in Austin with a history of rentals and sales; BikeTexas and social media profiles describe it as an electric bike shop, but recent indications suggest it is now closed.<sup>45</sup><sup>46</sup><sup>47</sup><sup>48</sup><sup>49</sup><sup>50</sup></td></tr></tbody></table>
+<h3>Latitude and Longitude for GIS Planning</h3>
+<p>A separate CSV has been generated containing the following fields for each verified shop: <code>shop_name</code>, <code>city</code>, <code>address</code>, <code>latitude</code>, <code>longitude</code>, <code>type</code>, <code>sells_ebikes</code>, <code>offers_pro_fit</code>, <code>austin_energy_e_ride_rebate</code>, and <code>notes</code>. Latitude and longitude coordinates were obtained via geocoding of the street addresses using an open geocoding service.</p>
+<p>This file is suitable for importing into GIS tools such as QGIS for spatial analysis of shop locations, catchment areas, and proximity to bike infrastructure.</p>
+<h2>Sample E-Bike Pricing by Shop and Brand</h2>
+<p>This section focuses on shops that actively publish e-bike inventory and pricing online. It is not an exhaustive catalog, but a representative sample for understanding price levels, brand positioning, and typical model ranges in the Austin market.<sup>5</sup><sup>6</sup><sup>22</sup><sup>17</sup><sup>42</sup></p>
+<h3>Electric Avenue</h3>
+<p>Electric Avenue’s online store lists numerous e-bike models from European and premium brands, many of which are stocked specifically in the Austin location.<sup>36</sup><sup>5</sup><sup>37</sup> The catalog includes high-end commuting, cargo, and trekking e-bikes.</p>
+<p>Representative in-store Austin listings include:<sup>5</sup><sup>37</sup><sup>39</sup><sup>40</sup></p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>Riese & Müller</td><td>Carrie vario</td><td>9,689</td><td>Premium cargo e-bike listed as available in Austin inventory.<sup>5</sup></td></tr><tr><td>Riese & Müller</td><td>Culture</td><td>5,607</td><td>Step-through city e-bike shown in the electric-bikes category.<sup>37</sup></td></tr><tr><td>Riese & Müller</td><td>Culture Mixte</td><td>6,002</td><td>Mixte-frame variant of the Culture, shown with detailed product specs.<sup>37</sup></td></tr><tr><td>Riese & Müller</td><td>Culture Vario Denim (56 cm)</td><td>7,452</td><td>Higher-trim Culture variant listed as in stock in Austin.<sup>5</sup></td></tr><tr><td>Riese & Müller</td><td>Nevo GT vario (51 cm, used)</td><td>4,500</td><td>Used Nevo GT listing in Austin, discounted from 7,472.<sup>5</sup></td></tr><tr><td>Riese & Müller</td><td>Nevo4 GT touring HS (47 cm)</td><td>6,500</td><td>High-speed touring configuration discounted from 7,613.<sup>5</sup></td></tr><tr><td>Gazelle</td><td>Avignon C380 HMB</td><td>4,999</td><td>Upright Dutch-style commuter e-bike in Austin inventory.<sup>5</sup></td></tr><tr><td>Gazelle</td><td>Medeo T9</td><td>2,899</td><td>Gazelle Medeo T9 listing notes compatibility with a 600-dollar Austin Energy rebate for qualifying customers.<sup>5</sup><sup>39</sup></td></tr><tr><td>Gazelle</td><td>Ultimate C380 HMB</td><td>4,999</td><td>Belt-drive commuter model listed for Austin store purchase.<sup>5</sup></td></tr><tr><td>Riese & Müller</td><td>Delite GT Rohloff HS (51 cm)</td><td>9,260.75</td><td>High-end dual-suspension Rohloff-equipped e-MTB/trekking bike discounted from 10,895.<sup>5</sup></td></tr><tr><td>Riese & Müller</td><td>Multicharger Mixte GT vario 750</td><td>9,001</td><td>Longtail cargo/city hybrid e-bike available locally.<sup>5</sup></td></tr></tbody></table>
+<p>These prices place Electric Avenue at the higher end of the market, concentrating on premium European e-bikes with Bosch drive systems and high-quality components.<sup>5</sup><sup>37</sup></p>
+<h3>Trek Bicycle Parmer</h3>
+<p>Trek Bicycle Parmer’s inventory, as exposed via Trek’s Locally integration, shows a mix of city, hybrid, and mountain e-bikes across Trek and Electra brands.<sup>19</sup><sup>6</sup><sup>20</sup> Prices range from entry-level commuter e-bikes to high-end full-suspension e-MTBs.</p>
+<p>Representative Trek Parmer listings:<sup>6</sup><sup>20</sup></p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>Trek</td><td>FX+ 1S</td><td>2,199.99</td><td>Lightweight city/fitness e-bike listed as in stock at Parmer.<sup>6</sup></td></tr><tr><td>Trek</td><td>FX+ 1S Midstep</td><td>2,199.99</td><td>Midstep frame variant of FX+ 1S.<sup>6</sup></td></tr><tr><td>Trek</td><td>FX+ 7S</td><td>3,999.99 (3,499.97 sale)</td><td>Higher-spec FX+ variant with a posted sale price.<sup>6</sup></td></tr><tr><td>Trek</td><td>Marlin+ 6</td><td>2,899.99–3,199.99 (as low as 2,499.93 sale)</td><td>Entry e-MTB, with one configuration significantly discounted.<sup>6</sup></td></tr><tr><td>Trek</td><td>Fuel EXe 8 or Fuel+ EX 8 Gen 2</td><td>~7,699.99</td><td>High-end e-MTB listing, depending on specific SKU and spec.<sup>6</sup><sup>20</sup></td></tr><tr><td>Electra</td><td>Townie Go! S</td><td>2,199.99</td><td>Comfort/cruiser-style e-bike.<sup>6</sup></td></tr><tr><td>Electra</td><td>Townie Go! 7D EQ Step-Thru</td><td>1,699.99</td><td>Step-through casual e-bike with integrated lights and rack.<sup>6</sup></td></tr><tr><td>Electra</td><td>Loft Go! 7D EQ Step-Thru</td><td>1,499.99 (1,199.93 sale)</td><td>Affordable city e-bike with an advertised discount.<sup>6</sup></td></tr></tbody></table>
+<p>These listings show Trek Parmer covering a wide range from sub-2,000 commuter e-bikes to nearly 8,000 e-MTBs.<sup>6</sup><sup>20</sup></p>
+<h3>Austin Bike Farm (Specialized E-Bikes)</h3>
+<p>Austin Bike Farm’s catalog includes Specialized as a key brand, and the Specialized brand page lists several Turbo series e-bikes suitable for trail and commuter use.<sup>16</sup><sup>17</sup> Prices correspond to national Specialized MSRPs.</p>
+<p>Representative Specialized e-bikes associated with Austin Bike Farm:</p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>Specialized</td><td>Turbo Levo SL S-Works Carbon</td><td>11,499.99</td><td>High-end lightweight e-MTB listed in Specialized’s e-MTB catalog.<sup>17</sup></td></tr><tr><td>Specialized</td><td>Turbo Tero X 4.0</td><td>2,899.99</td><td>Hardtail/trekking-style e-MTB suitable for mixed terrain.<sup>17</sup></td></tr><tr><td>Specialized</td><td>Turbo Vado SL 4.0 EQ</td><td>4,500</td><td>Lightweight commuter e-bike with integrated rack and fenders.<sup>17</sup></td></tr><tr><td>Specialized</td><td>Turbo Levo Alloy G4</td><td>6,099.99</td><td>Full-power e-MTB listed under Turbo Levo lineup.<sup>17</sup></td></tr></tbody></table>
+<p>The local shop’s exact inventory may vary, but these models indicate the price band of Specialized e-bikes available through Austin Bike Farm.<sup>17</sup></p>
+<h3>MOD BIKES</h3>
+<p>MOD BIKES is an Austin-based direct-to-consumer e-bike brand with a South Austin showroom and service garage.<sup>41</sup><sup>42</sup><sup>44</sup> The current lineup focuses on modular city, cargo, and adventure e-bikes, all with published prices.</p>
+<p>Representative MOD BIKES pricing:<sup>42</sup><sup>43</sup></p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>MOD</td><td>Easy SideCar Sahara</td><td>3,899</td><td>Three-wheel sidecar adventure e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>Easy SideCar 3</td><td>3,899</td><td>Updated sidecar variant.<sup>42</sup></td></tr><tr><td>MOD</td><td>Groove SideCar 3</td><td>3,499</td><td>Step-through sidecar commuter/cargo e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>Easy 3</td><td>2,399</td><td>Retro cruiser e-bike for relaxed city riding.<sup>42</sup></td></tr><tr><td>MOD</td><td>Groove Step-Thru 3</td><td>1,999</td><td>Step-through commuter e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>Black 3</td><td>2,399</td><td>Full-suspension adventure e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>CarGo 3</td><td>1,999</td><td>Compact cargo/utility e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>City+ Step-Thru 3</td><td>1,999</td><td>Folding step-through e-bike.<sup>42</sup></td></tr><tr><td>MOD</td><td>City 3</td><td>1,999</td><td>Folding city e-bike with compact frame.<sup>42</sup></td></tr><tr><td>MOD</td><td>Berlin Step-Thru 3</td><td>1,999</td><td>Step-through commuter platform.<sup>42</sup></td></tr><tr><td>MOD</td><td>Berlin 3</td><td>1,999</td><td>Diamond-frame commuter platform.<sup>42</sup></td></tr></tbody></table>
+<p>This positions MOD BIKES largely in the 1,999–3,899 range, with a strong emphasis on modularity and urban practicality.<sup>42</sup><sup>43</sup></p>
+<h3>Specialized Austin @ Domain Northside</h3>
+<p>Specialized’s brand site lists Turbo e-bikes with national MSRPs that apply at its company-owned retail locations, including Specialized Austin @ Domain Northside.<sup>21</sup><sup>22</sup><sup>23</sup> Although store-specific inventory is not itemized online, the following models and prices are representative of the Turbo lineup.</p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>Specialized</td><td>Turbo Vado SL 6.0 EQ Carbon</td><td>6,999.99</td><td>Premium lightweight commuter/fitness e-bike with full commuting kit.<sup>22</sup></td></tr><tr><td>Specialized</td><td>Turbo Vado SL 6.0 Carbon</td><td>6,399.99</td><td>Similar platform without full EQ package.<sup>22</sup></td></tr></tbody></table>
+<h3>REI Austin Gateway (Co-op Cycles)</h3>
+<p>REI’s national promotions and product pages illustrate pricing for its Co-op Cycles DRT e-series e-MTBs, which are also available through REI Austin Gateway’s bike shop.<sup>24</sup><sup>25</sup><sup>26</sup></p>
+<table><thead><tr><th>Brand</th><th>Model</th><th>Price (USD)</th><th>Notes</th></tr></thead><tbody><tr><td>Co-op Cycles</td><td>DRT e.1 Electric Mountain Bike</td><td>1,919 (on sale from 3,199)</td><td>Article describing a national REI sale on the DRT e.1, representative of mid-range e-MTB pricing.<sup>25</sup><sup>26</sup></td></tr></tbody></table>
+<p>Exact local availability and color/size options in Austin can vary, so customers should verify with the store before purchase.<sup>24</sup></p>
+<h2>Shops Without Full Online E-Bike Price Grids</h2>
+<p>Several Austin-area shops known for road, triathlon, or high-end builds do not maintain a comprehensive, public-facing e-bike price list.<sup>28</sup><sup>12</sup><sup>14</sup><sup>18</sup> For planning, they are still important, especially given their fitting expertise and potential access to select e-bike models via brand partnerships.</p>
+<p>Key examples:</p>
+<p>- <strong>Mellow Johnny's Bike Shop</strong>: Strong reputation for high-end road and MTB sales and professional fitting; e-bikes are present but not broken out in a dedicated online catalog.<sup>11</sup><sup>12</sup> - <strong>Austin Tri Cyclist</strong>: Focus on triathlon and performance road bikes; site content centers on non-motorized bikes.<sup>14</sup><sup>15</sup> - <strong>Velorangutan</strong>: Custom builds and boutique brands with an emphasis on analog/performance bikes; e-bike offerings, if any, are not clearly listed.<sup>28</sup><sup>29</sup> - <strong>Blur Cycleworks</strong>: General shop in Round Rock with limited online SKU-level detail; phone or in-person visits are required to assess e-bike stock.<sup>32</sup><sup>33</sup></p>
+<h2>Planning Considerations for E-Bike Purchases</h2>
+<p>When using this report for planning e-bike purchases or rebate-eligible acquisitions in Greater Austin, a few practical considerations apply:</p>
+<p>- <strong>Rebate eligibility must be confirmed at purchase time</strong>: Austin Energy’s E-Ride program requires purchases from participating dealers, and these lists can change; buyers should verify the current dealer list or call Austin Energy directly.<sup>3</sup><sup>4</sup> - <strong>Inventory and pricing are fluid</strong>: E-bike inventories, especially at premium shops such as Electric Avenue and Trek Parmer, change frequently, and sale prices may be time-limited.<sup>5</sup><sup>6</sup> - <strong>Fit and use case matter as much as price</strong>: Shops like Mellow Johnny’s, Austin Tri Cyclist, and REI Gateway offer professional or semi-professional bike fitting, which can be critical for comfort and performance, especially on higher-end e-bikes.<sup>24</sup><sup>12</sup><sup>14</sup> - <strong>Geographic distribution across the metro</strong>: Central Austin hosts the densest cluster of high-end and specialty e-bike retailers (Electric Avenue, MOD BIKES, Mellow Johnny’s, Austin Tri Cyclist), while North Austin and suburbs (Trek Parmer, Specialized Domain, Blur Cycleworks) provide options closer to Cedar Park, Round Rock, and Pflugerville.<sup>19</sup><sup>32</sup><sup>21</sup><sup>51</sup></p>
+<p>Taken together, the shop list, coordinates CSV, and sample pricing tables provide a planning-ready foundation for mapping, price benchmarking, and rebate-eligible e-bike purchasing strategies in Greater Austin.</p>
+<p>---</p>
+<h2>References</h2>
+<p>1. <a href="https://www.yelp.com/search?find_desc=Electric+Bike+Shop&find_loc=Austin%2C+TX">Electric Bike Shop Austin, TX - Last Updated March 2026 - Yelp</a></p>
+<p>2. <a href="https://www.theproscloset.com/pages/top-5-best-bike-shops-in-austin-texas">Top 5 Best Bike Shops in Austin, TX, 2024 - The Pro's Closet</a> - Austin Bike Farm stands out with diverse offerings and community involvement. They provide an extens...</p>
+<p>3. <a href="https://austinenergy.com/green-power/plug-in-austin/more-ways-to-go-electric/e-ride-rebate">Electric Ride (E-Ride) Rebate - Austin Energy</a> - Eliminate time wasted in traffic and save money by driving electric alternative transportation optio...</p>
+<p>4. <a href="https://www.austintexas.gov/news/celebrate-bike-month-austin-energy-e-ride-rebate">Celebrate Bike Month with an Austin Energy E-Ride Rebate</a> - Media Contact: Austin Energy Communications,</p>
+<p>5. <a href="https://electricavenuebike.com/product-category/electric-bikes/available-in-store-austin/">Available in Store - Austin - Electric Bike Sales and Service</a> - Electric Avenue | E-bike Sales & Service | Austin, TX. Menu. E-Bikes · The Load4 ... Price: $750 — $...</p>
+<p>6. <a href="https://www.locally.com/search/all/activities/electric-bikes?store=16586&ptp=true&sort=pop">Electric Bikes @ Trek Bicycle Parmer - Products - Locally</a> - Shop Electric Bikes @ Trek Bicycle Parmer ; Townie Go! S by Electra · Townie Go! S · $2,199.99 ; Tow...</p>
+<p>7. <a href="https://austinenergy.com/green-power/plug-in-austin/more-ways-to-go-electric">E-Ride Rebate - Austin Energy</a> - Austin Energy is offering eligible customers $50 to $300 to purchase a qualifying electric bike, sco...</p>
+<p>8. <a href="https://ridereview.com/incentives/austin-texas-electric-ride-e-ride-rebate-from-austin-energy">Electric Ride (E-Ride) Rebate from Austin Energy | Ride Review</a> - Austin Energy offers rebates for eligible E-bikes, scooters, mopeds, and motorcycles purchased on or...</p>
+<p>9. <a href="https://www.reddit.com/r/Austin/comments/15ko4dv/if_youve_ever_wanted_an_electric_bike_today_is/">If you’ve ever wanted an electric bike, today is the day.</a> - If you’ve ever wanted an electric bike, today is the day.</p>
+<p>10. <a href="https://www.yelp.com/biz/atx-bikes-austin">ATX BIKES - Updated March 2026 - 24 Photos & 116 Reviews - Yelp</a> - I told Frank my budget was $11,000 and he got me set up with full Dura-Ace 11, Zipp cockpit, Reynold...</p>
+<p>11. <a href="https://shop.mellowjohnnys.com">Mellow Johnny's Bike Shop</a> - If you're not in Austin, this is the spot to find us! Stay up-to-date on rides, events, sales, and e...</p>
+<p>12. <a href="https://www.yelp.com/biz/mellow-johnnys-bike-shop-austin-2">Mellow Johnny's Bike Shop Photos - Yelp</a> - MELLOW JOHNNY'S BIKE SHOP, 115 Sandra Muraida Way, Ste 102, Austin, TX 78703, 90 Photos, (512) 473-0...</p>
+<p>13. <a href="https://www.austintexas.org/listings/mellow-johnnys-bike-shop/2016/">Mellow Johnny's Bike Shop - Austin, TX</a> - Mellow Johnny's Bike Shop · 115 Sandra Muraida Way, Suite 102 Austin Austin, TX 78703 · (512) 473-02...</p>
+<p>14. <a href="http://www.austintricyclist.com">Austin Tri Cyclist - Home</a> - All the gear you need for swimming, cycling, and running. Cervelo and Cannondale bikes, Altra and ON...</p>
+<p>15. <a href="http://www.austintricyclist.com/bike.html">Bike - Austin Tri Cyclist</a> - Model. Sizes. Price. S5 Ultegra Di2. None. $9950. R5 Ultegra Di2. 54. $9950. R5 Ultegra Di2 (2024). ...</p>
+<p>16. <a href="https://www.austinbikefarm.com">Austin Bike Farm</a> - Austin Bike Farm has steadily grown as the leading provider of new and used bikes in Austin, Texas. ...</p>
+<p>17. <a href="https://www.austinbikefarm.com/brands/specialized/">Specialized - Austin Bike Farm</a> - Austin Bike Farm has steadily grown as the leading provider of new and used bikes in Austin, Texas. ...</p>
+<p>18. <a href="https://www.yelp.com/biz/bike-farm-austin">BIKE FARM - Updated March 2026 - 47 Photos & 164 Reviews - Yelp</a> - More info about Bike Farm ; 5440 Burnet Rd. Austin, TX 78756. Allandale. Directions ; (512) 419-1911...</p>
+<p>19. <a href="https://www.trekbikes.com/us/en_US/retail/parmer/">Trek Bicycle Parmer | Bike & EBike Sales & Service</a> - Trek Bicycle Parmer offers road, mountain, hybrid, kids, and electric bikes plus fast bike repair—mo...</p>
+<p>20. <a href="https://www.trekbikes.com/us/en_US/bikes/electric-bikes/c/B507/">Shop Trek Electric Bikes</a> - Trek electric bikes add more speed, distance, and fun to any ride. No matter what type of riding you...</p>
+<p>21. <a href="https://www.specialized.com/us/en/store-finder/specialized-austin--domain-northside/6865880">Specialized Austin @ Domain Northside</a> - Welcome to Specialized Austin Domain, your premier bike shop in Austin, TX ... Bikes · Road Bikes · ...</p>
+<p>22. <a href="https://www.specialized.com/us/en/shop/bikes/electric-bikes">Electric Bikes - Specialized</a> - Our collection of electric bicycles combines cutting-edge technology with premium components to deli...</p>
+<p>23. <a href="https://www.specialized.com/us/en/electric-bikes">11 Best Electric Bikes - Specialized bikes</a> - Take on any terrain with electric mountain bikes that give you the motor and e-bike battery to get u...</p>
+<p>24. <a href="https://www.rei.com/stores/austin-gateway/bike-shop">The Bike Shop at REI Austin Gateway</a> - Base prices are outlined below; additional parts and services are available at an extra cost. E-Bike...</p>
+<p>25. <a href="https://shopping.yahoo.com/home-garden/outdoor/articles/rei-selling-3-199-electric-120000883.html">REI is selling a $3,199 electric bike for 40% off that offers a '5-star ...</a> - 1 Electric Mountain Bike is for you. Shoppers can save $1,280 on this bike, paying only $1,919 for a...</p>
+<p>26. <a href="https://www.thestreet.com/deals/co-op-cycles-drt-e1-1-electric-mountain-bike-rei-sale-march-2026">REI is selling a $3,200 electric mountain bike for $1,919 - TheStreet</a> - Shoppers can save $1,280 on this bike, paying only $1,919 for a $3,200 eBike. This price also includ...</p>
+<p>27. <a href="https://www.reddit.com/r/Austin/comments/1b8vqk3/ebike_rebate_purchase_online_assembled_by_austin/">E-bike Rebate: Purchase Online + Assembled by Austin Dealer = still get rebate?</a> - E-bike Rebate: Purchase Online + Assembled by Austin Dealer = still get rebate?</p>
+<p>28. <a href="https://velorangutan.com">Velorangutan - Austin Bicycles, Accessories, Gear, and Parts</a> - We specialize in custom high end bicycles. Brands we carry are Ibis, Scott, Revel, Orbea, Nukeproof ...</p>
+<p>29. <a href="https://velorangutan.com/collections/best-selling-collection">Best selling products - Velorangutan</a> - We Are One CompositesEnduro Mountain Bikes · Scott BikesMountain, Road, Gravel, and Electric · Devin...</p>
+<p>30. <a href="https://www.locally.com/store/346945/velorangutan">Velorangutan 78704 - Locally</a> - 3924 Woodbury Dr #A Austin, TX 78704. Get Directions · Call (512) 562-0669. back. Velorangutan, 3924...</p>
+<p>31. <a href="https://www.facebook.com/Velorangutan/">Velorangutan | Austin TX - Facebook</a> - Velorangutan, Austin. 1337 likes · 3 talking about this · 25 were here. Retailer of Custom High Perf...</p>
+<p>32. <a href="https://www.blurcycleworks.com">Bike Shop | Blur Cycleworks | Round Rock, TX</a> - Blur Cycleworks is a full service bike shop in Round Rock, TX. We carry Felt Bicycles and KHS bicycl...</p>
+<p>33. <a href="https://www.yelp.com/biz/blur-cycleworks-round-rock">BLUR CYCLEWORKS - Updated March 2026 - 19 Reviews - Yelp</a> - 1011 Gattis School Rd. Round Rock, TX 78664. Directions ; (512) 296-2696. Call Now ; Visit Website. ...</p>
+<p>34. <a href="https://local.yahoo.com/info-215106313-blur-cycleworks-round-rock/">Blur Cycleworks in Round Rock, TX – Reviews, Hours, and Contact ...</a> - Moving · Roofing · Plumbing · Painting ... Blur CycleworksBike Shop. 4.5 18 reviews on · Website. We...</p>
+<p>35. <a href="https://www.blurcycleworks.com/contact-us">Contact | Blur Cycleworks | United States</a> - 1011 Gattis School Rd. Ste 100. Round Rock, TX 78664. Contact. Call or text: 512-296-2696 · info@blu...</p>
+<p>36. <a href="https://electricavenuebike.com">Electric Avenue | Austin, Dallas, Houston TX</a> - We service ebikes and bikes. Please call for availability. Our phone number is 512-608-4090 (for Aus...</p>
+<p>37. <a href="https://electricavenuebike.com/product-category/electric-bikes/">Electric Bikes | E-bike Sales & Service | Austin, Dallas, Houston TX</a> - Gazelle Arroyo C380 Elite. $4,499.00 Add to cart · Gazelle Arroyo C5 Elite. $3,999.00 Add to cart · ...</p>
+<p>38. <a href="https://www.ternbicycles.com/us/dealers/277824">Electric Avenue - Austin - Tern Bicycles</a> - Electric Avenue - Austin. Address. 4616 Triangle Ave. #403. Austin, TX 78751. United States. Phone n...</p>
+<p>39. <a href="https://electricavenuebike.com/store/gazelle-medeo-t9-thunder-grey-high-step-9-speed-bosch-smart-system/">Gazelle Medeo T9 | Electric Avenue | Austin, Dallas, Houston</a> - Electric Avenue | E-bike Sales & Service | Austin, TX ... The Gazelle Medeo T9 qualifies for a $600 ...</p>
+<p>40. <a href="https://electricavenuebike.com/store/gazelle-easyflow-c7-low-step-caramel-khaki-shimano-ep5-504wh-7-speed-copy/">Gazelle Easyflow C7 | Electric Avenue | Austin, Dallas, Houston TX</a> - Ride with confidence on ... Electric Avenue | E-bike Sales & Service | Austin, TX ... The Gazelle Ea...</p>
+<p>41. <a href="https://www.yelp.com/biz/mod-bikes-austin-4">MOD BIKES - Updated April 2026 - 32 Photos & 33 Reviews - Yelp</a> - 415 E St Elmo Rd. Bldg 2. Austin, TX 78745. BattleBend Springs. Directions ; (512) 518-3445. Call No...</p>
+<p>42. <a href="https://mod-bikes.com">Quality Electric Bikes with Advanced Features You'll Love! | MOD ...</a> - Come join the MOD BIKES revolution! All of our electric bikes are proudly designed & engineered in A...</p>
+<p>43. <a href="https://mod-bikes.com/pages/mod-garage-price-list">Garage Price List - mod bikes</a> - We have a full-size garage in our Austin headquarters, built specifically to service electric bikes!...</p>
+<p>44. <a href="https://mod-bikes.com/pages/garage">Garage | MOD BIKES</a> - We have a full-size garage in our Austin headquarters, built specifically to service electric bikes!...</p>
+<p>45. <a href="https://www.biketexas.org/bike-shop-members/all-business-members/rocket-electrics-austin-area/">Rocket Electrics - Austin Area - BikeTexas</a> - Located on the shores of Lady Bird Lake, Rocket Electrics offers electric bike sales & rentals. The ...</p>
+<p>46. <a href="https://www.youtube.com/watch?v=4qL45dbQ_EI">Rocket Electrics Store Tour - Electric Bike Shop in Austin Texas</a> - Nicole and John of Rocket Electrics show their shop which carries Pedego, Easy Motion and Juiced Rid...</p>
+<p>47. <a href="https://www.yelp.com/biz/rocket-electrics-austin-4">ROCKET ELECTRICS - Bikes - Yelp</a> - Map · 1910 Aldrich St. Austin, TX 78723. Directions · (512) 442-2453. Call Now · Hours. What time do...</p>
+<p>48. <a href="https://www.facebook.com/RocketElectrics/">Rocket Electrics | Austin TX - Facebook</a> - OUR NEW ADDRESS IS: 1910 ALDRICH STREET - AUSTIN, TX - 78723 (https: //goo.gl/maps/PtUQSn1W2JG2) ** ...</p>
+<p>49. <a href="https://www.youtube.com/watch?v=z-GLiUbGHeY">Rocket Electrics, Austin Texas - YouTube</a> - Brands: Pedego, Easy Motion, Juiced Riders, Ridekick · Phone number: 512-442-BIKE (2453) · Address: ...</p>
+<p>50. <a href="https://www.timeout.com/austin/things-to-do/rocket-electrics">Rocket Electrics | Things to do in Riverside, Austin - Time Out</a> - Rocket Electrics (CLOSED) · Things to do | Walks and tours · Riverside · price 3 of 4.</p>
+<p>51. <a href="https://electricavenuebike.com/contact/">Contact | Electric Avenue Bike | Austin, Dallas, Houston TX</a> - 4616 Triangle Ave., #403 Austin, TX 78751 Phone: (512) 608-4090 Store Hours Tues-Thurs – 12pm-7pm Fr...</p>
+</article>
+</body>
+</html>

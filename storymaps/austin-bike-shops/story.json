@@ -1,0 +1,255 @@
+{
+  "title": "Bike & E-Bike Shops in Greater Austin",
+  "subtitle": "Independents, brand stores, the co-op, and an e-bike outlier",
+  "loop": true,
+  "autoplay": true,
+  "initialCamera": {
+    "center": [-97.742, 30.353],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
+
+  "layers": [
+    {
+      "id": "bike-shops",
+      "type": "circle",
+      "source": "data/austin-bike-shops.geojson",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": "#2f855a",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0
+      },
+      "transitionOpacity": 0.95,
+      "transitionDuration": 700
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.742, 30.353],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.742, 30.353],
+        "anchor": "bottom",
+        "title": "Greater Austin's bike retail map",
+        "subtitle": "A tour of independents, chains, and e-bike specialists",
+        "body": "<p>This dataset profiles 12 bicycle and e-bike shops from central Austin up through Round Rock, Cedar Park, and Pflugerville. Five are plotted on the map; the rest live in the full report while we geocode their storefronts.</p>",
+        "stats": [
+          { "label": "Shops profiled", "value": "12" },
+          { "label": "Mapped here",    "value": "5"  },
+          { "label": "E-ride rebate",  "value": "Austin Energy program" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-bike-shops/",
+          "text": "Open the shop map →"
+        }
+      }
+    },
+
+    {
+      "id": "austin-tri-cyclist",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.754525, 30.259694],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.754525, 30.259694],
+        "anchor": "bottom",
+        "title": "Austin Tri Cyclist",
+        "subtitle": "923 Barton Springs Rd · South Central",
+        "body": "<p>A longstanding triathlon and road-focused independent on Barton Springs, carrying Cervélo and Cannondale. Professional bike fitting is part of the core offer; the current inventory is primarily analog rather than electric.</p>",
+        "stats": [
+          { "label": "Type",     "value": "Independent" },
+          { "label": "Pro Fit",  "value": "Yes"        },
+          { "label": "E-Bikes",  "value": "Limited"    }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-bike-shops/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "austin-bike-farm",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7401945, 30.3295116],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7401945, 30.3295116],
+        "anchor": "bottom",
+        "title": "Austin Bike Farm",
+        "subtitle": "5440 Burnet Rd · Rosedale",
+        "body": "<p>A new-and-used shop on Burnet focused on mountain bikes and trail riding. Its Specialized line includes Turbo e-MTBs, making it a crossover option for riders shopping for an electric off-road setup.</p>",
+        "stats": [
+          { "label": "Type",    "value": "Independent" },
+          { "label": "Focus",   "value": "MTB + trail" },
+          { "label": "E-Bikes", "value": "Yes (Specialized Turbo)" }
+        ],
+        "link": {
+          "href": "/apps/citywide/austin-bike-shops/",
+          "text": "Filter the map →"
+        }
+      }
+    },
+
+    {
+      "id": "rei-austin-gateway",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.74063, 30.3893906],
+        "zoom": 14.5,
+        "pitch": 50,
+        "bearing": 90,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.74063, 30.3893906],
+        "anchor": "bottom",
+        "title": "REI Austin Gateway",
+        "subtitle": "9901 N Capital of Texas Hwy · 78759",
+        "body": "<p>REI's in-house bike shop carries Co-op Cycles and other brand e-bikes and offers bike fitting and service. Community reporting puts REI on Austin Energy's E-Ride participating-dealer list — worth verifying with the utility before purchase.</p>",
+        "stats": [
+          { "label": "Type",    "value": "Chain (Co-op)" },
+          { "label": "E-Ride",  "value": "Reported participant" },
+          { "label": "Pro Fit", "value": "Yes"        }
+        ],
+        "link": {
+          "href": "https://www.rei.com/stores/austin-gateway.html",
+          "text": "rei.com/austin-gateway →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "trek-parmer",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.7701105, 30.4865913],
+        "zoom": 14.5,
+        "pitch": 50,
+        "bearing": -60,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7701105, 30.4865913],
+        "anchor": "bottom",
+        "title": "Trek Bicycle Parmer",
+        "subtitle": "9900 W Parmer Ln · Far Northwest",
+        "body": "<p>Trek's branded Parmer store keeps a wide slate of Trek and Electra e-bikes in stock — from the lightweight FX+ commuter line to Fuel EXe full-suspension e-MTBs. A good benchmark for national-MSRP e-bike pricing in Austin.</p>",
+        "stats": [
+          { "label": "Type",    "value": "Chain (Trek)" },
+          { "label": "E-Bikes", "value": "Yes (Trek + Electra)" },
+          { "label": "Example", "value": "FX+ 1S · $2,199" }
+        ],
+        "link": {
+          "href": "https://www.trekbikes.com/us/en_US/retail/trek_bicycle_parmer/",
+          "text": "Trek Parmer store →",
+          "external": true
+        }
+      }
+    },
+
+    {
+      "id": "rocket-electrics",
+      "transition": "fly",
+      "duration": 7500,
+      "camera": {
+        "center": [-97.7031094, 30.3012038],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 25,
+        "speed": 0.7,
+        "curve": 1.3
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.7031094, 30.3012038],
+        "anchor": "bottom",
+        "title": "Rocket Electrics (closed)",
+        "subtitle": "1910 Aldrich St · Mueller",
+        "body": "<p>A historical all-e-bike shop in Mueller that ran rentals and retail. It's kept on the map for planning context — a reminder that Austin's e-bike retail landscape has churned even as demand has grown.</p>",
+        "stats": [
+          { "label": "Type",   "value": "Independent e-bike (closed)" },
+          { "label": "Status", "value": "Historical"  }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    },
+
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.742, 30.353],
+        "zoom": 10,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": ["bike-shops"],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [-97.742, 30.353],
+        "anchor": "bottom",
+        "title": "Beyond what's mapped",
+        "subtitle": "Seven shops still need geocoding",
+        "body": "<p>Mellow Johnny's, Electric Avenue, MOD BIKES, Specialized Domain Northside, Velorangutan, ATX Bikes, and Blur Cycleworks are profiled in the report but aren't yet on the map. The full report also samples current e-bike pricing by brand at Electric Avenue and Trek Parmer.</p>",
+        "stats": [
+          { "label": "On the map",    "value": "5 / 12" },
+          { "label": "In the report", "value": "12"     }
+        ],
+        "link": {
+          "href": "report.html",
+          "text": "Read the full report →"
+        }
+      }
+    }
+  ]
+}
