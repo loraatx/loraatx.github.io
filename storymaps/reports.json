@@ -52,5 +52,14 @@
     "blurb": "Independent shops, brand stores, and e-bike specialists across the Austin metro.",
     "href": "/storymaps/austin-bike-shops/report.html",
     "accent": "#2f855a"
+  },
+  {
+    "id": "austin-vintage-guitar",
+    "category": "Shopping",
+    "title": "Vintage and Used Guitar Shops in Greater Austin",
+    "eyebrow": "Austin Shopping · Report",
+    "blurb": "Vintage specialists, boutiques, acoustic destinations, and chains across Austin's guitar retail scene.",
+    "href": "/storymaps/austin-vintage-guitar/report.html",
+    "accent": "#7D4F00"
   }
 ]
