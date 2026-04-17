@@ -1,0 +1,179 @@
+{
+  "title": "Golf in the Austin Region",
+  "subtitle": "Courses, climate, history, and trends",
+  "loop": false,
+  "autoplay": true,
+  "initialCamera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 0, "bearing": 0 },
+
+  "layers": [
+    {
+      "id": "golf-courses",
+      "type": "circle",
+      "source": "data/austin-golf-courses.geojson",
+      "paint": {
+        "circle-color": "#2d7a1a",
+        "circle-radius": 7,
+        "circle-opacity": 0,
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 1.5
+      },
+      "transitionOpacity": 0.85,
+      "transitionDuration": 800
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "overview",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.733, 30.327],
+        "zoom": 9.5,
+        "pitch": 20,
+        "bearing": 0,
+        "speed": 0.6
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.733, 30.327],
+        "anchor": "bottom",
+        "title": "Golf in the Austin Region",
+        "subtitle": "20 facilities across the metro",
+        "body": "The Austin region has evolved into one of Texas's most interesting golf markets — combining a century of municipal history, a strong private-club culture, and a growing portfolio of resort and Hill Country layouts. Golf is playable essentially year-round.",
+        "stats": [
+          { "label": "Total courses mapped", "value": "20" },
+          { "label": "Municipal (GolfATX)", "value": "8" },
+          { "label": "Public / daily-fee", "value": "9" },
+          { "label": "Resort / private", "value": "3" }
+        ],
+        "link": { "href": "/apps/citywide/austin-golf-courses/", "text": "Explore the map →", "external": false }
+      }
+    },
+    {
+      "id": "hancock-history",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7247, 30.2995],
+        "zoom": 14.5,
+        "pitch": 55,
+        "bearing": 30,
+        "speed": 0.7
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.7247, 30.2995],
+        "anchor": "bottom",
+        "title": "Hancock Golf Course",
+        "subtitle": "Oldest continuously operated course in Texas",
+        "body": "Golf has been played at this central Austin site since 1899, when it was the original Austin Country Club founded by former mayor Lewis Hancock. The nine-hole par-35 layout with its pronounced hills over Waller Creek remains one of the most walkable and historic spots in Texas golf.",
+        "stats": [
+          { "label": "First play", "value": "1899" },
+          { "label": "Holes", "value": "9" },
+          { "label": "Green fee", "value": "~$20" }
+        ],
+        "link": { "href": "/apps/citywide/austin-golf-courses/", "text": "See all courses →", "external": false }
+      }
+    },
+    {
+      "id": "lions-muny",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7645, 30.2903],
+        "zoom": 14,
+        "pitch": 50,
+        "bearing": -20,
+        "speed": 0.7
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.7645, 30.2903],
+        "anchor": "bottom",
+        "title": "Lions Municipal Golf Course",
+        "subtitle": "Austin's first public course — and one of the first desegregated munis in the South",
+        "body": "Opened in 1924 on land leased from UT, Lions Municipal expanded to 18 holes under city management and became historically significant as one of the first de facto desegregated public courses in the South — predating Brown v. Board of Education. It still hosts the Firecracker Open, Texas's oldest amateur tournament.",
+        "stats": [
+          { "label": "Opened", "value": "1924" },
+          { "label": "Holes", "value": "18" },
+          { "label": "Mentored by", "value": "Harvey Penick" }
+        ],
+        "link": { "href": "/apps/citywide/austin-golf-courses/", "text": "Explore the map →", "external": false }
+      }
+    },
+    {
+      "id": "water-sustainability",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.7244, 30.1628],
+        "zoom": 14,
+        "pitch": 45,
+        "bearing": 15,
+        "speed": 0.65
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.7244, 30.1628],
+        "anchor": "top",
+        "title": "Jimmy Clay & Roy Kizer",
+        "subtitle": "Water sustainability in Austin golf",
+        "body": "Austin's municipal courses now irrigate with reclaimed wastewater at discounted rates — a key strategy under recurring drought. Roy Kizer, built on former wastewater-treatment land, routes across 80+ acres of lakes and marsh, while Jimmy Clay's Joe Finger design winds through Williamson Creek.",
+        "stats": [
+          { "label": "Jimmy Clay opened", "value": "1974" },
+          { "label": "Roy Kizer opened", "value": "1994" },
+          { "label": "Irrigation", "value": "Reclaimed water" }
+        ],
+        "link": { "href": "/apps/citywide/austin-golf-courses/", "text": "Explore the map →", "external": false }
+      }
+    },
+    {
+      "id": "hill-country-public",
+      "transition": "fly",
+      "duration": 7000,
+      "camera": {
+        "center": [-97.8786, 30.1593],
+        "zoom": 13.5,
+        "pitch": 55,
+        "bearing": -30,
+        "speed": 0.6
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.8786, 30.1593],
+        "anchor": "bottom",
+        "title": "Grey Rock Golf Club",
+        "subtitle": "Premium public golf at the edge of the Hill Country",
+        "body": "A Jay Morrish design formerly known as Circle C Golf Club, Grey Rock sits in southwest Austin where oak-lined fairways meet the limestone fringe of the Hill Country. As a city-owned, managed daily-fee course it bridges GolfATX's value munis and full-priced private clubs.",
+        "stats": [
+          { "label": "Designer", "value": "Jay Morrish" },
+          { "label": "Holes", "value": "18" },
+          { "label": "Green fee (rack)", "value": "$90–$105" }
+        ],
+        "link": { "href": "/apps/citywide/austin-golf-courses/", "text": "Explore the map →", "external": false }
+      }
+    },
+    {
+      "id": "closing",
+      "transition": "fly",
+      "duration": 8000,
+      "camera": {
+        "center": [-97.733, 30.327],
+        "zoom": 9.5,
+        "pitch": 10,
+        "bearing": 0,
+        "speed": 0.5
+      },
+      "showLayers": ["golf-courses"],
+      "popup": {
+        "lngLat": [-97.733, 30.327],
+        "anchor": "bottom",
+        "title": "Austin's golf landscape",
+        "subtitle": "From $20 walk-ups to resort Hill Country layouts",
+        "body": "With 8 municipal courses, 9 public/daily-fee options, and major resort destinations, Austin offers one of the most varied golf markets in Texas. The full research report covers climate and turf, water policy, private clubs, and spatial trends.",
+        "link": { "href": "/storymaps/austin-golf-courses/report.html", "text": "Read the full report →", "external": false }
+      }
+    }
+  ]
+}
