@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_blank" />
+  <title>Tour Map · City Anatomy</title>
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Full-screen map -->
+  <div id="map"></div>
+
+  <!-- Brand card — top-right -->
+  <div class="tm-brand-card">
+    <a href="/" class="tm-brand-link" target="_top">City Anatomy <span aria-hidden="true">↗</span></a>
+    <p id="tm-tour-name" class="tm-brand-title"></p>
+  </div>
+
+  <!-- Banner (hints / errors) -->
+  <div id="tm-banner" class="tm-banner" hidden></div>
+
+  <!-- Progress chip — bottom-center -->
+  <div id="tm-progress" class="tm-progress-chip" aria-live="polite">0 / 0</div>
+
+  <!-- Stops panel toggle — bottom-left -->
+  <button id="tm-stops-btn" class="tm-icon-btn" aria-label="Show stops list" title="Stops">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
+    </svg>
+  </button>
+
+  <!-- Recenter button — bottom-left, above stops -->
+  <button id="tm-recenter" class="tm-icon-btn" aria-label="Recenter map on my location" title="Recenter">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+    </svg>
+  </button>
+
+  <!-- Stops side panel -->
+  <aside id="tm-stops-panel" class="tm-stops-panel" aria-label="Tour stops">
+    <div class="tm-stops-panel-header">
+      <h2>Tour stops</h2>
+      <button id="tm-stops-close" class="tm-stops-close" aria-label="Close stops list">×</button>
+    </div>
+    <ul id="tm-stops-list" class="tm-stops-list"></ul>
+  </aside>
+
+  <!-- Permission modal — first-paint overlay -->
+  <div id="tm-permission" class="tm-permission-modal" role="dialog" aria-modal="true" aria-labelledby="tm-perm-title">
+    <div class="tm-permission-card">
+      <h2 id="tm-perm-title">Walking tour</h2>
+      <p>This tour uses your location to trigger stops as you walk. Popups appear when you enter each point of interest. You can also preview the tour without sharing your location.</p>
+      <div class="tm-actions">
+        <button id="tm-preview"   class="tm-btn">Preview without GPS</button>
+        <button id="tm-allow-gps" class="tm-btn is-primary">Allow location</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
+  <script src="engine.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-97.7431, 30.2672],
+      zoom: 14,
+      pitch: 0,
+      bearing: 0,
+      antialias: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+
+    const engine = new TourEngine(map);
+
+    map.on('load', () => {
+      // 3D buildings (same aesthetic as storymaps)
+      const layers = map.getStyle().layers;
+      let labelLayerId;
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+      map.addLayer({
+        id: '3d-buildings',
+        source: 'openmaptiles',
+        'source-layer': 'building',
+        filter: ['==', ['get', 'extrude'], 'true'],
+        type: 'fill-extrusion',
+        minzoom: 15,
+        paint: {
+          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-height': ['get', 'render_height'],
+          'fill-extrusion-base': ['get', 'render_min_height'],
+          'fill-extrusion-opacity': 0.55
+        }
+      }, labelLayerId);
+
+      engine.start('tour.json').then(() => {
+        initTourUI(engine);
+      });
+    });
+  </script>
+</body>
+</html>
