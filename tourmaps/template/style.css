@@ -89,7 +89,9 @@ html, body {
 }
 /* The [hidden] attribute must win over display:flex above. */
 .tm-permission-modal[hidden],
-.tm-banner[hidden] { display: none; }
+.tm-banner[hidden],
+.tm-compass[hidden],
+.tm-photo-lightbox[hidden] { display: none; }
 .tm-permission-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -374,8 +376,9 @@ html, body {
   text-align: center;
 }
 
-/* ── Satellite toggle button (shared across apps) ────────────── */
-.maplibregl-ctrl-group button.satellite-btn {
+/* ── Basemap toggle buttons (satellite + 2D/3D) ──────────────── */
+.maplibregl-ctrl-group button.satellite-btn,
+.maplibregl-ctrl-group button.view-toggle-btn {
   width: auto;
   padding: 0 10px;
   height: 29px;
@@ -385,8 +388,10 @@ html, body {
   color: #333;
   white-space: nowrap;
 }
-.maplibregl-ctrl-group button.satellite-btn:hover { background: #f0f0f0; }
-.maplibregl-ctrl-group button.satellite-btn.active {
+.maplibregl-ctrl-group button.satellite-btn:hover,
+.maplibregl-ctrl-group button.view-toggle-btn:hover { background: #f0f0f0; }
+.maplibregl-ctrl-group button.satellite-btn.active,
+.maplibregl-ctrl-group button.view-toggle-btn.active {
   background: #d4e8cc;
   color: #1a4d0e;
 }
@@ -519,6 +524,196 @@ html, body {
   color: #fff;
 }
 
+/* ── Popup interactions footer (check-in / note / photo) ─────── */
+.tm-popup-actions {
+  border-top: 1px solid var(--border);
+  margin: 8px -16px -16px;
+  padding: 12px 16px 14px;
+  background: color-mix(in srgb, var(--border) 18%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tm-checkin-btn {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.tm-checkin-btn:hover { border-color: var(--accent); }
+.tm-checkin-btn.is-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.tm-note-field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 8px;
+  align-items: center;
+}
+.tm-note-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tm-note-saved {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  justify-self: end;
+}
+.tm-note-field textarea {
+  grid-column: 1 / -1;
+  width: 100%;
+  resize: vertical;
+  min-height: 44px;
+  max-height: 160px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  line-height: 1.4;
+}
+.tm-note-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.tm-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tm-photo-btn {
+  border: 1.5px dashed var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.tm-photo-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tm-photo-thumb-wrap {
+  position: relative;
+  display: inline-block;
+}
+.tm-photo-thumb {
+  width: 72px; height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  display: block;
+}
+.tm-photo-remove {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: var(--text);
+  color: var(--background);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+/* ── Photo lightbox overlay ──────────────────────────────────── */
+.tm-photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+.tm-photo-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Compass pill — top-center, below banner ─────────────────── */
+.tm-compass {
+  position: fixed;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 16px 8px 10px;
+  box-shadow: 0 4px 14px var(--shadow);
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.15s ease;
+  max-width: 80vw;
+}
+.tm-compass:hover { border-color: var(--accent); transform: translateX(-50%) translateY(-1px); }
+.tm-compass-arrow {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.tm-compass-arrow svg { width: 16px; height: 16px; }
+.tm-compass-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.15;
+  min-width: 0;
+}
+.tm-compass-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40vw;
+}
+.tm-compass-dist {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .tm-brand-card { top: 12px; right: 12px; padding: 8px 12px; max-width: 180px; }
@@ -527,4 +722,6 @@ html, body {
   #tm-stops-btn  { bottom: 24px; left: 14px; }
   #tm-recenter   { bottom: 76px; left: 14px; }
   .tm-progress-chip { bottom: 24px; padding: 6px 14px; font-size: 0.8rem; }
+  .tm-compass { top: 52px; padding: 6px 14px 6px 8px; }
+  .tm-compass-label { max-width: 50vw; font-size: 0.78rem; }
 }
