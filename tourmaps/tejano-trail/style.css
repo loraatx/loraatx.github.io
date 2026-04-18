@@ -87,6 +87,9 @@ html, body {
   justify-content: center;
   padding: 20px;
 }
+/* The [hidden] attribute must win over display:flex above. */
+.tm-permission-modal[hidden],
+.tm-banner[hidden] { display: none; }
 .tm-permission-card {
   background: var(--surface);
   border: 1px solid var(--border);
