@@ -1,0 +1,62 @@
+{
+  "title": "Tour name",
+  "subtitle": "Neighborhood · Walking tour",
+  "initialCamera": { "center": [-97.7431, 30.2672], "zoom": 15, "pitch": 0, "bearing": 0 },
+  "maxBounds": [[-97.755, 30.255], [-97.730, 30.280]],
+  "geofence": {
+    "defaultRadiusMeters": 40,
+    "triggerOnce": true,
+    "enableHighAccuracy": true,
+    "minMoveMeters": 5
+  },
+  "layers": [
+    {
+      "id": "stops-radius",
+      "type": "circle",
+      "source": "tour-stops",
+      "paint": {
+        "circle-radius": 26,
+        "circle-color": "#b4531a",
+        "circle-opacity": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], 0.08,
+          0.18
+        ],
+        "circle-stroke-color": "#b4531a",
+        "circle-stroke-opacity": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], 0.25,
+          0.45
+        ],
+        "circle-stroke-width": 1.5
+      }
+    },
+    {
+      "id": "stops",
+      "type": "circle",
+      "source": "tour-stops",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], "#2f855a",
+          "#b4531a"
+        ],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "stop-1",
+      "geofence": { "center": [-97.7431, 30.2672], "radiusMeters": 40 },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Stop 1",
+        "subtitle": "First point of interest",
+        "body": "<p>Replace this with a short narrative for stop 1.</p>"
+      }
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "title": "Tejano Trail",
+  "subtitle": "East Austin · Historical walking tour",
+  "initialCamera": { "center": [-97.728, 30.263], "zoom": 14.5, "pitch": 0, "bearing": 0 },
+  "maxBounds": [[-97.745, 30.252], [-97.710, 30.285]],
+  "geofence": {
+    "defaultRadiusMeters": 45,
+    "triggerOnce": true,
+    "enableHighAccuracy": true,
+    "minMoveMeters": 6
+  },
+  "layers": [
+    {
+      "id": "stops-radius",
+      "type": "circle",
+      "source": "tour-stops",
+      "paint": {
+        "circle-radius": 28,
+        "circle-color": "#b4531a",
+        "circle-opacity": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], 0.08,
+          0.18
+        ],
+        "circle-stroke-color": "#b4531a",
+        "circle-stroke-opacity": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], 0.25,
+          0.45
+        ],
+        "circle-stroke-width": 1.5
+      }
+    },
+    {
+      "id": "stops",
+      "type": "circle",
+      "source": "tour-stops",
+      "paint": {
+        "circle-radius": 8,
+        "circle-color": [
+          "case",
+          ["boolean", ["feature-state", "visited"], false], "#2f855a",
+          "#b4531a"
+        ],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "plaza-saltillo",
+      "geofence": { "center": [-97.7315, 30.2625] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Plaza Saltillo",
+        "subtitle": "Stop 1 · Gateway to East Austin",
+        "body": "<p>Placeholder narrative — describe Plaza Saltillo as the historical gateway to East Austin's Tejano community. Mention the sister-city relationship with Saltillo, Coahuila.</p>"
+      }
+    },
+    {
+      "id": "juan-in-a-million",
+      "geofence": { "center": [-97.7245, 30.2605] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Juan in a Million",
+        "subtitle": "Stop 2 · Neighborhood institution",
+        "body": "<p>Placeholder narrative — legendary breakfast taco spot on E Cesar Chavez. Replace with real history and family story.</p>"
+      }
+    },
+    {
+      "id": "pan-am-rec",
+      "geofence": { "center": [-97.7285, 30.2610] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Pan American Recreation Center",
+        "subtitle": "Stop 3 · Community hub since 1957",
+        "body": "<p>Placeholder narrative — describe the Pan American's role as a cultural and recreational anchor for East Austin families.</p>"
+      }
+    },
+    {
+      "id": "la-mexicana",
+      "geofence": { "center": [-97.7260, 30.2608] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "La Mexicana Bakery",
+        "subtitle": "Stop 4 · Pan dulce tradition",
+        "body": "<p>Placeholder narrative — family-owned panadería serving East Austin for decades.</p>"
+      }
+    },
+    {
+      "id": "metz-rec",
+      "geofence": { "center": [-97.7222, 30.2622] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Metz Recreation Center",
+        "subtitle": "Stop 5 · Neighborhood gathering place",
+        "body": "<p>Placeholder narrative — Metz Rec Center and the surrounding Holly neighborhood's Tejano history.</p>"
+      }
+    },
+    {
+      "id": "huston-tillotson",
+      "geofence": { "center": [-97.7198, 30.2712] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Huston-Tillotson University",
+        "subtitle": "Stop 6 · Historically Black university, 1875",
+        "body": "<p>Placeholder narrative — shared history of East Austin's Black and Tejano communities, and the university's role in civil rights organizing.</p>"
+      }
+    },
+    {
+      "id": "rosewood-park",
+      "geofence": { "center": [-97.7218, 30.2708] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Rosewood Park",
+        "subtitle": "Stop 7 · Civil rights era gathering place",
+        "body": "<p>Placeholder narrative — Rosewood Park's role in East Austin's movements and family life.</p>"
+      }
+    },
+    {
+      "id": "victory-grill",
+      "geofence": { "center": [-97.7315, 30.2742] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Victory Grill",
+        "subtitle": "Stop 8 · Chitlin' Circuit landmark",
+        "body": "<p>Placeholder narrative — the Victory Grill on E 11th, its history and connections to East Austin's musical heritage.</p>"
+      }
+    },
+    {
+      "id": "kenny-dorhams-backyard",
+      "geofence": { "center": [-97.7308, 30.2742] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Kenny Dorham's Backyard",
+        "subtitle": "Stop 9 · Live music and cultural space",
+        "body": "<p>Placeholder narrative — outdoor venue honoring jazz trumpeter Kenny Dorham and the broader musical heritage of East 11th.</p>"
+      }
+    },
+    {
+      "id": "ebenezer-baptist",
+      "geofence": { "center": [-97.7345, 30.2735] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Ebenezer Baptist Church",
+        "subtitle": "Stop 10 · Historic congregation",
+        "body": "<p>Placeholder narrative — Ebenezer Baptist and East Austin's faith community history.</p>"
+      }
+    },
+    {
+      "id": "texas-state-cemetery",
+      "geofence": { "center": [-97.7280, 30.2720] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Texas State Cemetery",
+        "subtitle": "Stop 11 · Texas history in stone",
+        "body": "<p>Placeholder narrative — resting place of Tejano leaders, politicians, and cultural figures.</p>"
+      }
+    },
+    {
+      "id": "oakwood-cemetery",
+      "geofence": { "center": [-97.7282, 30.2762] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Oakwood Cemetery",
+        "subtitle": "Stop 12 · Austin's oldest burial ground, 1839",
+        "body": "<p>Placeholder narrative — early Tejano Austinites buried here; the cemetery's layered social history.</p>"
+      }
+    },
+    {
+      "id": "sams-bbq",
+      "geofence": { "center": [-97.7248, 30.2755] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Sam's BBQ",
+        "subtitle": "Stop 13 · East 12th Street icon",
+        "body": "<p>Placeholder narrative — long-running East 12th BBQ joint and its place in the neighborhood.</p>"
+      }
+    },
+    {
+      "id": "boggy-creek-trail",
+      "geofence": { "center": [-97.7155, 30.2760] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Boggy Creek Greenbelt",
+        "subtitle": "Stop 14 · Natural spine of East Austin",
+        "body": "<p>Placeholder narrative — Boggy Creek's role in shaping neighborhood boundaries and community green space.</p>"
+      }
+    },
+    {
+      "id": "tejano-trail-marker",
+      "geofence": { "center": [-97.7225, 30.2680] },
+      "popup": {
+        "anchor": "bottom",
+        "title": "Tejano Healthy Walking Trail",
+        "subtitle": "Stop 15 · Trail marker",
+        "body": "<p>Placeholder narrative — closing stop on the trail itself; summarize the walk and link to further reading.</p>",
+        "link": { "href": "/", "text": "Back to City Anatomy →" }
+      }
+    }
+  ]
+}
