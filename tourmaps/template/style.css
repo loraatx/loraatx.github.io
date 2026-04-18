@@ -374,6 +374,23 @@ html, body {
   text-align: center;
 }
 
+/* ── Satellite toggle button (shared across apps) ────────────── */
+.maplibregl-ctrl-group button.satellite-btn {
+  width: auto;
+  padding: 0 10px;
+  height: 29px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #fff;
+  color: #333;
+  white-space: nowrap;
+}
+.maplibregl-ctrl-group button.satellite-btn:hover { background: #f0f0f0; }
+.maplibregl-ctrl-group button.satellite-btn.active {
+  background: #d4e8cc;
+  color: #1a4d0e;
+}
+
 /* ── MapLibre popup overrides (match storymaps) ─────────────── */
 .maplibregl-popup-content {
   background: var(--surface);
