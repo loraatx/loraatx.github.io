@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_blank" />
+  <title>Pubchat · Ephemeral geofence chat · City Anatomy</title>
+  <link href="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <!-- Brand card — top-right -->
+  <div class="pc-brand-card">
+    <a href="/" class="pc-brand-link" target="_top">City Anatomy <span aria-hidden="true">↗</span></a>
+    <p class="pc-brand-title">Pubchat</p>
+    <p class="pc-brand-subtitle">Walk in. Say hi. Walk out.</p>
+  </div>
+
+  <!-- Identity badge — top-center -->
+  <div id="pc-identity" class="pc-identity-badge" hidden>
+    <span class="pc-identity-emoji" aria-hidden="true">🙂</span>
+    <span class="pc-identity-handle">you</span>
+    <button id="pc-reroll" class="pc-reroll-btn" type="button" aria-label="Re-roll your identity" title="New random handle">🎲</button>
+  </div>
+
+  <!-- Banner (hints / errors) -->
+  <div id="pc-banner" class="pc-banner" hidden></div>
+
+  <!-- Recenter button — bottom-left -->
+  <button id="pc-recenter" class="pc-icon-btn" aria-label="Recenter map on my location" title="Recenter">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+    </svg>
+  </button>
+
+  <!-- Bottom chat sheet -->
+  <section id="pc-sheet" class="pc-sheet" aria-label="Hotspot chat" hidden>
+    <header class="pc-sheet-head">
+      <div class="pc-sheet-head-text">
+        <h2 id="pc-sheet-title" class="pc-sheet-title">—</h2>
+        <p id="pc-sheet-presence" class="pc-presence-chip">0 here</p>
+      </div>
+      <button id="pc-sheet-close" class="pc-sheet-close" type="button" aria-label="Close chat">×</button>
+    </header>
+    <div id="pc-presence-row" class="pc-presence-row" aria-label="People currently here"></div>
+    <ol id="pc-messages" class="pc-messages" aria-live="polite"></ol>
+    <form id="pc-compose" class="pc-compose">
+      <select id="pc-vibe" class="pc-vibe-picker" aria-label="Vibe tag (optional)">
+        <option value="">vibe…</option>
+        <option value="👋">👋 say hi</option>
+        <option value="☕">☕ coffee</option>
+        <option value="🎶">🎶 music</option>
+        <option value="🐕">🐕 with dog</option>
+        <option value="🍻">🍻 drinks</option>
+      </select>
+      <input id="pc-input" class="pc-input" type="text" maxlength="240" placeholder="say something friendly…" autocomplete="off" />
+      <button type="submit" class="pc-send-btn" aria-label="Send">→</button>
+    </form>
+  </section>
+
+  <!-- Permission modal — first-paint overlay -->
+  <div id="pc-permission" class="pc-permission-modal" role="dialog" aria-modal="true" aria-labelledby="pc-perm-title">
+    <div class="pc-permission-card">
+      <h2 id="pc-perm-title">Pubchat · Austin</h2>
+      <p>Walk into a hotspot and drop into a public group chat with whoever is there right now. Messages aren't stored anywhere. Walk away and you're out.</p>
+      <p class="pc-perm-mini">Your handle is random and resets when you close this tab.</p>
+      <div class="pc-actions">
+        <button id="pc-preview"   class="pc-btn">Preview without GPS</button>
+        <button id="pc-allow-gps" class="pc-btn is-primary">Allow location</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+    window.__supabaseCreateClient = createClient;
+    window.dispatchEvent(new CustomEvent('pubchat:supabase-ready'));
+  </script>
+  <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
+  <script src="identity.js"></script>
+  <script src="pubchat-engine.js"></script>
+  <script src="chat.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
+      center: [-97.7431, 30.2672],
+      zoom: 13,
+      pitch: 0,
+      bearing: 0,
+      antialias: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+
+    const engine = new PubchatEngine(map);
+
+    map.on('load', () => {
+      initBasemapControls();
+
+      // 3D buildings (same aesthetic as tourmaps)
+      const layers = map.getStyle().layers;
+      let labelLayerId;
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+      map.addLayer({
+        id: '3d-buildings',
+        source: 'openmaptiles',
+        'source-layer': 'building',
+        filter: ['==', ['get', 'extrude'], 'true'],
+        type: 'fill-extrusion',
+        minzoom: 15,
+        layout: { visibility: 'none' },
+        paint: {
+          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-height': ['get', 'render_height'],
+          'fill-extrusion-base': ['get', 'render_min_height'],
+          'fill-extrusion-opacity': 0.55
+        }
+      }, labelLayerId);
+
+      engine.start('hotspots.json').then(() => {
+        initPubchatUI(engine);
+      });
+    });
+
+    function initBasemapControls() {
+      map.addSource('satellite', {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        attribution: 'Tiles &copy; Esri'
+      });
+
+      map.addLayer({
+        id: 'satellite-layer',
+        type: 'raster',
+        source: 'satellite',
+        layout: { visibility: 'none' }
+      }, map.getStyle().layers[1].id);
+
+      map.addControl({
+        onAdd() {
+          this._container = document.createElement('div');
+          this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+
+          this._satBtn = document.createElement('button');
+          this._satBtn.className = 'satellite-btn';
+          this._satBtn.textContent = 'Satellite';
+          this._satBtn.onclick = () => {
+            const on = map.getLayoutProperty('satellite-layer', 'visibility') === 'visible';
+            map.setLayoutProperty('satellite-layer', 'visibility', on ? 'none' : 'visible');
+            this._satBtn.classList.toggle('active', !on);
+          };
+          this._container.appendChild(this._satBtn);
+
+          this._viewBtn = document.createElement('button');
+          this._viewBtn.className = 'view-toggle-btn';
+          this._viewBtn.textContent = '3D';
+          this._viewBtn.onclick = () => {
+            const tilted = map.getPitch() > 5;
+            const nextPitch = tilted ? 0 : 45;
+            map.easeTo({ pitch: nextPitch, duration: 600 });
+            if (map.getLayer('3d-buildings')) {
+              map.setLayoutProperty('3d-buildings', 'visibility', tilted ? 'none' : 'visible');
+            }
+            this._viewBtn.textContent = tilted ? '3D' : '2D';
+            this._viewBtn.classList.toggle('active', !tilted);
+          };
+          this._container.appendChild(this._viewBtn);
+
+          return this._container;
+        },
+        onRemove() { this._container.parentNode.removeChild(this._container); }
+      }, 'top-left');
+    }
+  </script>
+</body>
+</html>
