@@ -1,85 +1,19 @@
 {
   "cityId": "atx",
   "title": "Pubchat · Austin",
-  "initialCamera": { "center": [-97.7431, 30.2672], "zoom": 13 },
+  "initialCamera": { "center": [-97.7481, 30.26765], "zoom": 15 },
   "hotspots": [
     {
       "id": "austin-central-library",
       "title": "Austin Central Library",
       "subtitle": "Testing spot — say hi!",
-      "geofence": { "center": [-97.7508, 30.2669], "radiusMeters": 105 }
+      "geofence": { "center": [-97.7508, 30.2669], "radiusMeters": 300 }
     },
     {
-      "id": "rainey-st",
-      "title": "Rainey Street",
-      "subtitle": "Bungalow bars + Banger's",
-      "geofence": { "center": [-97.73827, 30.26050], "radiusMeters": 140 }
-    },
-    {
-      "id": "sixth-east",
-      "title": "East Sixth",
-      "subtitle": "Live music strip",
-      "geofence": { "center": [-97.73210, 30.26585], "radiusMeters": 140 }
-    },
-    {
-      "id": "south-congress",
-      "title": "South Congress",
-      "subtitle": "SoCo shops + tacos",
-      "geofence": { "center": [-97.74870, 30.25460], "radiusMeters": 180 }
-    },
-    {
-      "id": "zilker-great-lawn",
-      "title": "Zilker — Great Lawn",
-      "subtitle": "Kites, frisbees, dogs",
-      "geofence": { "center": [-97.77080, 30.26620], "radiusMeters": 220 }
-    },
-    {
-      "id": "barton-springs",
-      "title": "Barton Springs Pool",
-      "subtitle": "68° year-round",
-      "geofence": { "center": [-97.77143, 30.26396], "radiusMeters": 150 }
-    },
-    {
-      "id": "mount-bonnell",
-      "title": "Mount Bonnell",
-      "subtitle": "Sunset lookout",
-      "geofence": { "center": [-97.77358, 30.32108], "radiusMeters": 160 }
-    },
-    {
-      "id": "south-first-food-trucks",
-      "title": "South First Food Trucks",
-      "subtitle": "Bouldin + tacos",
-      "geofence": { "center": [-97.75385, 30.25060], "radiusMeters": 130 }
-    },
-    {
-      "id": "capitol-lawn",
-      "title": "Texas Capitol Lawn",
-      "subtitle": "Pink-granite people-watching",
-      "geofence": { "center": [-97.74035, 30.27465], "radiusMeters": 150 }
-    },
-    {
-      "id": "domain-northside",
-      "title": "Domain Northside",
-      "subtitle": "North ATX shopping",
-      "geofence": { "center": [-97.72555, 30.40125], "radiusMeters": 180 }
-    },
-    {
-      "id": "east-austin-fruits",
-      "title": "East 11th",
-      "subtitle": "Galleries + Cenote coffee",
-      "geofence": { "center": [-97.72580, 30.27335], "radiusMeters": 150 }
-    },
-    {
-      "id": "ladybird-boardwalk",
-      "title": "Lady Bird Lake Boardwalk",
-      "subtitle": "Sunrise runners + paddlers",
-      "geofence": { "center": [-97.73420, 30.25485], "radiusMeters": 170 }
-    },
-    {
-      "id": "congress-bats",
-      "title": "Congress Bridge Bats",
-      "subtitle": "Summer sunset show",
-      "geofence": { "center": [-97.74490, 30.26120], "radiusMeters": 130 }
+      "id": "republic-square",
+      "title": "Republic Square",
+      "subtitle": "Farmers market + shady lawn",
+      "geofence": { "center": [-97.7454, 30.2684], "radiusMeters": 100 }
     }
   ]
 }
