@@ -1,0 +1,19 @@
+{
+  "cityId": "atx",
+  "title": "Homelesschat · Austin",
+  "initialCamera": { "center": [-97.7622, 30.2450], "zoom": 12 },
+  "hotspots": [
+    {
+      "id": "angel-house",
+      "title": "Angel House",
+      "subtitle": "East Cesar Chavez",
+      "geofence": { "center": [-97.73486633220661, 30.260989180171038], "radiusMeters": 100 }
+    },
+    {
+      "id": "sunrise-church",
+      "title": "Sunrise Homeless Navigation Center",
+      "subtitle": "Sunrise Community Church · Menchaca Rd",
+      "geofence": { "center": [-97.7894758610434, 30.22903813265505], "radiusMeters": 100 }
+    }
+  ]
+}
