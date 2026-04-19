@@ -14,6 +14,6 @@
 // reach anyone else.
 
 window.PUBCHAT_CONFIG = {
-  SUPABASE_URL: '',
-  SUPABASE_ANON_KEY: ''
+  SUPABASE_URL: 'https://tqnklodtiithbsxxyycp.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRxbmtsb2R0aWl0aGJzeHh5eWNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MDI3NDAsImV4cCI6MjA5MjE3ODc0MH0.ZGsxSsS_VbqBVqvW6q9AFFMBFoGzH5zRg9bSD5IAcsw'
 };
