@@ -7,7 +7,7 @@
       "id": "austin-central-library",
       "title": "Austin Central Library",
       "subtitle": "Testing spot — say hi!",
-      "geofence": { "center": [-97.7523, 30.2658], "radiusMeters": 300 }
+      "geofence": { "center": [-97.751987, 30.265973], "radiusMeters": 300 }
     },
     {
       "id": "republic-square",
