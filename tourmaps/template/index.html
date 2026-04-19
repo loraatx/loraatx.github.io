@@ -22,6 +22,19 @@
   <!-- Banner (hints / errors) -->
   <div id="tm-banner" class="tm-banner" hidden></div>
 
+  <!-- Compass pill — top-center, points to nearest unvisited stop -->
+  <button id="tm-compass" class="tm-compass" type="button" aria-label="Head to nearest unvisited stop" hidden>
+    <span class="tm-compass-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3 l5 16 -5 -3 -5 3 z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="tm-compass-text">
+      <span class="tm-compass-label">Next stop</span>
+      <span class="tm-compass-dist">—</span>
+    </span>
+  </button>
+
   <!-- Progress chip — bottom-center -->
   <div id="tm-progress" class="tm-progress-chip" aria-live="polite">0 / 0</div>
 
@@ -62,6 +75,7 @@
   </div>
 
   <script src="https://unpkg.com/maplibre-gl@3.6.0/dist/maplibre-gl.js"></script>
+  <script src="storage.js"></script>
   <script src="engine.js"></script>
   <script src="ui.js"></script>
   <script>
@@ -80,7 +94,7 @@
     const engine = new TourEngine(map);
 
     map.on('load', () => {
-      initSatellite();
+      initBasemapControls();
 
       // 3D buildings (same aesthetic as storymaps)
       const layers = map.getStyle().layers;
@@ -98,6 +112,7 @@
         filter: ['==', ['get', 'extrude'], 'true'],
         type: 'fill-extrusion',
         minzoom: 15,
+        layout: { visibility: 'none' },
         paint: {
           'fill-extrusion-color': '#aaa',
           'fill-extrusion-height': ['get', 'render_height'],
@@ -111,9 +126,9 @@
       });
     });
 
-    // Satellite view toggle — Esri World Imagery raster layer toggled
-    // on top of the basemap. Same pattern as /apps/citywide/*.
-    function initSatellite() {
+    // Combined basemap controls — Satellite toggle + 2D/3D pitch toggle,
+    // stacked in one ctrl-group. Same pattern as /apps/citywide/*.
+    function initBasemapControls() {
       map.addSource('satellite', {
         type: 'raster',
         tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
@@ -132,15 +147,34 @@
         onAdd() {
           this._container = document.createElement('div');
           this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
-          this._btn = document.createElement('button');
-          this._btn.className = 'satellite-btn';
-          this._btn.textContent = 'Satellite';
-          this._btn.onclick = () => {
+
+          // Satellite toggle
+          this._satBtn = document.createElement('button');
+          this._satBtn.className = 'satellite-btn';
+          this._satBtn.textContent = 'Satellite';
+          this._satBtn.onclick = () => {
             const on = map.getLayoutProperty('satellite-layer', 'visibility') === 'visible';
             map.setLayoutProperty('satellite-layer', 'visibility', on ? 'none' : 'visible');
-            this._btn.classList.toggle('active', !on);
+            this._satBtn.classList.toggle('active', !on);
           };
-          this._container.appendChild(this._btn);
+          this._container.appendChild(this._satBtn);
+
+          // 2D/3D toggle (label reflects what tapping will do)
+          this._viewBtn = document.createElement('button');
+          this._viewBtn.className = 'view-toggle-btn';
+          this._viewBtn.textContent = '3D';
+          this._viewBtn.onclick = () => {
+            const tilted = map.getPitch() > 5;
+            const nextPitch = tilted ? 0 : 45;
+            map.easeTo({ pitch: nextPitch, duration: 600 });
+            if (map.getLayer('3d-buildings')) {
+              map.setLayoutProperty('3d-buildings', 'visibility', tilted ? 'none' : 'visible');
+            }
+            this._viewBtn.textContent = tilted ? '3D' : '2D';
+            this._viewBtn.classList.toggle('active', !tilted);
+          };
+          this._container.appendChild(this._viewBtn);
+
           return this._container;
         },
         onRemove() { this._container.parentNode.removeChild(this._container); }

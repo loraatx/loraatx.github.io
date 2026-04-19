@@ -46,7 +46,18 @@ class TourEngine {
 
     this._initStopsSource();
     this._initLayers();
+    this._seedVisitedFromStorage();
     this._emit('tour-loaded', { tour: this.tour });
+  }
+
+  _seedVisitedFromStorage() {
+    if (!window.TourStorage) return;
+    for (const stop of this.stops) {
+      if (TourStorage.getVisited(stop.id)) {
+        this.visited.add(stop.id);
+        this._setStopVisitedOnMap(stop.id);
+      }
+    }
   }
 
   requestGeolocation() {
@@ -111,11 +122,31 @@ class TourEngine {
     return this.visited.has(id);
   }
 
+  // Public — used by popup check-in toggle and external UI.
+  toggleVisited(id, visited) {
+    const on = visited !== undefined ? !!visited : !this.visited.has(id);
+    if (on) this.visited.add(id);
+    else this.visited.delete(id);
+    if (window.TourStorage) TourStorage.setVisited(id, on);
+    // Feature-state only supports setting true; setting {visited: false} works too but
+    // we also need to re-render; setFeatureState merges so this is fine.
+    if (this.map.getSource('tour-stops')) {
+      this.map.setFeatureState({ source: 'tour-stops', id }, { visited: on });
+    }
+    this._emit('stop-visited-change', {
+      id,
+      visited: on,
+      visitedCount: this.visited.size,
+      totalStops: this.stops.length,
+    });
+  }
+
   // ── Geolocation handlers ────────────────────────────────────────
 
   _onPosition(pos) {
     const { latitude: lat, longitude: lng, accuracy } = pos.coords;
     this._updateHereMarker(lng, lat, accuracy);
+    this._emit('position-update', { lng, lat, accuracy, source: 'gps' });
 
     const minMove = this.tour?.geofence?.minMoveMeters ?? 5;
     if (this._lastCheck) {
@@ -134,6 +165,7 @@ class TourEngine {
   _setSimulatedPosition(lng, lat) {
     this._lastCheck = { lng, lat };
     this._updateHereMarker(lng, lat, null);
+    this._emit('position-update', { lng, lat, accuracy: null, source: 'simulate' });
     this._checkGeofences(lng, lat, 'simulate');
   }
 
@@ -220,7 +252,7 @@ class TourEngine {
     if (!lngLat) return;
 
     const token = Date.now();
-    const html = this._buildPopupHTML(p, token);
+    const content = this._buildPopupDOM(stop, p, token);
 
     this.popup = new maplibregl.Popup({
       closeButton: true,
@@ -230,7 +262,7 @@ class TourEngine {
       maxWidth: '320px',
     })
       .setLngLat(lngLat)
-      .setHTML(html)
+      .setDOMContent(content)
       .addTo(this.map);
 
     if (p.youtube) {
@@ -290,6 +322,127 @@ class TourEngine {
 
     html += '</div>';
     return html;
+  }
+
+  // Wraps the static HTML + appends the interactive footer as a DOM node
+  // so event listeners (check-in / note / photo) survive MapLibre's rendering.
+  _buildPopupDOM(stop, p, token) {
+    const root = document.createElement('div');
+    root.className = 'sm-popup-root';
+    const staticPart = document.createElement('div');
+    staticPart.innerHTML = this._buildPopupHTML(p, token);
+    // _buildPopupHTML already returns <div class="sm-popup">...</div>
+    root.appendChild(staticPart.firstChild);
+    root.appendChild(this._buildActionsFooter(stop));
+    return root;
+  }
+
+  _buildActionsFooter(stop) {
+    const footer = document.createElement('div');
+    footer.className = 'tm-popup-actions';
+    const hasStorage = !!window.TourStorage;
+
+    // ── Check-in toggle ───────────────────────────────────────────
+    const checkBtn = document.createElement('button');
+    checkBtn.type = 'button';
+    checkBtn.className = 'tm-checkin-btn';
+    const syncCheckBtn = () => {
+      const on = this.visited.has(stop.id);
+      checkBtn.classList.toggle('is-on', on);
+      checkBtn.textContent = on ? '✓ Visited' : 'Mark as visited';
+      checkBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    };
+    syncCheckBtn();
+    checkBtn.addEventListener('click', () => {
+      this.toggleVisited(stop.id);
+      syncCheckBtn();
+    });
+    footer.appendChild(checkBtn);
+
+    if (!hasStorage) return footer; // notes/photos require storage
+
+    // ── Text note ─────────────────────────────────────────────────
+    const noteWrap = document.createElement('label');
+    noteWrap.className = 'tm-note-field';
+    const noteLabel = document.createElement('span');
+    noteLabel.className = 'tm-note-label';
+    noteLabel.textContent = 'Note';
+    const savedIndicator = document.createElement('span');
+    savedIndicator.className = 'tm-note-saved';
+    savedIndicator.textContent = 'Saved';
+    savedIndicator.hidden = true;
+    const noteArea = document.createElement('textarea');
+    noteArea.rows = 2;
+    noteArea.placeholder = 'Jot a thought…';
+    noteArea.value = TourStorage.getNote(stop.id);
+    let noteTimer = null;
+    noteArea.addEventListener('input', () => {
+      clearTimeout(noteTimer);
+      noteTimer = setTimeout(() => {
+        TourStorage.setNote(stop.id, noteArea.value);
+        savedIndicator.hidden = false;
+        setTimeout(() => { savedIndicator.hidden = true; }, 1200);
+      }, 500);
+    });
+    noteWrap.appendChild(noteLabel);
+    noteWrap.appendChild(savedIndicator);
+    noteWrap.appendChild(noteArea);
+    footer.appendChild(noteWrap);
+
+    // ── Photo capture ─────────────────────────────────────────────
+    const photoRow = document.createElement('div');
+    photoRow.className = 'tm-photo-row';
+    const photoBtn = document.createElement('button');
+    photoBtn.type = 'button';
+    photoBtn.className = 'tm-photo-btn';
+    photoBtn.textContent = '+ Photo';
+    const photoInput = document.createElement('input');
+    photoInput.type = 'file';
+    photoInput.accept = 'image/*';
+    photoInput.setAttribute('capture', 'environment');
+    photoInput.hidden = true;
+    const thumbWrap = document.createElement('div');
+    thumbWrap.className = 'tm-photo-thumb-wrap';
+
+    const renderThumb = (blob) => {
+      thumbWrap.innerHTML = '';
+      if (!blob) { photoBtn.hidden = false; return; }
+      photoBtn.hidden = true;
+      const url = URL.createObjectURL(blob);
+      const img = document.createElement('img');
+      img.className = 'tm-photo-thumb';
+      img.src = url;
+      img.alt = 'Your photo of this stop';
+      img.addEventListener('click', () => tmOpenLightbox(url));
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'tm-photo-remove';
+      remove.setAttribute('aria-label', 'Remove photo');
+      remove.textContent = '×';
+      remove.addEventListener('click', async () => {
+        await TourStorage.deletePhoto(stop.id);
+        URL.revokeObjectURL(url);
+        renderThumb(null);
+      });
+      thumbWrap.appendChild(img);
+      thumbWrap.appendChild(remove);
+    };
+
+    TourStorage.getPhoto(stop.id).then(renderThumb);
+
+    photoBtn.addEventListener('click', () => photoInput.click());
+    photoInput.addEventListener('change', async () => {
+      const file = photoInput.files?.[0];
+      if (!file) return;
+      await TourStorage.setPhoto(stop.id, file);
+      renderThumb(file);
+    });
+    photoRow.appendChild(photoBtn);
+    photoRow.appendChild(photoInput);
+    photoRow.appendChild(thumbWrap);
+    footer.appendChild(photoRow);
+
+    return footer;
   }
 
   // ── Layers ──────────────────────────────────────────────────────
@@ -403,6 +556,26 @@ class TourEngine {
   _emit(name, detail) {
     window.dispatchEvent(new CustomEvent(`tour:${name}`, { detail }));
   }
+}
+
+// Full-screen lightbox for a stop's saved photo. One overlay is reused across
+// clicks so we don't stack DOMs. The passed URL is a live object URL created
+// by the caller; we do not revoke it here (the thumbnail owns its lifetime).
+function tmOpenLightbox(url) {
+  let box = document.getElementById('tm-photo-lightbox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'tm-photo-lightbox';
+    box.className = 'tm-photo-lightbox';
+    box.hidden = true;
+    const img = document.createElement('img');
+    img.alt = 'Full-size photo';
+    box.appendChild(img);
+    box.addEventListener('click', () => { box.hidden = true; });
+    document.body.appendChild(box);
+  }
+  box.querySelector('img').src = url;
+  box.hidden = false;
 }
 
 // Great-circle distance in metres between two lng/lat pairs.
