@@ -69,19 +69,50 @@
       const cardsContainer = document.getElementById('report-cards');
       if (!frame || !categoryNav || !cardsContainer) return;
 
-      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government'];
+      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government', 'ChatMaps'];
+
+      const CHATMAPS = [
+        {
+          id: 'pubchat',
+          category: 'ChatMaps',
+          title: 'Pubchat',
+          eyebrow: 'Austin · Live chat',
+          blurb: 'Walk into an Austin pub and drop into a public chat with whoever is there right now.',
+          link: '/pubchat/',
+          accent: '#e11d74'
+        },
+        {
+          id: 'librarychat',
+          category: 'ChatMaps',
+          title: 'LibraryChat',
+          eyebrow: 'Austin · Live chat',
+          blurb: 'Every Austin Public Library branch is its own live reading-room chat.',
+          link: '/librarychat/',
+          accent: '#2d7a1a'
+        },
+        {
+          id: 'homelesschat',
+          category: 'ChatMaps',
+          title: 'HomelessChat',
+          eyebrow: 'Austin · Live chat',
+          blurb: 'Angel House and Sunrise Navigation Center — walk in, connect, walk out.',
+          link: '/homelesschat/',
+          accent: '#2B6CB0'
+        }
+      ];
 
       fetch('/storymaps/reports.json')
         .then(r => r.ok ? r.json() : [])
         .then(items => {
-          if (!items || !items.length) {
+          const all = [...(items || []), ...CHATMAPS];
+          if (!all.length) {
             document.querySelector('.storymap-nav-bar')?.remove();
             document.querySelector('.report-cards')?.remove();
             return;
           }
 
           const byCategory = new Map();
-          items.forEach(item => {
+          all.forEach(item => {
             const cat = item.category || 'Other';
             if (!byCategory.has(cat)) byCategory.set(cat, []);
             byCategory.get(cat).push(item);
@@ -128,8 +159,15 @@
             cardsContainer.innerHTML = '';
             const list = byCategory.get(cat) || [];
             list.forEach((item, index) => {
-              const card = document.createElement('button');
-              card.type = 'button';
+              const isLink = !!item.link;
+              const card = document.createElement(isLink ? 'a' : 'button');
+              if (isLink) {
+                card.href = item.link;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+              } else {
+                card.type = 'button';
+              }
               card.className = 'report-card';
               card.dataset.storymap = item.id;
               if (item.accent) card.style.setProperty('--card-accent', item.accent);
@@ -149,10 +187,12 @@
               card.appendChild(eyebrow);
               card.appendChild(title);
               card.appendChild(blurb);
-              card.addEventListener('click', () => activateCard(card));
+              if (!isLink) {
+                card.addEventListener('click', () => activateCard(card));
+              }
               cardsContainer.appendChild(card);
 
-              if (index === 0) activateCard(card);
+              if (index === 0 && !isLink) activateCard(card);
             });
           }
 

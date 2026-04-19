@@ -504,6 +504,36 @@ html, body {
 .pc-send-btn:active { transform: scale(0.94); }
 .pc-send-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
+/* ── Floating social footer ─────────────────────────────────── */
+.pc-social-footer {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  gap: 14px;
+  padding: 8px 16px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.pc-social-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+.pc-social-footer a:hover { color: var(--accent); }
+.pc-social-footer svg { width: 18px; height: 18px; }
+body:has(#pc-sheet:not([hidden])) .pc-social-footer { display: none; }
+
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .pc-brand-card { top: 12px; right: 12px; padding: 8px 12px; max-width: 170px; }
@@ -514,4 +544,7 @@ html, body {
   #pc-recenter { bottom: 22vh; left: 14px; }
   .pc-sheet { max-height: 80vh; }
   .pc-vibe-picker { max-width: 92px; font-size: 0.78rem; }
+  .pc-social-footer { gap: 10px; padding: 6px 12px; bottom: 12px; }
+  .pc-social-footer a { width: 20px; height: 20px; }
+  .pc-social-footer svg { width: 16px; height: 16px; }
 }
