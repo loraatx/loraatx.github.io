@@ -4,6 +4,12 @@
   "initialCamera": { "center": [-97.7431, 30.2672], "zoom": 13 },
   "hotspots": [
     {
+      "id": "austin-central-library",
+      "title": "Austin Central Library",
+      "subtitle": "Testing spot — say hi!",
+      "geofence": { "center": [-97.7508, 30.2669], "radiusMeters": 70 }
+    },
+    {
       "id": "rainey-st",
       "title": "Rainey Street",
       "subtitle": "Bungalow bars + Banger's",
