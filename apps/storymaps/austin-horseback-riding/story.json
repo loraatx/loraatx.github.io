@@ -4,7 +4,7 @@
   "loop": true,
   "autoplay": true,
   "initialCamera": {
-    "center": [-97.74, 30.30],
+    "center": [-97.795, 30.251],
     "zoom": 10,
     "pitch": 0,
     "bearing": 0
@@ -33,7 +33,7 @@
       "transition": "fly",
       "duration": 7000,
       "camera": {
-        "center": [-97.74, 30.30],
+        "center": [-97.795, 30.251],
         "zoom": 10.5,
         "pitch": 30,
         "bearing": -10,
@@ -43,13 +43,13 @@
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.74, 30.30],
+        "lngLat": [-97.795, 30.251],
         "anchor": "bottom",
         "title": "Greater Austin's Riding Scene",
         "subtitle": "17 public-facing operations within an hour of downtown",
-        "body": "<p>Greater Austin offers a dense cluster of recreational horseback riding options — from guided ranch trail rides minutes from downtown to structured hunter–jumper lesson barns and wellness-focused equine programs at a luxury resort. Facilities are concentrated along four corridors: southeast toward Bluff Springs and Lockhart, northeast toward Manor, west toward Bee Cave and Dripping Springs, and south toward Buda and Driftwood.</p>",
+        "body": "<p>Greater Austin offers a dense cluster of recreational horseback riding options — from guided ranch trail rides minutes from downtown to structured hunter–jumper lesson barns and wellness-focused equine programs at a luxury resort. Facilities span four corridors: southeast toward Bluff Springs and Lockhart, northeast toward Manor, west toward Bee Cave and Dripping Springs, and south toward Buda and Driftwood.</p>",
         "stats": [
-          { "label": "Operators surveyed",  "value": "17" },
+          { "label": "Operators mapped",  "value": "17" },
           { "label": "Trail ride operators", "value": "6"  },
           { "label": "Lesson barns",         "value": "10" },
           { "label": "Resort / specialty",   "value": "2"  }
@@ -66,28 +66,29 @@
       "transition": "fly",
       "duration": 7500,
       "camera": {
-        "center": [-97.72, 30.19],
-        "zoom": 11.5,
-        "pitch": 50,
+        "center": [-97.7418, 30.1602],
+        "zoom": 14,
+        "pitch": 55,
         "bearing": 30,
-        "speed": 0.75,
-        "curve": 1.35
+        "speed": 0.8,
+        "curve": 1.4
       },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.72, 30.19],
+        "lngLat": [-97.7418, 30.1602],
         "anchor": "bottom",
-        "title": "Southeast Corridor",
-        "subtitle": "Bluff Springs, Lockhart, and Del Valle",
-        "body": "<p>The southeast corridor is the strongest fit for visitors seeking a classic \"Texas ranch trail ride\" experience within a short drive of downtown. Texas Trail Rides / Lone Star Ranch on Bluff Springs Road offers family-friendly guided trail rides alongside ATV tours, skeet shooting, and corporate events. Maverick Horseback Riding near Lockhart pairs ecology-focused trail rides with BBQ rides on a large Central Texas ranch. Rio Vista Farm, one of Austin's longest-running English barns, has relocated to Dripping Springs but continues to draw riders from this corridor.</p>",
+        "title": "Texas Trail Rides / Lone Star Ranch",
+        "subtitle": "8601 Bluff Springs Rd · Southeast Austin",
+        "body": "<p>The classic \"Texas ranch trail ride\" experience just south of downtown. Lone Star Ranch offers family-friendly guided horseback trail rides alongside ATV tours, skeet shooting, fishing, and corporate events. For a more immersive ranch experience farther out, Maverick Horseback Riding near Lockhart pairs ecology-focused trail rides with BBQ rides on a large Central Texas ranch about 30–40 minutes away.</p>",
         "stats": [
-          { "label": "Key operators", "value": "Texas Trail Rides, Maverick, Rio Vista Farm" },
-          { "label": "Drive time",    "value": "20–40 min from downtown" }
+          { "label": "Focus",       "value": "Trail rides & ranch activities" },
+          { "label": "Drive time",  "value": "~20 min from downtown"          }
         ],
         "link": {
-          "href": "/apps/citywide/austin-horseback-riding/",
-          "text": "Explore the map →"
+          "href": "https://www.texastrailrides.com",
+          "text": "texastrailrides.com →",
+          "external": true
         }
       }
     },
@@ -97,28 +98,29 @@
       "transition": "fly",
       "duration": 7500,
       "camera": {
-        "center": [-97.56, 30.34],
-        "zoom": 12,
+        "center": [-97.5661, 30.3289],
+        "zoom": 14,
         "pitch": 50,
         "bearing": -40,
-        "speed": 0.75,
-        "curve": 1.35
+        "speed": 0.8,
+        "curve": 1.4
       },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.56, 30.34],
+        "lngLat": [-97.5661, 30.3289],
         "anchor": "bottom",
-        "title": "Northeast Corridor — Manor",
-        "subtitle": "Southern Trails, Manor Equestrian, and White Fences",
-        "body": "<p>To the northeast, Manor and the Decker Lake area host both lesson barns and trail-ride operators catering to families and new riders. Southern Trails offers highly rated guided ranch rides on a 100–120-acre property just 15 minutes from downtown, with kids' \"Little Dude\" rides and scenic sunset options. Manor Equestrian Center provides family-friendly lessons, boarding, and summer camps on Cameron Road. White Fences Equestrian Center, also in Manor, is a boutique dressage and hunter/jumper barn for committed recreational and show riders.</p>",
+        "title": "Southern Trails",
+        "subtitle": "15701 Decker Lake Rd · Manor",
+        "body": "<p>Just 15 minutes from downtown, Southern Trails runs highly rated guided ranch rides on a 100–120-acre property with scenic terrain. Kids' \"Little Dude\" rides and sunset trail options make it accessible to all ages. Nearby on Cameron Road, Manor Equestrian Center offers family-friendly lessons, boarding, and summer camps, while White Fences Equestrian Center provides boutique dressage and hunter/jumper instruction for committed riders.</p>",
         "stats": [
-          { "label": "Key operators", "value": "Southern Trails, Manor Equestrian, White Fences" },
-          { "label": "Drive time",    "value": "15–25 min from downtown" }
+          { "label": "Focus",       "value": "Ranch trail rides" },
+          { "label": "Drive time",  "value": "~15 min from downtown" }
         ],
         "link": {
-          "href": "/apps/citywide/austin-horseback-riding/",
-          "text": "Explore the map →"
+          "href": "https://www.southerntrailrides.com",
+          "text": "southerntrailrides.com →",
+          "external": true
         }
       }
     },
@@ -128,59 +130,61 @@
       "transition": "fly",
       "duration": 7500,
       "camera": {
-        "center": [-97.93, 30.32],
-        "zoom": 11,
-        "pitch": 50,
+        "center": [-97.9254, 30.3268],
+        "zoom": 13.5,
+        "pitch": 55,
         "bearing": 60,
-        "speed": 0.70,
-        "curve": 1.3
+        "speed": 0.75,
+        "curve": 1.35
       },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.93, 30.32],
+        "lngLat": [-97.9254, 30.3268],
         "anchor": "bottom",
-        "title": "Western Corridor — Bee Cave & Dripping Springs",
-        "subtitle": "Hill Country barns with English programs and premium boarding",
-        "body": "<p>The western corridor features Hill Country barns that emphasize English riding, show programs, and premium boarding. Bee Cave Riding Center on Hamilton Pool Road offers hunter/jumper, dressage, and western instruction for all levels. Rio Vista Farm in Dripping Springs — one of Austin's leading English barns — accepts riders without their own horses. Coraggio Equestrian brings 100+ acres of shaded Hill Country trails and individualized training. Lone Star Riding Club in Driftwood is a United States Pony Club Riding Center with multiple area locations and English and Western lessons for children and adults.</p>",
+        "title": "Bee Cave Riding Center",
+        "subtitle": "15740 Hamilton Pool Rd · Bee Cave",
+        "body": "<p>Hill Country facility offering hunter/jumper, dressage, and western instruction for all ages and levels. Further along the western corridor, Rio Vista Farm in Dripping Springs is one of Austin's longest-running English barns — accepting riders without their own horses for lessons, camps, and boarding. Coraggio Equestrian in southwest Austin adds 100+ acres of shaded Hill Country trails and personalized training. Lone Star Riding Club in Driftwood serves the entire region as a US Pony Club Riding Center.</p>",
         "stats": [
-          { "label": "Key operators", "value": "Bee Cave RC, Rio Vista, Coraggio, Lone Star RC" },
-          { "label": "Drive time",    "value": "25–45 min from downtown" }
+          { "label": "Focus",      "value": "Hunter/jumper, dressage & western lessons" },
+          { "label": "Drive time", "value": "~30 min from downtown" }
         ],
         "link": {
-          "href": "/apps/citywide/austin-horseback-riding/",
-          "text": "Explore the map →"
+          "href": "https://www.ridinghorses.com",
+          "text": "ridinghorses.com →",
+          "external": true
         }
       }
     },
 
     {
-      "id": "north-south-specialty",
+      "id": "north-and-wellness",
       "transition": "fly",
-      "duration": 7500,
+      "duration": 8000,
       "camera": {
-        "center": [-97.80, 30.43],
-        "zoom": 11.5,
-        "pitch": 45,
+        "center": [-97.9812, 30.4837],
+        "zoom": 13,
+        "pitch": 50,
         "bearing": -20,
-        "speed": 0.75,
+        "speed": 0.7,
         "curve": 1.3
       },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.80, 30.43],
+        "lngLat": [-97.9812, 30.4837],
         "anchor": "bottom",
-        "title": "North, South & Specialty",
-        "subtitle": "Tri-Star, Switch Willo, Miraval, Scissortail, Monarch, and Austin Carriage",
-        "body": "<p>North Austin hosts Tri-Star Farm (Spicewood Springs Road), offering lessons, boarding, and weekly trail rides, and Switch Willo Stables, a long-established hunter/jumper show barn running state-certified youth camps since the 1960s. Overlooking Lake Travis, Miraval Austin Resort integrates rhythmic riding and equine-assisted mindfulness into an all-inclusive wellness retreat. South Austin brings Scissortail Hill Equestrian's eventing and hunter/jumper academy and Monarch Stables' 56-acre facility in Buda. Downtown visitors can experience Austin Carriage's horse-drawn tours along Red River Street.</p>",
+        "title": "Miraval Austin Resort & Spa",
+        "subtitle": "Northwest Austin · Lake Travis",
+        "body": "<p>Overlooking Lake Travis on 220+ acres, Miraval Austin integrates horseback riding into a holistic wellness retreat — with rhythmic riding, equine-assisted self-leadership experiences, and private trail rides as part of all-inclusive overnight or day-pass packages. In north Austin, Tri-Star Farm (Spicewood Springs Rd) and Switch Willo Stables — a long-running hunter/jumper show barn since the 1960s — serve riders seeking structured lessons and youth camp programs.</p>",
         "stats": [
-          { "label": "Key operators", "value": "Tri-Star, Switch Willo, Miraval, Scissortail, Monarch, Austin Carriage" },
-          { "label": "Drive time",    "value": "10–30 min from downtown" }
+          { "label": "Focus",      "value": "Wellness resort equine program" },
+          { "label": "Drive time", "value": "~40 min from downtown" }
         ],
         "link": {
-          "href": "/apps/citywide/austin-horseback-riding/",
-          "text": "Explore the map →"
+          "href": "https://www.miravalresorts.com/austin",
+          "text": "miravalresorts.com →",
+          "external": true
         }
       }
     },
@@ -190,7 +194,7 @@
       "transition": "fly",
       "duration": 8000,
       "camera": {
-        "center": [-97.74, 30.30],
+        "center": [-97.795, 30.251],
         "zoom": 10.5,
         "pitch": 30,
         "bearing": -10,
@@ -200,14 +204,14 @@
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.74, 30.30],
+        "lngLat": [-97.795, 30.251],
         "anchor": "bottom",
         "title": "Find your ride",
         "subtitle": "Read the full research report",
-        "body": "<p>All 17 operators are profiled in depth in the full report — with guidance on choosing between one-time trail rides and recurring lessons, English vs. Western focus, distance from central Austin, and age and weight restrictions to check before booking.</p>",
+        "body": "<p>All 17 operators are profiled in depth — with guidance on choosing between one-time trail rides and recurring lessons, English vs. Western focus, distance from central Austin, and age and weight restrictions to check before booking.</p>",
         "stats": [
-          { "label": "On the map now", "value": "0 / 17 (geocoding needed)" },
-          { "label": "In the report",  "value": "17" }
+          { "label": "Operators on the map", "value": "17" },
+          { "label": "In the report",        "value": "17" }
         ],
         "link": {
           "href": "report.html",

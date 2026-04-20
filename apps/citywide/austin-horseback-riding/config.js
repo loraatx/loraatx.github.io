@@ -12,7 +12,7 @@ const CONFIG = {
   infoPanelText: "A map of horseback riding opportunities in greater Austin — from guided ranch trail rides minutes from downtown to hunter/jumper lesson barns, Pony Club programs, and a luxury wellness resort with an equine center. Geocoded markers will appear here once coordinates are added.",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:          [-97.74, 30.30],
+  center:          [-97.795, 30.251],
   zoom:            10,
   pitch:           45,
   bearing:         -15,
