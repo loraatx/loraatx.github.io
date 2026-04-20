@@ -112,6 +112,10 @@ class PubchatEngine {
   _onPosition(pos) {
     const { latitude: lat, longitude: lng, accuracy } = pos.coords;
     this._updateHereMarker(lng, lat);
+    if (!this._firstFix) {
+      this._firstFix = true;
+      this.map.flyTo({ center: [lng, lat], zoom: 17, duration: 1200 });
+    }
     this._lastCheck = { lng, lat };
     this._emit('position-update', { lng, lat, accuracy, source: 'gps' });
     this._checkHotspots(lng, lat, 'gps');

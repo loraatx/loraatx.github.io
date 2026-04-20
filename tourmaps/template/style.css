@@ -39,30 +39,36 @@ html, body {
 
 #map { position: fixed; inset: 0; width: 100%; height: 100%; }
 
-/* ── Brand card — top-right ─────────────────────────────────── */
+/* ── Brand card — bottom-center pill (title bar) ────────────── */
 .tm-brand-card {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 104px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 10px 14px;
+  border-radius: 999px;
+  padding: 6px 14px;
   box-shadow: 0 8px 24px var(--shadow);
-  max-width: 240px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  max-width: calc(100vw - 32px);
+  white-space: nowrap;
 }
 .tm-brand-link {
-  display: block;
-  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
-  margin-bottom: 4px;
   transition: color 0.15s ease;
 }
 .tm-brand-link:hover { color: var(--accent); }
@@ -71,8 +77,39 @@ html, body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.3;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+/* ── Social footer — above nav bar ──────────────────────────── */
+.tm-social-footer {
+  position: fixed;
+  bottom: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  gap: 14px;
+  padding: 8px 16px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.tm-social-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+.tm-social-footer a:hover { color: var(--accent); }
+.tm-social-footer svg { width: 18px; height: 18px; }
 
 /* ── Permission modal ────────────────────────────────────────── */
 .tm-permission-modal {
@@ -141,10 +178,10 @@ html, body {
   color: #fff;
 }
 
-/* ── Progress chip — bottom-center ───────────────────────────── */
+/* ── Progress chip — bottom-center (nav bar) ─────────────────── */
 .tm-progress-chip {
   position: fixed;
-  bottom: 28px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -192,8 +229,8 @@ html, body {
 }
 .tm-icon-btn svg { width: 20px; height: 20px; }
 
-#tm-stops-btn    { bottom: 28px; left: 20px; }
-#tm-recenter     { bottom: 84px; left: 20px; }
+#tm-stops-btn    { bottom: 16px; left: 20px; }
+#tm-recenter     { bottom: 72px; left: 20px; }
 
 /* ── Stops side panel ─────────────────────────────────────────── */
 .tm-stops-panel {
@@ -716,12 +753,15 @@ html, body {
 
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .tm-brand-card { top: 12px; right: 12px; padding: 8px 12px; max-width: 180px; }
-  .tm-brand-title { font-size: 0.85rem; }
+  .tm-brand-card { bottom: 96px; padding: 5px 12px; gap: 8px; }
+  .tm-brand-title { font-size: 0.88rem; }
+  .tm-social-footer { gap: 10px; padding: 6px 12px; bottom: 50px; }
+  .tm-social-footer a { width: 20px; height: 20px; }
+  .tm-social-footer svg { width: 16px; height: 16px; }
   .maplibregl-popup-content { max-width: 280px; }
   #tm-stops-btn  { bottom: 24px; left: 14px; }
   #tm-recenter   { bottom: 76px; left: 14px; }
-  .tm-progress-chip { bottom: 24px; padding: 6px 14px; font-size: 0.8rem; }
+  .tm-progress-chip { bottom: 14px; padding: 6px 14px; font-size: 0.8rem; }
   .tm-compass { top: 52px; padding: 6px 14px 6px 8px; }
   .tm-compass-label { max-width: 50vw; font-size: 0.78rem; }
 }
