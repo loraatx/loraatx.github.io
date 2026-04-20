@@ -1,0 +1,41 @@
+name: Render City Intro Video
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/city-intro/src/**"
+      - "content/city-intro/package.json"
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: content/city-intro/package-lock.json
+
+      - name: Install dependencies
+        working-directory: content/city-intro
+        run: npm ci
+
+      - name: Install Chromium for Remotion
+        working-directory: content/city-intro
+        run: npx remotion browser ensure
+
+      - name: Render video
+        working-directory: content/city-intro
+        run: npx remotion render CityIntro out/city-intro.mp4 --log=verbose
+
+      - name: Upload rendered video
+        uses: actions/upload-artifact@v4
+        with:
+          name: city-intro-mp4
+          path: content/city-intro/out/city-intro.mp4
+          retention-days: 30
