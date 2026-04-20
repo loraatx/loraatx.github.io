@@ -78,7 +78,7 @@
           title: 'Pubchat',
           eyebrow: 'Austin · Live chat',
           blurb: 'Walk into an Austin pub and drop into a public chat with whoever is there right now.',
-          link: '/chats/pubchat/',
+          link: '/apps/chats/pubchat/',
           accent: '#e11d74'
         },
         {
@@ -87,7 +87,7 @@
           title: 'LibraryChat',
           eyebrow: 'Austin · Live chat',
           blurb: 'Every Austin Public Library branch is its own live reading-room chat.',
-          link: '/chats/librarychat/',
+          link: '/apps/chats/librarychat/',
           accent: '#2d7a1a'
         },
         {
@@ -96,12 +96,12 @@
           title: 'HomelessChat',
           eyebrow: 'Austin · Live chat',
           blurb: 'Angel House and Sunrise Navigation Center — walk in, connect, walk out.',
-          link: '/chats/homelesschat/',
+          link: '/apps/chats/homelesschat/',
           accent: '#2B6CB0'
         }
       ];
 
-      fetch('/storymaps/reports.json')
+      fetch('/apps/storymaps/reports.json')
         .then(r => r.ok ? r.json() : [])
         .then(items => {
           const all = [...(items || []), ...CHATMAPS];
@@ -141,7 +141,7 @@
           });
 
           function loadStoryMap(id) {
-            const target = '/storymaps/' + id + '/';
+            const target = '/apps/storymaps/' + id + '/';
             if (!frame.src.endsWith(target)) {
               frame.src = target;
             }
