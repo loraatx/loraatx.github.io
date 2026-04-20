@@ -43,37 +43,31 @@ html, body {
   height: 100%;
 }
 
-/* ── Brand card — bottom-center pill (title bar) ───────────────── */
+/* ── Brand card — top-right (title + back link combined) ───────── */
 .sm-brand-card {
   position: fixed;
-  bottom: 104px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 20px;
+  right: 20px;
   z-index: 20;
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 14px;
+  border-radius: 14px;
+  padding: 10px 14px;
   box-shadow: 0 8px 24px var(--shadow);
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  max-width: calc(100vw - 32px);
-  white-space: nowrap;
+  max-width: 220px;
 }
 
 .sm-brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  font-size: 0.68rem;
+  display: block;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
+  margin-bottom: 4px;
   transition: color 0.15s ease;
 }
 .sm-brand-link:hover { color: var(--accent); }
@@ -83,39 +77,8 @@ html, body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.3;
 }
-
-/* ── Social footer — above nav bar ───────────────────────────── */
-.sm-social-footer {
-  position: fixed;
-  bottom: 54px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 15;
-  display: flex;
-  gap: 14px;
-  padding: 8px 16px;
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: 0 8px 24px var(--shadow);
-}
-.sm-social-footer a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  color: var(--muted);
-  transition: color 0.15s ease;
-}
-.sm-social-footer a:hover { color: var(--accent); }
-.sm-social-footer svg { width: 18px; height: 18px; }
 
 /* ── Play/Pause button — bottom-left ─────────────────────────── */
 .sm-play-btn {
@@ -150,10 +113,10 @@ html, body {
   flex-shrink: 0;
 }
 
-/* ── Scene dot indicators — bottom-center (nav bar) ──────────── */
+/* ── Scene dot indicators — bottom-center ────────────────────── */
 .sm-dots {
   position: fixed;
-  bottom: 16px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -225,25 +188,6 @@ html, body {
   flex-shrink: 0;
 }
 
-/* ── Basemap toggle buttons ──────────────────────────────────── */
-.maplibregl-ctrl-group button.satellite-btn,
-.maplibregl-ctrl-group button.view-toggle-btn {
-  width: auto;
-  padding: 0 10px;
-  height: 29px;
-  font-size: 12px;
-  font-weight: 600;
-  background: #fff;
-  color: #333;
-  white-space: nowrap;
-}
-.maplibregl-ctrl-group button.satellite-btn:hover,
-.maplibregl-ctrl-group button.view-toggle-btn:hover { background: #f0f0f0; }
-.maplibregl-ctrl-group button.satellite-btn.active,
-.maplibregl-ctrl-group button.view-toggle-btn.active {
-  background: #d0e8ff;
-  color: #003d7a;
-}
 
 /* ── MapLibre popup overrides ────────────────────────────────── */
 .maplibregl-popup-content {
@@ -402,15 +346,12 @@ html, body {
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .sm-brand-card {
-    bottom: 96px;
-    padding: 5px 12px;
-    gap: 8px;
+    top: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    max-width: 180px;
   }
-  .sm-brand-title { font-size: 0.88rem; }
-
-  .sm-social-footer { gap: 10px; padding: 6px 12px; bottom: 50px; }
-  .sm-social-footer a { width: 20px; height: 20px; }
-  .sm-social-footer svg { width: 16px; height: 16px; }
+  .sm-brand-title { font-size: 0.85rem; }
 
   .maplibregl-popup-content {
     max-width: 280px;
@@ -422,7 +363,7 @@ html, body {
   }
 
   .sm-dots {
-    bottom: 14px;
+    bottom: 28px;
     gap: 6px;
     padding: 6px 12px;
   }

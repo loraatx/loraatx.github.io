@@ -46,6 +46,10 @@
     <section class="report-cards" aria-label="Featured reports">
       <div id="report-cards" class="report-cards-inner"></div>
     </section>
+
+    <section class="report-cards" aria-label="Featured reports">
+      <div id="report-cards" class="report-cards-inner"></div>
+    </section>
   </main>
 
   <footer class="page-footer">
@@ -206,6 +210,47 @@
         })
         .catch(() => {
           document.querySelector('.storymap-nav-bar')?.remove();
+          document.querySelector('.report-cards')?.remove();
+        });
+    }());
+
+    // ── Featured report cards ──────────────────────────────────────
+    (function () {
+      const cards = document.getElementById('report-cards');
+      if (!cards) return;
+
+      fetch('/storymaps/reports.json')
+        .then(r => r.ok ? r.json() : [])
+        .then(items => {
+          if (!items || !items.length) {
+            document.querySelector('.report-cards')?.remove();
+            return;
+          }
+          items.forEach(item => {
+            const card = document.createElement('a');
+            card.className = 'report-card';
+            card.href = item.href;
+            if (item.accent) card.style.setProperty('--card-accent', item.accent);
+
+            const eyebrow = document.createElement('span');
+            eyebrow.className = 'report-card-eyebrow';
+            eyebrow.textContent = item.eyebrow || 'Report';
+
+            const title = document.createElement('h3');
+            title.className = 'report-card-title';
+            title.textContent = item.title || '';
+
+            const blurb = document.createElement('p');
+            blurb.className = 'report-card-blurb';
+            blurb.textContent = item.blurb || '';
+
+            card.appendChild(eyebrow);
+            card.appendChild(title);
+            card.appendChild(blurb);
+            cards.appendChild(card);
+          });
+        })
+        .catch(() => {
           document.querySelector('.report-cards')?.remove();
         });
     }());
