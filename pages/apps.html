@@ -4,9 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apps • City Anatomy</title>
-  <link rel="canonical" href="https://anatomy.city/apps" />
+  <link rel="canonical" href="https://anatomy.city/pages/apps" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
   <link href="/style.css" rel="stylesheet" />
+  <style>
+    .apps-page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .apps-hero {
+      margin-bottom: 3.5rem;
+    }
+    .apps-hero .content-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    .apps-hero h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+    }
+    .apps-hero .hero-lede {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    .apps-section {
+      margin-bottom: 3.5rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section-count {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* ── Card grid ────────────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+
+    .app-card {
+      display: flex;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--shadow);
+      border-color: var(--card-accent, var(--accent));
+    }
+
+    .card-stripe {
+      width: 5px;
+      flex-shrink: 0;
+      background: var(--card-accent, var(--accent));
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--accent));
+      margin: 0;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card-cta {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--card-accent, var(--accent));
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .page-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .apps-page { padding: 2rem 1rem 4rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <header id="top" class="topbar">
@@ -30,61 +170,252 @@
     </div>
   </header>
 
-  <main class="docs-page">
-    <div class="docs-layout">
-      <aside class="docs-nav" aria-label="App navigation">
-        <p class="content-kicker">Apps</p>
-        <h1 class="page-title">Prototyping spatial tools</h1>
-        <p class="sidebar-lede">
-          Lightweight applications that sit on top of the base maps. Expect experiments in site selection,
-          zoning lookups, climate overlays, and neighborhood storytelling. Everything here is a sketch meant to gather feedback.
-        </p>
+  <main class="apps-page">
 
-        <div class="nav-section">
-          <button class="nav-section-toggle" type="button" aria-expanded="true">
-            <span>Concepts in progress</span>
-            <span class="chevron" aria-hidden="true">▾</span>
-          </button>
-          <ul class="nav-links">
-            <li><a class="nav-link is-active" href="/apps/citywide/austin-chambers/" data-description="A map of Austin-area chambers of commerce — regional, affinity, and corridor — built from a Perplexity deep-research drop." data-tag="Austin Metro" data-map-label="Austin-Area Chambers of Commerce" data-color="#6f4e37">Austin-Area Chambers of Commerce</a></li>
-            <li><a class="nav-link" href="/apps/citywide/austin-neighborhoods/" data-description="A map of Austin neighborhoods spanning 19th-century freedmen's districts, early streetcar suburbs, mid-century ranch areas, and 21st-century master-planned communities." data-tag="Austin Metro" data-map-label="Historic and Emerging Neighborhoods of Austin, Texas" data-color="#2B6CB0">Historic &amp; Emerging Neighborhoods</a></li>
-            <li><a class="nav-link" href="/apps/citywide/austin-horseback-riding/" data-description="A map of horseback riding opportunities in greater Austin — trail rides, lesson barns, Pony Club programs, and a luxury wellness resort with an equine center." data-tag="Austin Metro" data-map-label="Recreational Horseback Riding in Greater Austin" data-color="#8B4513">Horseback Riding</a></li>
-            <li><a class="nav-link" href="/apps/citywide/austin-golf-courses/" data-description="A map of 20 golf facilities across the Austin metro — municipal, public, daily-fee, and resort — with holes, price tier, and designer notes." data-tag="Austin Metro" data-map-label="Golf in the Austin Region" data-color="#2d7a1a">Golf in the Austin Region</a></li>
-            <li><a class="nav-link" href="/apps/citywide/austin-ps5-bundles/" data-description="A map of Austin-area retailers carrying PlayStation 5 Slim consoles and bundles — big-box, warehouse club, specialty, and local used-game shops." data-tag="Austin Shopping" data-map-label="PS5 Slim Bundles in Austin" data-color="#003087">PS5 Slim Bundles in Austin</a></li>
-            <li><a class="nav-link" href="/apps/citywide/austin-bike-shops/" data-description="A map of bicycle and e-bike shops across the Austin metro — independents, brand stores, the co-op chain, and e-bike specialists." data-tag="Austin Shopping" data-map-label="E-Bike and Bicycle Shops in Greater Austin" data-color="#2f855a">E-Bike &amp; Bicycle Shops</a></li>
-            <li><button class="nav-link" data-description="A quick parcel explorer that summarizes setbacks, FAR, and utilities." data-tag="Lot intelligence" data-map-label="Lot scanner" data-color="#8b5cf6">Lot scanner</button></li>
-            <li><button class="nav-link" data-description="Concept for comparing transit, bike, and walk times to major anchors." data-tag="Mobility" data-map-label="Mobility companion" data-color="#f59e0b">Mobility companion</button></li>
-            <li><button class="nav-link" data-description="Placeholder for a map that mixes tree canopy, impervious cover, and heat readings." data-tag="Climate overlays" data-map-label="Heat & shade finder" data-color="#0ea5e9">Heat &amp; shade finder</button></li>
-          </ul>
-        </div>
-      </aside>
-
-      <section class="map-column">
-        <div class="map-panel">
-          <div class="map-viewport" data-base-color="#8b5cf6">
-            <div class="map-overlay">
-              <p class="overlay-label">Shared map</p>
-              <h2 data-map-label>Lot scanner</h2>
-              <p class="overlay-note" data-map-note>Same interactive preview powers each prototype.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <article class="detail-panel" aria-live="polite">
-        <p class="detail-tag" data-detail-tag>Lot intelligence</p>
-        <h2 class="detail-title" data-detail-title>Lot scanner</h2>
-        <p class="detail-body" data-detail-body>
-          A quick parcel explorer that summarizes setbacks, FAR, and utilities.
-        </p>
-      </article>
-
-      <footer class="page-footer docs-footer">
-        <p>&copy; 2025 City Anatomy &bull; Powered by
-          <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>
-        </p>
-      </footer>
+    <div class="apps-hero">
+      <p class="content-kicker">Apps &amp; Tools</p>
+      <h1>Everything we've built</h1>
+      <p class="hero-lede">Location-aware apps, live chat experiences, narrative story maps, and walkable tours — all set in Austin.</p>
     </div>
+
+    <!-- ── ChatMaps ─────────────────────────────────────────── -->
+    <section class="apps-section">
+      <div class="section-header">
+        <h2>ChatMaps</h2>
+        <span class="section-count">3 apps</span>
+      </div>
+      <div class="cards-grid">
+
+        <a class="app-card" href="/apps/chats/pubchat/" style="--card-accent: #e11d74;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Live Chat</p>
+            <p class="card-title">Pubchat</p>
+            <p class="card-desc">Drop into a live group chat with whoever's physically at the same Austin hotspot. Messages vanish when you leave.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/chats/librarychat/" style="--card-accent: #2B6CB0;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Live Chat</p>
+            <p class="card-title">LibraryChat</p>
+            <p class="card-desc">Walk into any Austin Public Library branch and join a live chat with whoever's reading there right now.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/chats/homelesschat/" style="--card-accent: #b4531a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Live Chat</p>
+            <p class="card-title">Homelesschat</p>
+            <p class="card-desc">Location-based chat at Austin's Angel House and Sunrise Navigation Center. Walk in, connect, walk out.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── Map Apps ─────────────────────────────────────────── -->
+    <section class="apps-section">
+      <div class="section-header">
+        <h2>Map Apps</h2>
+        <span class="section-count">7 apps</span>
+      </div>
+      <div class="cards-grid">
+
+        <a class="app-card" href="/apps/citywide/austin-chambers/" style="--card-accent: #6f4e37;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Austin-Area Chambers of Commerce</p>
+            <p class="card-desc">Regional, affinity, and corridor chambers mapped across Greater Austin.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/austin-neighborhoods/" style="--card-accent: #2B6CB0;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Historic &amp; Emerging Neighborhoods</p>
+            <p class="card-desc">Austin neighborhoods from 19th-century freedmen's districts to 21st-century master-planned communities.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/austin-horseback-riding/" style="--card-accent: #8B4513;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Recreational Horseback Riding</p>
+            <p class="card-desc">Trail rides, lesson barns, Pony Club programs, and equine wellness in greater Austin.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/austin-golf-courses/" style="--card-accent: #2d7a1a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Golf in the Austin Region</p>
+            <p class="card-desc">20 golf facilities — municipal, public, daily-fee, and resort — with holes, price tier, and designer notes.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/austin-ps5-bundles/" style="--card-accent: #003087;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Shopping</p>
+            <p class="card-title">PS5 Slim Bundles in Austin</p>
+            <p class="card-desc">Big-box, warehouse club, specialty, and local used-game shops carrying PS5 Slim consoles and bundles.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/austin-bike-shops/" style="--card-accent: #2f855a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Shopping</p>
+            <p class="card-title">E-Bike &amp; Bicycle Shops</p>
+            <p class="card-desc">Independents, brand stores, the co-op chain, and e-bike specialists across the Austin metro.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/citywide/PoolOpenings/" style="--card-accent: #0ea5e9;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Parks</p>
+            <p class="card-title">Austin Pool Openings</p>
+            <p class="card-desc">Austin public pools — seasonal openings, locations, and aquatic amenities across the city.</p>
+            <span class="card-cta">Open app →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── Shopping Reports ─────────────────────────────────── -->
+    <section class="apps-section">
+      <div class="section-header">
+        <h2>Shopping Reports</h2>
+        <span class="section-count">8 story maps</span>
+      </div>
+      <div class="cards-grid">
+
+        <a class="app-card" href="/apps/storymaps/austin-ps5-bundles/" style="--card-accent: #003087;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Shopping</p>
+            <p class="card-title">PS5 Slim Bundles — Story Map</p>
+            <p class="card-desc">Narrative map tour of Austin retailers carrying PlayStation 5 Slim bundles.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-vintage-guitar/" style="--card-accent: #92400e;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Shopping</p>
+            <p class="card-title">Austin Vintage Guitar</p>
+            <p class="card-desc">A story map through Austin's vintage and used guitar shops, repair techs, and gear spots.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-bike-shops/" style="--card-accent: #2f855a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Shopping</p>
+            <p class="card-title">E-Bike &amp; Bicycle Shops — Story Map</p>
+            <p class="card-desc">A narrative tour of bicycle and e-bike shops across the Austin metro.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-horseback-riding/" style="--card-accent: #8B4513;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Horseback Riding — Story Map</p>
+            <p class="card-desc">A guided story map of Austin's equestrian scene — trail rides, lessons, and luxury retreats.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-golf-courses/" style="--card-accent: #2d7a1a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Golf in the Austin Region — Story Map</p>
+            <p class="card-desc">Narrative flythrough of Austin's golf facilities from budget-friendly munis to resort courses.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-chambers/" style="--card-accent: #6f4e37;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Chambers of Commerce — Story Map</p>
+            <p class="card-desc">A deep-research story map of Austin-area chambers — regional, affinity, and corridor.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/austin-neighborhoods/" style="--card-accent: #2B6CB0;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Metro</p>
+            <p class="card-title">Historic Neighborhoods — Story Map</p>
+            <p class="card-desc">A survey of central, historic, and master-planned Austin communities told through the map.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+        <a class="app-card" href="/apps/storymaps/PoolOpenings/" style="--card-accent: #0ea5e9;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Austin Parks</p>
+            <p class="card-title">Pool Openings — Story Map</p>
+            <p class="card-desc">A story map of Austin's public pools and their seasonal openings across the city.</p>
+            <span class="card-cta">View story →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── Walking Tours ────────────────────────────────────── -->
+    <section class="apps-section">
+      <div class="section-header">
+        <h2>Walking Tours</h2>
+        <span class="section-count">1 tour</span>
+      </div>
+      <div class="cards-grid">
+
+        <a class="app-card" href="/apps/tourmaps/template/" style="--card-accent: #b4531a;">
+          <div class="card-stripe"></div>
+          <div class="card-body">
+            <p class="card-tag">Walking Tour</p>
+            <p class="card-title">Tour Template</p>
+            <p class="card-desc">GPS-triggered walking tour with compass navigation and stop check-ins. Template for future city tours.</p>
+            <span class="card-cta">Start tour →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>&copy; 2025 City Anatomy &bull; Powered by <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a></p>
+    </footer>
+
   </main>
 
   <script src="/page.js"></script>
