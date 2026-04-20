@@ -114,7 +114,7 @@ class PubchatEngine {
     this._updateHereMarker(lng, lat);
     if (!this._firstFix) {
       this._firstFix = true;
-      this.map.flyTo({ center: [lng, lat], zoom: 17, duration: 1200 });
+      this.map.flyTo({ center: [lng, lat], zoom: 15, pitch: 45, duration: 1200 });
     }
     this._lastCheck = { lng, lat };
     this._emit('position-update', { lng, lat, accuracy, source: 'gps' });

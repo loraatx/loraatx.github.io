@@ -160,6 +160,7 @@
         layout: { visibility: 'visible' }
       }, map.getStyle().layers[1].id);
 
+      // Group 1: Satellite + Buildings
       map.addControl({
         onAdd() {
           this._container = document.createElement('div');
@@ -175,6 +176,30 @@
           };
           this._container.appendChild(this._satBtn);
 
+          this._bldBtn = document.createElement('button');
+          this._bldBtn.className = 'buildings-btn active';
+          this._bldBtn.textContent = 'Buildings';
+          this._bldBtn.onclick = () => {
+            const on = map.getLayer('3d-buildings') &&
+              map.getLayoutProperty('3d-buildings', 'visibility') === 'visible';
+            if (map.getLayer('3d-buildings')) {
+              map.setLayoutProperty('3d-buildings', 'visibility', on ? 'none' : 'visible');
+            }
+            this._bldBtn.classList.toggle('active', !on);
+          };
+          this._container.appendChild(this._bldBtn);
+
+          return this._container;
+        },
+        onRemove() { this._container.parentNode.removeChild(this._container); }
+      }, 'top-left');
+
+      // Group 2: 3D pitch toggle (separated below)
+      map.addControl({
+        onAdd() {
+          this._container = document.createElement('div');
+          this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+
           this._viewBtn = document.createElement('button');
           this._viewBtn.className = 'view-toggle-btn active';
           this._viewBtn.textContent = '2D';
@@ -182,9 +207,6 @@
             const tilted = map.getPitch() > 5;
             const nextPitch = tilted ? 0 : 45;
             map.easeTo({ pitch: nextPitch, duration: 600 });
-            if (map.getLayer('3d-buildings')) {
-              map.setLayoutProperty('3d-buildings', 'visibility', tilted ? 'none' : 'visible');
-            }
             this._viewBtn.textContent = tilted ? '3D' : '2D';
             this._viewBtn.classList.toggle('active', !tilted);
           };
