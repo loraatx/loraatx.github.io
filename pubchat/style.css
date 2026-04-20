@@ -47,45 +47,54 @@ html, body {
 
 #map { position: fixed; inset: 0; width: 100%; height: 100%; }
 
-/* ── Brand card ──────────────────────────────────────────────── */
+/* ── Brand card (bottom-center, horizontal) ──────────────────── */
 .pc-brand-card {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 68px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 10px 14px;
+  border-radius: 999px;
+  padding: 6px 14px;
   box-shadow: 0 8px 24px var(--shadow);
-  max-width: 240px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  max-width: calc(100vw - 32px);
+  white-space: nowrap;
 }
 .pc-brand-link {
-  display: block;
-  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
-  margin-bottom: 4px;
   transition: color 0.15s ease;
 }
 .pc-brand-link:hover { color: var(--accent); }
 .pc-brand-title {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: var(--text);
   line-height: 1.2;
 }
 .pc-brand-subtitle {
-  margin: 2px 0 0;
-  font-size: 0.75rem;
+  margin: 0;
+  font-size: 0.72rem;
   color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+body:has(#pc-sheet:not([hidden])) .pc-brand-card { display: none; }
 
 /* ── Identity badge — top-center ─────────────────────────────── */
 .pc-identity-badge {
@@ -536,9 +545,9 @@ body:has(#pc-sheet:not([hidden])) .pc-social-footer { display: none; }
 
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .pc-brand-card { top: 12px; right: 12px; padding: 8px 12px; max-width: 170px; }
-  .pc-brand-title { font-size: 0.95rem; }
-  .pc-brand-subtitle { font-size: 0.7rem; }
+  .pc-brand-card { bottom: 60px; padding: 5px 12px; gap: 8px; }
+  .pc-brand-title { font-size: 0.88rem; }
+  .pc-brand-subtitle { display: none; }
   .pc-identity-badge { top: 12px; font-size: 0.78rem; padding: 5px 7px 5px 10px; }
   .pc-identity-handle { max-width: 38vw; }
   #pc-recenter { bottom: 22vh; left: 14px; }
