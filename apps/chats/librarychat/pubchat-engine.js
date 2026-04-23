@@ -230,9 +230,9 @@ class PubchatEngine {
         ],
         'circle-color': presenceColor,
         'circle-opacity': 0.35,
-        'circle-stroke-color': presenceColor,
-        'circle-stroke-width': 2,
-        'circle-stroke-opacity': 0.9,
+        'circle-stroke-color': '#1a202c',
+        'circle-stroke-width': 4,
+        'circle-stroke-opacity': 1,
       },
     });
 
