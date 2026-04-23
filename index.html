@@ -147,6 +147,13 @@
             }
           }
 
+          function loadChatmapsOverview() {
+            const target = '/apps/chats/overview/';
+            if (!frame.src.endsWith(target)) {
+              frame.src = target;
+            }
+          }
+
           function activateCard(card) {
             cardsContainer.querySelectorAll('.report-card').forEach(el => {
               el.classList.remove('is-active');
@@ -201,6 +208,7 @@
               btn.classList.toggle('is-active', key === cat);
             });
             renderCards(cat);
+            if (cat === 'ChatMaps') loadChatmapsOverview();
           }
 
           selectCategory(categories[0]);
