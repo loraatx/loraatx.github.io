@@ -1,51 +1,90 @@
 -- scripts/load_parcels_from_socrata.sql
 --
--- One-shot loader: streams the Austin "Lot Line" dataset (Socrata resource
--- r8wq-g5d8, ~410K multipolygons) directly into public.parcels using the
--- pgsql-http extension. No local tooling required.
+-- Background loader for the Austin "Lot Line" dataset (Socrata r8wq-g5d8).
+-- Because the Supabase SQL Editor drops long-running requests at the browser,
+-- this script schedules a background pg_cron job that runs one chunk per minute
+-- server-side. No local tooling required, and the browser doesn't need to stay
+-- connected.
 --
 -- How to run:
---   1. Open the Supabase SQL Editor:
---      https://supabase.com/dashboard/project/tqnklodtiithbsxxyycp/sql/new
---   2. Paste this entire file.
---   3. Click Run.
---   4. Expect ~8–15 minutes for the full 410K rows.
+--   1. Open https://supabase.com/dashboard/project/tqnklodtiithbsxxyycp/sql/new
+--   2. Paste this entire file, click Run. Completes in < 5 seconds — it just
+--      installs extensions, functions, and a cron schedule.
+--   3. Close the tab. Come back after ~30–45 minutes.
 --
--- Safe to re-run. Already-loaded parcels are skipped via ON CONFLICT DO NOTHING.
--- Source fields kept:
---   parcel_id  <- land_base_id
---   geom       <- feature geometry (MultiPolygon, EPSG:4326)
---   centroid   <- ST_PointOnSurface(geom)
---   metadata   <- { land_base_type, block_id, lot_id }
+-- Progress check at any time:
+--   select * from public.parcels_load_state;
+--   select count(*) from public.parcels;
 --
--- Zoning is intentionally left NULL in v1; a spatial join against the City of
--- Austin zoning layer (3qge-iuk7) will populate it in v1.1.
+-- When `completed = true`, stop the job:
+--   select cron.unschedule('parcels-load');
+--
+-- Idempotent: re-running this file is safe. parcels_load_step uses an advisory
+-- lock so overlapping minute invocations skip cleanly.
 
--- This batch is long-running; disable the 2-minute default.
 set statement_timeout = 0;
 
--- Extension: sync HTTP client inside Postgres.
+-- Extensions
 create extension if not exists http;
+create extension if not exists pg_cron;
 
--- Chunk loader. Deterministic pagination via :id (Socrata system key).
-create or replace function public.load_parcels_chunk(p_offset int, p_limit int)
-returns table(fetched int, inserted int)
+-- State tracking: one row, upsert-only.
+create table if not exists public.parcels_load_state (
+  id          int primary key default 1 check (id = 1),
+  next_offset int not null default 0,
+  completed   boolean not null default false,
+  last_result text,
+  started_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+
+insert into public.parcels_load_state (id) values (1)
+on conflict (id) do nothing;
+
+-- Worker: loads one chunk from Socrata into public.parcels.
+create or replace function public.parcels_load_step(p_limit int default 10000)
+returns text
 language plpgsql
 as $$
 declare
+  v_lock     bigint := 7424242;   -- arbitrary advisory-lock key
+  v_offset   int;
+  v_done     boolean;
   v_url      text;
   v_body     jsonb;
   v_fetched  int;
   v_inserted int;
 begin
+  -- Skip if a prior invocation is still running.
+  if not pg_try_advisory_lock(v_lock) then
+    return 'skipped: prior run still holding lock';
+  end if;
+
+  select next_offset, completed into v_offset, v_done
+    from public.parcels_load_state where id = 1;
+
+  if v_done then
+    perform pg_advisory_unlock(v_lock);
+    return 'already complete';
+  end if;
+
   v_url := 'https://data.austintexas.gov/resource/r8wq-g5d8.geojson?'
         || '$order=:id'
         || '&$limit='  || p_limit
-        || '&$offset=' || p_offset;
+        || '&$offset=' || v_offset;
 
   select (http_get(v_url)).content::jsonb into v_body;
-
   v_fetched := coalesce(jsonb_array_length(v_body->'features'), 0);
+
+  if v_fetched = 0 then
+    update public.parcels_load_state
+      set completed = true,
+          last_result = 'done at offset=' || v_offset,
+          updated_at = now()
+      where id = 1;
+    perform pg_advisory_unlock(v_lock);
+    return 'complete';
+  end if;
 
   with features as (
     select jsonb_array_elements(v_body->'features') as f
@@ -68,33 +107,26 @@ begin
   )
   select count(*)::int into v_inserted from ins;
 
-  return query select v_fetched, v_inserted;
+  update public.parcels_load_state
+    set next_offset = v_offset + p_limit,
+        last_result = format('offset=%s fetched=%s inserted=%s', v_offset, v_fetched, v_inserted),
+        updated_at = now()
+    where id = 1;
+
+  perform pg_advisory_unlock(v_lock);
+  return format('offset=%s fetched=%s inserted=%s', v_offset, v_fetched, v_inserted);
 end $$;
 
--- Driver: paginate until the source returns an empty page.
-do $$
-declare
-  v_offset int := 0;
-  v_limit  int := 2000;
-  v_row    record;
-  v_total  int := 0;
-begin
-  loop
-    select * into v_row from public.load_parcels_chunk(v_offset, v_limit);
-    v_total := v_total + coalesce(v_row.inserted, 0);
-    raise notice 'offset=% fetched=% inserted=% running_total=%',
-      v_offset, v_row.fetched, v_row.inserted, v_total;
-    exit when coalesce(v_row.fetched, 0) = 0;
-    v_offset := v_offset + v_limit;
-  end loop;
-end $$;
+-- Schedule (or re-schedule) the job. Runs once a minute.
+select cron.unschedule('parcels-load') where exists (
+  select 1 from cron.job where jobname = 'parcels-load'
+);
 
-analyze public.parcels;
+select cron.schedule(
+  'parcels-load',
+  '* * * * *',
+  $cron$ select public.parcels_load_step(10000); $cron$
+);
 
--- Diagnostics returned to the SQL Editor results pane.
-select
-  count(*)                                                      as loaded,
-  count(*) filter (where not st_isvalid(geom))                  as invalid_geoms,
-  pg_size_pretty(pg_total_relation_size('public.parcels'))      as table_size,
-  st_extent(geom)::text                                         as bbox
-from public.parcels;
+-- Immediate feedback.
+select * from public.parcels_load_state;
