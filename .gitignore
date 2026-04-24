@@ -1,0 +1,14 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Local tile build artifacts
+*.mbtiles
+*.pmtiles
+scripts/parcels.geojsonl
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
