@@ -1,11 +1,14 @@
-// app.js — Austin Parcels viewer.
+// app.js — Parcelizer viewer.
 //
 // Data flow:
 //   PMTiles vector tileset (Supabase Storage, public bucket)
 //     -> MapLibre vector source -> fill+line layers
 //   Click a parcel -> read parcel_id from the MVT feature
-//     -> Supabase PostgREST select * where parcel_id = id
-//     -> render popup
+//     -> if the report drawer is mounted: open it (Constraints tab loads)
+//     -> else (embed page): show the legacy popup with parcel_id + zoning
+//
+// The split: app.js only owns the map and click routing; the drawer owns
+// per-tab data loading via ParcelAPI.
 
 (function () {
   const CFG = window.PARCELS_CONFIG;
@@ -18,11 +21,15 @@
   const pmProtocol = new pmtiles.Protocol();
   maplibregl.addProtocol('pmtiles', pmProtocol.tile);
 
-  // --- Supabase client ------------------------------------------------------
+  // --- Supabase client + API wiring ----------------------------------------
   const { createClient } = window.supabase;
   const sb = createClient(CFG.supabase.url, CFG.supabase.anonKey, {
     auth: { persistSession: false }
   });
+  if (window.ParcelAPI) window.ParcelAPI.init(sb);
+
+  // Mount the drawer (no-op on /parcels/embed.html where #drawer is absent).
+  const drawerMounted = !!(window.ParcelDrawer && window.ParcelDrawer.mount());
 
   // --- Map ------------------------------------------------------------------
   const map = new maplibregl.Map({
@@ -116,78 +123,52 @@
     map.getCanvas().style.cursor = '';
   });
 
-  // --- Click: read parcel_id from tile, query Supabase, show popup ---------
+  // --- Selection feature-state (cleared by drawer close or click elsewhere)
   let selectedId = null;
+  function clearSelection() {
+    if (selectedId !== null) {
+      map.setFeatureState({ ...SRC, id: selectedId }, { selected: false });
+      selectedId = null;
+    }
+  }
+  function selectFeature(id) {
+    if (selectedId !== null && selectedId !== id) {
+      map.setFeatureState({ ...SRC, id: selectedId }, { selected: false });
+    }
+    selectedId = id;
+    map.setFeatureState({ ...SRC, id }, { selected: true });
+  }
 
+  // --- Legacy popup (used only when the drawer is not mounted, i.e. embed) -
   function escapeHtml(s) {
     if (s == null) return '';
     return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
 
-  function renderPopup(data) {
-    const rows = [];
-    rows.push(['Parcel ID', data.parcel_id]);
-    rows.push(['Zoning', data.zoning || '—']);
-
-    // Render any keys the metadata jsonb carries so v1.1 enrichment
-    // (address, owner, value, etc.) shows up without editing this file.
+  function renderEmbedPopup(data) {
+    const rows = [['Parcel ID', data.parcel_id], ['Zoning', data.zoning || '—']];
     if (data.metadata && typeof data.metadata === 'object') {
       for (const [k, v] of Object.entries(data.metadata)) {
         if (v == null || v === '') continue;
         rows.push([k, typeof v === 'object' ? JSON.stringify(v) : String(v)]);
       }
     }
-
     const dl = rows.map(([k, v]) =>
       `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`
     ).join('');
-
     return `<div class="parcel-popup"><dl>${dl}</dl></div>`;
   }
 
-  map.on('click', 'parcels-fill', async (e) => {
-    if (!e.features || e.features.length === 0) return;
-    const f = e.features[0];
-    const id = f.id != null ? f.id : f.properties && f.properties.parcel_id;
-    if (id == null) return;
-
-    if (selectedId !== null && selectedId !== id) {
-      map.setFeatureState({ ...SRC, id: selectedId }, { selected: false });
-    }
-    selectedId = id;
-    map.setFeatureState({ ...SRC, id }, { selected: true });
-
+  async function showEmbedPopup(id, lngLat) {
     const popup = new maplibregl.Popup({ maxWidth: '320px', offset: 8 })
-      .setLngLat(e.lngLat)
+      .setLngLat(lngLat)
       .setHTML(`<div class="parcel-popup"><em>Loading parcel ${escapeHtml(id)}…</em></div>`)
       .addTo(map);
-
-    popup.on('close', () => {
-      if (selectedId !== null) {
-        map.setFeatureState({ ...SRC, id: selectedId }, { selected: false });
-        selectedId = null;
-      }
-    });
-
+    popup.on('close', clearSelection);
     try {
-      const { data, error } = await sb
-        .from('parcels')
-        .select('parcel_id,zoning,metadata')
-        .eq('parcel_id', String(id))
-        .maybeSingle();
-
-      if (error) {
-        popup.setHTML(
-          `<div class="parcel-popup"><strong>Parcel ${escapeHtml(id)}</strong>` +
-          `<p class="err">Lookup failed: ${escapeHtml(error.message)}</p></div>`
-        );
-        return;
-      }
+      const data = await window.ParcelAPI.getParcel(id);
       if (!data) {
         popup.setHTML(
           `<div class="parcel-popup"><strong>Parcel ${escapeHtml(id)}</strong>` +
@@ -195,12 +176,27 @@
         );
         return;
       }
-      popup.setHTML(renderPopup(data));
+      popup.setHTML(renderEmbedPopup(data));
     } catch (err) {
       popup.setHTML(
         `<div class="parcel-popup"><strong>Parcel ${escapeHtml(id)}</strong>` +
         `<p class="err">${escapeHtml(err.message || String(err))}</p></div>`
       );
+    }
+  }
+
+  // --- Click handler --------------------------------------------------------
+  map.on('click', 'parcels-fill', (e) => {
+    if (!e.features || e.features.length === 0) return;
+    const f  = e.features[0];
+    const id = f.id != null ? f.id : f.properties && f.properties.parcel_id;
+    if (id == null) return;
+    selectFeature(id);
+
+    if (drawerMounted) {
+      window.ParcelDrawer.openForParcel(id);
+    } else {
+      showEmbedPopup(id, e.lngLat);
     }
   });
 
@@ -208,4 +204,4 @@
   map.on('error', (e) => {
     console.warn('[parcels] map error', e && e.error ? e.error : e);
   });
-})();
+}());

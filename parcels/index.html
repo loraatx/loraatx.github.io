@@ -27,22 +27,57 @@
       <div class="parcels-eyebrow">Austin · PostGIS + PMTiles + MapLibre</div>
       <h1>Parcelizer</h1>
       <p class="parcels-subtitle">
-        Explore Austin parcel boundaries. Click any parcel to look up its
-        zoning and metadata from Supabase. Tiles are streamed from a PMTiles
-        archive; attributes come from the <code>parcels</code> table on click.
+        Click any parcel for a full report — base zoning, computed constraints
+        (FAR, max floor area, impervious cover, height), and (in later phases)
+        board cases that touched the parcel and a Q&amp;A search across the
+        meeting record.
       </p>
     </section>
 
-    <section class="map-card">
-      <div id="map"></div>
-      <div id="zoom-hint" class="zoom-hint" hidden>Zoom in to view parcels</div>
+    <section class="map-and-drawer">
+      <div class="map-card">
+        <div id="map"></div>
+        <div id="zoom-hint" class="zoom-hint" hidden>Zoom in to view parcels</div>
+      </div>
+
+      <aside id="drawer" class="drawer" aria-hidden="true" hidden>
+        <header class="drawer-header">
+          <div class="drawer-title">
+            <span class="drawer-eyebrow">Parcel</span>
+            <h2 id="drawer-parcel-id">—</h2>
+          </div>
+          <button id="drawer-close" class="drawer-close" type="button" aria-label="Close report">&times;</button>
+        </header>
+
+        <nav class="tab-bar" role="tablist" aria-label="Parcel report sections">
+          <button class="tab is-active" role="tab" data-tab="constraints" aria-selected="true">Constraints</button>
+          <button class="tab"           role="tab" data-tab="cases"       aria-selected="false">Cases &amp; Votes</button>
+          <button class="tab"           role="tab" data-tab="ask"         aria-selected="false">Ask</button>
+        </nav>
+
+        <div class="tab-panels">
+          <section class="tab-panel is-active" role="tabpanel" data-panel="constraints">
+            <div class="panel-loading" hidden>Loading…</div>
+            <div class="panel-error"   hidden></div>
+            <div class="panel-body"></div>
+          </section>
+          <section class="tab-panel" role="tabpanel" data-panel="cases" hidden>
+            <p class="tab-empty">Coming soon — board cases and votes that affected this parcel will appear here once the board scraper is online.</p>
+          </section>
+          <section class="tab-panel" role="tabpanel" data-panel="ask" hidden>
+            <p class="tab-empty">Coming soon — ask natural-language questions about this parcel and get answers cited from the public meeting record.</p>
+          </section>
+        </div>
+      </aside>
     </section>
 
     <section class="parcels-note">
       <p>
         Visualization layer: PMTiles served from Supabase Storage.
         System of record: <code>public.parcels</code> in Supabase Postgres +
-        PostGIS. Schema includes RAG-ready stubs
+        PostGIS. Constraints are computed server-side from the
+        <code>austin_zoning_rules</code> seed
+        (LDC Title 25-2). Schema includes RAG-ready stubs
         (<code>parcel_documents</code>, <code>parcel_embeddings</code>) for
         later semantic enrichment.
       </p>
@@ -53,6 +88,8 @@
   <script src="https://unpkg.com/pmtiles@3/dist/pmtiles.js"></script>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./drawer.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
