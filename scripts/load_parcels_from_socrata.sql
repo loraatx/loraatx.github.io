@@ -54,8 +54,11 @@ declare
   v_resp     record;
   v_body     jsonb;
   v_features jsonb;
+  v_feature  jsonb;
+  v_g        geometry;
   v_fetched  int;
-  v_inserted int;
+  v_inserted int := 0;
+  v_skipped  int := 0;
 begin
   -- Skip if a prior invocation is still running.
   if not pg_try_advisory_lock(v_lock) then
@@ -110,35 +113,54 @@ begin
     return 'complete';
   end if;
 
-  with features as (
-    select jsonb_array_elements(v_features) as f
-  ),
-  ins as (
-    insert into public.parcels (parcel_id, geom, centroid, metadata)
-    select
-      (f->'properties'->>'land_base_id'),
-      st_multi(st_setsrid(st_geomfromgeojson(f->'geometry'), 4326))::geometry(MultiPolygon, 4326),
-      st_pointonsurface(st_setsrid(st_geomfromgeojson(f->'geometry'), 4326)),
-      jsonb_strip_nulls(jsonb_build_object(
-        'land_base_type', f->'properties'->>'land_base_type',
-        'block_id',       f->'properties'->>'block_id',
-        'lot_id',         f->'properties'->>'lot_id'
-      ))
-    from features
-    where f->'properties'->>'land_base_id' is not null
-    on conflict (parcel_id) do nothing
-    returning 1
-  )
-  select count(*)::int into v_inserted from ins;
+  -- Per-row exception handling: skip features whose geometry can't be parsed
+  -- or repaired (null geom, malformed coords, unsupported types) instead of
+  -- failing the entire batch.
+  for v_feature in select jsonb_array_elements(v_features) loop
+    begin
+      if v_feature->'properties'->>'land_base_id' is null
+         or v_feature->'geometry' is null
+         or jsonb_typeof(v_feature->'geometry') <> 'object' then
+        v_skipped := v_skipped + 1;
+        continue;
+      end if;
+
+      v_g := st_setsrid(st_geomfromgeojson(v_feature->'geometry'), 4326);
+      v_g := st_multi(st_makevalid(v_g));
+      if v_g is null or st_geometrytype(v_g) <> 'ST_MultiPolygon' then
+        v_skipped := v_skipped + 1;
+        continue;
+      end if;
+
+      insert into public.parcels (parcel_id, geom, centroid, metadata)
+      values (
+        v_feature->'properties'->>'land_base_id',
+        v_g::geometry(MultiPolygon, 4326),
+        st_pointonsurface(v_g),
+        jsonb_strip_nulls(jsonb_build_object(
+          'land_base_type', v_feature->'properties'->>'land_base_type',
+          'block_id',       v_feature->'properties'->>'block_id',
+          'lot_id',         v_feature->'properties'->>'lot_id'
+        ))
+      )
+      on conflict (parcel_id) do nothing;
+
+      v_inserted := v_inserted + 1;
+    exception when others then
+      v_skipped := v_skipped + 1;
+    end;
+  end loop;
 
   update public.parcels_load_state
     set next_offset = v_offset + p_limit,
-        last_result = format('offset=%s fetched=%s inserted=%s', v_offset, v_fetched, v_inserted),
+        last_result = format('offset=%s fetched=%s inserted=%s skipped=%s',
+                              v_offset, v_fetched, v_inserted, v_skipped),
         updated_at = now()
     where id = 1;
 
   perform pg_advisory_unlock(v_lock);
-  return format('offset=%s fetched=%s inserted=%s', v_offset, v_fetched, v_inserted);
+  return format('offset=%s fetched=%s inserted=%s skipped=%s',
+                 v_offset, v_fetched, v_inserted, v_skipped);
 end $$;
 
 -- Schedule (or re-schedule) the job. Runs once a minute.
