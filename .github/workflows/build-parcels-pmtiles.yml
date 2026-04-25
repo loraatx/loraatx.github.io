@@ -1,0 +1,63 @@
+name: Build Parcels PMTiles
+
+# Generates the Austin parcels PMTiles archive from PostGIS and uploads it
+# to Supabase Storage. Triggered manually from the Actions tab.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   DATABASE_URL          postgresql://postgres:<pw>@db.<ref>.supabase.co:5432/postgres
+#   SUPABASE_URL          https://tqnklodtiithbsxxyycp.supabase.co
+#   SUPABASE_SERVICE_KEY  service-role key (NOT the anon key)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/parcels_make_pmtiles.sh'
+      - '.github/workflows/build-parcels-pmtiles.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL:         ${{ secrets.DATABASE_URL }}
+      SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      PMTILES_VERSION:      "1.22.2"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GDAL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gdal-bin
+          ogr2ogr --version
+
+      - name: Build tippecanoe (Felt fork)
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/felt/tippecanoe.git /tmp/tippecanoe
+          cd /tmp/tippecanoe
+          make -j"$(nproc)"
+          sudo make install
+          tippecanoe --version
+
+      - name: Install pmtiles CLI
+        run: |
+          set -euo pipefail
+          curl -sSL \
+            "https://github.com/protomaps/go-pmtiles/releases/download/v${PMTILES_VERSION}/go-pmtiles_${PMTILES_VERSION}_Linux_x86_64.tar.gz" \
+            -o /tmp/pmtiles.tar.gz
+          sudo tar -xzf /tmp/pmtiles.tar.gz -C /usr/local/bin pmtiles
+          pmtiles version
+
+      - name: Verify required secrets are present
+        run: |
+          : "${DATABASE_URL:?DATABASE_URL secret missing}"
+          : "${SUPABASE_URL:?SUPABASE_URL secret missing}"
+          : "${SUPABASE_SERVICE_KEY:?SUPABASE_SERVICE_KEY secret missing}"
+          echo "secrets present"
+
+      - name: Build & upload PMTiles
+        run: bash scripts/parcels_make_pmtiles.sh
