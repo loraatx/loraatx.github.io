@@ -61,9 +61,10 @@ begin
   end if;
 
   -- pgsql-http defaults to a 5s total timeout, which is too short for the
-  -- ~30 MB Socrata responses. Bump per-session.
-  perform http_set_curlopt('CURLOPT_TIMEOUT_MSEC',        '60000');
-  perform http_set_curlopt('CURLOPT_CONNECTTIMEOUT_MSEC', '10000');
+  -- ~30 MB Socrata responses. Bump per-session. Use the seconds variants
+  -- because Supabase's pgsql-http build doesn't expose CURLOPT_TIMEOUT_MSEC.
+  perform http_set_curlopt('CURLOPT_TIMEOUT',        '60');
+  perform http_set_curlopt('CURLOPT_CONNECTTIMEOUT', '10');
 
   select next_offset, completed into v_offset, v_done
     from public.parcels_load_state where id = 1;
