@@ -42,7 +42,7 @@ insert into public.parcels_load_state (id) values (1)
 on conflict (id) do nothing;
 
 -- Worker: loads one chunk from Socrata into public.parcels.
-create or replace function public.parcels_load_step(p_limit int default 10000)
+create or replace function public.parcels_load_step(p_limit int default 5000)
 returns text
 language plpgsql
 as $$
@@ -59,6 +59,11 @@ begin
   if not pg_try_advisory_lock(v_lock) then
     return 'skipped: prior run still holding lock';
   end if;
+
+  -- pgsql-http defaults to a 5s total timeout, which is too short for the
+  -- ~30 MB Socrata responses. Bump per-session.
+  perform http_set_curlopt('CURLOPT_TIMEOUT_MSEC',        '60000');
+  perform http_set_curlopt('CURLOPT_CONNECTTIMEOUT_MSEC', '10000');
 
   select next_offset, completed into v_offset, v_done
     from public.parcels_load_state where id = 1;
@@ -125,7 +130,7 @@ select cron.unschedule('parcels-load') where exists (
 select cron.schedule(
   'parcels-load',
   '* * * * *',
-  $cron$ select public.parcels_load_step(10000); $cron$
+  $cron$ select public.parcels_load_step(5000); $cron$
 );
 
 -- Immediate feedback.
