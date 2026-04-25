@@ -17,7 +17,6 @@
         <a href="/apps/">Apps</a>
         <a href="/services/">Services</a>
         <a href="/content/">Content</a>
-        <a href="/parcels/">Parcels</a>
         <a href="/contact.html">Contact</a>
       </nav>
     </div>
@@ -70,7 +69,20 @@
       const cardsContainer = document.getElementById('report-cards');
       if (!frame || !categoryNav || !cardsContainer) return;
 
-      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government', 'ChatMaps'];
+      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government', 'Parcelizer', 'ChatMaps'];
+
+      const PARCELIZER = [
+        {
+          id: 'parcelizer',
+          category: 'Parcelizer',
+          title: 'Parcelizer',
+          eyebrow: 'Austin · GIS',
+          blurb: 'Explore Austin parcel boundaries. Click any parcel to load its zoning and metadata from Supabase.',
+          link: '/parcels/',
+          target: '_self',
+          accent: '#0067c5'
+        }
+      ];
 
       const CHATMAPS = [
         {
@@ -105,7 +117,7 @@
       fetch('/apps/storymaps/reports.json')
         .then(r => r.ok ? r.json() : [])
         .then(items => {
-          const all = [...(items || []), ...CHATMAPS];
+          const all = [...(items || []), ...PARCELIZER, ...CHATMAPS];
           if (!all.length) {
             document.querySelector('.storymap-nav-bar')?.remove();
             document.querySelector('.report-cards')?.remove();
@@ -155,6 +167,13 @@
             }
           }
 
+          function loadParcelsMap() {
+            const target = '/parcels/';
+            if (!frame.src.endsWith(target)) {
+              frame.src = target;
+            }
+          }
+
           function activateCard(card) {
             cardsContainer.querySelectorAll('.report-card').forEach(el => {
               el.classList.remove('is-active');
@@ -171,7 +190,7 @@
               const card = document.createElement(isLink ? 'a' : 'button');
               if (isLink) {
                 card.href = item.link;
-                card.target = '_blank';
+                card.target = item.target || '_blank';
                 card.rel = 'noopener noreferrer';
               } else {
                 card.type = 'button';
@@ -210,6 +229,7 @@
             });
             renderCards(cat);
             if (cat === 'ChatMaps') loadChatmapsOverview();
+            if (cat === 'Parcelizer') loadParcelsMap();
           }
 
           selectCategory(categories[0]);
