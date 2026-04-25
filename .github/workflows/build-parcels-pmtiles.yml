@@ -4,9 +4,13 @@ name: Build Parcels PMTiles
 # to Supabase Storage. Triggered manually from the Actions tab.
 #
 # Required repo secrets (Settings -> Secrets and variables -> Actions):
-#   DATABASE_URL          postgresql://postgres:<pw>@db.<ref>.supabase.co:5432/postgres
+#   SUPABASE_DB_PASSWORD  raw database password (no URL encoding, no URI)
 #   SUPABASE_URL          https://tqnklodtiithbsxxyycp.supabase.co
 #   SUPABASE_SERVICE_KEY  service-role key (NOT the anon key)
+#
+# Connection details for the Session pooler are hardcoded below — only the
+# password is a secret. This avoids any chance of URI-parsing trouble with
+# Supabase's auto-generated passwords.
 
 on:
   workflow_dispatch:
@@ -20,7 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      DATABASE_URL:         ${{ secrets.DATABASE_URL }}
+      # libpq picks these up automatically — ogr2ogr + psql both use libpq.
+      PGHOST:               aws-1-us-west-1.pooler.supabase.com
+      PGPORT:               "5432"
+      PGUSER:               postgres.tqnklodtiithbsxxyycp
+      PGPASSWORD:           ${{ secrets.SUPABASE_DB_PASSWORD }}
+      PGDATABASE:           postgres
       SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
       PMTILES_VERSION:      "1.22.2"
@@ -28,11 +37,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install GDAL
+      - name: Install GDAL + postgres client
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends gdal-bin
+          sudo apt-get install -y --no-install-recommends gdal-bin postgresql-client
           ogr2ogr --version
+          psql --version
+
+      - name: Verify required secrets are present
+        run: |
+          : "${PGPASSWORD:?SUPABASE_DB_PASSWORD secret missing}"
+          : "${SUPABASE_URL:?SUPABASE_URL secret missing}"
+          : "${SUPABASE_SERVICE_KEY:?SUPABASE_SERVICE_KEY secret missing}"
+          echo "secrets present"
+
+      - name: Test database connection
+        run: |
+          set -e
+          echo "Testing connection: $PGUSER @ $PGHOST:$PGPORT / $PGDATABASE"
+          psql -c 'select current_user, current_database(), now();'
 
       - name: Build tippecanoe (Felt fork)
         run: |
@@ -51,13 +74,6 @@ jobs:
             -o /tmp/pmtiles.tar.gz
           sudo tar -xzf /tmp/pmtiles.tar.gz -C /usr/local/bin pmtiles
           pmtiles version
-
-      - name: Verify required secrets are present
-        run: |
-          : "${DATABASE_URL:?DATABASE_URL secret missing}"
-          : "${SUPABASE_URL:?SUPABASE_URL secret missing}"
-          : "${SUPABASE_SERVICE_KEY:?SUPABASE_SERVICE_KEY secret missing}"
-          echo "secrets present"
 
       - name: Build & upload PMTiles
         run: bash scripts/parcels_make_pmtiles.sh
