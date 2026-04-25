@@ -51,7 +51,9 @@ declare
   v_offset   int;
   v_done     boolean;
   v_url      text;
+  v_resp     record;
   v_body     jsonb;
+  v_features jsonb;
   v_fetched  int;
   v_inserted int;
 begin
@@ -79,8 +81,24 @@ begin
         || '&$limit='  || p_limit
         || '&$offset=' || v_offset;
 
-  select (http_get(v_url)).content::jsonb into v_body;
-  v_fetched := coalesce(jsonb_array_length(v_body->'features'), 0);
+  -- Distinguish a real empty-page sentinel from a transient error: check
+  -- HTTP status, then check that 'features' is actually a JSON array.
+  select status, content::jsonb as body into v_resp from http_get(v_url);
+
+  if v_resp.status <> 200 then
+    perform pg_advisory_unlock(v_lock);
+    raise exception 'socrata http %: %', v_resp.status, left(v_resp.body::text, 300);
+  end if;
+
+  v_body     := v_resp.body;
+  v_features := v_body -> 'features';
+
+  if v_features is null or jsonb_typeof(v_features) <> 'array' then
+    perform pg_advisory_unlock(v_lock);
+    raise exception 'socrata response missing features array: %', left(v_body::text, 300);
+  end if;
+
+  v_fetched := jsonb_array_length(v_features);
 
   if v_fetched = 0 then
     update public.parcels_load_state
@@ -93,7 +111,7 @@ begin
   end if;
 
   with features as (
-    select jsonb_array_elements(v_body->'features') as f
+    select jsonb_array_elements(v_features) as f
   ),
   ins as (
     insert into public.parcels (parcel_id, geom, centroid, metadata)
