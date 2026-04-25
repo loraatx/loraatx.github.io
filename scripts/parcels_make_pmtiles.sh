@@ -3,19 +3,41 @@
 # parcels_make_pmtiles.sh — export parcels from PostGIS, tile with tippecanoe,
 # convert to PMTiles, and upload to Supabase Storage.
 #
-# Usage:
-#   DATABASE_URL='postgresql://...' \
-#   SUPABASE_URL='https://tqnklodtiithbsxxyycp.supabase.co' \
-#   SUPABASE_SERVICE_KEY='eyJhbGciOi...' \
-#     scripts/parcels_make_pmtiles.sh
+# Two ways to pass DB credentials. The script prefers libpq env vars when
+# present, which sidesteps any URI-parsing quirks with the password.
 #
-# Requires: ogr2ogr (gdal), tippecanoe, pmtiles, curl.
+#   (1) Discrete fields (recommended; libpq env vars):
+#       PGHOST=aws-1-us-west-1.pooler.supabase.com
+#       PGPORT=5432
+#       PGUSER=postgres.tqnklodtiithbsxxyycp
+#       PGPASSWORD=<db password, raw — no URL encoding>
+#       PGDATABASE=postgres
+#
+#   (2) URI form (legacy):
+#       DATABASE_URL='postgresql://postgres.<ref>:<pw>@<pooler-host>:5432/postgres'
+#
+# Plus, always:
+#   SUPABASE_URL='https://<ref>.supabase.co'
+#   SUPABASE_SERVICE_KEY='<service-role key>'
+#
+# Requires on PATH: ogr2ogr (gdal), tippecanoe, pmtiles, curl.
 
 set -euo pipefail
 
-: "${DATABASE_URL:?DATABASE_URL must be set}"
 : "${SUPABASE_URL:?SUPABASE_URL must be set (e.g. https://tqnklodtiithbsxxyycp.supabase.co)}"
 : "${SUPABASE_SERVICE_KEY:?SUPABASE_SERVICE_KEY must be set}"
+
+# Resolve which DB-connection style to use. PG* env vars win.
+if [[ -n "${PGHOST:-}" && -n "${PGUSER:-}" && -n "${PGPASSWORD:-}" ]]; then
+  PG_DSN=""    # ogr2ogr will fall back to libpq env vars
+  echo "[tiles] using libpq env vars (host=$PGHOST user=$PGUSER db=${PGDATABASE:-postgres})"
+elif [[ -n "${DATABASE_URL:-}" ]]; then
+  PG_DSN="$DATABASE_URL"
+  echo "[tiles] using DATABASE_URL"
+else
+  echo "Set either PGHOST/PGUSER/PGPASSWORD or DATABASE_URL." >&2
+  exit 2
+fi
 
 BUCKET="${BUCKET:-tiles}"
 OBJECT="${OBJECT:-austin-parcels.pmtiles}"
@@ -31,7 +53,7 @@ cd "$WORK"
 echo "[tiles] exporting parcels from PostGIS -> $WORK/parcels.geojsonl"
 ogr2ogr \
   -f GeoJSONSeq parcels.geojsonl \
-  "PG:$DATABASE_URL" \
+  "PG:$PG_DSN" \
   -sql "select parcel_id, geom from public.parcels"
 
 test -s parcels.geojsonl || { echo "export produced no rows — aborting" >&2; exit 1; }
