@@ -6,15 +6,29 @@
 -- per minute server-side.
 --
 -- ======================================================================
--- BEFORE RUNNING — VERIFY THE SOCRATA DATASET ID
+-- DATASET: q3y3-ungd  ("Zoning Ordinance" — City of Austin polygon boundaries)
 -- ======================================================================
--- The exact Socrata 4-4 ID for Austin's current "Zoning" polygon dataset
--- is not embedded as a constant here. Find it on
---   https://data.austintexas.gov/browse?q=zoning
--- by opening the official "Zoning" (or "Zoning Boundaries") dataset and
--- copying the trailing identifier from its URL. Set it below as
---   v_socrata_id := '<id>'
--- before pasting this file into the SQL editor.
+-- URL: https://data.austintexas.gov/Locations-and-Maps/Zoning-Ordinance/q3y3-ungd
+-- Field shape (verified via metadata; API rows may need inspection on first
+-- successful chunk):
+--   - 'the_geom' or 'geometry'                 — multipolygon
+--   - 'base_zone' or 'zoning_zty' or 'zoning'  — base zoning code
+--   - 'zoning_zone_class' or 'full_zoning'     — full string with overlays
+--   - 'zoning_overlay' or 'overlay'            — overlay code
+-- The function below uses coalesce() across these candidates so the loader
+-- works regardless of the actual key names; check parcels_load_state.last_result
+-- after the first chunk and adjust if 'skipped' is dominating 'inserted'.
+--
+-- Sibling: nbzi-qabm ("Zoning By Address") is address-indexed only and is
+-- NOT suitable for spatial joins — do not use that one here.
+--
+-- If the SODA endpoint returns empty 'properties' objects for this dataset
+-- (some Socrata "Map" views suppress row export), fall back to:
+--   1. Download GeoJSON from the dataset's "Export" button (Map view).
+--   2. ogr2ogr -f PostgreSQL "PG:$DATABASE_URL" zoning.geojson
+--        -nln public.zoning_polygons_stage -overwrite
+--        -lco GEOMETRY_NAME=geom -nlt PROMOTE_TO_MULTI
+--   3. INSERT INTO public.zoning_polygons (...) SELECT ... FROM stage.
 -- ======================================================================
 --
 -- How to run:
@@ -86,7 +100,7 @@ language plpgsql
 as $$
 declare
   v_lock        bigint := 7424243;            -- distinct from parcels lock
-  v_socrata_id  text   := 'REPLACE_WITH_AUSTIN_ZONING_DATASET_ID';
+  v_socrata_id  text   := 'q3y3-ungd';   -- "Zoning Ordinance" polygons
   v_offset      int;
   v_done        boolean;
   v_url         text;
@@ -104,10 +118,6 @@ declare
   v_overlay     text;
   v_full        text;
 begin
-  if v_socrata_id = 'REPLACE_WITH_AUSTIN_ZONING_DATASET_ID' then
-    raise exception 'set v_socrata_id in zoning_load_step() before scheduling the cron job';
-  end if;
-
   if not pg_try_advisory_lock(v_lock) then
     return 'skipped: prior run still holding lock';
   end if;
