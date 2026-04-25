@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parcelizer — embed</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link href="/style.css" rel="stylesheet" />
+  <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  <style>
+    /* Embed-only: full-bleed map card sized to fill the iframe, with the
+       same rounded-card look the standalone /parcels/ page uses. */
+    html, body { height: 100%; margin: 0; background: var(--background); }
+    body { display: block; }
+    .embed-card {
+      position: absolute;
+      inset: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px var(--shadow);
+      overflow: hidden;
+    }
+    #map { position: absolute; inset: 0; }
+  </style>
+</head>
+<body>
+  <div class="embed-card">
+    <div id="map"></div>
+    <div id="zoom-hint" class="zoom-hint" hidden>Zoom in to view parcels</div>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@3/dist/pmtiles.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
