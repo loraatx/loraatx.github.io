@@ -101,6 +101,7 @@
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+    map.addControl(new maplibregl.NavigationControl({ showZoom: false }), 'top-right');
 
     const engine = new TourEngine(map);
 

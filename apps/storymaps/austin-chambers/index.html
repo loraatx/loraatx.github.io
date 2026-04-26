@@ -55,6 +55,8 @@
       antialias: true
     });
 
+    map.addControl(new maplibregl.NavigationControl({ showZoom: false }), 'top-right');
+
     const engine = new StoryEngine(map);
 
     map.on('load', () => {

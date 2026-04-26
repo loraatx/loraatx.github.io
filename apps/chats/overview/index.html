@@ -125,6 +125,7 @@
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+    map.addControl(new maplibregl.NavigationControl({ showZoom: false }), 'top-right');
 
     map.on('load', async () => {
       const results = await Promise.all(
