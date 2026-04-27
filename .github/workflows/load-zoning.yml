@@ -42,7 +42,8 @@ jobs:
           psql --version
 
       - name: Verify required secret is present
-        run: : "${PGPASSWORD:?SUPABASE_DB_PASSWORD secret missing}"
+        run: |
+          : "${PGPASSWORD:?SUPABASE_DB_PASSWORD secret missing}"
 
       - name: Test database connection
         run: psql -c 'select current_user, current_database(), now();'
