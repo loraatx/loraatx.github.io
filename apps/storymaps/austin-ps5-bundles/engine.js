@@ -315,7 +315,11 @@ class StoryEngine {
     }
 
     if (p.body) {
-      html += `<div class="sm-popup-body">${p.body}</div>`;
+      const plain = p.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const sentences = plain.match(/[^.!?]+[.!?]+/g) || [plain];
+      html += '<ul class="sm-popup-bullets">';
+      sentences.slice(0, 3).forEach(s => { html += `<li>${s.trim()}</li>`; });
+      html += '</ul>';
     }
 
     if (p.stats?.length) {
