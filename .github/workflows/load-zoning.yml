@@ -1,14 +1,17 @@
 name: Load Zoning Polygons
 
-# Pulls Austin's "Zoning Ordinance" polygon dataset (Socrata q3y3-ungd) via
-# its GeoJSON export endpoint, loads it into Supabase Postgres + PostGIS,
-# spatial-joins it onto parcels.zoning, and (re)installs the constraints RPC.
+# Pulls Austin's authoritative zoning polygon dataset from the City of Austin
+# ArcGIS REST FeatureServer (PLANNINGCADASTRE_zoning_large_map_scale, owned by
+# CTM.Publisher), loads it into Supabase Postgres + PostGIS, spatial-joins it
+# onto parcels.zoning, and (re)installs the constraints RPC.
 #
-# This is the production loader because the SODA /resource/ endpoint for
-# this Map view returns suppressed (empty) properties, so the in-database
-# pgsql-http loader can't ingest it. The runner has unmetered bandwidth so
-# the GeoJSON download is free for the user — nothing touches the user's
-# laptop or hotspot.
+# Why ArcGIS, not Socrata: Austin's Socrata "Zoning Ordinance" view (q3y3-ungd)
+# is a federated view with `internalToPublicFederatedView` flag and zero
+# exposed columns — both the SODA /resource/ endpoint and the geospatial
+# /api/geospatial/ export return empty/truncated bodies. The ArcGIS layer is
+# the city's actively-maintained source (last MODIFIED_DATE ~3 days ago at
+# time of writing) and has the schema we need: ZONING_ZTYPE (full code with
+# overlays, e.g. "SF-3-NP") and ZONING_BASE (broad family, e.g. "SF").
 #
 # Required repo secrets (already configured for build-parcels-pmtiles.yml):
 #   SUPABASE_DB_PASSWORD  raw database password
@@ -29,7 +32,8 @@ jobs:
       PGUSER:     postgres.tqnklodtiithbsxxyycp
       PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
       PGDATABASE: postgres
-      DATASET_ID: q3y3-ungd
+      LAYER_URL:  https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/PLANNINGCADASTRE_zoning_large_map_scale/FeatureServer/0
+      PAGE_SIZE:  "2000"
 
     steps:
       - uses: actions/checkout@v4
@@ -62,17 +66,52 @@ jobs:
           end $$;
           SQL
 
-      - name: Download Austin zoning GeoJSON export
+      - name: Download zoning polygons from ArcGIS REST (paginated)
         run: |
           set -euo pipefail
-          URL="https://data.austintexas.gov/api/geospatial/${DATASET_ID}?method=export&format=GeoJSON"
-          echo "GET $URL"
-          curl -sSfL --retry 4 --retry-delay 5 --max-time 600 \
-            -H "Accept: application/json" \
-            "$URL" -o zoning.geojson
+          mkdir -p zoning_pages
+
+          # Sanity: make sure the layer answers and report total count.
+          TOTAL=$(curl -sSfL --retry 3 --max-time 60 \
+            "${LAYER_URL}/query?where=1%3D1&returnCountOnly=true&f=pjson" \
+            | jq '.count // 0')
+          echo "Layer reports $TOTAL features"
+          if [ "$TOTAL" -lt 1000 ]; then
+            echo "Refusing to proceed: count=$TOTAL is implausibly low (expected ~22k)" >&2
+            exit 1
+          fi
+
+          OFFSET=0
+          PAGE=0
+          while :; do
+            URL="${LAYER_URL}/query?where=1%3D1&outFields=*&outSR=4326&f=geojson&resultOffset=${OFFSET}&resultRecordCount=${PAGE_SIZE}"
+            curl -sSfL --retry 4 --retry-delay 5 --max-time 180 \
+              -H "Accept: application/json" \
+              "$URL" -o "zoning_pages/page_${PAGE}.geojson"
+            COUNT=$(jq '.features | length' "zoning_pages/page_${PAGE}.geojson")
+            echo "  page=$PAGE offset=$OFFSET features=$COUNT"
+            if [ "$COUNT" -eq 0 ]; then
+              rm "zoning_pages/page_${PAGE}.geojson"
+              break
+            fi
+            OFFSET=$((OFFSET + COUNT))
+            PAGE=$((PAGE + 1))
+            # Defensive cap: 50 pages * 2000 = 100k features, well above the ~22k we expect.
+            if [ "$PAGE" -ge 50 ]; then
+              echo "Hit page cap of 50 — aborting" >&2
+              exit 1
+            fi
+          done
+
+          jq -s '{type: "FeatureCollection", features: (map(.features) | flatten)}' \
+            zoning_pages/page_*.geojson > zoning.geojson
+          rm -rf zoning_pages
+
           ls -lh zoning.geojson
-          # Sanity: must be a non-empty GeoJSON FeatureCollection with populated properties.
-          jq '{type: .type, features: (.features | length), first_props_keys: ((.features[0].properties // {}) | keys), first_geom_type: (.features[0].geometry.type // null)}' zoning.geojson
+          jq '{type: .type,
+               features: (.features | length),
+               first_props_keys: ((.features[0].properties // {}) | keys),
+               first_geom_type:  (.features[0].geometry.type // null)}' zoning.geojson
 
       - name: Ensure rules table is installed
         run: psql -v ON_ERROR_STOP=1 -f scripts/sql/austin_zoning_rules.sql
