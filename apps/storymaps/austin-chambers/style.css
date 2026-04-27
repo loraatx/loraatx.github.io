@@ -191,27 +191,29 @@ html, body {
 
 /* ── MapLibre popup overrides ────────────────────────────────── */
 .maplibregl-popup-content {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
+  background: #fff;
+  color: #1c1c28;
+  border: 1px solid #e1e6ee;
   border-radius: 14px;
   padding: 0;
-  box-shadow: 0 12px 32px var(--shadow);
+  box-shadow: 0 12px 32px rgba(15, 25, 45, 0.12);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  min-width: 220px;
-  max-width: 320px;
-  overflow: hidden;
+  min-width: 242px;
+  max-width: 352px;
+  max-height: 55vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .maplibregl-popup-tip {
-  border-top-color: var(--surface) !important;
+  border-top-color: #fff !important;
 }
 
 .maplibregl-popup-close-button {
   position: absolute;
   top: 0;
   right: 0;
-  color: var(--muted);
+  color: #6f7780;
   font-size: 1.1rem;
   padding: 8px 11px;
   line-height: 1;
@@ -223,8 +225,8 @@ html, body {
   transition: color 0.15s ease, background 0.15s ease;
 }
 .maplibregl-popup-close-button:hover {
-  color: var(--text);
-  background: color-mix(in srgb, var(--border) 40%, transparent);
+  color: #1c1c28;
+  background: rgba(225, 230, 238, 0.4);
 }
 
 /* ── Rich popup inner layout ─────────────────────────────────── */
@@ -240,13 +242,13 @@ html, body {
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--text);
+  color: #1c1c28;
   line-height: 1.3;
 }
 .sm-popup-subtitle {
   margin: 3px 0 0;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: #6f7780;
   line-height: 1.4;
 }
 
@@ -263,7 +265,7 @@ html, body {
 }
 .sm-popup-figure figcaption {
   font-size: 0.72rem;
-  color: var(--muted);
+  color: #6f7780;
   padding: 4px 10px 2px;
   text-align: right;
 }
@@ -289,7 +291,7 @@ html, body {
 /* Body text */
 .sm-popup-body {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: #444;
   line-height: 1.55;
   margin-bottom: 10px;
 }
@@ -302,23 +304,23 @@ html, body {
   border-collapse: collapse;
   font-size: 0.82rem;
   margin-bottom: 12px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #e1e6ee;
 }
 .sm-popup-stats tr + tr td,
 .sm-popup-stats tr + tr th {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #e1e6ee;
 }
 .sm-popup-stats th {
   text-align: left;
   font-weight: 600;
-  color: var(--muted);
+  color: #6f7780;
   padding: 5px 8px 5px 0;
   white-space: nowrap;
   width: 42%;
 }
 .sm-popup-stats td {
   text-align: right;
-  color: var(--text);
+  color: #1c1c28;
   padding: 5px 0;
   font-weight: 700;
 }
@@ -354,7 +356,7 @@ html, body {
   .sm-brand-title { font-size: 0.85rem; }
 
   .maplibregl-popup-content {
-    max-width: 280px;
+    max-width: 308px;
   }
 
   .sm-play-btn {

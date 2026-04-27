@@ -245,7 +245,7 @@ class StoryEngine {
       closeOnClick: false,
       anchor: p.anchor ?? 'bottom',
       offset: p.offset ?? 12,
-      maxWidth: '320px',
+      maxWidth: '352px',
     })
       .setLngLat(lngLat)
       .setHTML(html)
