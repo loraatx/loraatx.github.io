@@ -170,7 +170,7 @@
         layout: { visibility: 'visible' }
       }, map.getStyle().layers[1].id);
 
-      // Group 1: Satellite + Buildings
+      // Satellite toggle
       map.addControl({
         onAdd() {
           this._container = document.createElement('div');
@@ -185,19 +185,6 @@
             this._satBtn.classList.toggle('active', !on);
           };
           this._container.appendChild(this._satBtn);
-
-          this._bldBtn = document.createElement('button');
-          this._bldBtn.className = 'buildings-btn active';
-          this._bldBtn.textContent = 'Buildings';
-          this._bldBtn.onclick = () => {
-            const on = map.getLayer('3d-buildings') &&
-              map.getLayoutProperty('3d-buildings', 'visibility') === 'visible';
-            if (map.getLayer('3d-buildings')) {
-              map.setLayoutProperty('3d-buildings', 'visibility', on ? 'none' : 'visible');
-            }
-            this._bldBtn.classList.toggle('active', !on);
-          };
-          this._container.appendChild(this._bldBtn);
 
           return this._container;
         },
