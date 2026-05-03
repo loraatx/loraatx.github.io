@@ -49,13 +49,13 @@ html, body {
   top: 20px;
   right: 20px;
   z-index: 20;
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  background: rgba(22, 27, 35, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
+  border: 1px solid #2a3040;
   border-radius: 14px;
   padding: 10px 14px;
-  box-shadow: 0 8px 24px var(--shadow);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   max-width: 220px;
 }
 
@@ -65,18 +65,18 @@ html, body {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #c0c7d1;
   text-decoration: none;
   margin-bottom: 4px;
   transition: color 0.15s ease;
 }
-.sm-brand-link:hover { color: var(--accent); }
+.sm-brand-link:hover { color: #4cc3ff; }
 
 .sm-brand-title {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--text);
+  color: #f5f7fa;
   line-height: 1.3;
 }
 
@@ -89,23 +89,23 @@ html, body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 1.5px solid #2a3040;
+  background: rgba(22, 27, 35, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--text);
+  color: #f5f7fa;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px var(--shadow);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
   transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.15s ease;
   padding: 0;
 }
 .sm-play-btn:hover {
   transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 10px 24px var(--shadow);
-  border-color: var(--accent);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+  border-color: #4cc3ff;
 }
 .sm-play-btn svg {
   width: 22px;
@@ -123,20 +123,20 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background: rgba(22, 27, 35, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
+  border: 1px solid #2a3040;
   border-radius: 99px;
   padding: 8px 14px;
-  box-shadow: 0 4px 14px var(--shadow);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
 }
 
 .sm-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--border);
+  background: #2a3040;
   border: none;
   padding: 0;
   cursor: pointer;
@@ -144,11 +144,11 @@ html, body {
   flex-shrink: 0;
 }
 .sm-dot:hover {
-  background: var(--muted);
+  background: #c0c7d1;
   transform: scale(1.25);
 }
 .sm-dot.is-active {
-  background: var(--accent);
+  background: #4cc3ff;
   width: 22px;
   border-radius: 99px;
   transform: none;
@@ -164,23 +164,23 @@ html, body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 1.5px solid #2a3040;
+  background: rgba(22, 27, 35, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--text);
+  color: #f5f7fa;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px var(--shadow);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
   transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.15s ease;
   padding: 0;
 }
 .sm-next-btn:hover {
   transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 10px 24px var(--shadow);
-  border-color: var(--accent);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+  border-color: #4cc3ff;
 }
 .sm-next-btn svg {
   width: 22px;
@@ -343,7 +343,7 @@ html, body {
 .sm-popup-link {
   display: block;
   text-align: center;
-  background: var(--accent);
+  background: #0067c5;
   color: #fff;
   border-radius: 8px;
   padding: 8px 12px;
@@ -354,7 +354,7 @@ html, body {
   margin-top: 2px;
 }
 .sm-popup-link:hover {
-  background: color-mix(in srgb, var(--accent) 80%, #000);
+  background: color-mix(in srgb, #0067c5 80%, #000);
   transform: translateY(-1px);
   color: #fff;
 }
