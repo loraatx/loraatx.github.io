@@ -1,19 +1,127 @@
 {
   "cityId": "atx",
   "title": "Pubchat · Austin",
-  "initialCamera": { "center": [-97.7481, 30.26765], "zoom": 15 },
+  "initialCamera": { "center": [-97.7440, 30.2680], "zoom": 13 },
   "hotspots": [
     {
-      "id": "austin-central-library",
-      "title": "Austin Central Library",
-      "subtitle": "Testing spot — say hi!",
-      "geofence": { "center": [-97.751987, 30.265973], "radiusMeters": 300 }
+      "id": "driskill-bar",
+      "title": "The Driskill Bar",
+      "subtitle": "Historic 1886 hotel bar — downtown",
+      "geofence": { "center": [-97.74251, 30.26789], "radiusMeters": 70 }
     },
     {
-      "id": "republic-square",
-      "title": "Republic Square",
-      "subtitle": "Farmers market + shady lawn",
-      "geofence": { "center": [-97.7454, 30.2684], "radiusMeters": 100 }
+      "id": "petes-dueling-piano",
+      "title": "Pete's Dueling Piano Bar",
+      "subtitle": "Sing-along piano bar on 6th",
+      "geofence": { "center": [-97.73976, 30.26715], "radiusMeters": 60 }
+    },
+    {
+      "id": "roosevelt-room",
+      "title": "The Roosevelt Room",
+      "subtitle": "Award-winning craft cocktails",
+      "geofence": { "center": [-97.74686, 30.26747], "radiusMeters": 60 }
+    },
+    {
+      "id": "kung-fu-saloon",
+      "title": "Kung Fu Saloon",
+      "subtitle": "Arcade games + cocktails on West 6th",
+      "geofence": { "center": [-97.74957, 30.27035], "radiusMeters": 60 }
+    },
+    {
+      "id": "stubbs-bbq",
+      "title": "Stubb's Bar-B-Q",
+      "subtitle": "Iconic live music venue + BBQ",
+      "geofence": { "center": [-97.73598, 30.26929], "radiusMeters": 80 }
+    },
+    {
+      "id": "mohawk",
+      "title": "Mohawk",
+      "subtitle": "Red River live music staple",
+      "geofence": { "center": [-97.73604, 30.27006], "radiusMeters": 60 }
+    },
+    {
+      "id": "container-bar",
+      "title": "Container Bar",
+      "subtitle": "Shipping-container bar on Rainey",
+      "geofence": { "center": [-97.73928, 30.26057], "radiusMeters": 60 }
+    },
+    {
+      "id": "bangers",
+      "title": "Banger's Sausage House & Beer Garden",
+      "subtitle": "Huge beer garden on Rainey Street",
+      "geofence": { "center": [-97.73936, 30.26033], "radiusMeters": 70 }
+    },
+    {
+      "id": "easy-tiger",
+      "title": "Easy Tiger",
+      "subtitle": "Beer garden + bakery, East 7th",
+      "geofence": { "center": [-97.72840, 30.26430], "radiusMeters": 70 }
+    },
+    {
+      "id": "hotel-vegas",
+      "title": "Hotel Vegas",
+      "subtitle": "East 6th dive + indie live music",
+      "geofence": { "center": [-97.72845, 30.26194], "radiusMeters": 60 }
+    },
+    {
+      "id": "whislers",
+      "title": "Whisler's",
+      "subtitle": "Cocktails + mezcal bar, East 6th",
+      "geofence": { "center": [-97.72537, 30.26171], "radiusMeters": 60 }
+    },
+    {
+      "id": "white-horse",
+      "title": "The White Horse",
+      "subtitle": "East-side honky-tonk + dance floor",
+      "geofence": { "center": [-97.72244, 30.26288], "radiusMeters": 60 }
+    },
+    {
+      "id": "sahara-lounge",
+      "title": "Sahara Lounge",
+      "subtitle": "Eclectic far-east-side music venue",
+      "geofence": { "center": [-97.70123, 30.28072], "radiusMeters": 70 }
+    },
+    {
+      "id": "continental-club",
+      "title": "The Continental Club",
+      "subtitle": "Legendary South Congress music club",
+      "geofence": { "center": [-97.74926, 30.25196], "radiusMeters": 60 }
+    },
+    {
+      "id": "cboys",
+      "title": "C-Boy's Heart & Soul",
+      "subtitle": "South Congress live soul + R&B",
+      "geofence": { "center": [-97.75065, 30.24747], "radiusMeters": 60 }
+    },
+    {
+      "id": "broken-spoke",
+      "title": "The Broken Spoke",
+      "subtitle": "Classic Texas dance hall, South Lamar",
+      "geofence": { "center": [-97.78384, 30.23492], "radiusMeters": 80 }
+    },
+    {
+      "id": "mean-eyed-cat",
+      "title": "Mean Eyed Cat",
+      "subtitle": "Johnny Cash–themed dive on West 5th",
+      "geofence": { "center": [-97.76165, 30.26938], "radiusMeters": 60 }
+    },
+    {
+      "id": "the-tavern",
+      "title": "The Tavern",
+      "subtitle": "Tudor-style sports bar, West 12th",
+      "geofence": { "center": [-97.75300, 30.27876], "radiusMeters": 60 }
+    },
+    {
+      "id": "shoal-creek-saloon",
+      "title": "Shoal Creek Saloon",
+      "subtitle": "Cajun food + sports on North Lamar",
+      "geofence": { "center": [-97.75019, 30.27272], "radiusMeters": 60 }
+    },
+    {
+      "id": "little-longhorn",
+      "title": "Little Longhorn Saloon",
+      "subtitle": "Home of Chicken Sh*t Bingo (north)",
+      "geofence": { "center": [-97.74006, 30.32665], "radiusMeters": 60 }
     }
   ]
 }
