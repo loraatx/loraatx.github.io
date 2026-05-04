@@ -196,6 +196,16 @@ main {
 }
 .storymap-nav-bar::-webkit-scrollbar { display: none; }
 
+.reports-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
 .storymap-nav {
   display: flex;
   gap: 8px;

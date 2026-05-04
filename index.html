@@ -41,6 +41,7 @@
     </section>
 
     <section class="storymap-nav-bar">
+      <strong class="reports-label">Reports</strong>
       <div id="category-nav" class="storymap-nav" role="group" aria-label="Report category selector"></div>
     </section>
 
@@ -69,55 +70,12 @@
       const cardsContainer = document.getElementById('report-cards');
       if (!frame || !categoryNav || !cardsContainer) return;
 
-      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government', 'Parcelizer', 'ChatMaps'];
+      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government'];
 
-      const PARCELIZER = [
-        {
-          id: 'parcelizer',
-          category: 'Parcelizer',
-          title: 'Parcelizer',
-          eyebrow: 'Austin · GIS',
-          blurb: 'Explore Austin parcel boundaries. Click any parcel to load its zoning and metadata from Supabase.',
-          link: '/parcels/',
-          target: '_self',
-          accent: '#0067c5'
-        }
-      ];
-
-      const CHATMAPS = [
-        {
-          id: 'pubchat',
-          category: 'ChatMaps',
-          title: 'Pubchat',
-          eyebrow: 'Austin · Live chat',
-          blurb: 'Walk into an Austin pub and drop into a public chat with whoever is there right now.',
-          link: '/apps/chats/pubchat/',
-          accent: '#e11d74'
-        },
-        {
-          id: 'librarychat',
-          category: 'ChatMaps',
-          title: 'LibraryChat',
-          eyebrow: 'Austin · Live chat',
-          blurb: 'Every Austin Public Library branch is its own live reading-room chat.',
-          link: '/apps/chats/librarychat/',
-          accent: '#2d7a1a'
-        },
-        {
-          id: 'feedingschat',
-          category: 'ChatMaps',
-          title: 'Feedingschat',
-          eyebrow: 'Austin · Live chat',
-          blurb: 'Free-meal sites across Austin — every soup kitchen and community dinner is its own live chat.',
-          link: '/apps/chats/homelesschat/',
-          accent: '#c05621'
-        }
-      ];
-
-      fetch('/apps/storymaps/reports.json')
+      fetch('/apps/productreports/storymaps/reports.json')
         .then(r => r.ok ? r.json() : [])
         .then(items => {
-          const all = [...(items || []), ...PARCELIZER, ...CHATMAPS];
+          const all = [...(items || [])];
           if (!all.length) {
             document.querySelector('.storymap-nav-bar')?.remove();
             document.querySelector('.report-cards')?.remove();
@@ -154,21 +112,7 @@
           });
 
           function loadStoryMap(id) {
-            const target = '/apps/storymaps/' + id + '/';
-            if (!frame.src.endsWith(target)) {
-              frame.src = target;
-            }
-          }
-
-          function loadChatmapsOverview() {
-            const target = '/apps/chats/overview/';
-            if (!frame.src.endsWith(target)) {
-              frame.src = target;
-            }
-          }
-
-          function loadParcelsMap() {
-            const target = '/parcels/embed.html';
+            const target = '/apps/productreports/storymaps/' + id + '/';
             if (!frame.src.endsWith(target)) {
               frame.src = target;
             }
@@ -228,8 +172,6 @@
               btn.classList.toggle('is-active', key === cat);
             });
             renderCards(cat);
-            if (cat === 'ChatMaps') loadChatmapsOverview();
-            if (cat === 'Parcelizer') loadParcelsMap();
           }
 
           selectCategory(categories[0]);
