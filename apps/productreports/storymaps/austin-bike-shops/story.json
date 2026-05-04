@@ -3,12 +3,7 @@
   "subtitle": "Independents, brand stores, the co-op, and an e-bike outlier",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.742, 30.353],
-    "zoom": 10,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.742, 30.353], "zoom": 10, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.742, 30.353],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.742, 30.353], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["bike-shops"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.742, 30.353],
         "anchor": "bottom",
-        "title": "Bike & E-Bike Shops in Greater Austin",
-        "subtitle": "A Product Intelligence Report",
-        "body": "12 bicycle and e-bike shops are profiled in this report. Types covered include independent shops, brand chain stores, a co-op, and dedicated e-bike specialists. Austin Tri Cyclist near Barton Springs and Austin Bike Farm on Burnet Road are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-bike-shops/",
-          "text": "Open the interactive map →"
-        }
+        "title": "Bike & E-Bike Shops",
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "12 bicycle and e-bike shops profiled. Types: independents, brand chains, a co-op, and e-bike specialists. Highlights include Austin Tri Cyclist and Austin Bike Farm."
       }
     },
 
@@ -59,14 +43,7 @@
       "id": "austin-tri-cyclist",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.754525, 30.259694],
-        "zoom": 15,
-        "pitch": 55,
-        "bearing": 35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.754525, 30.259694], "zoom": 15, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["bike-shops"],
       "hideLayers": [],
       "popup": {
@@ -74,16 +51,11 @@
         "anchor": "bottom",
         "title": "Austin Tri Cyclist",
         "subtitle": "923 Barton Springs Rd · South Central",
-        "body": "A longstanding triathlon and road-focused independent on Barton Springs carrying Cervélo and Cannondale. Professional bike fitting is part of the core offer. Current inventory is primarily analog rather than electric.",
+        "body": "Triathlon-focused independent carrying Cervélo and Cannondale. Professional fitting available. Limited e-bike selection.",
         "stats": [
           { "label": "Type",    "value": "Independent" },
-          { "label": "Pro Fit", "value": "Yes"         },
-          { "label": "E-Bikes", "value": "Limited"     }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-bike-shops/",
-          "text": "View on the map →"
-        }
+          { "label": "Pro Fit", "value": "Yes"         }
+        ]
       }
     },
 
@@ -91,14 +63,7 @@
       "id": "austin-bike-farm",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7401945, 30.3295116],
-        "zoom": 15.5,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7401945, 30.3295116], "zoom": 15.5, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["bike-shops"],
       "hideLayers": [],
       "popup": {
@@ -106,16 +71,11 @@
         "anchor": "bottom",
         "title": "Austin Bike Farm",
         "subtitle": "5440 Burnet Rd · Rosedale",
-        "body": "A new-and-used shop on Burnet focused on mountain bikes and trail riding. Its Specialized line includes Turbo e-MTBs, making it a crossover option for electric off-road setups. Full repair bench on-site.",
+        "body": "Mountain bike shop carrying Specialized Turbo e-MTBs. New and used inventory. Full repair bench on-site.",
         "stats": [
-          { "label": "Type",    "value": "Independent"            },
           { "label": "Focus",   "value": "MTB + trail"            },
           { "label": "E-Bikes", "value": "Yes (Specialized Turbo)" }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-bike-shops/",
-          "text": "View on the map →"
-        }
+        ]
       }
     },
 
@@ -123,14 +83,7 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.742, 30.353],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.742, 30.353], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["bike-shops"],
       "hideLayers": [],
       "popup": {
@@ -140,13 +93,14 @@
         "subtitle": "All 12 shops — locations, pricing, and e-bike programs",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Bike Shops Product Intelligence Report preview",
+          "alt": "Bike Shops Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

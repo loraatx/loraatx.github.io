@@ -3,12 +3,7 @@
   "subtitle": "A regional, affinity, and corridor tour",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.727, 30.379],
-    "zoom": 9.5,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.727, 30.379], "zoom": 9.5, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.727, 30.379],
-        "zoom": 9.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.727, 30.379], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["chambers"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.727, 30.379],
         "anchor": "bottom",
-        "title": "Austin-Area Chambers of Commerce",
-        "subtitle": "A Product Intelligence Report",
-        "body": "12 chambers of commerce are profiled in this report. Types covered include the regional hub, four affinity chambers serving diverse business communities, geographic corridor chambers, and a young professionals organization. The Austin Chamber of Commerce downtown and the Austin LGBT Chamber of Commerce are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-chambers/",
-          "text": "Open the interactive map →"
-        }
+        "title": "Chambers of Commerce",
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "12 chambers profiled across the metro. Types: regional hub, affinity chambers, geographic corridors, and young professionals. Highlights include the Austin Chamber and Austin LGBT Chamber."
       }
     },
 
@@ -59,14 +43,7 @@
       "id": "austin-chamber",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.737844, 30.265423],
-        "zoom": 15,
-        "pitch": 55,
-        "bearing": 35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.737844, 30.265423], "zoom": 15, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["chambers"],
       "hideLayers": [],
       "popup": {
@@ -74,15 +51,11 @@
         "anchor": "bottom",
         "title": "Austin Chamber of Commerce",
         "subtitle": "535 E 5th St · Downtown",
-        "body": "The regional hub for Greater Austin's economy — leading business recruitment, Opportunity Austin, and advocacy at the local and state level. Headquartered at 535 East 5th Street in the heart of downtown. Serves as the front door for companies considering relocation to the metro.",
+        "body": "The regional hub for Greater Austin — leading business recruitment, Opportunity Austin, and state-level advocacy. Front door for companies considering relocation to the metro.",
         "stats": [
           { "label": "Focus",  "value": "Regional"       },
           { "label": "Region", "value": "Greater Austin" }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-chambers/",
-          "text": "View on the map →"
-        }
+        ]
       }
     },
 
@@ -90,30 +63,19 @@
       "id": "affinity-lgbt",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7449999, 30.2673437],
-        "zoom": 15.5,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7449999, 30.2673437], "zoom": 15.5, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["chambers"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.7449999, 30.2673437],
         "anchor": "bottom",
-        "title": "Austin LGBT Chamber of Commerce",
+        "title": "Austin LGBT Chamber",
         "subtitle": "201 W 5th St · Downtown",
-        "body": "One of four affinity chambers in DECA — the Diversity and Ethnic Chamber Alliance — alongside the Greater Austin Asian, Hispanic, and Black chambers. Founded in the late 1990s, it empowers LGBTQ+ and allied businesses through marketing, education, and signature events.",
+        "body": "One of four DECA affinity chambers alongside Asian, Hispanic, and Black chambers. Empowers LGBTQ+ and allied businesses through events, education, and marketing.",
         "stats": [
           { "label": "Focus",   "value": "Affinity (LGBTQ+)" },
           { "label": "Founded", "value": "Late 1990s"        }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-chambers/",
-          "text": "View on the map →"
-        }
+        ]
       }
     },
 
@@ -121,30 +83,24 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.727, 30.379],
-        "zoom": 9.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.727, 30.379], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["chambers"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.727, 30.379],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 chambers — profiles, services, and contact details",
+        "subtitle": "All 12 chambers — profiles, services, and contacts",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Chambers of Commerce Product Intelligence Report preview",
+          "alt": "Chambers of Commerce Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

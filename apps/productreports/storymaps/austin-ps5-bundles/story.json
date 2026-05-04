@@ -3,12 +3,7 @@
   "subtitle": "Big-box, warehouse club, and local used-game stops",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.756, 30.305],
-    "zoom": 10,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.756, 30.305], "zoom": 10, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.756, 30.305],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.756, 30.305], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["ps5-stores"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.756, 30.305],
         "anchor": "bottom",
         "title": "PS5 Slim Bundles in Austin",
-        "subtitle": "A Product Intelligence Report",
-        "body": "18 retail locations are profiled in this report across seven major retailers. Store types covered include big-box chains, warehouse clubs, specialty game stores, and local used-game shops. Best Buy North Austin — with the widest PS5 Slim selection in town — and Target Austin North — with the best current bundle pricing — are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-ps5-bundles/",
-          "text": "Open the interactive map →"
-        }
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "18 retail locations across 7 retailers profiled. Types: big-box chains, warehouse clubs, specialty game stores, and used-game shops. Highlights include Best Buy North and Target Austin North."
       }
     },
 
@@ -59,14 +43,7 @@
       "id": "best-buy-north",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7395, 30.3792],
-        "zoom": 15,
-        "pitch": 55,
-        "bearing": 35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7395, 30.3792], "zoom": 15, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["ps5-stores"],
       "hideLayers": [],
       "popup": {
@@ -74,15 +51,11 @@
         "anchor": "bottom",
         "title": "Best Buy North Austin",
         "subtitle": "9607 Research Blvd · 78759",
-        "body": "The widest selection of PS5 Slim SKUs in Austin — from the $549.99 disc console and $499.99 Digital Edition to Fortnite, Cobalt Star, and Spider-Man 2 bundle packs. Full in-store trade-in and open-box programs available. Best Buy Totaltech members get additional discounts.",
+        "body": "Widest PS5 Slim selection in Austin. Disc console $549.99, Digital $499.99. Fortnite, Cobalt Star, and Spider-Man 2 bundle packs available.",
         "stats": [
-          { "label": "Disc console",  "value": "$549.99" },
-          { "label": "Digital",       "value": "$499.99" }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-ps5-bundles/",
-          "text": "View on the map →"
-        }
+          { "label": "Disc",    "value": "$549.99" },
+          { "label": "Digital", "value": "$499.99" }
+        ]
       }
     },
 
@@ -90,14 +63,7 @@
       "id": "target-north",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7158, 30.3623],
-        "zoom": 15,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7158, 30.3623], "zoom": 15, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["ps5-stores"],
       "hideLayers": [],
       "popup": {
@@ -105,15 +71,11 @@
         "anchor": "bottom",
         "title": "Target Austin North",
         "subtitle": "8601 Research Blvd · 78758",
-        "body": "Target's Fortnite Flowering Chaos bundles offer the best value — $449.99 for the disc console and $399.99 for the Digital Edition, roughly $100 off MSRP. Order Pickup, Drive Up, and same-day Shipt delivery all supported. Circle 360 members stack an additional 5% back.",
+        "body": "Best current bundle value — Fortnite Flowering Chaos disc $449.99, digital $399.99. About $100 off MSRP. Order Pickup and Drive Up available.",
         "stats": [
           { "label": "Disc bundle",    "value": "$449.99" },
           { "label": "Digital bundle", "value": "$399.99" }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-ps5-bundles/",
-          "text": "View on the map →"
-        }
+        ]
       }
     },
 
@@ -121,14 +83,7 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.756, 30.305],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.756, 30.305], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["ps5-stores"],
       "hideLayers": [],
       "popup": {
@@ -138,13 +93,14 @@
         "subtitle": "All 18 stores — every bundle, price, and fulfillment option",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "PS5 Bundles Product Intelligence Report preview",
+          "alt": "PS5 Bundles Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

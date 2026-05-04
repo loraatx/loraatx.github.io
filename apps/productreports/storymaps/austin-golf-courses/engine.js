@@ -330,7 +330,14 @@ class StoryEngine {
       html += '</table>';
     }
 
-    if (p.link?.href) {
+    if (p.links?.length) {
+      html += '<div class="sm-popup-links">';
+      p.links.forEach((l, i) => {
+        const cls = i === 0 ? 'sm-popup-link' : 'sm-popup-link sm-popup-link--secondary';
+        html += `<a class="${cls}" href="${l.href || '#'}" target="_blank" rel="noopener noreferrer">${l.text ?? 'View →'}</a>`;
+      });
+      html += '</div>';
+    } else if (p.link?.href) {
       html += `<a class="sm-popup-link" href="${p.link.href}" target="_blank" rel="noopener noreferrer">${p.link.text ?? 'View →'}</a>`;
     }
 

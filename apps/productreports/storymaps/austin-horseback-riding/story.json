@@ -3,12 +3,7 @@
   "subtitle": "Trail rides, lesson barns, and equine experiences",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.795, 30.251],
-    "zoom": 10,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.795, 30.251], "zoom": 10, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.795, 30.251],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.795, 30.251], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.795, 30.251],
         "anchor": "bottom",
         "title": "Horseback Riding in Greater Austin",
-        "subtitle": "A Product Intelligence Report",
-        "body": "17 public-facing horseback riding operations are profiled in this report. Types covered include guided trail ride ranches, structured English and Western lesson barns, and a luxury wellness resort equine program. Southern Trails in Manor and Miraval Austin Resort overlooking Lake Travis are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-horseback-riding/",
-          "text": "Open the interactive map →"
-        }
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "17 riding operations profiled within an hour of downtown. Types: guided trail ranches, lesson barns, and a luxury wellness resort. Highlights include Southern Trails and Miraval Austin."
       }
     },
 
@@ -59,14 +43,7 @@
       "id": "southern-trails",
       "transition": "fly",
       "duration": 7500,
-      "camera": {
-        "center": [-97.5661, 30.3289],
-        "zoom": 14,
-        "pitch": 55,
-        "bearing": -40,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.5661, 30.3289], "zoom": 14, "pitch": 55, "bearing": -40, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
@@ -74,15 +51,10 @@
         "anchor": "bottom",
         "title": "Southern Trails",
         "subtitle": "15701 Decker Lake Rd · Manor",
-        "body": "Just 15 minutes from downtown, Southern Trails runs highly rated guided ranch rides on a 100–120-acre property with scenic terrain. Kids' Little Dude rides and sunset trail options make it accessible to all ages. One of the closest full-service trail ride ranches to central Austin.",
+        "body": "Guided ranch rides on 100–120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
         "stats": [
-          { "label": "Focus",      "value": "Ranch trail rides"         },
-          { "label": "Drive time", "value": "~15 min from downtown"      }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-horseback-riding/",
-          "text": "View on the map →"
-        }
+          { "label": "Drive time", "value": "~15 min" }
+        ]
       }
     },
 
@@ -90,30 +62,18 @@
       "id": "miraval",
       "transition": "fly",
       "duration": 7500,
-      "camera": {
-        "center": [-97.9812, 30.4837],
-        "zoom": 13,
-        "pitch": 50,
-        "bearing": -20,
-        "speed": 0.75,
-        "curve": 1.35
-      },
+      "camera": { "center": [-97.9812, 30.4837], "zoom": 13, "pitch": 50, "bearing": -20, "speed": 0.75, "curve": 1.35 },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.9812, 30.4837],
         "anchor": "bottom",
         "title": "Miraval Austin Resort & Spa",
-        "subtitle": "Northwest Austin · Lake Travis",
-        "body": "Overlooking Lake Travis on 220+ acres, Miraval Austin integrates horseback riding into a holistic wellness retreat. Rhythmic riding, equine-assisted self-leadership experiences, and private trail rides are available as part of all-inclusive packages. The premium end of Austin's equine scene.",
+        "subtitle": "Lake Travis · Northwest Austin",
+        "body": "220+ acres overlooking Lake Travis. Equine-assisted self-leadership and trail rides as part of all-inclusive wellness packages. The premium end of Austin's riding scene.",
         "stats": [
-          { "label": "Focus",      "value": "Wellness resort"           },
-          { "label": "Drive time", "value": "~40 min from downtown"      }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-horseback-riding/",
-          "text": "View on the map →"
-        }
+          { "label": "Drive time", "value": "~40 min" }
+        ]
       }
     },
 
@@ -121,14 +81,7 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.795, 30.251],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.795, 30.251], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["operators"],
       "hideLayers": [],
       "popup": {
@@ -138,13 +91,14 @@
         "subtitle": "All 17 operators — prices, age limits, and what to expect",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Horseback Riding Product Intelligence Report preview",
+          "alt": "Horseback Riding Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

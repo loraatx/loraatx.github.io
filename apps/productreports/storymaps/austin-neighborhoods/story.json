@@ -3,12 +3,7 @@
   "subtitle": "Historic, eclectic, and master-planned communities",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.754, 30.264],
-    "zoom": 10,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.754, 30.264], "zoom": 10, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.754, 30.264],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.754, 30.264], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["neighborhoods"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.754, 30.264],
         "anchor": "bottom",
-        "title": "Historic & Emerging Neighborhoods of Austin",
-        "subtitle": "A Product Intelligence Report",
-        "body": "33 Austin neighborhoods are surveyed in this report. Eras covered range from 19th-century freedmen's settlements and early streetcar suburbs to postwar bungalow districts and 21st-century master-planned communities. Clarksville — one of the oldest freedmen's towns west of the Mississippi — and Mueller, built on the former municipal airport site, are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-neighborhoods/",
-          "text": "Open the interactive map →"
-        }
+        "title": "Historic & Emerging Neighborhoods",
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "33 Austin neighborhoods surveyed. Eras: freedmen's settlements, streetcar suburbs, postwar bungalow districts, and master-planned communities. Highlights include Clarksville and Mueller."
       }
     },
 
@@ -59,14 +43,7 @@
       "id": "clarksville",
       "transition": "fly",
       "duration": 7500,
-      "camera": {
-        "center": [-97.762, 30.275],
-        "zoom": 14.5,
-        "pitch": 55,
-        "bearing": 35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.762, 30.275], "zoom": 14.5, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["neighborhoods"],
       "hideLayers": [],
       "popup": {
@@ -74,16 +51,11 @@
         "anchor": "bottom",
         "title": "Clarksville",
         "subtitle": "West Austin · Founded 1871",
-        "body": "Founded in 1871 by Charles Clark, Clarksville is one of the first freedmen's towns established west of the Mississippi River. Highway construction substantially reduced its original footprint, but it remains a critical chapter in Austin's African American history. Among the oldest intact freedmen's communities in Texas.",
+        "body": "One of the oldest freedmen's towns west of the Mississippi. Founded by Charles Clark after emancipation. A surviving chapter of Austin's African American history despite highway construction reducing its footprint.",
         "stats": [
-          { "label": "Founded",  "value": "1871"         },
-          { "label": "Type",     "value": "Freedmen's town" },
-          { "label": "Area",     "value": "West Austin"  }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-neighborhoods/",
-          "text": "View on the map →"
-        }
+          { "label": "Founded", "value": "1871"            },
+          { "label": "Type",    "value": "Freedmen's town" }
+        ]
       }
     },
 
@@ -91,31 +63,19 @@
       "id": "mueller",
       "transition": "fly",
       "duration": 7500,
-      "camera": {
-        "center": [-97.704, 30.300],
-        "zoom": 13,
-        "pitch": 50,
-        "bearing": -45,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.704, 30.300], "zoom": 13, "pitch": 50, "bearing": -45, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["neighborhoods"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.704, 30.300],
         "anchor": "bottom",
         "title": "Mueller",
-        "subtitle": "East Austin · Former municipal airport site",
-        "body": "Built on the former Robert Mueller Municipal Airport, Mueller is one of the country's most prominent new-urbanist infill redevelopments — targeting thousands of mixed-income homes with a fine-grained street grid and extensive parks. A national model for converting decommissioned urban airport land into walkable neighborhoods.",
+        "subtitle": "East Austin · Former airport site",
+        "body": "Built on the decommissioned Robert Mueller Airport. One of the country's most-cited new-urbanist infill projects — mixed-income homes, fine-grained streets, and extensive parkland on 700+ acres.",
         "stats": [
-          { "label": "Site size",   "value": "700+ acres"    },
-          { "label": "Type",        "value": "New-urbanist infill" },
-          { "label": "Area",        "value": "East Austin"   }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-neighborhoods/",
-          "text": "View on the map →"
-        }
+          { "label": "Site",  "value": "700+ acres"         },
+          { "label": "Type",  "value": "New-urbanist infill" }
+        ]
       }
     },
 
@@ -123,30 +83,24 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.754, 30.264],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.754, 30.264], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["neighborhoods"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.754, 30.264],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 33 neighborhoods — history, demographics, and character",
+        "subtitle": "All 33 neighborhoods — history, character, and context",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Neighborhoods Product Intelligence Report preview",
+          "alt": "Neighborhoods Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

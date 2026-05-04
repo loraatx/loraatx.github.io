@@ -1,24 +1,16 @@
 {
   "title": "Austin's Public Pools",
-  "subtitle": "A City Anatomy Story",
+  "subtitle": "Spring-fed, lap pools, and splash pads across the city",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.7431, 30.2672],
-    "zoom": 10,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.7431, 30.2672], "zoom": 10, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
       "id": "pool-areas",
       "type": "fill",
       "source": "data/pool-areas.geojson",
-      "paint": {
-        "fill-color": "#0067c5",
-        "fill-opacity": 0
-      },
+      "paint": { "fill-color": "#0067c5", "fill-opacity": 0 },
       "transitionOpacity": 0.35,
       "transitionDuration": 700,
       "insertBefore": "road-label"
@@ -27,10 +19,7 @@
       "id": "parks",
       "type": "fill",
       "source": "data/parks.geojson",
-      "paint": {
-        "fill-color": "#2b8a3e",
-        "fill-opacity": 0
-      },
+      "paint": { "fill-color": "#2b8a3e", "fill-opacity": 0 },
       "transitionOpacity": 0.2,
       "transitionDuration": 700,
       "insertBefore": "road-label"
@@ -39,11 +28,7 @@
       "id": "creek-corridors",
       "type": "line",
       "source": "data/creek-corridors.geojson",
-      "paint": {
-        "line-color": "#1d8ca0",
-        "line-opacity": 0,
-        "line-width": 3
-      },
+      "paint": { "line-color": "#1d8ca0", "line-opacity": 0, "line-width": 3 },
       "transitionOpacity": 0.9,
       "transitionDuration": 800
     }
@@ -54,26 +39,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7431, 30.2672],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.7431, 30.2672], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["parks"],
       "hideLayers": ["pool-areas", "creek-corridors"],
       "popup": {
         "lngLat": [-97.7431, 30.2672],
         "anchor": "bottom",
         "title": "Austin's Public Pool Network",
-        "subtitle": "A Product Intelligence Report",
-        "body": "22 public aquatic facilities are mapped in this report. Types covered include historic spring-fed pools, competitive lap pools, and modern splash pads distributed across all ten council districts. Barton Springs Pool — fed by underground springs at a constant 68°F since 1917 — and Deep Eddy Pool — Texas's oldest public pool, built in 1915 — are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/PoolOpenings/",
-          "text": "Open the interactive map →"
-        }
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "22 public aquatic facilities mapped. Types: historic spring-fed pools, competitive lap pools, and modern splash pads. Highlights include Barton Springs Pool and Deep Eddy Pool."
       }
     },
 
@@ -81,14 +55,7 @@
       "id": "barton-springs",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7698, 30.2629],
-        "zoom": 16.5,
-        "pitch": 55,
-        "bearing": 90,
-        "speed": 0.75,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7698, 30.2629], "zoom": 16.5, "pitch": 55, "bearing": 90, "speed": 0.75, "curve": 1.4 },
       "showLayers": ["pool-areas", "creek-corridors"],
       "hideLayers": ["parks"],
       "popup": {
@@ -96,16 +63,11 @@
         "anchor": "bottom",
         "title": "Barton Springs Pool",
         "subtitle": "900 Barton Springs Rd · Zilker Park",
-        "body": "Fed by underground springs at a constant 68°F, Barton Springs has been Austin's outdoor living room since 1917. The 3-acre pool draws over 800,000 visitors annually. Open year-round — and free before 8 am and after 9 pm.",
+        "body": "Spring-fed at a constant 68°F since 1917. The 3-acre pool draws 800,000+ visitors annually. Free before 8 am and after 9 pm.",
         "stats": [
-          { "label": "Water temp",  "value": "68°F year-round" },
-          { "label": "Pool size",   "value": "~3 acres"        },
-          { "label": "Open since",  "value": "1917"            }
-        ],
-        "link": {
-          "href": "/apps/productreports/PoolOpenings/",
-          "text": "View on the map →"
-        }
+          { "label": "Water temp", "value": "68°F year-round" },
+          { "label": "Open since", "value": "1917"            }
+        ]
       }
     },
 
@@ -113,14 +75,7 @@
       "id": "deep-eddy",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7707, 30.2819],
-        "zoom": 16,
-        "pitch": 50,
-        "bearing": -45,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7707, 30.2819], "zoom": 16, "pitch": 50, "bearing": -45, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["pool-areas"],
       "hideLayers": ["creek-corridors"],
       "popup": {
@@ -128,16 +83,11 @@
         "anchor": "bottom",
         "title": "Deep Eddy Pool",
         "subtitle": "401 Deep Eddy Ave · West Austin",
-        "body": "Built in 1915, Deep Eddy holds the title of Texas's oldest public pool. Its lakeside location made it a natural gathering spot during the early 20th century. A 25-yard lap pool still operates here for $3 adult admission.",
+        "body": "Texas's oldest public pool, built in 1915. A 25-yard lap pool in a historic lakeside setting. $3 adult admission.",
         "stats": [
-          { "label": "Established",  "value": "1915"     },
-          { "label": "Lane length",  "value": "25 yards" },
-          { "label": "Admission",    "value": "$3 adults" }
-        ],
-        "link": {
-          "href": "/apps/productreports/PoolOpenings/",
-          "text": "View on the map →"
-        }
+          { "label": "Est.",      "value": "1915"     },
+          { "label": "Admission", "value": "$3 adults" }
+        ]
       }
     },
 
@@ -145,14 +95,7 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.7431, 30.2672],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.7431, 30.2672], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["pool-areas", "parks"],
       "hideLayers": ["creek-corridors"],
       "popup": {
@@ -162,13 +105,14 @@
         "subtitle": "All 22 facilities — hours, fees, status, and seasonal info",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Pool Openings Product Intelligence Report preview",
+          "alt": "Pool Openings Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

@@ -3,12 +3,7 @@
   "subtitle": "Courses, climate, history, and trends",
   "loop": true,
   "autoplay": true,
-  "initialCamera": {
-    "center": [-97.733, 30.327],
-    "zoom": 9.5,
-    "pitch": 0,
-    "bearing": 0
-  },
+  "initialCamera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 0, "bearing": 0 },
 
   "layers": [
     {
@@ -32,26 +27,15 @@
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.733, 30.327],
-        "zoom": 9.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["golf-courses"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.733, 30.327],
         "anchor": "bottom",
         "title": "Golf in the Austin Region",
-        "subtitle": "A Product Intelligence Report",
-        "body": "20 golf facilities are profiled in this report. Types covered include 8 municipal GolfATX courses, 9 public and daily-fee layouts, and 3 resort destinations. Hancock Golf Course — the oldest continuously operated course in Texas — and Lions Municipal Golf Course are two highlighted locations from the report.",
-        "link": {
-          "href": "/apps/productreports/austin-golf-courses/",
-          "text": "Open the interactive map →"
-        }
+        "subtitle": "Greater Austin · Product Intelligence Report",
+        "body": "20 golf facilities profiled. Types: 8 municipal GolfATX courses, 9 public/daily-fee layouts, 3 resort destinations. Highlights include Hancock Golf Course and Lions Municipal."
       }
     },
 
@@ -59,31 +43,19 @@
       "id": "hancock-history",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7247, 30.2995],
-        "zoom": 14.5,
-        "pitch": 55,
-        "bearing": 30,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7247, 30.2995], "zoom": 14.5, "pitch": 55, "bearing": 30, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["golf-courses"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.7247, 30.2995],
         "anchor": "bottom",
         "title": "Hancock Golf Course",
-        "subtitle": "Oldest continuously operated course in Texas — est. 1899",
-        "body": "Golf has been played at this central Austin site since 1899, when it was the original Austin Country Club founded by former mayor Lewis Hancock. The nine-hole par-35 layout with its pronounced hills over Waller Creek remains one of the most walkable and historic rounds in Texas. Green fees start around $20.",
+        "subtitle": "Oldest continuously operated course in Texas",
+        "body": "Golf played here since 1899 — the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
         "stats": [
-          { "label": "First play", "value": "1899"  },
-          { "label": "Holes",     "value": "9"      },
-          { "label": "Green fee", "value": "~$20"   }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-golf-courses/",
-          "text": "View on the map →"
-        }
+          { "label": "Est.",      "value": "1899"  },
+          { "label": "Green fee", "value": "~$20"  }
+        ]
       }
     },
 
@@ -91,31 +63,19 @@
       "id": "lions-muny",
       "transition": "fly",
       "duration": 7000,
-      "camera": {
-        "center": [-97.7645, 30.2903],
-        "zoom": 14,
-        "pitch": 50,
-        "bearing": -20,
-        "speed": 0.8,
-        "curve": 1.4
-      },
+      "camera": { "center": [-97.7645, 30.2903], "zoom": 14, "pitch": 50, "bearing": -20, "speed": 0.8, "curve": 1.4 },
       "showLayers": ["golf-courses"],
       "hideLayers": [],
       "popup": {
         "lngLat": [-97.7645, 30.2903],
         "anchor": "bottom",
         "title": "Lions Municipal Golf Course",
-        "subtitle": "One of the first desegregated public courses in the South",
-        "body": "Opened in 1924 on land leased from UT, Lions Municipal became historically significant as one of the first de facto desegregated public courses in the South — predating Brown v. Board of Education. Still hosts the Firecracker Open, Texas's oldest amateur tournament. Harvey Penick mentored players here for decades.",
+        "subtitle": "One of the first desegregated munis in the South",
+        "body": "Opened 1924. One of the first de facto desegregated public courses in the South, predating Brown v. Board. Still hosts the Firecracker Open — Texas's oldest amateur tournament.",
         "stats": [
-          { "label": "Opened",     "value": "1924"         },
-          { "label": "Holes",      "value": "18"           },
-          { "label": "Mentored by","value": "Harvey Penick" }
-        ],
-        "link": {
-          "href": "/apps/productreports/austin-golf-courses/",
-          "text": "View on the map →"
-        }
+          { "label": "Opened", "value": "1924" },
+          { "label": "Holes",  "value": "18"   }
+        ]
       }
     },
 
@@ -123,14 +83,7 @@
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": {
-        "center": [-97.733, 30.327],
-        "zoom": 9.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
+      "camera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
       "showLayers": ["golf-courses"],
       "hideLayers": [],
       "popup": {
@@ -140,13 +93,14 @@
         "subtitle": "All 20 courses — history, pricing, water policy, and tips",
         "image": {
           "src": "../../template/siteimage.png",
-          "alt": "Golf Courses Product Intelligence Report preview",
+          "alt": "Golf Courses Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
-        "link": {
-          "href": "report.html",
-          "text": "Read the full report →"
-        }
+        "links": [
+          { "href": "", "text": "Buy on Gumroad →" },
+          { "href": "", "text": "Substack" },
+          { "href": "", "text": "Patreon" }
+        ]
       }
     }
   ]

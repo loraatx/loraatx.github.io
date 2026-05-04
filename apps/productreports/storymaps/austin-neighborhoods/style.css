@@ -414,6 +414,23 @@ html, body {
   transform: translateY(-1px);
   color: #fff;
 }
+.sm-popup-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+.sm-popup-link--secondary {
+  background: transparent;
+  color: #0067c5;
+  border: 1.5px solid #0067c5;
+  padding: 6px 12px;
+}
+.sm-popup-link--secondary:hover {
+  background: rgba(0, 103, 197, 0.08);
+  transform: translateY(-1px);
+  color: #0067c5;
+}
 
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
