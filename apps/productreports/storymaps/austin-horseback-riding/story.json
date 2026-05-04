@@ -3,8 +3,15 @@
   "subtitle": "Trail rides, lesson barns, and equine experiences",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.795, 30.251], "zoom": 10, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.795,
+      30.251
+    ],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "operators",
@@ -21,83 +28,158 @@
       "transitionDuration": 700
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.795, 30.251], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["operators"],
+      "camera": {
+        "center": [
+          -97.795,
+          30.251
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "operators"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.795, 30.251],
+        "lngLat": [
+          -97.795,
+          30.251
+        ],
         "anchor": "bottom",
         "title": "Horseback Riding in Greater Austin",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "17 riding operations profiled within an hour of downtown. Types: guided trail ranches, lesson barns, and a luxury wellness resort. Highlights include Southern Trails and Miraval Austin."
       }
     },
-
     {
       "id": "southern-trails",
       "transition": "fly",
       "duration": 7500,
-      "camera": { "center": [-97.5661, 30.3289], "zoom": 14, "pitch": 55, "bearing": -40, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["operators"],
+      "camera": {
+        "center": [
+          -97.5661,
+          30.3289
+        ],
+        "zoom": 14,
+        "pitch": 55,
+        "bearing": -40,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "operators"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.5661, 30.3289],
+        "lngLat": [
+          -97.5661,
+          30.3289
+        ],
         "anchor": "bottom",
         "title": "Southern Trails",
-        "subtitle": "15701 Decker Lake Rd · Manor",
-        "body": "Guided ranch rides on 100–120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
+        "subtitle": "15701 Decker Lake Rd \u00b7 Manor",
+        "body": "Guided ranch rides on 100\u2013120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
         "stats": [
-          { "label": "Drive time", "value": "~15 min" }
-        ]
+          {
+            "label": "Drive time",
+            "value": "~15 min"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "miraval",
       "transition": "fly",
       "duration": 7500,
-      "camera": { "center": [-97.9812, 30.4837], "zoom": 13, "pitch": 50, "bearing": -20, "speed": 0.75, "curve": 1.35 },
-      "showLayers": ["operators"],
+      "camera": {
+        "center": [
+          -97.9812,
+          30.4837
+        ],
+        "zoom": 13,
+        "pitch": 50,
+        "bearing": -20,
+        "speed": 0.75,
+        "curve": 1.35
+      },
+      "showLayers": [
+        "operators"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.9812, 30.4837],
+        "lngLat": [
+          -97.9812,
+          30.4837
+        ],
         "anchor": "bottom",
         "title": "Miraval Austin Resort & Spa",
-        "subtitle": "Lake Travis · Northwest Austin",
+        "subtitle": "Lake Travis \u00b7 Northwest Austin",
         "body": "220+ acres overlooking Lake Travis. Equine-assisted self-leadership and trail rides as part of all-inclusive wellness packages. The premium end of Austin's riding scene.",
         "stats": [
-          { "label": "Drive time", "value": "~40 min" }
+          {
+            "label": "Drive time",
+            "value": "~40 min"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.795, 30.251], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["operators"],
+      "camera": {
+        "center": [
+          -97.795,
+          30.251
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "operators"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.795, 30.251],
+        "lngLat": [
+          -97.795,
+          30.251
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 17 operators — prices, age limits, and what to expect",
+        "subtitle": "All 17 operators \u2014 prices, age limits, and what to expect",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Horseback Riding Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }

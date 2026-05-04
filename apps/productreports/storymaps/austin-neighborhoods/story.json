@@ -3,8 +3,15 @@
   "subtitle": "Historic, eclectic, and master-planned communities",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.754, 30.264], "zoom": 10, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.754,
+      30.264
+    ],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "neighborhoods",
@@ -21,85 +28,166 @@
       "transitionDuration": 700
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.754, 30.264], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["neighborhoods"],
+      "camera": {
+        "center": [
+          -97.754,
+          30.264
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "neighborhoods"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.754, 30.264],
+        "lngLat": [
+          -97.754,
+          30.264
+        ],
         "anchor": "bottom",
         "title": "Historic & Emerging Neighborhoods",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "33 Austin neighborhoods surveyed. Eras: freedmen's settlements, streetcar suburbs, postwar bungalow districts, and master-planned communities. Highlights include Clarksville and Mueller."
       }
     },
-
     {
       "id": "clarksville",
       "transition": "fly",
       "duration": 7500,
-      "camera": { "center": [-97.762, 30.275], "zoom": 14.5, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["neighborhoods"],
+      "camera": {
+        "center": [
+          -97.762,
+          30.275
+        ],
+        "zoom": 14.5,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "neighborhoods"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.762, 30.275],
+        "lngLat": [
+          -97.762,
+          30.275
+        ],
         "anchor": "bottom",
         "title": "Clarksville",
-        "subtitle": "West Austin · Founded 1871",
+        "subtitle": "West Austin \u00b7 Founded 1871",
         "body": "One of the oldest freedmen's towns west of the Mississippi. Founded by Charles Clark after emancipation. A surviving chapter of Austin's African American history despite highway construction reducing its footprint.",
         "stats": [
-          { "label": "Founded", "value": "1871"            },
-          { "label": "Type",    "value": "Freedmen's town" }
-        ]
+          {
+            "label": "Founded",
+            "value": "1871"
+          },
+          {
+            "label": "Type",
+            "value": "Freedmen's town"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "mueller",
       "transition": "fly",
       "duration": 7500,
-      "camera": { "center": [-97.704, 30.300], "zoom": 13, "pitch": 50, "bearing": -45, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["neighborhoods"],
+      "camera": {
+        "center": [
+          -97.704,
+          30.3
+        ],
+        "zoom": 13,
+        "pitch": 50,
+        "bearing": -45,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "neighborhoods"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.704, 30.300],
+        "lngLat": [
+          -97.704,
+          30.3
+        ],
         "anchor": "bottom",
         "title": "Mueller",
-        "subtitle": "East Austin · Former airport site",
-        "body": "Built on the decommissioned Robert Mueller Airport. One of the country's most-cited new-urbanist infill projects — mixed-income homes, fine-grained streets, and extensive parkland on 700+ acres.",
+        "subtitle": "East Austin \u00b7 Former airport site",
+        "body": "Built on the decommissioned Robert Mueller Airport. One of the country's most-cited new-urbanist infill projects \u2014 mixed-income homes, fine-grained streets, and extensive parkland on 700+ acres.",
         "stats": [
-          { "label": "Site",  "value": "700+ acres"         },
-          { "label": "Type",  "value": "New-urbanist infill" }
+          {
+            "label": "Site",
+            "value": "700+ acres"
+          },
+          {
+            "label": "Type",
+            "value": "New-urbanist infill"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.754, 30.264], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["neighborhoods"],
+      "camera": {
+        "center": [
+          -97.754,
+          30.264
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "neighborhoods"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.754, 30.264],
+        "lngLat": [
+          -97.754,
+          30.264
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 33 neighborhoods — history, character, and context",
+        "subtitle": "All 33 neighborhoods \u2014 history, character, and context",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Neighborhoods Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }

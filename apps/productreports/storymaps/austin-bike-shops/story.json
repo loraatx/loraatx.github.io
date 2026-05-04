@@ -3,8 +3,15 @@
   "subtitle": "Independents, brand stores, the co-op, and an e-bike outlier",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.742, 30.353], "zoom": 10, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.742,
+      30.353
+    ],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "bike-shops",
@@ -21,85 +28,166 @@
       "transitionDuration": 700
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.742, 30.353], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["bike-shops"],
+      "camera": {
+        "center": [
+          -97.742,
+          30.353
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "bike-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.742, 30.353],
+        "lngLat": [
+          -97.742,
+          30.353
+        ],
         "anchor": "bottom",
         "title": "Bike & E-Bike Shops",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "12 bicycle and e-bike shops profiled. Types: independents, brand chains, a co-op, and e-bike specialists. Highlights include Austin Tri Cyclist and Austin Bike Farm."
       }
     },
-
     {
       "id": "austin-tri-cyclist",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.754525, 30.259694], "zoom": 15, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["bike-shops"],
+      "camera": {
+        "center": [
+          -97.754525,
+          30.259694
+        ],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "bike-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.754525, 30.259694],
+        "lngLat": [
+          -97.754525,
+          30.259694
+        ],
         "anchor": "bottom",
         "title": "Austin Tri Cyclist",
-        "subtitle": "923 Barton Springs Rd · South Central",
-        "body": "Triathlon-focused independent carrying Cervélo and Cannondale. Professional fitting available. Limited e-bike selection.",
+        "subtitle": "923 Barton Springs Rd \u00b7 South Central",
+        "body": "Triathlon-focused independent carrying Cerv\u00e9lo and Cannondale. Professional fitting available. Limited e-bike selection.",
         "stats": [
-          { "label": "Type",    "value": "Independent" },
-          { "label": "Pro Fit", "value": "Yes"         }
-        ]
+          {
+            "label": "Type",
+            "value": "Independent"
+          },
+          {
+            "label": "Pro Fit",
+            "value": "Yes"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "austin-bike-farm",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.7401945, 30.3295116], "zoom": 15.5, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["bike-shops"],
+      "camera": {
+        "center": [
+          -97.7401945,
+          30.3295116
+        ],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "bike-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.7401945, 30.3295116],
+        "lngLat": [
+          -97.7401945,
+          30.3295116
+        ],
         "anchor": "bottom",
         "title": "Austin Bike Farm",
-        "subtitle": "5440 Burnet Rd · Rosedale",
+        "subtitle": "5440 Burnet Rd \u00b7 Rosedale",
         "body": "Mountain bike shop carrying Specialized Turbo e-MTBs. New and used inventory. Full repair bench on-site.",
         "stats": [
-          { "label": "Focus",   "value": "MTB + trail"            },
-          { "label": "E-Bikes", "value": "Yes (Specialized Turbo)" }
+          {
+            "label": "Focus",
+            "value": "MTB + trail"
+          },
+          {
+            "label": "E-Bikes",
+            "value": "Yes (Specialized Turbo)"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.742, 30.353], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["bike-shops"],
+      "camera": {
+        "center": [
+          -97.742,
+          30.353
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "bike-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.742, 30.353],
+        "lngLat": [
+          -97.742,
+          30.353
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 shops — locations, pricing, and e-bike programs",
+        "subtitle": "All 12 shops \u2014 locations, pricing, and e-bike programs",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Bike Shops Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }

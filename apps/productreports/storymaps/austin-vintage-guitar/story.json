@@ -3,8 +3,15 @@
   "subtitle": "Specialists, boutiques, acoustics, and chains across the metro",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.762, 30.315], "zoom": 10, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.762,
+      30.315
+    ],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "guitar-shops",
@@ -21,85 +28,166 @@
       "transitionDuration": 700
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.762, 30.315], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["guitar-shops"],
+      "camera": {
+        "center": [
+          -97.762,
+          30.315
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "guitar-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.762, 30.315],
+        "lngLat": [
+          -97.762,
+          30.315
+        ],
         "anchor": "bottom",
         "title": "Vintage & Used Guitar Shops",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "9 guitar shops profiled across the metro. Types: vintage specialists, boutique luthier showrooms, acoustic-only, independents, and chain outlets. Highlights include Austin Vintage Guitars and South Austin Music."
       }
     },
-
     {
       "id": "austin-vintage-guitars",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.72339, 30.30434], "zoom": 15.5, "pitch": 55, "bearing": 30, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["guitar-shops"],
+      "camera": {
+        "center": [
+          -97.72339,
+          30.30434
+        ],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": 30,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "guitar-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.72339, 30.30434],
+        "lngLat": [
+          -97.72339,
+          30.30434
+        ],
         "anchor": "bottom",
         "title": "Austin Vintage Guitars",
-        "subtitle": "4306 Red River St · Hyde Park corridor",
+        "subtitle": "4306 Red River St \u00b7 Hyde Park corridor",
         "body": "Austin's flagship vintage shop since the late 1990s. Pre-CBS Fenders, vintage Gibsons, period-correct amps, and effects. Reverb listings reach buyers nationwide. Full repair bench.",
         "stats": [
-          { "label": "Focus", "value": "Fender / Gibson / Amps" },
-          { "label": "Phone", "value": "512-428-9100"           }
-        ]
+          {
+            "label": "Focus",
+            "value": "Fender / Gibson / Amps"
+          },
+          {
+            "label": "Phone",
+            "value": "512-428-9100"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "south-austin-music",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.76355, 30.25276], "zoom": 15.5, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["guitar-shops"],
+      "camera": {
+        "center": [
+          -97.76355,
+          30.25276
+        ],
+        "zoom": 15.5,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "guitar-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.76355, 30.25276],
+        "lngLat": [
+          -97.76355,
+          30.25276
+        ],
         "anchor": "bottom",
         "title": "South Austin Music",
-        "subtitle": "1402 S Lamar Blvd · Est. 1986",
+        "subtitle": "1402 S Lamar Blvd \u00b7 Est. 1986",
         "body": "Austin's longest-running independent on the same corner since 1986. Mid-range used gear, used American Fenders, and in-house repairs. Lessons available on-site.",
         "stats": [
-          { "label": "Since", "value": "1986"         },
-          { "label": "Phone", "value": "512-448-4992" }
+          {
+            "label": "Since",
+            "value": "1986"
+          },
+          {
+            "label": "Phone",
+            "value": "512-448-4992"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.762, 30.315], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["guitar-shops"],
+      "camera": {
+        "center": [
+          -97.762,
+          30.315
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "guitar-shops"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.762, 30.315],
+        "lngLat": [
+          -97.762,
+          30.315
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 9 shops — inventory focus, price range, and insider notes",
+        "subtitle": "All 9 shops \u2014 inventory focus, price range, and insider notes",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Vintage Guitar Shops Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }

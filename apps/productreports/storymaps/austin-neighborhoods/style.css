@@ -416,15 +416,23 @@ html, body {
 }
 .sm-popup-links {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 6px;
-  margin-top: 2px;
+  margin-top: 4px;
+}
+.sm-popup-links .sm-popup-link {
+  flex: 1 1 0;
+  padding: 5px 8px;
+  font-size: 0.78rem;
+  border-radius: 6px;
+  margin-top: 0;
 }
 .sm-popup-link--secondary {
   background: transparent;
   color: #0067c5;
   border: 1.5px solid #0067c5;
-  padding: 6px 12px;
+  padding: 5px 8px;
 }
 .sm-popup-link--secondary:hover {
   background: rgba(0, 103, 197, 0.08);

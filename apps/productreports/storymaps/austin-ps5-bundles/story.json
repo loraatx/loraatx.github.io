@@ -3,8 +3,15 @@
   "subtitle": "Big-box, warehouse club, and local used-game stops",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.756, 30.305], "zoom": 10, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.756,
+      30.305
+    ],
+    "zoom": 10,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "ps5-stores",
@@ -21,85 +28,166 @@
       "transitionDuration": 700
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.756, 30.305], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["ps5-stores"],
+      "camera": {
+        "center": [
+          -97.756,
+          30.305
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "ps5-stores"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.756, 30.305],
+        "lngLat": [
+          -97.756,
+          30.305
+        ],
         "anchor": "bottom",
         "title": "PS5 Slim Bundles in Austin",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "18 retail locations across 7 retailers profiled. Types: big-box chains, warehouse clubs, specialty game stores, and used-game shops. Highlights include Best Buy North and Target Austin North."
       }
     },
-
     {
       "id": "best-buy-north",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.7395, 30.3792], "zoom": 15, "pitch": 55, "bearing": 35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["ps5-stores"],
+      "camera": {
+        "center": [
+          -97.7395,
+          30.3792
+        ],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": 35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "ps5-stores"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.7395, 30.3792],
+        "lngLat": [
+          -97.7395,
+          30.3792
+        ],
         "anchor": "bottom",
         "title": "Best Buy North Austin",
-        "subtitle": "9607 Research Blvd · 78759",
+        "subtitle": "9607 Research Blvd \u00b7 78759",
         "body": "Widest PS5 Slim selection in Austin. Disc console $549.99, Digital $499.99. Fortnite, Cobalt Star, and Spider-Man 2 bundle packs available.",
         "stats": [
-          { "label": "Disc",    "value": "$549.99" },
-          { "label": "Digital", "value": "$499.99" }
-        ]
+          {
+            "label": "Disc",
+            "value": "$549.99"
+          },
+          {
+            "label": "Digital",
+            "value": "$499.99"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "target-north",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.7158, 30.3623], "zoom": 15, "pitch": 55, "bearing": -35, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["ps5-stores"],
+      "camera": {
+        "center": [
+          -97.7158,
+          30.3623
+        ],
+        "zoom": 15,
+        "pitch": 55,
+        "bearing": -35,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "ps5-stores"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.7158, 30.3623],
+        "lngLat": [
+          -97.7158,
+          30.3623
+        ],
         "anchor": "bottom",
         "title": "Target Austin North",
-        "subtitle": "8601 Research Blvd · 78758",
-        "body": "Best current bundle value — Fortnite Flowering Chaos disc $449.99, digital $399.99. About $100 off MSRP. Order Pickup and Drive Up available.",
+        "subtitle": "8601 Research Blvd \u00b7 78758",
+        "body": "Best current bundle value \u2014 Fortnite Flowering Chaos disc $449.99, digital $399.99. About $100 off MSRP. Order Pickup and Drive Up available.",
         "stats": [
-          { "label": "Disc bundle",    "value": "$449.99" },
-          { "label": "Digital bundle", "value": "$399.99" }
+          {
+            "label": "Disc bundle",
+            "value": "$449.99"
+          },
+          {
+            "label": "Digital bundle",
+            "value": "$399.99"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.756, 30.305], "zoom": 10.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["ps5-stores"],
+      "camera": {
+        "center": [
+          -97.756,
+          30.305
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "ps5-stores"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.756, 30.305],
+        "lngLat": [
+          -97.756,
+          30.305
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 18 stores — every bundle, price, and fulfillment option",
+        "subtitle": "All 18 stores \u2014 every bundle, price, and fulfillment option",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "PS5 Bundles Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }

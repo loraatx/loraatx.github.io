@@ -3,8 +3,15 @@
   "subtitle": "Courses, climate, history, and trends",
   "loop": true,
   "autoplay": true,
-  "initialCamera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 0, "bearing": 0 },
-
+  "initialCamera": {
+    "center": [
+      -97.733,
+      30.327
+    ],
+    "zoom": 9.5,
+    "pitch": 0,
+    "bearing": 0
+  },
   "layers": [
     {
       "id": "golf-courses",
@@ -21,85 +28,166 @@
       "transitionDuration": 800
     }
   ],
-
   "scenes": [
     {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["golf-courses"],
+      "camera": {
+        "center": [
+          -97.733,
+          30.327
+        ],
+        "zoom": 9.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "golf-courses"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.733, 30.327],
+        "lngLat": [
+          -97.733,
+          30.327
+        ],
         "anchor": "bottom",
         "title": "Golf in the Austin Region",
-        "subtitle": "Greater Austin · Product Intelligence Report",
+        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
         "body": "20 golf facilities profiled. Types: 8 municipal GolfATX courses, 9 public/daily-fee layouts, 3 resort destinations. Highlights include Hancock Golf Course and Lions Municipal."
       }
     },
-
     {
       "id": "hancock-history",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.7247, 30.2995], "zoom": 14.5, "pitch": 55, "bearing": 30, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["golf-courses"],
+      "camera": {
+        "center": [
+          -97.7247,
+          30.2995
+        ],
+        "zoom": 14.5,
+        "pitch": 55,
+        "bearing": 30,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "golf-courses"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.7247, 30.2995],
+        "lngLat": [
+          -97.7247,
+          30.2995
+        ],
         "anchor": "bottom",
         "title": "Hancock Golf Course",
         "subtitle": "Oldest continuously operated course in Texas",
-        "body": "Golf played here since 1899 — the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
+        "body": "Golf played here since 1899 \u2014 the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
         "stats": [
-          { "label": "Est.",      "value": "1899"  },
-          { "label": "Green fee", "value": "~$20"  }
-        ]
+          {
+            "label": "Est.",
+            "value": "1899"
+          },
+          {
+            "label": "Green fee",
+            "value": "~$20"
+          }
+        ],
+        "youtube": {
+          "videoId": "dQw4w9WgXcQ",
+          "mute": true
+        }
       }
     },
-
     {
       "id": "lions-muny",
       "transition": "fly",
       "duration": 7000,
-      "camera": { "center": [-97.7645, 30.2903], "zoom": 14, "pitch": 50, "bearing": -20, "speed": 0.8, "curve": 1.4 },
-      "showLayers": ["golf-courses"],
+      "camera": {
+        "center": [
+          -97.7645,
+          30.2903
+        ],
+        "zoom": 14,
+        "pitch": 50,
+        "bearing": -20,
+        "speed": 0.8,
+        "curve": 1.4
+      },
+      "showLayers": [
+        "golf-courses"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.7645, 30.2903],
+        "lngLat": [
+          -97.7645,
+          30.2903
+        ],
         "anchor": "bottom",
         "title": "Lions Municipal Golf Course",
         "subtitle": "One of the first desegregated munis in the South",
-        "body": "Opened 1924. One of the first de facto desegregated public courses in the South, predating Brown v. Board. Still hosts the Firecracker Open — Texas's oldest amateur tournament.",
+        "body": "Opened 1924. One of the first de facto desegregated public courses in the South, predating Brown v. Board. Still hosts the Firecracker Open \u2014 Texas's oldest amateur tournament.",
         "stats": [
-          { "label": "Opened", "value": "1924" },
-          { "label": "Holes",  "value": "18"   }
+          {
+            "label": "Opened",
+            "value": "1924"
+          },
+          {
+            "label": "Holes",
+            "value": "18"
+          }
         ]
       }
     },
-
     {
       "id": "closing",
       "transition": "fly",
       "duration": 8000,
-      "camera": { "center": [-97.733, 30.327], "zoom": 9.5, "pitch": 30, "bearing": -10, "speed": 0.55, "curve": 1.2 },
-      "showLayers": ["golf-courses"],
+      "camera": {
+        "center": [
+          -97.733,
+          30.327
+        ],
+        "zoom": 9.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "golf-courses"
+      ],
       "hideLayers": [],
       "popup": {
-        "lngLat": [-97.733, 30.327],
+        "lngLat": [
+          -97.733,
+          30.327
+        ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 20 courses — history, pricing, water policy, and tips",
+        "subtitle": "All 20 courses \u2014 history, pricing, water policy, and tips",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Golf Courses Product Intelligence Report",
           "caption": "Interactive map + written report"
         },
         "links": [
-          { "href": "", "text": "Buy on Gumroad →" },
-          { "href": "", "text": "Substack" },
-          { "href": "", "text": "Patreon" }
+          {
+            "href": "",
+            "text": "Report $2"
+          },
+          {
+            "href": "",
+            "text": "Substack"
+          },
+          {
+            "href": "",
+            "text": "Patreon"
+          }
         ]
       }
     }
