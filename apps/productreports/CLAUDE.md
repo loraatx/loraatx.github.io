@@ -27,6 +27,42 @@ For each storymap, only `story.json` is customized (slide content and map stops)
 
 ---
 
+## Storymap standard — 4 scenes, always
+
+Every storymap follows the same 4-scene structure. Only the camera coordinates and popup content change between reports.
+
+### Scene 1 — Opening overview
+- Camera: city-wide overview (zoom ~10, pitch 30)
+- Popup `body`: exactly **3 sentences** (the engine renders each as a bullet point)
+  1. Total count — *"X [businesses/items] are profiled in this report."*
+  2. Categories — *"Types covered include [list]."*
+  3. Two highlights — *"[Location A] and [Location B] are two highlighted locations from the report."*
+- Popup `link`: links to the interactive map app at `/apps/productreports/{slug}/`
+
+### Scene 2 — Location highlight 1
+- Camera: fly close to location A mentioned in scene 1 bullet 3 (zoom 14–16, pitch 50–55)
+- Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to map app
+
+### Scene 3 — Location highlight 2
+- Camera: fly close to location B mentioned in scene 1 bullet 3 (zoom 14–16, pitch 50–55)
+- Popup: same shape as scene 2
+
+### Scene 4 — Closing CTA
+- Camera: fly back to city-wide overview (same as scene 1)
+- Popup `image`: place a `preview.png` in the storymap folder (screenshot of the map app + report side by side); use `../../template/siteimage.png` as a placeholder until the custom image is ready
+- Popup `link`: links to `report.html` (or the purchase URL when the report is for sale)
+
+### story.json popup field reference
+
+| Field | Renders as |
+|-------|-----------|
+| `body` | Up to 3 bullet points (split by sentence-ending punctuation) |
+| `image` | `{ src, alt, caption }` — full-width image above body |
+| `stats` | `[{ label, value }]` — two-column table |
+| `link` | `{ href, text }` — CTA button at the bottom |
+
+---
+
 ## Staging workflow — creating a new Product Report
 
 Place two files in `apps/productreports/staging/`:
@@ -40,7 +76,7 @@ Claude will:
 
 1. **Convert** `data.csv` → `data.geojson` (geocoding addresses if needed)
 2. **Create the map app** at `apps/productreports/{slug}/` by copying `template/` and configuring `config.js` to match the CSV columns
-3. **Create the story map** at `apps/productreports/storymaps/{slug}/` by copying `storymaps/template/` and populating `story.json` from the report content
+3. **Create the story map** at `apps/productreports/storymaps/{slug}/` by copying `storymaps/template/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
 4. **Generate the HTML report** at `apps/productreports/storymaps/{slug}/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
 5. **Register the report** by adding an entry to `apps/productreports/storymaps/reports.json` so the card appears on the homepage
 6. **Clear staging** — remove the CSV and MD files
