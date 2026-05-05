@@ -344,6 +344,23 @@ html, body {
   display: block;
 }
 
+/* Mapillary street-view embed — full-width, 16:9 */
+.sm-popup-mapillary {
+  margin: 0 -16px 12px;
+  background: #111;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+.sm-popup-mapillary iframe {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  display: block;
+}
+
 /* Body text */
 .sm-popup-body {
   font-size: 0.95rem;

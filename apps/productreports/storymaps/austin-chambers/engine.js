@@ -314,6 +314,11 @@ class StoryEngine {
       html += `<div class="sm-popup-video-wrap"><div id="yt-player-${token}" class="sm-yt-placeholder"></div></div>`;
     }
 
+    if (p.mapillary?.imageKey) {
+      const src = `https://www.mapillary.com/embed?image_key=${p.mapillary.imageKey}&style=photo`;
+      html += `<div class="sm-popup-mapillary"><iframe src="${src}" frameborder="0" allowfullscreen></iframe></div>`;
+    }
+
     if (p.body) {
       const plain = p.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
       const sentences = plain.match(/[^.!?]+[.!?]+/g) || [plain];
