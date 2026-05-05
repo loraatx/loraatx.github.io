@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "Target Austin North",
-        "subtitle": "8601 Research Blvd \u00b7 78758",
-        "body": "Best current bundle value \u2014 Fortnite Flowering Chaos disc $449.99, digital $399.99. About $100 off MSRP. Order Pickup and Drive Up available.",
-        "stats": [
-          {
-            "label": "Disc bundle",
-            "value": "$449.99"
-          },
-          {
-            "label": "Digital bundle",
-            "value": "$399.99"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

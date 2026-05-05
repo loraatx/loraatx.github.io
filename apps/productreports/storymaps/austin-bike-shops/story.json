@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "Austin Bike Farm",
-        "subtitle": "5440 Burnet Rd \u00b7 Rosedale",
-        "body": "Mountain bike shop carrying Specialized Turbo e-MTBs. New and used inventory. Full repair bench on-site.",
-        "stats": [
-          {
-            "label": "Focus",
-            "value": "MTB + trail"
-          },
-          {
-            "label": "E-Bikes",
-            "value": "Yes (Specialized Turbo)"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

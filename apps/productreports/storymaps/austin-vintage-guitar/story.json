@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "South Austin Music",
-        "subtitle": "1402 S Lamar Blvd \u00b7 Est. 1986",
-        "body": "Austin's longest-running independent on the same corner since 1986. Mid-range used gear, used American Fenders, and in-house repairs. Lessons available on-site.",
-        "stats": [
-          {
-            "label": "Since",
-            "value": "1986"
-          },
-          {
-            "label": "Phone",
-            "value": "512-448-4992"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

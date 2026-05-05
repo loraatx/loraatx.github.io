@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "Lions Municipal Golf Course",
-        "subtitle": "One of the first desegregated munis in the South",
-        "body": "Opened 1924. One of the first de facto desegregated public courses in the South, predating Brown v. Board. Still hosts the Firecracker Open \u2014 Texas's oldest amateur tournament.",
-        "stats": [
-          {
-            "label": "Opened",
-            "value": "1924"
-          },
-          {
-            "label": "Holes",
-            "value": "18"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

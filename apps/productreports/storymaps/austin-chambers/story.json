@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "Austin LGBT Chamber",
-        "subtitle": "201 W 5th St \u00b7 Downtown",
-        "body": "One of four DECA affinity chambers alongside Asian, Hispanic, and Black chambers. Empowers LGBTQ+ and allied businesses through events, education, and marketing.",
-        "stats": [
-          {
-            "label": "Focus",
-            "value": "Affinity (LGBTQ+)"
-          },
-          {
-            "label": "Founded",
-            "value": "Late 1990s"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

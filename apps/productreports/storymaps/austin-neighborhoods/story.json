@@ -129,18 +129,9 @@
         ],
         "anchor": "bottom",
         "title": "Mueller",
-        "subtitle": "East Austin \u00b7 Former airport site",
-        "body": "Built on the decommissioned Robert Mueller Airport. One of the country's most-cited new-urbanist infill projects \u2014 mixed-income homes, fine-grained streets, and extensive parkland on 700+ acres.",
-        "stats": [
-          {
-            "label": "Site",
-            "value": "700+ acres"
-          },
-          {
-            "label": "Type",
-            "value": "New-urbanist infill"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

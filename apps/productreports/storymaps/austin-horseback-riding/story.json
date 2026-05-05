@@ -125,14 +125,9 @@
         ],
         "anchor": "bottom",
         "title": "Miraval Austin Resort & Spa",
-        "subtitle": "Lake Travis \u00b7 Northwest Austin",
-        "body": "220+ acres overlooking Lake Travis. Equine-assisted self-leadership and trail rides as part of all-inclusive wellness packages. The premium end of Austin's riding scene.",
-        "stats": [
-          {
-            "label": "Drive time",
-            "value": "~40 min"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {

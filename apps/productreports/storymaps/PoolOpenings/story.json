@@ -159,18 +159,9 @@
         ],
         "anchor": "bottom",
         "title": "Deep Eddy Pool",
-        "subtitle": "401 Deep Eddy Ave \u00b7 West Austin",
-        "body": "Texas's oldest public pool, built in 1915. A 25-yard lap pool in a historic lakeside setting. $3 adult admission.",
-        "stats": [
-          {
-            "label": "Est.",
-            "value": "1915"
-          },
-          {
-            "label": "Admission",
-            "value": "$3 adults"
-          }
-        ]
+        "mapillary": {
+          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
+        }
       }
     },
     {
