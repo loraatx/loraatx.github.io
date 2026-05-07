@@ -88,34 +88,6 @@ html, body {
   text-overflow: ellipsis;
 }
 
-/* ── Social footer — above nav bar ───────────────────────────── */
-.sm-social-footer {
-  position: fixed;
-  bottom: 54px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 15;
-  display: flex;
-  gap: 14px;
-  padding: 8px 16px;
-  background: rgba(22, 27, 35, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #2a3040;
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-}
-.sm-social-footer a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  color: #c0c7d1;
-  transition: color 0.15s ease;
-}
-.sm-social-footer a:hover { color: #4cc3ff; }
-.sm-social-footer svg { width: 18px; height: 18px; }
 
 /* ── Play/Pause button — bottom-left ─────────────────────────── */
 .sm-play-btn {
@@ -472,10 +444,6 @@ html, body {
     gap: 8px;
   }
   .sm-brand-title { font-size: 0.88rem; }
-
-  .sm-social-footer { gap: 10px; padding: 6px 12px; bottom: 50px; }
-  .sm-social-footer a { width: 20px; height: 20px; }
-  .sm-social-footer svg { width: 16px; height: 16px; }
 
   .maplibregl-popup-content {
     max-width: 308px;
