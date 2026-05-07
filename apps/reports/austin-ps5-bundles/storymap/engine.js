@@ -265,8 +265,12 @@ class StoryEngine {
         videoEl.addEventListener('ended', () => {
           if (token === this._abortToken) this._advance(token);
         }, { once: true });
+        videoEl.addEventListener('error', () => {
+          if (token === this._abortToken) this._startAdvanceTimer(scene, token);
+        }, { once: true });
+      } else {
+        this._startAdvanceTimer(scene, token);
       }
-      this._startAdvanceTimer(scene, token);
     } else if (p.youtube) {
       try {
         // Guard against a blocked or slow YT API script
