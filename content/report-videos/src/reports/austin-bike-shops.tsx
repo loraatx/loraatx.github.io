@@ -8,6 +8,6 @@ export const AustinBikeShops: React.FC = () => (
     subtitle="Independent, chain, and e-bike specialist shops across the metro"
     accentColor="#2f855a"
     locationCount={5}
-    appPath="apps/citywide/austin-bike-shops"
+    appPath="/apps/reports/austin-bike-shops"
   />
 );
