@@ -10,9 +10,9 @@ export const AustinHorsebackRiding: React.FC = () => (
     locationCount={17}
     appPath="/apps/reports/austin-horseback-riding"
     bullets={[
-      "17 riding operations profiled within an hour of downtown.",
-      "Types: guided trail ranches, lesson barns, and a luxury wellness resort.",
-      "Highlights include Southern Trails and Miraval Austin.",
+      "17 riding operations",
+      "Trail ranches, lessons & wellness",
+      "Southern Trails · Miraval Austin",
     ]}
   />
 );

@@ -10,9 +10,9 @@ export const PoolOpenings: React.FC = () => (
     locationCount={46}
     appPath="/apps/reports/PoolOpenings"
     bullets={[
-      "22 public aquatic facilities mapped.",
-      "Types: historic spring-fed pools, competitive lap pools, and modern splash pads.",
-      "Highlights include Barton Springs Pool and Deep Eddy Pool.",
+      "22 aquatic facilities mapped",
+      "Pools, lap lanes & splash pads",
+      "Barton Springs · Deep Eddy",
     ]}
   />
 );

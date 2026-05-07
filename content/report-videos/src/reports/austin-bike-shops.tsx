@@ -7,12 +7,12 @@ export const AustinBikeShops: React.FC = () => (
     eyebrow="Austin Shopping"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#2f855a"
-    locationCount={5}
+    locationCount={12}
     appPath="/apps/reports/austin-bike-shops"
     bullets={[
-      "12 bicycle and e-bike shops profiled.",
-      "Types: independents, brand chains, a co-op, and e-bike specialists.",
-      "Highlights include Austin Tri Cyclist and Austin Bike Farm.",
+      "12 bike & e-bike shops",
+      "Independents, co-op & specialists",
+      "Austin Tri Cyclist · Bike Farm",
     ]}
   />
 );

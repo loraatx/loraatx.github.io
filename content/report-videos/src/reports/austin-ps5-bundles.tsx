@@ -10,9 +10,9 @@ export const AustinPs5Bundles: React.FC = () => (
     locationCount={18}
     appPath="/apps/reports/austin-ps5-bundles"
     bullets={[
-      "18 retail locations across 7 retailers profiled.",
-      "Types: big-box chains, warehouse clubs, specialty game stores, and used-game shops.",
-      "Highlights include Best Buy North and Target Austin North.",
+      "18 locations across 7 retailers",
+      "Big box, warehouse & game stores",
+      "Best Buy · Target · GameStop",
     ]}
   />
 );

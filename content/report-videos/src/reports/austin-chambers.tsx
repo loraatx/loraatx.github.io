@@ -7,12 +7,12 @@ export const AustinChambers: React.FC = () => (
     eyebrow="Austin Metro"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#6f4e37"
-    locationCount={5}
+    locationCount={12}
     appPath="/apps/reports/austin-chambers"
     bullets={[
-      "12 chambers profiled across the metro.",
-      "Types: regional hub, affinity chambers, geographic corridors, and young professionals.",
-      "Highlights include the Austin Chamber and Austin LGBT Chamber.",
+      "12 chambers across the metro",
+      "Regional, affinity & corridor orgs",
+      "Austin Chamber · LGBT Chamber",
     ]}
   />
 );

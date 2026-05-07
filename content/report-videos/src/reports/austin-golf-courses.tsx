@@ -10,9 +10,9 @@ export const AustinGolfCourses: React.FC = () => (
     locationCount={20}
     appPath="/apps/reports/austin-golf-courses"
     bullets={[
-      "20 golf facilities profiled.",
-      "Types: 8 municipal GolfATX courses, 9 public/daily-fee layouts, 3 resort destinations.",
-      "Highlights include Hancock Golf Course and Lions Municipal.",
+      "20 golf facilities",
+      "Municipal, daily-fee & resort",
+      "Hancock · Lions Municipal",
     ]}
   />
 );

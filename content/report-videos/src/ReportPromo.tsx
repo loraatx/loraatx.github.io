@@ -1,10 +1,8 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Img,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -19,98 +17,131 @@ export interface ReportPromoProps {
   bullets: [string, string, string];
 }
 
-// Austin zoom-10 tile grid: x=231..236, y=419..423 (6×5 = 1536×1280px)
-// Positioned so Austin (tile 234,421, offset 0px,197px) sits at canvas center (640,360)
-const TILE_X_START = 231;
-const TILE_Y_START = 419;
-const TILE_COLS = 6;
-const TILE_ROWS = 5;
-const GRID_LEFT = -128;
-const GRID_TOP = -349;
+const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
 
-const MapBackground: React.FC<{ opacity: number }> = ({ opacity }) => {
-  const tiles: React.ReactNode[] = [];
-  for (let ty = 0; ty < TILE_ROWS; ty++) {
-    for (let tx = 0; tx < TILE_COLS; tx++) {
-      const tileX = TILE_X_START + tx;
-      const tileY = TILE_Y_START + ty;
-      tiles.push(
-        <Img
-          key={`${tx}-${ty}`}
-          src={staticFile(`tiles/10/${tileX}_${tileY}.png`)}
-          style={{
-            position: "absolute",
-            left: tx * 256,
-            top: ty * 256,
-            width: 256,
-            height: 256,
-          }}
-        />
-      );
-    }
-  }
+// Simple Austin-style city skyline — pure SVG, no external assets
+const Cityscape: React.FC<{ width: number; height: number; accent: string }> = ({ width, height, accent }) => {
+  // Buildings: [x, w, h]. Tallest cluster near center = downtown.
+  const bldgs = [
+    [0,55,95],[45,70,140],[105,50,110],[148,60,162],[198,45,130],
+    [232,80,196],[302,55,218],[348,72,252],
+    [410,92,282],[495,58,238],[542,82,262],
+    [614,104,308], // tallest — Frost Bank stand-in
+    [706,62,278],[758,88,258],
+    [836,72,232],[898,56,205],[944,82,182],
+    [1016,60,156],[1066,76,172],[1132,50,132],[1172,66,116],[1228,52,142],
+  ];
+
+  const ground = height;
+  const buildingColor = "#c8cdd8";
+  const windowColor = "#dde2ec";
+  const accentGlow = accent + "18"; // very subtle accent tint on tallest
+
   return (
-    <div style={{ position: "absolute", inset: 0, opacity, overflow: "hidden" }}>
-      <div style={{ position: "absolute", left: GRID_LEFT, top: GRID_TOP }}>
-        {tiles}
-      </div>
-    </div>
+    <svg
+      style={{ position: "absolute", bottom: 0, left: 0 }}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+    >
+      {/* Subtle sky gradient */}
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#eef1f8" />
+          <stop offset="100%" stopColor="#f8f9fc" />
+        </linearGradient>
+        <linearGradient id="groundfade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={buildingColor} />
+          <stop offset="100%" stopColor="#b8bdc8" />
+        </linearGradient>
+      </defs>
+      <rect x={0} y={0} width={width} height={height} fill="url(#sky)" />
+
+      {/* Ground line */}
+      <rect x={0} y={ground - 3} width={width} height={3} fill="#b8bdc8" opacity={0.5} />
+
+      {bldgs.map(([x, w, h], i) => {
+        const isLandmark = h > 270;
+        return (
+          <g key={i}>
+            {/* Building body */}
+            <rect
+              x={x} y={ground - h} width={w} height={h}
+              fill={isLandmark ? `url(#groundfade)` : buildingColor}
+            />
+            {/* Accent tint on tallest */}
+            {isLandmark && (
+              <rect x={x} y={ground - h} width={w} height={h} fill={accentGlow} />
+            )}
+            {/* Windows — rows of small rects on taller buildings */}
+            {h > 150 && (() => {
+              const winW = 5, winH = 4, colGap = 13, rowGap = 16;
+              const cols = Math.floor((w - 10) / colGap);
+              const rows = Math.floor((h - 24) / rowGap);
+              const wins: React.ReactNode[] = [];
+              for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                  wins.push(
+                    <rect
+                      key={`${r}-${c}`}
+                      x={x + 5 + c * colGap}
+                      y={ground - h + 12 + r * rowGap}
+                      width={winW} height={winH}
+                      fill={windowColor}
+                      opacity={0.7}
+                    />
+                  );
+                }
+              }
+              return wins;
+            })()}
+          </g>
+        );
+      })}
+    </svg>
   );
 };
-
-const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
 
 export const ReportPromo: React.FC<ReportPromoProps> = ({
   title, eyebrow, accentColor, appPath, bullets,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width, height } = useVideoConfig();
 
-  const mapOp    = interpolate(frame, [0, 25],    [0, 1],  cl);
-  const overlayOp = interpolate(frame, [0, 30],   [0, 0.62], cl);
-  const barW     = interpolate(frame, [0, 18],    [0, 1280], cl);
-  const eyeOp    = interpolate(frame, [12, 30],   [0, 1],  cl);
+  const barW    = interpolate(frame, [0, 18],    [0, width],  cl);
+  const eyeOp   = interpolate(frame, [12, 32],   [0, 1],      cl);
+  const cityOp  = interpolate(frame, [0, 40],    [0, 1],      cl);
 
-  const titleS   = spring({ fps, frame: frame - 20, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
-  const titleY   = interpolate(titleS, [0, 1], [28, 0]);
+  const titleS  = spring({ fps, frame: frame - 18, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
+  const titleY  = interpolate(titleS, [0, 1], [26, 0]);
 
-  const divW     = interpolate(frame, [50, 78],   [0, 1140], cl);
-  const b0Op     = interpolate(frame, [75,  92],  [0, 1],  cl);
-  const b0Y      = interpolate(frame, [75,  92],  [22, 0], cl);
-  const b1Op     = interpolate(frame, [95,  112], [0, 1],  cl);
-  const b1Y      = interpolate(frame, [95,  112], [22, 0], cl);
-  const b2Op     = interpolate(frame, [115, 132], [0, 1],  cl);
-  const b2Y      = interpolate(frame, [115, 132], [22, 0], cl);
+  const divW    = interpolate(frame, [48, 74],   [0, width - 140], cl);
+
+  const b0Op    = interpolate(frame, [72,  88],  [0, 1],  cl);
+  const b0Y     = interpolate(frame, [72,  88],  [20, 0], cl);
+  const b1Op    = interpolate(frame, [92,  108], [0, 1],  cl);
+  const b1Y     = interpolate(frame, [92,  108], [20, 0], cl);
+  const b2Op    = interpolate(frame, [112, 128], [0, 1],  cl);
+  const b2Y     = interpolate(frame, [112, 128], [20, 0], cl);
   const bulletOps = [b0Op, b1Op, b2Op];
   const bulletYs  = [b0Y,  b1Y,  b2Y];
 
-  const ctaOp    = interpolate(frame, [150, 170], [0, 1],  cl);
+  const ctaOp   = interpolate(frame, [148, 168], [0, 1],  cl);
 
   const url = `anatomy.city${appPath}`;
 
   return (
-    <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#1a1a2e" }}>
+    <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#f8f9fc" }}>
 
-      {/* Map tiles */}
-      <MapBackground opacity={mapOp} />
+      {/* City skyline */}
+      <div style={{ position: "absolute", inset: 0, opacity: cityOp }}>
+        <Cityscape width={width} height={height} accent={accentColor} />
+      </div>
 
-      {/* Dark overlay so text pops */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "rgba(10, 10, 20, 0.62)",
-        opacity: overlayOp,
-      }} />
+      {/* Accent bar */}
+      <div style={{ position: "absolute", top: 0, left: 0, width: barW, height: 7, background: accentColor }} />
 
-      {/* Accent bar across top */}
-      <div style={{
-        position: "absolute",
-        top: 0, left: 0,
-        width: barW, height: 7,
-        background: accentColor,
-      }} />
-
-      {/* Main content — full-screen column */}
+      {/* Content */}
       <div style={{
         position: "absolute",
         inset: 0,
@@ -123,10 +154,10 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           {/* Eyebrow */}
           <div style={{
             fontSize: 20,
-            letterSpacing: "0.28em",
+            letterSpacing: "0.26em",
             textTransform: "uppercase",
             color: accentColor,
-            marginBottom: 18,
+            marginBottom: 16,
             opacity: eyeOp,
           }}>
             {eyebrow}
@@ -134,14 +165,14 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
           {/* Title */}
           <div style={{
-            fontSize: 90,
+            fontSize: 84,
             fontWeight: 800,
-            color: "#ffffff",
+            color: "#111827",
             lineHeight: 1.08,
             letterSpacing: "-0.015em",
             transform: `translateY(${titleY}px)`,
             opacity: titleS,
-            marginBottom: 22,
+            marginBottom: 20,
           }}>
             {title}
           </div>
@@ -151,7 +182,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
             width: divW,
             height: 2,
             background: `linear-gradient(90deg, ${accentColor}, transparent)`,
-            marginBottom: 28,
+            marginBottom: 24,
             borderRadius: 1,
           }} />
 
@@ -160,24 +191,24 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
             <div key={i} style={{
               display: "flex",
               alignItems: "flex-start",
-              gap: 18,
-              marginBottom: 14,
+              gap: 16,
+              marginBottom: 12,
               opacity: bulletOps[i],
               transform: `translateY(${bulletYs[i]}px)`,
             }}>
               <div style={{
-                width: 11,
-                height: 11,
+                width: 10,
+                height: 10,
                 borderRadius: "50%",
                 background: accentColor,
-                marginTop: 13,
+                marginTop: 10,
                 flexShrink: 0,
               }} />
               <div style={{
-                fontSize: 72,
+                fontSize: 58,
                 fontWeight: 600,
-                color: "#f0f0f0",
-                lineHeight: 1.25,
+                color: "#1f2937",
+                lineHeight: 1.2,
               }}>
                 {text}
               </div>
@@ -185,12 +216,8 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           ))}
         </div>
 
-        {/* Footer: URL badge */}
-        <div style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          opacity: ctaOp,
-        }}>
+        {/* URL badge */}
+        <div style={{ display: "flex", justifyContent: "flex-end", opacity: ctaOp }}>
           <div style={{
             background: accentColor,
             color: "#ffffff",
