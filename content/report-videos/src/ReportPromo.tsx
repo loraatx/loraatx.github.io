@@ -17,8 +17,8 @@ export interface ReportPromoProps {
   bullets: [string, string, string];
 }
 
-const BG = "#080e1a";
-const GRID = "rgba(255,255,255,0.04)";
+const BG = "#ffffff";
+const GRID = "rgba(0,0,0,0.04)";
 
 const DotGrid: React.FC<{ width: number; height: number; color: string }> = ({
   width, height, color,
@@ -65,38 +65,22 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // ── Accent strip (0–20) ──────────────────────────────────
-  const stripW = interpolate(frame, [0, 20], [0, width], cl(0, 20));
-
-  // ── Eyebrow (15–40) ─────────────────────────────────────
-  const eyebrowOp = interpolate(frame, [15, 40], [0, 1], cl(15, 40));
-
-  // ── Title spring (30–75) ────────────────────────────────
+  const stripW    = interpolate(frame, [0, 20],    [0, width],          cl(0, 20));
+  const eyebrowOp = interpolate(frame, [15, 40],   [0, 1],              cl(15, 40));
   const titleSpring = spring({ fps, frame: frame - 30, config: { damping: 16, stiffness: 70, mass: 0.9 }, from: 0, to: 1, durationInFrames: 45 });
-  const titleY  = interpolate(titleSpring, [0, 1], [50, 0]);
-  const titleOp = titleSpring;
-
-  // ── Subtitle (75–100) ───────────────────────────────────
-  const subOp = interpolate(frame, [75, 100], [0, 1], cl(75, 100));
-
-  // ── Divider (80–115) ────────────────────────────────────
-  const divW = interpolate(frame, [80, 115], [0, 520], cl(80, 115));
-
-  // ── Bullets staggered (110 / 130 / 150 – +20 each) ─────
-  const b0Op = interpolate(frame, [110, 130], [0, 1], cl(110, 130));
-  const b1Op = interpolate(frame, [130, 150], [0, 1], cl(130, 150));
-  const b2Op = interpolate(frame, [150, 170], [0, 1], cl(150, 170));
+  const titleY    = interpolate(titleSpring, [0, 1], [50, 0]);
+  const titleOp   = titleSpring;
+  const subOp     = interpolate(frame, [75, 100],  [0, 1],              cl(75, 100));
+  const divW      = interpolate(frame, [80, 115],  [0, 520],            cl(80, 115));
+  const b0Op      = interpolate(frame, [110, 130], [0, 1],              cl(110, 130));
+  const b1Op      = interpolate(frame, [130, 150], [0, 1],              cl(130, 150));
+  const b2Op      = interpolate(frame, [150, 170], [0, 1],              cl(150, 170));
   const bulletOps = [b0Op, b1Op, b2Op];
+  const countVal  = interpolate(frame, [190, 240], [0, locationCount],  cl(190, 240));
+  const countOp   = interpolate(frame, [190, 210], [0, 1],              cl(190, 210));
+  const ctaX      = interpolate(frame, [245, 270], [80, 0],             cl(245, 270));
+  const ctaOp     = interpolate(frame, [245, 270], [0, 1],              cl(245, 270));
 
-  // ── Counter (190–240) ───────────────────────────────────
-  const countVal = interpolate(frame, [190, 240], [0, locationCount], cl(190, 240));
-  const countOp  = interpolate(frame, [190, 210], [0, 1], cl(190, 210));
-
-  // ── CTA badge (245–270) ─────────────────────────────────
-  const ctaX  = interpolate(frame, [245, 270], [80, 0], cl(245, 270));
-  const ctaOp = interpolate(frame, [245, 270], [0, 1], cl(245, 270));
-
-  // ── Map pins (45+) ──────────────────────────────────────
   const pins = [
     { x: width * 0.72, y: height * 0.28 },
     { x: width * 0.78, y: height * 0.52 },
@@ -115,12 +99,12 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
       {/* Top accent strip */}
       <div style={{ position: "absolute", top: 0, left: 0, width: stripW, height: 5, background: accentColor }} />
 
-      {/* Map-pin cluster right side */}
+      {/* Right-side map-pin cluster */}
       <svg style={{ position: "absolute", inset: 0 }} width={width} height={height}>
         <circle
           cx={width * 0.76} cy={height * 0.5}
           r={interpolate(frame, [20, 60], [0, 180], cl(20, 60))}
-          fill={accentColor} opacity={0.06}
+          fill={accentColor} opacity={0.08}
         />
         {pins.map((p, i) => (
           <MapPin key={i} x={p.x} y={p.y} color={accentColor} delay={45 + i * 8} frame={frame} fps={fps} />
@@ -135,7 +119,6 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         transform: "translateY(-50%)",
         width: width * 0.58,
       }}>
-
         {/* Eyebrow */}
         <div style={{
           fontSize: 15,
@@ -152,7 +135,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         <div style={{
           fontSize: 56,
           fontWeight: 800,
-          color: "#ffffff",
+          color: "#111111",
           lineHeight: 1.1,
           letterSpacing: "-0.01em",
           transform: `translateY(${titleY}px)`,
@@ -173,7 +156,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         {/* Subtitle */}
         <div style={{
           fontSize: 21,
-          color: "rgba(255,255,255,0.55)",
+          color: "rgba(0,0,0,0.5)",
           lineHeight: 1.45,
           opacity: subOp,
           marginBottom: 22,
@@ -187,20 +170,20 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
             display: "flex",
             alignItems: "flex-start",
             gap: 12,
-            marginBottom: 12,
+            marginBottom: 14,
             opacity: bulletOps[i],
           }}>
             <div style={{
-              width: 6,
-              height: 6,
+              width: 7,
+              height: 7,
               borderRadius: "50%",
               background: accentColor,
               marginTop: 8,
               flexShrink: 0,
             }} />
             <div style={{
-              fontSize: 18,
-              color: "rgba(255,255,255,0.75)",
+              fontSize: 19,
+              color: "rgba(0,0,0,0.75)",
               lineHeight: 1.5,
             }}>
               {text}
@@ -222,7 +205,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         <span style={{ fontSize: 12, color: accentColor, letterSpacing: "0.2em", textTransform: "uppercase" }}>
           Locations mapped
         </span>
-        <span style={{ fontSize: 46, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1 }}>
+        <span style={{ fontSize: 46, fontWeight: 800, color: "#111111", letterSpacing: "-0.02em", lineHeight: 1 }}>
           {Math.round(countVal)}
         </span>
       </div>
@@ -239,7 +222,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         alignItems: "flex-end",
         gap: 6,
       }}>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+        <div style={{ fontSize: 11, color: "rgba(0,0,0,0.35)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
           Explore the full report
         </div>
         <div style={{
@@ -262,7 +245,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         right: 40,
         fontSize: 13,
         fontWeight: 700,
-        color: "rgba(255,255,255,0.25)",
+        color: "rgba(0,0,0,0.2)",
         letterSpacing: "0.1em",
         textTransform: "uppercase",
         opacity: eyebrowOp,

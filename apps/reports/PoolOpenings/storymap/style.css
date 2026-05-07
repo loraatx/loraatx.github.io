@@ -255,8 +255,8 @@ html, body {
   box-shadow: 0 12px 32px rgba(15, 25, 45, 0.12);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   min-width: 242px;
-  max-width: 352px;
-  max-height: 55vh;
+  max-width: 600px;
+  max-height: 70vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
