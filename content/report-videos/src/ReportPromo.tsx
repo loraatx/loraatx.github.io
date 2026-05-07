@@ -121,11 +121,11 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
       }}>
         {/* Eyebrow */}
         <div style={{
-          fontSize: 15,
+          fontSize: 18,
           letterSpacing: "0.3em",
           textTransform: "uppercase",
           color: accentColor,
-          marginBottom: 18,
+          marginBottom: 20,
           opacity: eyebrowOp,
         }}>
           {eyebrow}
@@ -133,7 +133,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
         {/* Title */}
         <div style={{
-          fontSize: 56,
+          fontSize: 72,
           fontWeight: 800,
           color: "#111111",
           lineHeight: 1.1,
@@ -149,17 +149,18 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           width: divW,
           height: 2,
           background: `linear-gradient(90deg, ${accentColor}, transparent)`,
-          margin: "22px 0 18px",
+          margin: "26px 0 22px",
           borderRadius: 1,
         }} />
 
         {/* Subtitle */}
         <div style={{
-          fontSize: 21,
-          color: "rgba(0,0,0,0.5)",
-          lineHeight: 1.45,
+          fontSize: 28,
+          fontWeight: 700,
+          color: "rgba(0,0,0,0.6)",
+          lineHeight: 1.35,
           opacity: subOp,
-          marginBottom: 22,
+          marginBottom: 26,
         }}>
           {subtitle}
         </div>
@@ -169,22 +170,23 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           <div key={i} style={{
             display: "flex",
             alignItems: "flex-start",
-            gap: 12,
-            marginBottom: 14,
+            gap: 14,
+            marginBottom: 16,
             opacity: bulletOps[i],
           }}>
             <div style={{
-              width: 7,
-              height: 7,
+              width: 9,
+              height: 9,
               borderRadius: "50%",
               background: accentColor,
-              marginTop: 8,
+              marginTop: 10,
               flexShrink: 0,
             }} />
             <div style={{
-              fontSize: 19,
-              color: "rgba(0,0,0,0.75)",
-              lineHeight: 1.5,
+              fontSize: 26,
+              fontWeight: 600,
+              color: "rgba(0,0,0,0.8)",
+              lineHeight: 1.45,
             }}>
               {text}
             </div>
