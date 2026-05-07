@@ -154,16 +154,24 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
       }}>
         <div>
           {/* Eyebrow */}
-          <div style={{
-            fontSize: 20,
-            letterSpacing: "0.26em",
-            textTransform: "uppercase",
-            color: accentColor,
-            marginBottom: 16,
-            opacity: eyeOp,
-          }}>
-            {eyebrow}
-          </div>
+          {(() => {
+            const [prefix, bold] = eyebrow.includes("Free ")
+              ? [eyebrow.slice(0, eyebrow.indexOf("Free ") + 5), eyebrow.slice(eyebrow.indexOf("Free ") + 5)]
+              : [eyebrow, ""];
+            return (
+              <div style={{
+                fontSize: 24,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: accentColor,
+                marginBottom: 16,
+                opacity: eyeOp,
+              }}>
+                <span style={{ fontWeight: 400 }}>{prefix}</span>
+                <span style={{ fontWeight: 800 }}>{bold}</span>
+              </div>
+            );
+          })()}
 
           {/* Title */}
           <div style={{
