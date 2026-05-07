@@ -153,22 +153,24 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         justifyContent: "space-between",
       }}>
         <div>
-          {/* Eyebrow */}
+          {/* Eyebrow — format: "City Anatomy Free Report: BOLD PART - normal part" */}
           {(() => {
-            const [prefix, bold] = eyebrow.includes("Free ")
-              ? [eyebrow.slice(0, eyebrow.indexOf("Free ") + 5), eyebrow.slice(eyebrow.indexOf("Free ") + 5)]
-              : [eyebrow, ""];
+            const colonIdx = eyebrow.indexOf(": ");
+            const dashIdx  = eyebrow.indexOf(" - ");
+            const prefix   = colonIdx > -1 ? eyebrow.slice(0, colonIdx + 2) : eyebrow;
+            const bold     = colonIdx > -1 && dashIdx > -1 ? eyebrow.slice(colonIdx + 2, dashIdx) : "";
+            const suffix   = dashIdx  > -1 ? eyebrow.slice(dashIdx) : "";
             return (
               <div style={{
-                fontSize: 24,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
+                fontSize: 22,
+                letterSpacing: "0.08em",
                 color: accentColor,
                 marginBottom: 16,
                 opacity: eyeOp,
               }}>
                 <span style={{ fontWeight: 400 }}>{prefix}</span>
                 <span style={{ fontWeight: 800 }}>{bold}</span>
+                <span style={{ fontWeight: 400 }}>{suffix}</span>
               </div>
             );
           })()}

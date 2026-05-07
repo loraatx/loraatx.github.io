@@ -4,7 +4,7 @@ import { ReportPromo } from "../ReportPromo";
 export const AustinGolfCourses: React.FC = () => (
   <ReportPromo
     title="Golf in the Austin Region"
-    eyebrow="City Anatomy Free Recreation Report"
+    eyebrow="City Anatomy Free Report: AUSTIN RECREATION - Golf Courses"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#2d7a1a"
     locationCount={20}

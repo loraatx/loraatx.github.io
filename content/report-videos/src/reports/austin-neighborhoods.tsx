@@ -4,7 +4,7 @@ import { ReportPromo } from "../ReportPromo";
 export const AustinNeighborhoods: React.FC = () => (
   <ReportPromo
     title="Historic & Emerging Neighborhoods"
-    eyebrow="City Anatomy Free City Government Report"
+    eyebrow="City Anatomy Free Report: AUSTIN CITY GOVERNMENT - Neighborhoods"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#2B6CB0"
     locationCount={33}
