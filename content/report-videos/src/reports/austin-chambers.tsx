@@ -12,7 +12,8 @@ export const AustinChambers: React.FC = () => (
     bullets={[
       "12 chambers across the metro",
       "Regional, affinity & corridor orgs",
-      "Austin Chamber · LGBT Chamber",
+      "Austin Chamber · LGBT Chamber · West Austin Chamber",
+      "Pflugerville · Round Rock · etc.",
     ]}
   />
 );

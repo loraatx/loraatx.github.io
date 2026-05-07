@@ -12,7 +12,8 @@ export const AustinNeighborhoods: React.FC = () => (
     bullets={[
       "33 Austin neighborhoods",
       "Historic districts to new suburbs",
-      "Clarksville · Mueller",
+      "Downtown · Hyde Park · Travis Heights · Zilker · Mueller",
+      "The Domain · Circle C · Easton Park · etc.",
     ]}
   />
 );

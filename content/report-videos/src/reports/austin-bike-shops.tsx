@@ -12,7 +12,8 @@ export const AustinBikeShops: React.FC = () => (
     bullets={[
       "12 bike & e-bike shops",
       "Independents, co-op & specialists",
-      "Austin Tri Cyclist · Bike Farm",
+      "Austin Tri Cyclist · Austin Bike Farm · Trek Bicycle",
+      "REI Austin · Rocket Electrics · etc.",
     ]}
   />
 );

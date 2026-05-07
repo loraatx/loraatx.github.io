@@ -12,7 +12,8 @@ export const AustinHorsebackRiding: React.FC = () => (
     bullets={[
       "17 riding operations",
       "Trail ranches, lessons & wellness",
-      "Southern Trails · Miraval Austin",
+      "Southern Trails · Maverick · Willow · Bee Cave Riding",
+      "Texas Trail Rides · Tri-Star Farm · Manor Equestrian · etc.",
     ]}
   />
 );

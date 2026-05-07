@@ -12,7 +12,8 @@ export const PoolOpenings: React.FC = () => (
     bullets={[
       "22 aquatic facilities mapped",
       "Pools, lap lanes & splash pads",
-      "Barton Springs · Deep Eddy",
+      "Barton Springs · Deep Eddy · Stacy · Rosewood · Brentwood",
+      "Dittmar · Patterson · Bartholomew · Givens · etc.",
     ]}
   />
 );

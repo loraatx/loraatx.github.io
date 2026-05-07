@@ -12,7 +12,8 @@ export const AustinGolfCourses: React.FC = () => (
     bullets={[
       "20 golf facilities",
       "Municipal, daily-fee & resort",
-      "Hancock · Lions Municipal",
+      "Lions Municipal · Hancock · Jimmy Clay · Roy Kizer",
+      "Morris Williams · Grey Rock · Avery Ranch · etc.",
     ]}
   />
 );

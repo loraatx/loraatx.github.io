@@ -14,7 +14,7 @@ export interface ReportPromoProps {
   accentColor: string;
   locationCount: number;
   appPath: string;
-  bullets: [string, string, string];
+  bullets: [string, string, string, string];
 }
 
 const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
@@ -123,10 +123,12 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const b1Y     = interpolate(frame, [92,  108], [20, 0], cl);
   const b2Op    = interpolate(frame, [112, 128], [0, 1],  cl);
   const b2Y     = interpolate(frame, [112, 128], [20, 0], cl);
-  const bulletOps = [b0Op, b1Op, b2Op];
-  const bulletYs  = [b0Y,  b1Y,  b2Y];
+  const b3Op    = interpolate(frame, [132, 148], [0, 1],  cl);
+  const b3Y     = interpolate(frame, [132, 148], [20, 0], cl);
+  const bulletOps = [b0Op, b1Op, b2Op, b3Op];
+  const bulletYs  = [b0Y,  b1Y,  b2Y,  b3Y];
 
-  const ctaOp   = interpolate(frame, [148, 168], [0, 1],  cl);
+  const ctaOp   = interpolate(frame, [162, 180], [0, 1],  cl);
 
   const url = `anatomy.city${appPath}`;
 

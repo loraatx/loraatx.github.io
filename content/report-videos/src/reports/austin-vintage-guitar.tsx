@@ -12,7 +12,8 @@ export const AustinVintageGuitar: React.FC = () => (
     bullets={[
       "9 guitar shops across Austin",
       "Vintage, boutique & acoustic",
-      "Austin Vintage Guitars · South Austin Music",
+      "Austin Vintage Guitars · South Austin Music · Moon Music",
+      "Austin Guitar House · Strait Music · Fiddler's Green · etc.",
     ]}
   />
 );

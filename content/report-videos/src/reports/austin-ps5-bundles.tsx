@@ -12,7 +12,8 @@ export const AustinPs5Bundles: React.FC = () => (
     bullets={[
       "18 locations across 7 retailers",
       "Big box, warehouse & game stores",
-      "Best Buy · Target · GameStop",
+      "Best Buy · Target · Walmart · Costco · Sam's Club",
+      "GameStop · Game Over · etc.",
     ]}
   />
 );
