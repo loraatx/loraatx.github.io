@@ -37,30 +37,22 @@ For each storymap, only `story.json` is customized (slide content and map stops)
 
 ---
 
-## Storymap standard — 4 scenes, always
+## Storymap standard — 3 scenes, always
 
-Every storymap follows the same 4-scene structure. Only the camera coordinates and popup content change between reports.
+Every storymap follows the same 3-scene structure. Only the camera coordinates and popup content change between reports.
 
 ### Scene 1 — Opening overview
 - Camera: city-wide overview (zoom ~10, pitch 30)
-- Popup `body`: exactly **3 sentences** (the engine renders each as a bullet point)
-  1. Total count — *"X [businesses/items] are profiled in this report."*
-  2. Categories — *"Types covered include [list]."*
-  3. Two highlights — *"[Location A] and [Location B] are two highlighted locations from the report."*
-- Popup `link`: links to the interactive map app at `/apps/reports/{slug}/`
+- Popup: promo video (`promo.mp4`) — no text popup
 
-### Scene 2 — Location highlight 1
-- Camera: fly close to location A mentioned in scene 1 bullet 3 (zoom 14–16, pitch 50–55)
+### Scene 2 — Location highlight
+- Camera: fly close to a featured location (zoom 14–16, pitch 50–55)
 - Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to map app
 
-### Scene 3 — Location highlight 2
-- Camera: fly close to location B mentioned in scene 1 bullet 3 (zoom 14–16, pitch 50–55)
-- Popup: same shape as scene 2
-
-### Scene 4 — Closing CTA
+### Scene 3 — Closing CTA
 - Camera: fly back to city-wide overview (same as scene 1)
-- Popup `image`: place a `preview.png` in the storymap folder (screenshot of the map app + report side by side); use `../../template/siteimage.png` as a placeholder until the custom image is ready
-- Popup `link`: links to `report.html` (or the purchase URL when the report is for sale)
+- Popup `image`: use `../../template/siteimage.png` as a placeholder until a custom preview image is ready
+- Popup `links`: purchase/report links (href can be empty until URLs are set)
 
 ### story.json popup field reference
 
