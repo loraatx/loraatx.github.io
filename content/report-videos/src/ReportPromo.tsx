@@ -17,242 +17,149 @@ export interface ReportPromoProps {
   bullets: [string, string, string];
 }
 
-const BG = "#ffffff";
-const GRID = "rgba(0,0,0,0.04)";
-
-const DotGrid: React.FC<{ width: number; height: number; color: string }> = ({
-  width, height, color,
-}) => {
-  const cols = 32;
-  const rows = 18;
-  const dots: React.ReactNode[] = [];
-  for (let r = 0; r <= rows; r++) {
-    for (let c = 0; c <= cols; c++) {
-      dots.push(
-        <circle key={`${r}-${c}`} cx={(width / cols) * c} cy={(height / rows) * r} r={1.5} fill={color} />
-      );
-    }
-  }
-  return (
-    <svg style={{ position: "absolute", inset: 0 }} width={width} height={height}>
-      {dots}
-    </svg>
-  );
-};
-
-const MapPin: React.FC<{ x: number; y: number; color: string; delay: number; frame: number; fps: number }> = ({
-  x, y, color, delay, frame, fps,
-}) => {
-  const s = spring({ fps, frame: frame - delay, config: { damping: 12, stiffness: 120, mass: 0.5 }, from: 0, to: 1, durationInFrames: 25 });
-  const drop = interpolate(s, [0, 1], [-30, 0]);
-  return (
-    <g transform={`translate(${x}, ${y + drop})`} opacity={s}>
-      <circle cx={0} cy={-14} r={9} fill={color} />
-      <circle cx={0} cy={-14} r={4} fill="#fff" />
-      <path d="M0 0 L-6 -8 Q-9 -14 0 -23 Q9 -14 6 -8 Z" fill={color} />
-      <circle cx={0} cy={-14} r={interpolate(s, [0.6, 1], [0, 16])} fill="none" stroke={color} strokeWidth={1.5}
-        opacity={interpolate(s, [0.6, 1], [0.8, 0])} />
-    </g>
-  );
-};
-
-const cl = (left: number, right: number) =>
-  ({ extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const });
+const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
 
 export const ReportPromo: React.FC<ReportPromoProps> = ({
-  title, eyebrow, subtitle, accentColor, locationCount, appPath, bullets,
+  title, eyebrow, subtitle, accentColor, appPath, bullets,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  const stripW    = interpolate(frame, [0, 20],    [0, width],          cl(0, 20));
-  const eyebrowOp = interpolate(frame, [15, 40],   [0, 1],              cl(15, 40));
-  const titleSpring = spring({ fps, frame: frame - 30, config: { damping: 16, stiffness: 70, mass: 0.9 }, from: 0, to: 1, durationInFrames: 45 });
-  const titleY    = interpolate(titleSpring, [0, 1], [50, 0]);
-  const titleOp   = titleSpring;
-  const subOp     = interpolate(frame, [75, 100],  [0, 1],              cl(75, 100));
-  const divW      = interpolate(frame, [80, 115],  [0, 520],            cl(80, 115));
-  const b0Op      = interpolate(frame, [110, 130], [0, 1],              cl(110, 130));
-  const b1Op      = interpolate(frame, [130, 150], [0, 1],              cl(130, 150));
-  const b2Op      = interpolate(frame, [150, 170], [0, 1],              cl(150, 170));
+  const pad = width * 0.08;
+
+  const headerOp  = interpolate(frame, [0,  20], [0, 1], cl);
+  const titleS    = spring({ fps, frame: frame - 15, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 40 });
+  const titleY    = interpolate(titleS, [0, 1], [32, 0]);
+  const divW      = interpolate(frame, [55, 85], [0, width - pad * 2], cl);
+  const subOp     = interpolate(frame, [70, 95], [0, 1], cl);
+  const b0Op      = interpolate(frame, [90,  110], [0, 1], cl);
+  const b1Op      = interpolate(frame, [110, 130], [0, 1], cl);
+  const b2Op      = interpolate(frame, [130, 150], [0, 1], cl);
   const bulletOps = [b0Op, b1Op, b2Op];
-  const countVal  = interpolate(frame, [190, 240], [0, locationCount],  cl(190, 240));
-  const countOp   = interpolate(frame, [190, 210], [0, 1],              cl(190, 210));
-  const ctaX      = interpolate(frame, [245, 270], [80, 0],             cl(245, 270));
-  const ctaOp     = interpolate(frame, [245, 270], [0, 1],              cl(245, 270));
+  const ctaOp     = interpolate(frame, [165, 185], [0, 1], cl);
 
-  const pins = [
-    { x: width * 0.72, y: height * 0.28 },
-    { x: width * 0.78, y: height * 0.52 },
-    { x: width * 0.68, y: height * 0.62 },
-    { x: width * 0.84, y: height * 0.38 },
-    { x: width * 0.76, y: height * 0.72 },
-  ];
-
-  const url = `anatomy.city/${appPath}`;
+  const url = `anatomy.city${appPath}`;
 
   return (
-    <AbsoluteFill style={{ background: BG, fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden" }}>
+    <AbsoluteFill style={{
+      background: "#ffffff",
+      fontFamily: "'Helvetica Neue', Arial, sans-serif",
+      overflow: "hidden",
+    }}>
 
-      <DotGrid width={width} height={height} color={GRID} />
+      {/* Top accent bar */}
+      <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: accentColor }} />
 
-      {/* Top accent strip */}
-      <div style={{ position: "absolute", top: 0, left: 0, width: stripW, height: 5, background: accentColor }} />
-
-      {/* Right-side map-pin cluster */}
-      <svg style={{ position: "absolute", inset: 0 }} width={width} height={height}>
-        <circle
-          cx={width * 0.76} cy={height * 0.5}
-          r={interpolate(frame, [20, 60], [0, 180], cl(20, 60))}
-          fill={accentColor} opacity={0.08}
-        />
-        {pins.map((p, i) => (
-          <MapPin key={i} x={p.x} y={p.y} color={accentColor} delay={45 + i * 8} frame={frame} fps={fps} />
-        ))}
-      </svg>
-
-      {/* Left content block */}
+      {/* Main card content */}
       <div style={{
         position: "absolute",
-        top: "50%",
-        left: 80,
-        transform: "translateY(-50%)",
-        width: width * 0.58,
+        top: 8,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: `${height * 0.1}px ${pad}px ${height * 0.08}px`,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}>
-        {/* Eyebrow */}
-        <div style={{
-          fontSize: 18,
-          letterSpacing: "0.3em",
-          textTransform: "uppercase",
-          color: accentColor,
-          marginBottom: 20,
-          opacity: eyebrowOp,
-        }}>
-          {eyebrow}
-        </div>
 
-        {/* Title */}
-        <div style={{
-          fontSize: 72,
-          fontWeight: 800,
-          color: "#111111",
-          lineHeight: 1.1,
-          letterSpacing: "-0.01em",
-          transform: `translateY(${titleY}px)`,
-          opacity: titleOp,
-        }}>
-          {title}
-        </div>
-
-        {/* Divider */}
-        <div style={{
-          width: divW,
-          height: 2,
-          background: `linear-gradient(90deg, ${accentColor}, transparent)`,
-          margin: "26px 0 22px",
-          borderRadius: 1,
-        }} />
-
-        {/* Subtitle */}
-        <div style={{
-          fontSize: 28,
-          fontWeight: 700,
-          color: "rgba(0,0,0,0.6)",
-          lineHeight: 1.35,
-          opacity: subOp,
-          marginBottom: 26,
-        }}>
-          {subtitle}
-        </div>
-
-        {/* Bullets */}
-        {bullets.map((text, i) => (
-          <div key={i} style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 14,
-            marginBottom: 16,
-            opacity: bulletOps[i],
+        <div>
+          {/* Eyebrow */}
+          <div style={{
+            fontSize: width * 0.018,
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            color: accentColor,
+            marginBottom: height * 0.04,
+            opacity: headerOp,
           }}>
-            <div style={{
-              width: 9,
-              height: 9,
-              borderRadius: "50%",
-              background: accentColor,
-              marginTop: 10,
-              flexShrink: 0,
-            }} />
-            <div style={{
-              fontSize: 26,
-              fontWeight: 600,
-              color: "rgba(0,0,0,0.8)",
-              lineHeight: 1.45,
-            }}>
-              {text}
-            </div>
+            {eyebrow}
           </div>
-        ))}
-      </div>
 
-      {/* Location counter — bottom left */}
-      <div style={{
-        position: "absolute",
-        bottom: 52,
-        left: 80,
-        opacity: countOp,
-        display: "flex",
-        flexDirection: "column",
-        gap: 3,
-      }}>
-        <span style={{ fontSize: 12, color: accentColor, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-          Locations mapped
-        </span>
-        <span style={{ fontSize: 46, fontWeight: 800, color: "#111111", letterSpacing: "-0.02em", lineHeight: 1 }}>
-          {Math.round(countVal)}
-        </span>
-      </div>
+          {/* Title */}
+          <div style={{
+            fontSize: width * 0.058,
+            fontWeight: 800,
+            color: "#111111",
+            lineHeight: 1.1,
+            letterSpacing: "-0.01em",
+            transform: `translateY(${titleY}px)`,
+            opacity: titleS,
+            marginBottom: height * 0.04,
+          }}>
+            {title}
+          </div>
 
-      {/* CTA badge — bottom right */}
-      <div style={{
-        position: "absolute",
-        bottom: 52,
-        right: 80,
-        opacity: ctaOp,
-        transform: `translateX(${ctaX}px)`,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-        gap: 6,
-      }}>
-        <div style={{ fontSize: 11, color: "rgba(0,0,0,0.35)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-          Explore the full report
+          {/* Divider */}
+          <div style={{
+            width: divW,
+            height: 2,
+            background: `linear-gradient(90deg, ${accentColor}, transparent)`,
+            marginBottom: height * 0.04,
+            borderRadius: 1,
+          }} />
+
+          {/* Subtitle */}
+          <div style={{
+            fontSize: width * 0.024,
+            fontWeight: 600,
+            color: "rgba(0,0,0,0.5)",
+            lineHeight: 1.35,
+            opacity: subOp,
+            marginBottom: height * 0.05,
+          }}>
+            {subtitle}
+          </div>
+
+          {/* Bullets */}
+          {bullets.map((text, i) => (
+            <div key={i} style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: width * 0.012,
+              marginBottom: height * 0.025,
+              opacity: bulletOps[i],
+            }}>
+              <div style={{
+                width: width * 0.008,
+                height: width * 0.008,
+                borderRadius: "50%",
+                background: accentColor,
+                marginTop: width * 0.009,
+                flexShrink: 0,
+              }} />
+              <div style={{
+                fontSize: width * 0.022,
+                fontWeight: 500,
+                color: "rgba(0,0,0,0.8)",
+                lineHeight: 1.45,
+              }}>
+                {text}
+              </div>
+            </div>
+          ))}
         </div>
+
+        {/* Footer: URL tag */}
         <div style={{
-          background: accentColor,
-          color: "#fff",
-          fontSize: 14,
-          fontWeight: 700,
-          letterSpacing: "0.05em",
-          padding: "9px 20px",
-          borderRadius: 4,
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          opacity: ctaOp,
         }}>
-          {url}
+          <div style={{
+            background: accentColor,
+            color: "#ffffff",
+            fontSize: width * 0.016,
+            fontWeight: 700,
+            letterSpacing: "0.04em",
+            padding: `${height * 0.022}px ${width * 0.025}px`,
+            borderRadius: 5,
+          }}>
+            {url}
+          </div>
         </div>
-      </div>
 
-      {/* City Anatomy brand — top right */}
-      <div style={{
-        position: "absolute",
-        top: 28,
-        right: 40,
-        fontSize: 13,
-        fontWeight: 700,
-        color: "rgba(0,0,0,0.2)",
-        letterSpacing: "0.1em",
-        textTransform: "uppercase",
-        opacity: eyebrowOp,
-      }}>
-        City Anatomy
       </div>
 
     </AbsoluteFill>
