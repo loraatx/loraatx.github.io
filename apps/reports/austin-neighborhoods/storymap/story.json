@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Clarksville",
-        "subtitle": "West Austin \u00b7 Founded 1871",
+        "subtitle": "West Austin · Founded 1871",
         "body": "One of the oldest freedmen's towns west of the Mississippi. Founded by Charles Clark after emancipation. A surviving chapter of Austin's African American history despite highway construction reducing its footprint.",
         "stats": [
           {
@@ -97,37 +97,6 @@
             "value": "Freedmen's town"
           }
         ]
-      }
-    },
-    {
-      "id": "mueller",
-      "transition": "fly",
-      "duration": 7500,
-      "camera": {
-        "center": [
-          -97.704,
-          30.3
-        ],
-        "zoom": 13,
-        "pitch": 50,
-        "bearing": -45,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "neighborhoods"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.704,
-          30.3
-        ],
-        "anchor": "bottom",
-        "title": "Mueller",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 33 neighborhoods \u2014 history, character, and context",
+        "subtitle": "All 33 neighborhoods — history, character, and context",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Neighborhoods Product Intelligence Report",

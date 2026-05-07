@@ -85,45 +85,14 @@
         ],
         "anchor": "bottom",
         "title": "Southern Trails",
-        "subtitle": "15701 Decker Lake Rd \u00b7 Manor",
-        "body": "Guided ranch rides on 100\u2013120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
+        "subtitle": "15701 Decker Lake Rd · Manor",
+        "body": "Guided ranch rides on 100–120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
         "stats": [
           {
             "label": "Drive time",
             "value": "~15 min"
           }
         ]
-      }
-    },
-    {
-      "id": "miraval",
-      "transition": "fly",
-      "duration": 7500,
-      "camera": {
-        "center": [
-          -97.9812,
-          30.4837
-        ],
-        "zoom": 13,
-        "pitch": 50,
-        "bearing": -20,
-        "speed": 0.75,
-        "curve": 1.35
-      },
-      "showLayers": [
-        "operators"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.9812,
-          30.4837
-        ],
-        "anchor": "bottom",
-        "title": "Miraval Austin Resort & Spa",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -152,7 +121,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 17 operators \u2014 prices, age limits, and what to expect",
+        "subtitle": "All 17 operators — prices, age limits, and what to expect",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Horseback Riding Product Intelligence Report",

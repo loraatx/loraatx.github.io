@@ -86,7 +86,7 @@
         "anchor": "bottom",
         "title": "Hancock Golf Course",
         "subtitle": "Oldest continuously operated course in Texas",
-        "body": "Golf played here since 1899 \u2014 the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
+        "body": "Golf played here since 1899 — the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
         "stats": [
           {
             "label": "Est.",
@@ -97,37 +97,6 @@
             "value": "~$20"
           }
         ]
-      }
-    },
-    {
-      "id": "lions-muny",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.7645,
-          30.2903
-        ],
-        "zoom": 14,
-        "pitch": 50,
-        "bearing": -20,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "golf-courses"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.7645,
-          30.2903
-        ],
-        "anchor": "bottom",
-        "title": "Lions Municipal Golf Course",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 20 courses \u2014 history, pricing, water policy, and tips",
+        "subtitle": "All 20 courses — history, pricing, water policy, and tips",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Golf Courses Product Intelligence Report",

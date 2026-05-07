@@ -85,8 +85,8 @@
         ],
         "anchor": "bottom",
         "title": "Austin Tri Cyclist",
-        "subtitle": "923 Barton Springs Rd \u00b7 South Central",
-        "body": "Triathlon-focused independent carrying Cerv\u00e9lo and Cannondale. Professional fitting available. Limited e-bike selection.",
+        "subtitle": "923 Barton Springs Rd · South Central",
+        "body": "Triathlon-focused independent carrying Cervélo and Cannondale. Professional fitting available. Limited e-bike selection.",
         "stats": [
           {
             "label": "Type",
@@ -97,37 +97,6 @@
             "value": "Yes"
           }
         ]
-      }
-    },
-    {
-      "id": "austin-bike-farm",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.7401945,
-          30.3295116
-        ],
-        "zoom": 15.5,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "bike-shops"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.7401945,
-          30.3295116
-        ],
-        "anchor": "bottom",
-        "title": "Austin Bike Farm",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 shops \u2014 locations, pricing, and e-bike programs",
+        "subtitle": "All 12 shops — locations, pricing, and e-bike programs",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Bike Shops Product Intelligence Report",

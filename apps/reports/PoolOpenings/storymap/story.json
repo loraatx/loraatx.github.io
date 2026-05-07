@@ -113,51 +113,18 @@
         ],
         "anchor": "bottom",
         "title": "Barton Springs Pool",
-        "subtitle": "900 Barton Springs Rd \u00b7 Zilker Park",
-        "body": "Spring-fed at a constant 68\u00b0F since 1917. The 3-acre pool draws 800,000+ visitors annually. Free before 8 am and after 9 pm.",
+        "subtitle": "900 Barton Springs Rd · Zilker Park",
+        "body": "Spring-fed at a constant 68°F since 1917. The 3-acre pool draws 800,000+ visitors annually. Free before 8 am and after 9 pm.",
         "stats": [
           {
             "label": "Water temp",
-            "value": "68\u00b0F year-round"
+            "value": "68°F year-round"
           },
           {
             "label": "Open since",
             "value": "1917"
           }
         ]
-      }
-    },
-    {
-      "id": "deep-eddy",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.7707,
-          30.2819
-        ],
-        "zoom": 16,
-        "pitch": 50,
-        "bearing": -45,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "pool-areas"
-      ],
-      "hideLayers": [
-        "creek-corridors"
-      ],
-      "popup": {
-        "lngLat": [
-          -97.7707,
-          30.2819
-        ],
-        "anchor": "bottom",
-        "title": "Deep Eddy Pool",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -189,7 +156,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 22 facilities \u2014 hours, fees, status, and seasonal info",
+        "subtitle": "All 22 facilities — hours, fees, status, and seasonal info",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Pool Openings Product Intelligence Report",

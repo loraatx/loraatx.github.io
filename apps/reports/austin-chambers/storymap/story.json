@@ -85,8 +85,8 @@
         ],
         "anchor": "bottom",
         "title": "Austin Chamber of Commerce",
-        "subtitle": "535 E 5th St \u00b7 Downtown",
-        "body": "The regional hub for Greater Austin \u2014 leading business recruitment, Opportunity Austin, and state-level advocacy. Front door for companies considering relocation to the metro.",
+        "subtitle": "535 E 5th St · Downtown",
+        "body": "The regional hub for Greater Austin — leading business recruitment, Opportunity Austin, and state-level advocacy. Front door for companies considering relocation to the metro.",
         "stats": [
           {
             "label": "Focus",
@@ -97,37 +97,6 @@
             "value": "Greater Austin"
           }
         ]
-      }
-    },
-    {
-      "id": "affinity-lgbt",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.7449999,
-          30.2673437
-        ],
-        "zoom": 15.5,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "chambers"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.7449999,
-          30.2673437
-        ],
-        "anchor": "bottom",
-        "title": "Austin LGBT Chamber",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 chambers \u2014 profiles, services, and contacts",
+        "subtitle": "All 12 chambers — profiles, services, and contacts",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Chambers of Commerce Product Intelligence Report",

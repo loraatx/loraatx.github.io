@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Austin Vintage Guitars",
-        "subtitle": "4306 Red River St \u00b7 Hyde Park corridor",
+        "subtitle": "4306 Red River St · Hyde Park corridor",
         "body": "Austin's flagship vintage shop since the late 1990s. Pre-CBS Fenders, vintage Gibsons, period-correct amps, and effects. Reverb listings reach buyers nationwide. Full repair bench.",
         "stats": [
           {
@@ -97,37 +97,6 @@
             "value": "512-428-9100"
           }
         ]
-      }
-    },
-    {
-      "id": "south-austin-music",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.76355,
-          30.25276
-        ],
-        "zoom": 15.5,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "guitar-shops"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.76355,
-          30.25276
-        ],
-        "anchor": "bottom",
-        "title": "South Austin Music",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 9 shops \u2014 inventory focus, price range, and insider notes",
+        "subtitle": "All 9 shops — inventory focus, price range, and insider notes",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Vintage Guitar Shops Product Intelligence Report",

@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Best Buy North Austin",
-        "subtitle": "9607 Research Blvd \u00b7 78759",
+        "subtitle": "9607 Research Blvd · 78759",
         "body": "Widest PS5 Slim selection in Austin. Disc console $549.99, Digital $499.99. Fortnite, Cobalt Star, and Spider-Man 2 bundle packs available.",
         "stats": [
           {
@@ -97,37 +97,6 @@
             "value": "$499.99"
           }
         ]
-      }
-    },
-    {
-      "id": "target-north",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.7158,
-          30.3623
-        ],
-        "zoom": 15,
-        "pitch": 55,
-        "bearing": -35,
-        "speed": 0.8,
-        "curve": 1.4
-      },
-      "showLayers": [
-        "ps5-stores"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.7158,
-          30.3623
-        ],
-        "anchor": "bottom",
-        "title": "Target Austin North",
-        "mapillary": {
-          "imageKey": "REPLACE_WITH_MAPILLARY_IMAGE_ID"
-        }
       }
     },
     {
@@ -156,7 +125,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 18 stores \u2014 every bundle, price, and fulfillment option",
+        "subtitle": "All 18 stores — every bundle, price, and fulfillment option",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "PS5 Bundles Product Intelligence Report",
