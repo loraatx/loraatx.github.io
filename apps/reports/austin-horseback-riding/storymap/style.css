@@ -326,6 +326,11 @@ html, body {
   text-align: right;
 }
 
+/* Video-mode popup — force a wide fixed width so the video fills space */
+.sm-popup-video-mode .maplibregl-popup-content {
+  width: 560px;
+}
+
 /* YouTube embed — full-width bleed, 16:9 */
 .sm-popup-video-wrap {
   margin: 0 -16px 12px;

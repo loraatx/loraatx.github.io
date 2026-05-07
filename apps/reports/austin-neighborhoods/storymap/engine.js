@@ -246,6 +246,7 @@ class StoryEngine {
       anchor: p.anchor ?? 'bottom',
       offset: p.offset ?? 12,
       maxWidth: p.video?.src ? '600px' : '352px',
+      className: p.video?.src ? 'sm-popup-video-mode' : '',
     })
       .setLngLat(lngLat)
       .setHTML(html)
