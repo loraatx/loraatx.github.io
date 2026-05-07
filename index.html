@@ -72,7 +72,7 @@
 
       const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government'];
 
-      fetch('/apps/productreports/storymaps/reports.json')
+      fetch('/apps/productreports/reports.json')
         .then(r => r.ok ? r.json() : [])
         .then(items => {
           const all = [...(items || [])];
@@ -112,7 +112,7 @@
           });
 
           function loadStoryMap(id) {
-            const target = '/apps/productreports/storymaps/' + id + '/';
+            const target = '/apps/productreports/' + id + '/storymap/';
             if (!frame.src.endsWith(target)) {
               frame.src = target;
             }

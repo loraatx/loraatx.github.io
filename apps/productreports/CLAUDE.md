@@ -6,13 +6,23 @@ This folder powers the **Product Intelligence Reports** — interactive map apps
 
 ```
 apps/productreports/
-  {slug}/           ← one map app per topic (e.g. austin-bike-shops/)
-  storymaps/
-    {slug}/         ← one story map per topic
-    reports.json    ← registry that drives homepage cards
+  {slug}/           ← one self-contained report folder per topic
+    index.html      ← interactive map app (copied from template/)
+    config.js       ← only file that changes per topic (map config)
+    data.geojson    ← only file that changes per topic (location data)
+    app.js, style.css, favicon.*, siteimage.png  ← copied unchanged
+    storymap/       ← narrative story map for this topic
+      index.html, engine.js, ui.js, style.css  ← copied unchanged
+      story.json    ← only file that changes (scenes, camera, popups)
+      report.html   ← written HTML report
+      data/         ← GeoJSON files for the storymap layers
+  reports.json      ← registry that drives homepage cards
   staging/          ← drop CSV + MD here to trigger a new report build
   template/         ← canonical source files (never edit directly)
+    storymap/       ← canonical storymap source files
 ```
+
+**To create a new report:** copy any existing `{slug}/` folder, rename it, then edit only `config.js`, `data.geojson`, and `storymap/story.json`. Everything else is drop-in identical.
 
 ## Files that differ per app
 
@@ -76,9 +86,9 @@ Claude will:
 
 1. **Convert** `data.csv` → `data.geojson` (geocoding addresses if needed)
 2. **Create the map app** at `apps/productreports/{slug}/` by copying `template/` and configuring `config.js` to match the CSV columns
-3. **Create the story map** at `apps/productreports/storymaps/{slug}/` by copying `storymaps/template/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
-4. **Generate the HTML report** at `apps/productreports/storymaps/{slug}/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
-5. **Register the report** by adding an entry to `apps/productreports/storymaps/reports.json` so the card appears on the homepage
+3. **Create the story map** at `apps/productreports/{slug}/storymap/` by copying `template/storymap/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
+4. **Generate the HTML report** at `apps/productreports/{slug}/storymap/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
+5. **Register the report** by adding an entry to `apps/productreports/reports.json` so the card appears on the homepage
 6. **Clear staging** — remove the CSV and MD files
 
 ### Slug convention
@@ -94,7 +104,7 @@ Use lowercase kebab-case matching the topic, e.g. `austin-coffee-shops`, `austin
   "title": "Full report title",
   "eyebrow": "Austin Metro · Report",
   "blurb": "One-sentence description for the homepage card.",
-  "href": "/apps/productreports/storymaps/{slug}/report.html",
+  "href": "/apps/productreports/{slug}/storymap/report.html",
   "accent": "#hexcolor"
 }
 ```
