@@ -60,36 +60,6 @@
       }
     },
     {
-      "id": "overview",
-      "transition": "fly",
-      "duration": 7000,
-      "camera": {
-        "center": [
-          -97.795,
-          30.251
-        ],
-        "zoom": 10.5,
-        "pitch": 30,
-        "bearing": -10,
-        "speed": 0.55,
-        "curve": 1.2
-      },
-      "showLayers": [
-        "operators"
-      ],
-      "hideLayers": [],
-      "popup": {
-        "lngLat": [
-          -97.795,
-          30.251
-        ],
-        "anchor": "bottom",
-        "title": "Horseback Riding in Greater Austin",
-        "subtitle": "Greater Austin · Product Intelligence Report",
-        "body": "17 riding operations profiled within an hour of downtown. Types: guided trail ranches, lesson barns, and a luxury wellness resort. Highlights include Southern Trails and Miraval Austin."
-      }
-    },
-    {
       "id": "southern-trails",
       "transition": "fly",
       "duration": 7500,
@@ -115,8 +85,8 @@
         ],
         "anchor": "bottom",
         "title": "Southern Trails",
-        "subtitle": "15701 Decker Lake Rd · Manor",
-        "body": "Guided ranch rides on 100–120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
+        "subtitle": "15701 Decker Lake Rd \u00b7 Manor",
+        "body": "Guided ranch rides on 100\u2013120 acres, 15 min from downtown. Kids' Little Dude rides and sunset options available. Closest full-service trail ride ranch to central Austin.",
         "stats": [
           {
             "label": "Drive time",
@@ -182,7 +152,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 17 operators — prices, age limits, and what to expect",
+        "subtitle": "All 17 operators \u2014 prices, age limits, and what to expect",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Horseback Riding Product Intelligence Report",
