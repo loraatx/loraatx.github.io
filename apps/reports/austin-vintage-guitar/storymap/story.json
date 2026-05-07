@@ -30,6 +30,36 @@
   ],
   "scenes": [
     {
+      "id": "intro",
+      "transition": "fly",
+      "duration": 11000,
+      "camera": {
+        "center": [
+          -97.762,
+          30.315
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "guitar-shops"
+      ],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [
+          -97.762,
+          30.315
+        ],
+        "anchor": "bottom",
+        "video": {
+          "src": "promo.mp4"
+        }
+      }
+    },
+    {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
@@ -96,10 +126,7 @@
             "label": "Phone",
             "value": "512-428-9100"
           }
-        ],
-        "video": {
-          "src": "promo.mp4"
-        }
+        ]
       }
     },
     {

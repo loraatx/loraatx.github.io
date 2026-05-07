@@ -30,6 +30,36 @@
   ],
   "scenes": [
     {
+      "id": "intro",
+      "transition": "fly",
+      "duration": 11000,
+      "camera": {
+        "center": [
+          -97.754,
+          30.264
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "neighborhoods"
+      ],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [
+          -97.754,
+          30.264
+        ],
+        "anchor": "bottom",
+        "video": {
+          "src": "promo.mp4"
+        }
+      }
+    },
+    {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
@@ -96,10 +126,7 @@
             "label": "Type",
             "value": "Freedmen's town"
           }
-        ],
-        "video": {
-          "src": "promo.mp4"
-        }
+        ]
       }
     },
     {

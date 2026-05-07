@@ -3,11 +3,16 @@ import { ReportPromo } from "../ReportPromo";
 
 export const AustinChambers: React.FC = () => (
   <ReportPromo
-    title="Austin-Area Chambers of Commerce"
+    title="Chambers of Commerce"
     eyebrow="Austin Metro"
-    subtitle="Regional, affinity, and corridor chambers mapped across Greater Austin."
+    subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#6f4e37"
     locationCount={5}
     appPath="/apps/reports/austin-chambers"
+    bullets={[
+      "12 chambers profiled across the metro.",
+      "Types: regional hub, affinity chambers, geographic corridors, and young professionals.",
+      "Highlights include the Austin Chamber and Austin LGBT Chamber.",
+    ]}
   />
 );

@@ -9,8 +9,8 @@ import { AustinPs5Bundles } from "./reports/austin-ps5-bundles";
 import { AustinVintageGuitar } from "./reports/austin-vintage-guitar";
 import { PoolOpenings } from "./reports/pool-openings";
 
-// 170 frames = ~5.7 seconds at 30fps — punchy promo length
-const DURATION = 170;
+// 300 frames = 10 seconds at 30fps
+const DURATION = 300;
 const FPS = 30;
 const WIDTH = 1280;
 const HEIGHT = 720;

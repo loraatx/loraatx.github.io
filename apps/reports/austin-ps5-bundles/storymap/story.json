@@ -30,6 +30,36 @@
   ],
   "scenes": [
     {
+      "id": "intro",
+      "transition": "fly",
+      "duration": 11000,
+      "camera": {
+        "center": [
+          -97.756,
+          30.305
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "ps5-stores"
+      ],
+      "hideLayers": [],
+      "popup": {
+        "lngLat": [
+          -97.756,
+          30.305
+        ],
+        "anchor": "bottom",
+        "video": {
+          "src": "promo.mp4"
+        }
+      }
+    },
+    {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
@@ -96,10 +126,7 @@
             "label": "Digital",
             "value": "$499.99"
           }
-        ],
-        "video": {
-          "src": "promo.mp4"
-        }
+        ]
       }
     },
     {

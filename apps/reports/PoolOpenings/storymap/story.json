@@ -52,6 +52,39 @@
   ],
   "scenes": [
     {
+      "id": "intro",
+      "transition": "fly",
+      "duration": 11000,
+      "camera": {
+        "center": [
+          -97.7431,
+          30.2672
+        ],
+        "zoom": 10.5,
+        "pitch": 30,
+        "bearing": -10,
+        "speed": 0.55,
+        "curve": 1.2
+      },
+      "showLayers": [
+        "parks"
+      ],
+      "hideLayers": [
+        "pool-areas",
+        "creek-corridors"
+      ],
+      "popup": {
+        "lngLat": [
+          -97.7431,
+          30.2672
+        ],
+        "anchor": "bottom",
+        "video": {
+          "src": "promo.mp4"
+        }
+      }
+    },
+    {
       "id": "overview",
       "transition": "fly",
       "duration": 7000,
@@ -124,10 +157,7 @@
             "label": "Open since",
             "value": "1917"
           }
-        ],
-        "video": {
-          "src": "promo.mp4"
-        }
+        ]
       }
     },
     {
