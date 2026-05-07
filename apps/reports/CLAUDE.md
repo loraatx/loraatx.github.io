@@ -1,11 +1,11 @@
-# apps/productreports
+# apps/reports
 
 This folder powers the **Product Intelligence Reports** — interactive map apps, story maps, and written reports. Each topic lives at its own URL slug and is built from the same modular template.
 
 ## Folder structure
 
 ```
-apps/productreports/
+apps/reports/
   {slug}/           ← one self-contained report folder per topic
     index.html      ← interactive map app (copied from template/)
     config.js       ← only file that changes per topic (map config)
@@ -47,7 +47,7 @@ Every storymap follows the same 4-scene structure. Only the camera coordinates a
   1. Total count — *"X [businesses/items] are profiled in this report."*
   2. Categories — *"Types covered include [list]."*
   3. Two highlights — *"[Location A] and [Location B] are two highlighted locations from the report."*
-- Popup `link`: links to the interactive map app at `/apps/productreports/{slug}/`
+- Popup `link`: links to the interactive map app at `/apps/reports/{slug}/`
 
 ### Scene 2 — Location highlight 1
 - Camera: fly close to location A mentioned in scene 1 bullet 3 (zoom 14–16, pitch 50–55)
@@ -75,7 +75,7 @@ Every storymap follows the same 4-scene structure. Only the camera coordinates a
 
 ## Staging workflow — creating a new Product Report
 
-Place two files in `apps/productreports/staging/`:
+Place two files in `apps/reports/staging/`:
 
 1. **`data.csv`** — location rows exported from your research (must include lat/lon columns or an address column)
 2. **`report.md`** — the full Perplexity research report in Markdown
@@ -85,10 +85,10 @@ Then tell Claude: *"Build the new Product Report from staging."*
 Claude will:
 
 1. **Convert** `data.csv` → `data.geojson` (geocoding addresses if needed)
-2. **Create the map app** at `apps/productreports/{slug}/` by copying `template/` and configuring `config.js` to match the CSV columns
-3. **Create the story map** at `apps/productreports/{slug}/storymap/` by copying `template/storymap/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
-4. **Generate the HTML report** at `apps/productreports/{slug}/storymap/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
-5. **Register the report** by adding an entry to `apps/productreports/reports.json` so the card appears on the homepage
+2. **Create the map app** at `apps/reports/{slug}/` by copying `template/` and configuring `config.js` to match the CSV columns
+3. **Create the story map** at `apps/reports/{slug}/storymap/` by copying `template/storymap/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
+4. **Generate the HTML report** at `apps/reports/{slug}/storymap/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
+5. **Register the report** by adding an entry to `apps/reports/reports.json` so the card appears on the homepage
 6. **Clear staging** — remove the CSV and MD files
 
 ### Slug convention
@@ -104,7 +104,7 @@ Use lowercase kebab-case matching the topic, e.g. `austin-coffee-shops`, `austin
   "title": "Full report title",
   "eyebrow": "Austin Metro · Report",
   "blurb": "One-sentence description for the homepage card.",
-  "href": "/apps/productreports/{slug}/storymap/report.html",
+  "href": "/apps/reports/{slug}/storymap/report.html",
   "accent": "#hexcolor"
 }
 ```
