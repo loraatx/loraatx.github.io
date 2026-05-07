@@ -6,6 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { QRCodeSVG } from "qrcode.react";
 
 export interface ReportPromoProps {
   title: string;
@@ -15,6 +16,9 @@ export interface ReportPromoProps {
   locationCount: number;
   appPath: string;
   bullets: [string, string, string, string];
+  /** URL the QR code points to. Defaults to https://anatomy.city{appPath}.
+   *  Set to a free report page or Gumroad link when ready. */
+  reportUrl?: string;
 }
 
 const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
@@ -103,7 +107,7 @@ const Cityscape: React.FC<{ width: number; height: number; accent: string }> = (
 };
 
 export const ReportPromo: React.FC<ReportPromoProps> = ({
-  title, eyebrow, accentColor, appPath, bullets,
+  title, eyebrow, accentColor, appPath, bullets, reportUrl,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
@@ -131,6 +135,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const ctaOp   = interpolate(frame, [162, 180], [0, 1],  cl);
 
   const url = `anatomy.city${appPath}`;
+  const qrUrl = reportUrl ?? `https://anatomy.city${appPath}`;
 
   return (
     <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#f8f9fc" }}>
@@ -228,18 +233,53 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           ))}
         </div>
 
-        {/* URL badge */}
-        <div style={{ display: "flex", justifyContent: "flex-end", opacity: ctaOp }}>
+        {/* Footer: URL label left, QR code right */}
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          opacity: ctaOp,
+        }}>
           <div style={{
-            background: accentColor,
-            color: "#ffffff",
             fontSize: 18,
             fontWeight: 700,
+            color: accentColor,
             letterSpacing: "0.04em",
-            padding: "10px 22px",
-            borderRadius: 5,
           }}>
             {url}
+          </div>
+
+          {/* QR code — placeholder pointing to appPath; swap reportUrl prop for final link */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 6,
+          }}>
+            <div style={{
+              fontSize: 11,
+              fontWeight: 600,
+              color: "rgba(0,0,0,0.4)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}>
+              Scan to explore
+            </div>
+            <div style={{
+              background: "#ffffff",
+              padding: 8,
+              borderRadius: 6,
+              border: `2px solid ${accentColor}`,
+              lineHeight: 0,
+            }}>
+              <QRCodeSVG
+                value={qrUrl}
+                size={120}
+                fgColor="#111111"
+                bgColor="#ffffff"
+                level="M"
+              />
+            </div>
           </div>
         </div>
       </div>
