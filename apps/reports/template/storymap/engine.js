@@ -258,7 +258,16 @@ class StoryEngine {
       }
     });
 
-    if (p.youtube) {
+    if (p.video?.src) {
+      const videoEl = this.popup.getElement().querySelector(`#local-video-${token}`);
+      if (videoEl) {
+        if (this.paused) videoEl.pause();
+        videoEl.addEventListener('ended', () => {
+          if (token === this._abortToken) this._advance(token);
+        }, { once: true });
+      }
+      this._startAdvanceTimer(scene, token);
+    } else if (p.youtube) {
       try {
         // Guard against a blocked or slow YT API script
         await Promise.race([
@@ -310,7 +319,9 @@ class StoryEngine {
       html += '</figure>';
     }
 
-    if (p.youtube) {
+    if (p.video?.src) {
+      html += `<div class="sm-popup-video-wrap"><video id="local-video-${token}" class="sm-local-video" src="${p.video.src}" autoplay muted playsinline></video></div>`;
+    } else if (p.youtube) {
       html += `<div class="sm-popup-video-wrap"><div id="yt-player-${token}" class="sm-yt-placeholder"></div></div>`;
     }
 

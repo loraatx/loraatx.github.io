@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "Vintage & Used Guitar Shops",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "9 guitar shops profiled across the metro. Types: vintage specialists, boutique luthier showrooms, acoustic-only, independents, and chain outlets. Highlights include Austin Vintage Guitars and South Austin Music."
       }
     },
@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Austin Vintage Guitars",
-        "subtitle": "4306 Red River St \u00b7 Hyde Park corridor",
+        "subtitle": "4306 Red River St · Hyde Park corridor",
         "body": "Austin's flagship vintage shop since the late 1990s. Pre-CBS Fenders, vintage Gibsons, period-correct amps, and effects. Reverb listings reach buyers nationwide. Full repair bench.",
         "stats": [
           {
@@ -97,9 +97,8 @@
             "value": "512-428-9100"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 9 shops \u2014 inventory focus, price range, and insider notes",
+        "subtitle": "All 9 shops — inventory focus, price range, and insider notes",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Vintage Guitar Shops Product Intelligence Report",

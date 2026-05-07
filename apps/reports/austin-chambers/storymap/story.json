@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "Chambers of Commerce",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "12 chambers profiled across the metro. Types: regional hub, affinity chambers, geographic corridors, and young professionals. Highlights include the Austin Chamber and Austin LGBT Chamber."
       }
     },
@@ -85,8 +85,8 @@
         ],
         "anchor": "bottom",
         "title": "Austin Chamber of Commerce",
-        "subtitle": "535 E 5th St \u00b7 Downtown",
-        "body": "The regional hub for Greater Austin \u2014 leading business recruitment, Opportunity Austin, and state-level advocacy. Front door for companies considering relocation to the metro.",
+        "subtitle": "535 E 5th St · Downtown",
+        "body": "The regional hub for Greater Austin — leading business recruitment, Opportunity Austin, and state-level advocacy. Front door for companies considering relocation to the metro.",
         "stats": [
           {
             "label": "Focus",
@@ -97,9 +97,8 @@
             "value": "Greater Austin"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 chambers \u2014 profiles, services, and contacts",
+        "subtitle": "All 12 chambers — profiles, services, and contacts",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Chambers of Commerce Product Intelligence Report",

@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "Golf in the Austin Region",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "20 golf facilities profiled. Types: 8 municipal GolfATX courses, 9 public/daily-fee layouts, 3 resort destinations. Highlights include Hancock Golf Course and Lions Municipal."
       }
     },
@@ -86,7 +86,7 @@
         "anchor": "bottom",
         "title": "Hancock Golf Course",
         "subtitle": "Oldest continuously operated course in Texas",
-        "body": "Golf played here since 1899 \u2014 the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
+        "body": "Golf played here since 1899 — the original Austin Country Club. Nine-hole par-35 layout over Waller Creek. One of the most affordable rounds in the city.",
         "stats": [
           {
             "label": "Est.",
@@ -97,9 +97,8 @@
             "value": "~$20"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 20 courses \u2014 history, pricing, water policy, and tips",
+        "subtitle": "All 20 courses — history, pricing, water policy, and tips",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Golf Courses Product Intelligence Report",

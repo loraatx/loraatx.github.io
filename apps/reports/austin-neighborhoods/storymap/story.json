@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "Historic & Emerging Neighborhoods",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "33 Austin neighborhoods surveyed. Eras: freedmen's settlements, streetcar suburbs, postwar bungalow districts, and master-planned communities. Highlights include Clarksville and Mueller."
       }
     },
@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Clarksville",
-        "subtitle": "West Austin \u00b7 Founded 1871",
+        "subtitle": "West Austin · Founded 1871",
         "body": "One of the oldest freedmen's towns west of the Mississippi. Founded by Charles Clark after emancipation. A surviving chapter of Austin's African American history despite highway construction reducing its footprint.",
         "stats": [
           {
@@ -97,9 +97,8 @@
             "value": "Freedmen's town"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 33 neighborhoods \u2014 history, character, and context",
+        "subtitle": "All 33 neighborhoods — history, character, and context",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Neighborhoods Product Intelligence Report",

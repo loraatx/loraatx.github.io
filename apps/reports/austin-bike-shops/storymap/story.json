@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "Bike & E-Bike Shops",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "12 bicycle and e-bike shops profiled. Types: independents, brand chains, a co-op, and e-bike specialists. Highlights include Austin Tri Cyclist and Austin Bike Farm."
       }
     },
@@ -85,8 +85,8 @@
         ],
         "anchor": "bottom",
         "title": "Austin Tri Cyclist",
-        "subtitle": "923 Barton Springs Rd \u00b7 South Central",
-        "body": "Triathlon-focused independent carrying Cerv\u00e9lo and Cannondale. Professional fitting available. Limited e-bike selection.",
+        "subtitle": "923 Barton Springs Rd · South Central",
+        "body": "Triathlon-focused independent carrying Cervélo and Cannondale. Professional fitting available. Limited e-bike selection.",
         "stats": [
           {
             "label": "Type",
@@ -97,9 +97,8 @@
             "value": "Yes"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 12 shops \u2014 locations, pricing, and e-bike programs",
+        "subtitle": "All 12 shops — locations, pricing, and e-bike programs",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "Bike Shops Product Intelligence Report",

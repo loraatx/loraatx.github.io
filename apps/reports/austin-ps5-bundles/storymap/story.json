@@ -55,7 +55,7 @@
         ],
         "anchor": "bottom",
         "title": "PS5 Slim Bundles in Austin",
-        "subtitle": "Greater Austin \u00b7 Product Intelligence Report",
+        "subtitle": "Greater Austin · Product Intelligence Report",
         "body": "18 retail locations across 7 retailers profiled. Types: big-box chains, warehouse clubs, specialty game stores, and used-game shops. Highlights include Best Buy North and Target Austin North."
       }
     },
@@ -85,7 +85,7 @@
         ],
         "anchor": "bottom",
         "title": "Best Buy North Austin",
-        "subtitle": "9607 Research Blvd \u00b7 78759",
+        "subtitle": "9607 Research Blvd · 78759",
         "body": "Widest PS5 Slim selection in Austin. Disc console $549.99, Digital $499.99. Fortnite, Cobalt Star, and Spider-Man 2 bundle packs available.",
         "stats": [
           {
@@ -97,9 +97,8 @@
             "value": "$499.99"
           }
         ],
-        "youtube": {
-          "videoId": "dQw4w9WgXcQ",
-          "mute": true
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
@@ -160,7 +159,7 @@
         ],
         "anchor": "bottom",
         "title": "Get the Full Report",
-        "subtitle": "All 18 stores \u2014 every bundle, price, and fulfillment option",
+        "subtitle": "All 18 stores — every bundle, price, and fulfillment option",
         "image": {
           "src": "../../template/siteimage.png",
           "alt": "PS5 Bundles Product Intelligence Report",
