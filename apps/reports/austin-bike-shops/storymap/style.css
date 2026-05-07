@@ -335,13 +335,15 @@ html, body {
   position: relative;
 }
 .sm-yt-placeholder,
-.sm-popup-video-wrap iframe {
+.sm-popup-video-wrap iframe,
+.sm-popup-video-wrap video {
   position: absolute;
   inset: 0;
   width: 100% !important;
   height: 100% !important;
   border: none;
   display: block;
+  object-fit: cover;
 }
 
 /* Mapillary street-view embed — full-width, 16:9 */
