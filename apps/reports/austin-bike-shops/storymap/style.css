@@ -217,6 +217,18 @@ html, body {
   color: #4cc3ff;
 }
 
+/* ── Fixed-center popup — sits above brand card ──────────────── */
+.sm-popup-fixed {
+  position: fixed !important;
+  bottom: 92px !important;
+  left: 50% !important;
+  top: auto !important;
+  transform: translateX(-50%) !important;
+}
+.sm-popup-fixed .maplibregl-popup-tip {
+  display: none !important;
+}
+
 /* ── MapLibre popup overrides ────────────────────────────────── */
 .maplibregl-popup-content {
   background: #fff;
