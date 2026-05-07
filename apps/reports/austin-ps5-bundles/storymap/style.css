@@ -46,7 +46,7 @@ html, body {
 /* ── Brand card — bottom-center pill (title bar) ───────────────── */
 .sm-brand-card {
   position: fixed;
-  bottom: 104px;
+  bottom: 52px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -439,7 +439,7 @@ html, body {
 /* ── Mobile tweaks ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .sm-brand-card {
-    bottom: 96px;
+    bottom: 48px;
     padding: 5px 12px;
     gap: 8px;
   }
