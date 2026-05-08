@@ -17,9 +17,10 @@ apps/reports/
       report.html   ← written HTML report
       data/         ← GeoJSON files for the storymap layers
   reports.json      ← registry that drives homepage cards
-  staging/          ← drop CSV + MD here to trigger a new report build
+  staging/          ← drop files here to trigger a new report build (see staging/PROMPT.md)
   template/         ← canonical source files (never edit directly)
     storymap/       ← canonical storymap source files
+      report-template.html  ← HTML shell with {{TOKEN}} placeholders; filled in at build time
 ```
 
 **To create a new report:** copy any existing `{slug}/` folder, rename it, then edit only `config.js`, `data.geojson`, and `storymap/story.json`. Everything else is drop-in identical.
@@ -67,21 +68,36 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 
 ## Staging workflow — creating a new Product Report
 
-Place two files in `apps/reports/staging/`:
+See `staging/PROMPT.md` for the Perplexity prompt to generate standardized input.
 
-1. **`data.csv`** — location rows exported from your research (must include lat/lon columns or an address column)
-2. **`report.md`** — the full Perplexity research report in Markdown
+Place these files in `apps/reports/staging/` before triggering a build:
+
+| File | Contents |
+|------|----------|
+| `report.md` | Perplexity output — front-matter block + Markdown body + `---CSV---` + CSV rows |
+| `data.csv` | CSV rows extracted from `report.md` (same data, separate file for easy import) |
+| `image1.png` | Topic/category hero photo |
+| `image2.png` | Photo of `featured_location_1` |
+| `image3.png` | Photo of `featured_location_2` |
 
 Then tell Claude: *"Build the new Product Report from staging."*
 
-Claude will:
+### What Claude does — zero rewrite, mechanical conversion
 
-1. **Convert** `data.csv` → `data.geojson` (geocoding addresses if needed)
-2. **Create the map app** at `apps/reports/{slug}/` by copying `template/` and configuring `config.js` to match the CSV columns
-3. **Create the story map** at `apps/reports/{slug}/storymap/` by copying `template/storymap/` and writing `story.json` using the 4-scene standard defined above (overview → location 1 → location 2 → closing CTA with siteimage placeholder)
-4. **Generate the HTML report** at `apps/reports/{slug}/storymap/report.html` by converting `report.md` to match the existing report style (Georgia serif, footnotes, nav bar linking back to the map app)
-5. **Register the report** by adding an entry to `apps/reports/reports.json` so the card appears on the homepage
-6. **Clear staging** — remove the CSV and MD files
+1. **Parse** `report.md` — split on `---CSV---`; extract front-matter (`title`, `subtitle`, `category`, `accent`, `slug`, `featured_location_1`, `featured_location_2`, `stats`)
+2. **Convert** Markdown body → HTML mechanically (h2→`<h2>`, `[n]`→`<sup>`, tables→`<table>`, etc.) — **no rewording**
+3. **Insert images** into converted HTML: `image1.png` goes in hero; `image2.png` / `image3.png` are inserted as floated figures inside the `<h3>` sections matching `featured_location_1` / `featured_location_2`
+4. **Build scoreboard HTML** from the `stats:` front-matter list
+5. **Fill** `template/storymap/report-template.html` — substitute `{{TITLE}}`, `{{SUBTITLE}}`, `{{ACCENT}}`, `{{SLUG}}`, `{{SCOREBOARD_HTML}}`, `{{BODY_HTML}}`, `{{REFS_HTML}}`
+6. **Copy images** `image1.png`, `image2.png`, `image3.png` → `apps/reports/{slug}/storymap/`
+7. **Write** `apps/reports/{slug}/storymap/report.html`
+8. **Convert** CSV → GeoJSON (lat/lng → Point geometry; all other columns → properties)
+9. **Copy** `template/` → `apps/reports/{slug}/`; write `data.geojson`
+10. **Write** `config.js` using the GeoJSON property profile rubric (see rules below)
+11. **Write** `story.json` (3-scene standard: intro video → location highlight → closing CTA)
+12. **Add** entry to `reports.json`
+13. **Clear** staging — delete `report.md`, `data.csv`, `image1.png`, `image2.png`, `image3.png`
+14. **Commit and push** to main
 
 ### Slug convention
 
