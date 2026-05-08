@@ -11,9 +11,10 @@
     "render:horseback-riding": "npx remotion render austin-horseback-riding  ../../apps/reports/austin-horseback-riding/storymap/promo.mp4",
     "render:neighborhoods": "npx remotion render austin-neighborhoods     ../../apps/reports/austin-neighborhoods/storymap/promo.mp4",
     "render:ps5-bundles": "npx remotion render austin-ps5-bundles       ../../apps/reports/austin-ps5-bundles/storymap/promo.mp4",
+    "render:toy-stores": "npx remotion render austin-toy-stores        ../../apps/reports/austin-toy-stores/storymap/promo.mp4",
     "render:vintage-guitar": "npx remotion render austin-vintage-guitar    ../../apps/reports/austin-vintage-guitar/storymap/promo.mp4",
     "render:pool-openings": "npx remotion render pool-openings            ../../apps/reports/PoolOpenings/storymap/promo.mp4",
-    "render:all": "npm run render:bike-shops && npm run render:chambers && npm run render:golf-courses && npm run render:horseback-riding && npm run render:neighborhoods && npm run render:ps5-bundles && npm run render:vintage-guitar && npm run render:pool-openings"
+    "render:all": "npm run render:bike-shops && npm run render:chambers && npm run render:golf-courses && npm run render:horseback-riding && npm run render:neighborhoods && npm run render:ps5-bundles && npm run render:toy-stores && npm run render:vintage-guitar && npm run render:pool-openings"
   },
   "dependencies": {
     "@remotion/cli": "4.0.450",
