@@ -57,7 +57,8 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 
 ### Scene 2 — Location highlight
 - Camera: fly close to a featured location (zoom 14–16, pitch 50–55)
-- Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to report
+- Popup: title, subtitle (address), **`image`: always `{ "src": "image2.png", "alt": "<location name>", "caption": "<one-line description>" }`**, `body` (3 sentences of context), `stats` table, `link` back to report
+- `image2.png` is always the photo of `featured_location_1` (scene 2 subject) — copy it from staging alongside the other images
 
 ### Scene 3 — Closing CTA
 - Camera: fly back to city-wide overview (same coords as scene 1)
@@ -67,7 +68,7 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 ### story.json popup field reference
 
 | Field | Renders as |
-|-------|-----------|
+|-------|----------|
 | `video` | `{ src }` — plays local mp4 fullscreen in popup; **scene 1 only, no other fields** |
 | `body` | Up to 3 bullet points (split by sentence-ending punctuation) |
 | `image` | `{ src, alt, caption }` — full-width image above body |
