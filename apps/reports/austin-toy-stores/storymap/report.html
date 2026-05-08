@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Toy Stores &amp; Children's Specialty Retailers in Greater Austin</title>
+<style>
+/* ── Variables ───────────────────────────────────────────────────── */
+:root {
+  --accent:       #d4380d;
+  --accent-bg:    color-mix(in srgb, var(--accent) 10%, white);
+  --accent-mid:   color-mix(in srgb, var(--accent) 22%, white);
+  --ink:          #1a1a1a;
+  --muted:        #555;
+  --rule:         #e5e5e5;
+  --bg:           #fafaf7;
+}
+
+/* ── Reset ───────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Georgia, "Iowan Old Style", "Source Serif Pro", serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Hero ────────────────────────────────────────────────────────── */
+.report-hero {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: #111;
+}
+.report-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+.report-hero-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px 40px 32px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.62) 100%);
+}
+.hero-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin: 0 0 8px;
+}
+.hero-eyebrow a { color: rgba(255,255,255,0.88); text-decoration: none; }
+.hero-eyebrow a:hover { color: #fff; }
+h1.hero-title {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fff;
+  margin: 0 0 8px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.hero-subtitle {
+  font-size: 17px;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  margin: 0;
+}
+
+/* ── Report container ────────────────────────────────────────────── */
+.report {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 28px 96px;
+}
+
+/* ── Site bar ────────────────────────────────────────────────────── */
+.site-bar {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 6px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 20px;
+}
+.site-bar .social-icons { display: flex; gap: 14px; }
+.site-bar .social-icons a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px;
+  color: var(--muted);
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+.site-bar .social-icons a:hover { color: var(--accent); }
+.site-bar .social-icons svg { width: 18px; height: 18px; }
+
+/* ── Nav cards ───────────────────────────────────────────────────── */
+.report-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 24px; }
+.report-nav a {
+  flex: 1 1 180px; min-width: 150px;
+  padding: 12px 16px 14px;
+  background: var(--accent-bg);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 3px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.report-nav a:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.08); text-decoration: none; }
+.rn-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+.rn-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px; font-weight: 600; color: var(--ink);
+}
+
+/* ── Scoreboard strip ────────────────────────────────────────────── */
+.report-scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 36px;
+  padding: 18px 20px;
+  background: var(--accent);
+  border-radius: 12px;
+}
+.scoreboard-stat {
+  flex: 1 1 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+.scoreboard-value {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.scoreboard-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+}
+
+/* ── Section headings with auto-numbered badges ──────────────────── */
+article.report { counter-reset: section; }
+h2 {
+  counter-increment: section;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  margin: 52px 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+h2::before {
+  content: counter(section, decimal-leading-zero);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 50%;
+  position: relative;
+  top: -1px;
+}
+h2.refs-heading {
+  counter-increment: none;
+  font-size: 18px;
+  margin-top: 0;
+  color: var(--muted);
+}
+h2.refs-heading::before { display: none; }
+
+h3 { font-size: 20px; margin: 34px 0 10px; color: var(--ink); }
+h4 { font-size: 17px; margin: 24px 0 8px; }
+p { margin: 0 0 14px; }
+
+/* ── Location figures ────────────────────────────────────────────── */
+.report-location-figure {
+  float: right;
+  width: 240px;
+  margin: 0 0 16px 24px;
+  clear: right;
+}
+.report-location-figure img {
+  width: 100%;
+  border-radius: 10px;
+  border: 3px solid var(--accent);
+  display: block;
+}
+.report-location-figure figcaption {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 5px 4px 0;
+  line-height: 1.4;
+}
+.clearfix::after { content: ""; display: table; clear: both; }
+
+/* ── Tables ──────────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+th {
+  background: var(--accent-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--accent-mid);
+}
+tr:hover td { background: color-mix(in srgb, var(--bg) 90%, var(--accent) 10%); }
+
+/* ── Footnotes ───────────────────────────────────────────────────── */
+sup a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.78em;
+  padding: 0 1px;
+}
+.footnotes {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 2px solid var(--ink);
+  font-size: 13px;
+  color: var(--muted);
+}
+.footnotes ol { padding-left: 1.6em; margin: 12px 0 0; }
+.footnotes li { margin-bottom: 6px; line-height: 1.5; }
+
+/* ── Lists ───────────────────────────────────────────────────────── */
+ul, ol { margin: 0 0 14px; padding-left: 1.5em; }
+li { margin-bottom: 5px; }
+ul li::marker { color: var(--accent); }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── Print / PDF ─────────────────────────────────────────────────── */
+@media print {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  body { background: white; font-size: 12pt; }
+  .report { max-width: none; padding: 0; }
+  .report-hero { height: 180px; }
+  .report-location-figure { width: 180px; }
+  .report-nav, .site-bar { display: none !important; }
+  h2 { page-break-before: always; margin-top: 0; }
+  h2:first-of-type { page-break-before: avoid; }
+  h3 { page-break-after: avoid; }
+  .footnotes { page-break-before: always; }
+  .report-scoreboard { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Hero ──────────────────────────────────────────────────────── -->
+<div class="report-hero">
+  <img src="image1.png" alt="Toy Stores &amp; Children's Specialty Retailers in Greater Austin" class="report-hero-img" />
+  <div class="report-hero-overlay">
+    <p class="hero-eyebrow"><a href="/" target="_top">City Anatomy</a></p>
+    <h1 class="hero-title">Toy Stores &amp; Children's Specialty Retailers in Greater Austin</h1>
+    <p class="hero-subtitle">Independent shops, educational toy specialists, and family-favorite destinations</p>
+  </div>
+</div>
+
+<article class="report">
+
+  <!-- ── Site bar ────────────────────────────────────────────────── -->
+  <div class="site-bar"><div class="social-icons">
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+    <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.25h3.5l-7.7 8.8L23 21.75h-7.1l-5.5-7.2-6.3 7.2H.6l8.2-9.4L.4 2.25H7.7l5 6.6 5.5-6.6zm-1.2 17.5h2L7.1 4.3H5L17 19.75z"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9c-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.2 1.4A6 6 0 0 0 .6 4.1C.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.6 2.9.3.8.7 1.5 1.4 2.2.7.7 1.3 1.1 2.2 1.4.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.8.1s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.3 1.4-2.2.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.2A6 6 0 0 0 19.9.6C19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.9a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a>
+    <a href="#" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.1 13.8c0 .2.1.3.1.5 0 2.6-3 4.7-6.7 4.7-3.7 0-6.7-2.1-6.7-4.7 0-.2 0-.3.1-.5a1.6 1.6 0 0 1-.6-1.3 1.6 1.6 0 0 1 2.7-1.2 8.2 8.2 0 0 1 4.3-1.4l.8-3.8a.3.3 0 0 1 .4-.3l2.7.6a1.1 1.1 0 1 1-.1.6l-2.5-.5-.7 3.4a8.1 8.1 0 0 1 4.2 1.4 1.6 1.6 0 0 1 2.7 1.2c0 .5-.2 1-.7 1.3zM9.3 13a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5.4 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm-5.1 4.5c-.1-.1 0-.3.1-.3a6.4 6.4 0 0 0 4.6 0c.2-.1.3 0 .3.2s-.1.2-.2.3a6.7 6.7 0 0 1-4.6 0c-.1 0-.2-.1-.2-.2z"/></svg></a>
+    <a href="#" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4.5a8.1 8.1 0 1 0 0 16.2 8.1 8.1 0 0 0 0-16.2zM.5.5h3.8v23H.5z"/></svg></a>
+    <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A18.5 18.5 0 0 0 15.7 3a13 13 0 0 0-.6 1.2 17.2 17.2 0 0 0-5.1 0A12 12 0 0 0 9.4 3a18.5 18.5 0 0 0-4.6 1.4A19.5 19.5 0 0 0 1.5 19a18.7 18.7 0 0 0 5.7 2.9 14 14 0 0 0 1.2-2 12 12 0 0 1-1.9-.9l.5-.4a13.3 13.3 0 0 0 11.4 0l.5.4a12 12 0 0 1-1.9.9 14 14 0 0 0 1.2 2 18.6 18.6 0 0 0 5.7-2.9A19.4 19.4 0 0 0 20.3 4.4zM8.3 16c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3zm7.4 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3z"/></svg></a>
+  </div></div>
+
+  <!-- ── Nav cards ───────────────────────────────────────────────── -->
+  <nav class="report-nav" aria-label="Related content">
+    <a href="/apps/reports/austin-toy-stores/" target="_blank" rel="noopener">
+      <span class="rn-eyebrow">Explore</span>
+      <span class="rn-label">Interactive map →</span>
+    </a>
+    <a href="/apps/reports/austin-toy-stores/storymap/" target="_blank" rel="noopener">
+      <span class="rn-eyebrow">Watch</span>
+      <span class="rn-label">Story map →</span>
+    </a>
+  </nav>
+
+  <!-- ── Scoreboard ──────────────────────────────────────────────── -->
+  <div class="report-scoreboard">
+    <div class="scoreboard-stat">
+      <span class="scoreboard-value">8</span>
+      <span class="scoreboard-label">Stores Profiled</span>
+    </div>
+    <div class="scoreboard-stat">
+      <span class="scoreboard-value">6</span>
+      <span class="scoreboard-label">Locally Owned</span>
+    </div>
+    <div class="scoreboard-stat">
+      <span class="scoreboard-value">1975</span>
+      <span class="scoreboard-label">Oldest Shop Est.</span>
+    </div>
+    <div class="scoreboard-stat">
+      <span class="scoreboard-value">All Ages</span>
+      <span class="scoreboard-label">Ages Served</span>
+    </div>
+  </div>
+
+  <!-- ── Body ────────────────────────────────────────────────────── -->
+
+  <h2>Executive Summary</h2>
+
+  <p>Austin's toy-retail landscape stands out because it is still anchored by long-running independents rather than being dominated by national chains, with Terra Toys tracing its origins to 1978 and Toy Joy remaining one of the city's best-known toy brands since the late 1980s.<sup><a href="#ref1">1</a></sup><sup><a href="#ref6">6</a></sup></p>
+
+  <p>Austin also supports a distinct educational-toy niche, especially in North Austin, where Lakeshore Learning operates a dedicated teacher-supply and learning-products store on Great Hills Trail.<sup><a href="#ref4">4</a></sup></p>
+
+  <p>This report profiles eight stores and store concepts across the city: active independents, a museum-adjacent specialty outpost, a major educational chain, and historically significant closures such as Over the Rainbow and Learning Express.<sup><a href="#ref6">6</a></sup><sup><a href="#ref7">7</a></sup><sup><a href="#ref8">8</a></sup></p>
+
+  <h2>Austin's Toy Stores</h2>
+
+  <h3>Terra Toys</h3>
+  <figure class="report-location-figure">
+    <img src="image2.png" alt="Terra Toys" />
+    <figcaption>Terra Toys — Austin's original toy store since 1978</figcaption>
+  </figure>
+  <p>Terra Toys, at 2438 W. Anderson Ln. in North Central Austin, calls itself "Austin's Original Toy Store" and has been locally owned since 1978.<sup><a href="#ref1">1</a></sup></p>
+  <p>The store emphasizes classic toys, games, books, art supplies, musical instruments, kites, and learning tools, and is known for demo-friendly browsing and an in-store cafe.<sup><a href="#ref1">1</a></sup><sup><a href="#ref6">6</a></sup></p>
+  <p>Terra serves toddlers through adults, with prices ranging from small impulse buys to higher-ticket educational and outdoor items, and is currently open as one of the city's flagship independent toy retailers.<sup><a href="#ref1">1</a></sup><sup><a href="#ref6">6</a></sup></p>
+  <div class="clearfix"></div>
+
+  <h3>Toy Joy Downtown</h3>
+  <figure class="report-location-figure">
+    <img src="image3.png" alt="Toy Joy Downtown" />
+    <figcaption>Toy Joy Downtown — 2nd Street District</figcaption>
+  </figure>
+  <p>Toy Joy Downtown, at 403 W. 2nd St. in the 2nd Street District, is the flagship of one of Austin's most recognizable toy brands.<sup><a href="#ref2">2</a></sup></p>
+  <p>The store is known for nostalgic, fun, and age-appropriate toys alongside collectibles, and appeals to both children and adults as a destination for quirky gifts and novelty browsing.<sup><a href="#ref2">2</a></sup><sup><a href="#ref6">6</a></sup></p>
+  <p>Toy Joy Downtown is currently open and functions as a high-visibility toy and gift stop for locals and visitors in the city's core.<sup><a href="#ref2">2</a></sup></p>
+  <div class="clearfix"></div>
+
+  <h3>Toy Joy Burnet Road</h3>
+  <p>Toy Joy's Burnet Road location, at 5501 Burnet Rd. in North Central Austin, brings the brand's eclectic mix to a more neighborhood-oriented corridor.<sup><a href="#ref2">2</a></sup></p>
+  <p>Public information highlights its role as a full Toy Joy outpost with extended hours, serving repeat neighborhood shoppers and last-minute gift buyers.<sup><a href="#ref2">2</a></sup></p>
+  <p>Like the downtown flagship, the Burnet store focuses on novelty, nostalgia, and collectibles across a wide age range and is currently open.<sup><a href="#ref2">2</a></sup></p>
+
+  <h3>Toy Joy @ The Thinkery</h3>
+  <p>Toy Joy @ The Thinkery, at 1830 Simond Ave. in Mueller, is Toy Joy's most specialized Austin location because it is integrated into the children's museum environment.<sup><a href="#ref2">2</a></sup></p>
+  <p>The store keeps daytime, family-oriented hours and is positioned to serve visitors to The Thinkery and neighborhood families seeking museum-adjacent gifts and educational toys.<sup><a href="#ref2">2</a></sup></p>
+  <p>This location is currently open and best suited to younger children and preschool-aged shoppers, though it maintains Toy Joy's general focus on playful, eclectic merchandise.<sup><a href="#ref2">2</a></sup></p>
+
+  <h3>Lakeshore Learning</h3>
+  <p>Lakeshore Learning, at 9828 Great Hills Trail in Northwest Austin, is a national educational-toy and teacher-supply chain with a strong local footprint.<sup><a href="#ref4">4</a></sup></p>
+  <p>The Austin store offers teacher resources, manipulatives, early-learning games, classroom decor, and educational toys, and is widely used by educators and homeschool families.<sup><a href="#ref4">4</a></sup></p>
+  <p>Lakeshore is especially strong for ages 0–12 and for STEM and literacy-oriented play, and the Great Hills location is currently open.<sup><a href="#ref4">4</a></sup></p>
+
+  <h3>Monkey See Monkey Do</h3>
+  <p>Monkey See Monkey Do, at 2810 Menchaca Rd. in South Austin, appears in local listings as a toy and gift shop with a mix of toys, novelties, and collectibles.<sup><a href="#ref5">5</a></sup></p>
+  <p>Its hybrid identity makes it a good option for small gifts and impulse buys, especially for mixed-age groups and South Austin families.<sup><a href="#ref5">5</a></sup></p>
+  <p>Although less documented than the city's largest toy stores, Monkey See Monkey Do remains part of Austin's independent specialty retail fabric and is currently open.<sup><a href="#ref5">5</a></sup></p>
+
+  <h3>Over the Rainbow <em>(Closed)</em></h3>
+  <p>Over the Rainbow, formerly at 1601 W. 38th St., has been described as Austin's oldest independent toy store, founded in 1975.<sup><a href="#ref6">6</a></sup><sup><a href="#ref7">7</a></sup></p>
+  <p>Coverage highlights its traditional assortment of dolls, tricycles, toy vehicles, stuffed animals, puzzles, craft kits, and children's books, along with premium brands such as Steiff and Madame Alexander.<sup><a href="#ref6">6</a></sup></p>
+  <p>Yelp now lists Over the Rainbow as closed, but it remains historically significant as a classic neighborhood toy store that defined an era of Austin toy retail.<sup><a href="#ref7">7</a></sup></p>
+
+  <h3>Learning Express Toys <em>(Closed)</em></h3>
+  <p>Learning Express Toys once operated in the Austin area and is remembered locally for a Bee Cave/Westlake-area store that served newborns through pre-teens.<sup><a href="#ref8">8</a></sup></p>
+  <p>Community recollections emphasize helpful staff, birthday registries, and a curated selection of popular toys and games, blending franchise branding with local service.<sup><a href="#ref8">8</a></sup></p>
+  <p>The Austin-area Learning Express location discussed in local forums is now closed, but it remains important context for understanding the city's former mix of independent and franchise toy options.<sup><a href="#ref8">8</a></sup></p>
+
+  <h2>Specialty Focus &amp; Age Range Guide</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Store Name</th>
+        <th>Type</th>
+        <th>Best For (age range)</th>
+        <th>Price Range</th>
+        <th>Specialty</th>
+        <th>In-Store Events</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Terra Toys<sup><a href="#ref1">1</a></sup><sup><a href="#ref6">6</a></sup></td>
+        <td>Independent</td>
+        <td>All Ages</td>
+        <td>$$–$$$</td>
+        <td>Classic / General</td>
+        <td>Demo toys and experiential browsing often noted in coverage</td>
+      </tr>
+      <tr>
+        <td>Toy Joy Downtown<sup><a href="#ref2">2</a></sup><sup><a href="#ref6">6</a></sup></td>
+        <td>Independent</td>
+        <td>All Ages</td>
+        <td>$$–$$$</td>
+        <td>Collectible / General</td>
+        <td>Occasional special promotions and themed displays</td>
+      </tr>
+      <tr>
+        <td>Toy Joy Burnet Road<sup><a href="#ref2">2</a></sup></td>
+        <td>Independent</td>
+        <td>All Ages</td>
+        <td>$$–$$$</td>
+        <td>Collectible / General</td>
+        <td>Extended hours support after-work and evening visits</td>
+      </tr>
+      <tr>
+        <td>Toy Joy @ The Thinkery<sup><a href="#ref2">2</a></sup></td>
+        <td>Independent</td>
+        <td>0–10</td>
+        <td>$$</td>
+        <td>General</td>
+        <td>Museum-adjacent location draws family and field-trip traffic</td>
+      </tr>
+      <tr>
+        <td>Lakeshore Learning<sup><a href="#ref4">4</a></sup></td>
+        <td>Educational Chain</td>
+        <td>0–12</td>
+        <td>$$–$$$</td>
+        <td>STEM</td>
+        <td>Workshops and learning demos periodically promoted</td>
+      </tr>
+      <tr>
+        <td>Monkey See Monkey Do<sup><a href="#ref5">5</a></sup></td>
+        <td>Independent</td>
+        <td>All Ages</td>
+        <td>$–$$</td>
+        <td>General</td>
+        <td>Informal browsing and seasonal gift selections</td>
+      </tr>
+      <tr>
+        <td>Over the Rainbow (closed)<sup><a href="#ref6">6</a></sup><sup><a href="#ref7">7</a></sup></td>
+        <td>Closed</td>
+        <td>0–12</td>
+        <td>$$–$$$</td>
+        <td>Classic</td>
+        <td>Historically remembered for traditional toy-store browsing</td>
+      </tr>
+      <tr>
+        <td>Learning Express Toys (closed)<sup><a href="#ref8">8</a></sup></td>
+        <td>Closed</td>
+        <td>0–12</td>
+        <td>$$–$$$</td>
+        <td>General</td>
+        <td>Registries and birthday-focused services recalled by families</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Austin's stores divide into three main modes: broad independent destinations such as Terra Toys, novelty- and collectible-focused shops like Toy Joy, and explicitly educational retailers like Lakeshore Learning.<sup><a href="#ref1">1</a></sup><sup><a href="#ref2">2</a></sup><sup><a href="#ref4">4</a></sup><sup><a href="#ref6">6</a></sup></p>
+
+  <p>Parents typically match stores to children's ages and interests: younger kids and school-age learners benefit from Lakeshore and the Thinkery-adjacent Toy Joy, while older children and adults gravitate toward Toy Joy's pop-culture emphasis and Terra's extensive classic assortment.<sup><a href="#ref1">1</a></sup><sup><a href="#ref2">2</a></sup><sup><a href="#ref4">4</a></sup><sup><a href="#ref6">6</a></sup></p>
+
+  <p>These shops also function as social infrastructure, providing spaces for families to browse together, discover new games and activities, and reinforce Austin's culture of learning, play, and local shopping.<sup><a href="#ref1">1</a></sup><sup><a href="#ref2">2</a></sup><sup><a href="#ref4">4</a></sup><sup><a href="#ref6">6</a></sup></p>
+
+  <h2>Planning Considerations</h2>
+
+  <ul>
+    <li>Independent toy stores in Austin often carry unique brands not found at big-box retailers — visit in person rather than searching online for the best selection.<sup><a href="#ref1">1</a></sup><sup><a href="#ref2">2</a></sup><sup><a href="#ref6">6</a></sup></li>
+    <li>Many Austin toy stores offer gift-wrapping, wish lists, and registry services that make them especially useful for birthday and holiday shopping.<sup><a href="#ref1">1</a></sup><sup><a href="#ref2">2</a></sup><sup><a href="#ref8">8</a></sup></li>
+    <li>STEM and educational toy shops are particularly plentiful in Austin given the city's tech workforce — look for stores near the Domain and North Austin tech corridors.<sup><a href="#ref1">1</a></sup><sup><a href="#ref4">4</a></sup></li>
+    <li>Holiday season (October–December) can see limited stock of popular items; call ahead or visit early in the season for the widest selection.</li>
+    <li>Several beloved Austin toy stores have closed in recent years — the report notes historical shops so you understand the current landscape in context.<sup><a href="#ref6">6</a></sup><sup><a href="#ref7">7</a></sup><sup><a href="#ref8">8</a></sup></li>
+  </ul>
+
+  <!-- ── References ──────────────────────────────────────────────── -->
+  <section class="footnotes">
+    <h2 class="refs-heading">References</h2>
+    <ol>
+      <li id="ref1">Terra Toys | Terra Toys - Austin's Original Toy Store — Official site confirming Terra Toys' address and position as a long-running local toy store.</li>
+      <li id="ref2">Toy Joy - Locations and Hours — Official page listing Toy Joy's Austin locations and operating details.</li>
+      <li id="ref3">Terra Toys and Toy Joy local coverage — Local media describing the history and character of Terra Toys and Toy Joy as iconic Austin toy retailers.</li>
+      <li id="ref4">Lakeshore Learning Austin store locator — Official description of the Austin Lakeshore Learning store and its teacher- and STEM-focused assortment.</li>
+      <li id="ref5">Monkey See Monkey Do local listing — Directory entry identifying Monkey See Monkey Do as a South Austin toy and gift shop.</li>
+      <li id="ref6">Local feature on iconic Austin toy stores — Article profiling Terra Toys, Over the Rainbow, and other notable Austin toy shops.</li>
+      <li id="ref7">Over the Rainbow Yelp listing — Confirms the store's former address and current closed status.</li>
+      <li id="ref8">Learning Express Toys community recollections — Social-media and forum posts recalling the Austin-area Learning Express store, its services, and its closure.</li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

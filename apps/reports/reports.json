@@ -61,5 +61,14 @@
     "blurb": "Vintage specialists, boutiques, acoustic destinations, and chains across Austin's guitar retail scene.",
     "href": "/apps/reports/austin-vintage-guitar/storymap/report.html",
     "accent": "#7D4F00"
+  },
+  {
+    "id": "austin-toy-stores",
+    "category": "Shopping",
+    "title": "Toy Stores & Children's Specialty Retailers in Greater Austin",
+    "eyebrow": "Austin Shopping · Report",
+    "blurb": "Independent shops, educational toy specialists, and family-favorite destinations across the Austin metro.",
+    "href": "/apps/reports/austin-toy-stores/storymap/report.html",
+    "accent": "#d4380d"
   }
 ]

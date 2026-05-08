@@ -4,30 +4,30 @@
 // ============================================================
 const CONFIG = {
   // ── Identity ──────────────────────────────────────────────
-  title:    "Report Title",
-  eyebrow:  "Austin Metro",
-  subtitle: "Report subtitle",
+  title:    "Toy Stores & Children's Specialty Retailers in Greater Austin",
+  eyebrow:  "Austin Shopping",
+  subtitle: "Independent shops, educational toy specialists, and family-favorite destinations",
 
-  infoPanelText: "Description of this map and its data.",
+  infoPanelText: "Austin-area toy stores — independents, educational specialists, collectible shops, and notable closures. Filter by store type, age range, or specialty. Click any pin for details.",
 
   // ── Map defaults ──────────────────────────────────────────
-  center:          [-97.743, 30.267],
-  zoom:            10,
+  center:          [-97.745, 30.310],
+  zoom:            11,
   pitch:           45,
   bearing:         -15,
-  markerColor:     "#2f855a",
+  markerColor:     "#d4380d",
   markerIconStyle: "pin",
 
   // ── Geographic bounds lock ────────────────────────────────
   maxBounds: [[-98.04, 29.97], [-97.47, 30.62]],
 
-  // ── Theme overrides (leave undefined to use defaults) ─────
-  // theme: {
-  //   headerBg:    "#1a4d0e",
-  //   pageBg:      "#e4ede0",
-  //   fontHeading: "Oswald",
-  //   fontBody:    "Barlow",
-  // },
+  // ── Theme ─────────────────────────────────────────────────
+  theme: {
+    headerBg:    "#b32d0a",
+    pageBg:      "#fff8f6",
+    fontHeading: "Fredoka",
+    fontBody:    "Nunito",
+  },
 
   // ── Reddit search ─────────────────────────────────────────
   redditCity: "Austin",
@@ -69,26 +69,29 @@ const CONFIG = {
 
   googleMapsApiKey: "",
 
-  // ── Filters (max 3) ───────────────────────────────────────
+  // ── Filters ───────────────────────────────────────────────
   filters: [
-    { property: "type",   label: "Type"   },
-    { property: "city",   label: "City"   },
+    { property: "type",      label: "Type"      },
+    { property: "age_range", label: "Age Range" },
+    { property: "specialty", label: "Specialty" },
   ],
 
-  // ── Table columns (max 5) ─────────────────────────────────
+  // ── Table columns ─────────────────────────────────────────
   columns: [
-    { property: "name",    header: "Name"    },
-    { property: "type",    header: "Type"    },
-    { property: "city",    header: "City"    },
-    { property: "address", header: "Address" },
+    { property: "name",      header: "Store"     },
+    { property: "type",      header: "Type"      },
+    { property: "age_range", header: "Ages"      },
+    { property: "specialty", header: "Specialty" },
+    { property: "address",   header: "Address"   },
   ],
 
-  // ── Popup detail rows (max 9) ─────────────────────────────
+  // ── Popup detail rows ─────────────────────────────────────
   popupFields: [
-    { property: "type",    label: "Type"    },
-    { property: "city",    label: "City"    },
-    { property: "address", label: "Address" },
-    { property: "website", label: "Website" },
-    { property: "notes",   label: "Notes"   },
+    { property: "type",      label: "Type"      },
+    { property: "age_range", label: "Ages"      },
+    { property: "specialty", label: "Specialty" },
+    { property: "address",   label: "Address"   },
+    { property: "website",   label: "Website"   },
+    { property: "notes",     label: "Notes"     },
   ]
 };
