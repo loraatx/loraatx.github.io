@@ -66,6 +66,7 @@
         "lngLat": [-97.733110, 30.357190],
         "title": "Terra Toys",
         "subtitle": "2438 W Anderson Ln · North Central Austin",
+        "nav": { "name": "Terra Toys", "city": "Austin" },
         "image": {
           "src": "image2.png",
           "alt": "Terra Toys",
