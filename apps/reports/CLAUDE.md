@@ -30,7 +30,7 @@ apps/reports/
 Everything else is copied unchanged from `template/`. Only these two files are customized:
 
 | File | Purpose |
-|------|---------|
+|------|--------|
 | `config.js` | Title, theme, map center, filters, columns, popup fields |
 | `data.geojson` | Location data for the topic |
 
