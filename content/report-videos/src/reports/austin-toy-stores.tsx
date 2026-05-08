@@ -11,8 +11,7 @@ export const AustinToyStores: React.FC = () => (
     appPath="/apps/reports/austin-toy-stores"
     bullets={[
       "8 toy stores across Greater Austin",
-      "Independent · Educational · Collectible · Closed",
-      "Terra Toys · Toy Joy · Lakeshore Learning",
+      "Independent · Educational · Collectible · Closed · etc...",
       "Monkey See Monkey Do · Over the Rainbow · etc.",
     ]}
   />
