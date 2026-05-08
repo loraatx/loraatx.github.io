@@ -378,8 +378,7 @@ html, body {
 
 /* Stats table */
 .sm-popup-stats {
-  width: 100%;
-  border-collapse: collapse;
+  width: 100%;  border-collapse: collapse;
   font-size: 0.9rem;
   margin-bottom: 12px;
   border-top: 1px solid #e1e6ee;
@@ -402,6 +401,31 @@ html, body {
   padding: 5px 0;
   font-weight: 700;
 }
+
+/* Direction / Reddit nav bar */
+.sm-popup-nav {
+  display: flex;
+  gap: 5px;
+  margin: 6px 0 8px;
+  flex-wrap: wrap;
+}
+.sm-popup-nav-btn {
+  flex: 1 1 0;
+  text-align: center;
+  background: #f0f4f8;
+  color: #333;
+  border-radius: 6px;
+  padding: 5px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.sm-popup-nav-btn:hover { background: #dbe4ed; color: #000; text-decoration: none; }
+.sm-popup-nav-reddit { background: #ff4500; color: #fff; }
+.sm-popup-nav-reddit:hover { background: #e03d00; color: #fff; }
 
 /* CTA link — full-width filled button */
 .sm-popup-link {

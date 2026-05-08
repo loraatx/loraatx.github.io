@@ -321,10 +321,10 @@ class StoryEngine {
       const [lng, lat] = p.lngLat || [0, 0];
       const q = encodeURIComponent((p.nav.name || p.title || '') + (p.nav.city ? ' ' + p.nav.city : ''));
       html += '<div class="sm-popup-nav">';
-      html += `<a class="sm-popup-nav-btn" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener">Google</a>`;
-      html += `<a class="sm-popup-nav-btn" href="https://maps.apple.com/?q=${lat},${lng}" target="_blank" rel="noopener">Apple</a>`;
-      html += `<a class="sm-popup-nav-btn" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener">Waze</a>`;
-      html += `<a class="sm-popup-nav-btn sm-popup-nav-reddit" href="https://www.reddit.com/search/?q=${q}" target="_blank" rel="noopener">Reddit</a>`;
+      html += `<a class="sm-popup-nav-btn" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener" title="Google Maps">Google</a>`;
+      html += `<a class="sm-popup-nav-btn" href="https://maps.apple.com/?q=${lat},${lng}" target="_blank" rel="noopener" title="Apple Maps">Apple</a>`;
+      html += `<a class="sm-popup-nav-btn" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener" title="Waze">Waze</a>`;
+      html += `<a class="sm-popup-nav-btn sm-popup-nav-reddit" href="https://www.reddit.com/search/?q=${q}" target="_blank" rel="noopener" title="Reddit">Reddit</a>`;
       html += '</div>';
     }
 

@@ -70,6 +70,7 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 | Field | Renders as |
 |-------|----------|
 | `video` | `{ src }` — plays local mp4 fullscreen in popup; **scene 1 only, no other fields** |
+| `nav` | `{ name, city }` — renders Google / Apple / Waze / Reddit buttons; add to scene 2 location popup |
 | `body` | Up to 3 bullet points (split by sentence-ending punctuation) |
 | `image` | `{ src, alt, caption }` — full-width image above body |
 | `stats` | `[{ label, value }]` — two-column table |
