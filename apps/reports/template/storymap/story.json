@@ -1,7 +1,7 @@
 {
   "title": "Report Title",
   "subtitle": "A City Anatomy Story",
-  "loop": false,
+  "loop": true,
   "autoplay": true,
   "initialCamera": {
     "center": [-97.7431, 30.2672],
@@ -16,13 +16,13 @@
     {
       "id": "overview",
       "transition": "fly",
-      "duration": 7000,
+      "duration": 11000,
       "camera": {
         "center": [-97.7431, 30.2672],
         "zoom": 10.5,
-        "pitch": 35,
+        "pitch": 30,
         "bearing": -10,
-        "speed": 0.5,
+        "speed": 0.55,
         "curve": 1.2
       },
       "showLayers": [],
@@ -30,23 +30,8 @@
       "popup": {
         "lngLat": [-97.7431, 30.2672],
         "anchor": "bottom",
-        "title": "Scene 1 Title",
-        "subtitle": "Scene 1 subtitle",
-        "body": "<p>Opening overview narrative.</p>",
-        "youtube": {
-          "videoId": "",
-          "startAt": 0,
-          "stopAt": 30,
-          "mute": true
-        },
-        "stats": [
-          { "label": "Stat 1", "value": "—" },
-          { "label": "Stat 2", "value": "—" },
-          { "label": "Stat 3", "value": "—" }
-        ],
-        "link": {
-          "href": "/apps/reports/SLUG/",
-          "text": "Explore the Interactive Map →"
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },

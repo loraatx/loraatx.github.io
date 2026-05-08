@@ -42,27 +42,38 @@ For each storymap, only `story.json` is customized (slide content and map stops)
 
 Every storymap follows the same 3-scene structure. Only the camera coordinates and popup content change between reports.
 
-### Scene 1 — Opening overview
-- Camera: city-wide overview (zoom ~10, pitch 30)
-- Popup: promo video (`promo.mp4`) — no text popup
+### Scene 1 — Opening overview (promo video)
+- `duration`: 11000, `loop`: true, `speed`: 0.55
+- Camera: city-wide overview (zoom ~10.5, pitch 30, bearing -10)
+- Popup: **local video only** — exactly this shape, nothing else:
+  ```json
+  "popup": {
+    "lngLat": [LNG, LAT],
+    "anchor": "bottom",
+    "video": { "src": "promo.mp4" }
+  }
+  ```
+  Do NOT add `title`, `subtitle`, `body`, `stats`, `youtube`, or `link` to scene 1 — the engine only plays one popup type per scene and extra keys cause a black-box error.
 
 ### Scene 2 — Location highlight
 - Camera: fly close to a featured location (zoom 14–16, pitch 50–55)
-- Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to map app
+- Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to report
 
 ### Scene 3 — Closing CTA
-- Camera: fly back to city-wide overview (same as scene 1)
+- Camera: fly back to city-wide overview (same coords as scene 1)
 - Popup `image`: use `../../template/siteimage.png` as a placeholder until a custom preview image is ready
-- Popup `links`: purchase/report links (href can be empty until URLs are set)
+- Popup `links`: report + map links
 
 ### story.json popup field reference
 
 | Field | Renders as |
 |-------|-----------|
+| `video` | `{ src }` — plays local mp4 fullscreen in popup; **scene 1 only, no other fields** |
 | `body` | Up to 3 bullet points (split by sentence-ending punctuation) |
 | `image` | `{ src, alt, caption }` — full-width image above body |
 | `stats` | `[{ label, value }]` — two-column table |
-| `link` | `{ href, text }` — CTA button at the bottom |
+| `link` | `{ href, text }` — single CTA button at the bottom |
+| `links` | `[{ href, text }]` — multiple CTA buttons (closing scene) |
 
 ---
 

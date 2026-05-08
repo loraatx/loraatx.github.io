@@ -1,7 +1,7 @@
 {
   "title": "Toy Stores & Children's Specialty Retailers in Greater Austin",
   "subtitle": "A City Anatomy Story",
-  "loop": false,
+  "loop": true,
   "autoplay": true,
   "initialCamera": {
     "center": [-97.745, 30.310],
@@ -28,37 +28,22 @@
     {
       "id": "overview",
       "transition": "fly",
-      "duration": 7000,
+      "duration": 11000,
       "camera": {
         "center": [-97.745, 30.310],
         "zoom": 10.5,
-        "pitch": 35,
+        "pitch": 30,
         "bearing": -10,
-        "speed": 0.5,
+        "speed": 0.55,
         "curve": 1.2
       },
-      "showLayers": [],
-      "hideLayers": ["toy-stores"],
+      "showLayers": ["toy-stores"],
+      "hideLayers": [],
       "popup": {
         "lngLat": [-97.745, 30.310],
         "anchor": "bottom",
-        "title": "Austin's Toy Stores",
-        "subtitle": "8 stores profiled across the metro",
-        "body": "<p>Austin's toy-retail scene is still anchored by long-running independents — Terra Toys has been locally owned since 1978, and Toy Joy remains one of the city's most recognizable shopping destinations.</p>",
-        "youtube": {
-          "videoId": "",
-          "startAt": 0,
-          "stopAt": 30,
-          "mute": true
-        },
-        "stats": [
-          { "label": "Stores Profiled", "value": "8" },
-          { "label": "Locally Owned",   "value": "6" },
-          { "label": "Oldest Est.",     "value": "1975" }
-        ],
-        "link": {
-          "href": "/apps/reports/austin-toy-stores/",
-          "text": "Explore the Interactive Map →"
+        "video": {
+          "src": "promo.mp4"
         }
       }
     },
