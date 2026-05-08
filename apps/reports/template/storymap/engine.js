@@ -317,6 +317,17 @@ class StoryEngine {
       html += '</div>';
     }
 
+    if (p.nav) {
+      const [lng, lat] = p.lngLat || [0, 0];
+      const q = encodeURIComponent((p.nav.name || p.title || '') + (p.nav.city ? ' ' + p.nav.city : ''));
+      html += '<div class="sm-popup-nav">';
+      html += `<a class="sm-popup-nav-btn" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener">Google</a>`;
+      html += `<a class="sm-popup-nav-btn" href="https://maps.apple.com/?q=${lat},${lng}" target="_blank" rel="noopener">Apple</a>`;
+      html += `<a class="sm-popup-nav-btn" href="https://waze.com/ul?ll=${lat},${lng}&navigate=yes" target="_blank" rel="noopener">Waze</a>`;
+      html += `<a class="sm-popup-nav-btn sm-popup-nav-reddit" href="https://www.reddit.com/search/?q=${q}" target="_blank" rel="noopener">Reddit</a>`;
+      html += '</div>';
+    }
+
     if (p.image?.src) {
       html += '<figure class="sm-popup-figure">';
       html += `<img src="${p.image.src}" alt="${p.image.alt ?? ''}" class="sm-popup-img" loading="lazy" />`;
