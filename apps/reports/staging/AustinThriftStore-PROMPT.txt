@@ -1,0 +1,102 @@
+# City Anatomy — Austin Thrift Stores Report Prompt
+
+Ready to run. Copy the prompt block into Perplexity (use Research or Pro mode).
+Save the full output as `report.md` in this staging folder.
+
+---
+
+## How to use
+
+1. Run the prompt below in Perplexity. No editing needed — the topic is already filled in.
+2. Copy the **entire output** (front-matter block through the CSV rows) into a file named `report.md` and save it here.
+3. Copy just the CSV rows (after `---CSV---`, including the header) into a file named `data.csv`.
+4. Drop your three images into this folder:
+   - `image1.png` — a photo representing thrift/secondhand shopping generally (packed racks, vintage finds, colorful bins)
+   - `image2.png` — a photo of the 1st featured location (storefront or interior)
+   - `image3.png` — a photo of the 2nd featured location (storefront or interior)
+5. Tell Claude: **"Build the new Product Report from staging."**
+
+---
+
+## The Prompt (copy everything between the triple-dashes)
+
+---
+Write a 4–6 page research report on **thrift stores, consignment shops, and secondhand retailers** in **Austin, TX** for a local data journalism product called City Anatomy. Cover the full spectrum: major charity thrift chains (Goodwill, Salvation Army, Savers/Value Village), independent and eclectic thrift shops, upscale consignment boutiques, vintage clothing and furniture dealers, and any specialty secondhand stores (books, records, furniture, etc.). Include stores that have closed if they were historically significant to Austin's thrift scene, and note their status clearly. Use inline footnote citations [n] throughout the body and a numbered References section at the end.
+
+Structure your output **exactly** as follows. Use these exact headings and the front-matter block — do not change the format.
+
+```
+---
+title: Thrift Stores & Secondhand Shops in Greater Austin
+subtitle: Charity thrift, consignment boutiques, vintage dealers, and eclectic resale across the city
+category: Shopping
+accent: #2d7a4f
+slug: austin-thrift-stores
+featured_location_1: [Exact name of the most distinctive or beloved independent/eclectic thrift store you find]
+featured_location_2: [Exact name of a second notable consignment, vintage, or specialty secondhand store]
+stats:
+  - value: "[total number of stores profiled]"
+    label: "Stores Profiled"
+  - value: "[number that are independent/locally owned, not national chains]"
+    label: "Locally Owned"
+  - value: "[number of national/regional chain locations, e.g. Goodwill, Salvation Army]"
+    label: "Chain Locations"
+  - value: "[number of specialty consignment or curated vintage stores]"
+    label: "Consignment & Vintage"
+---
+```
+
+## Executive Summary
+[2–3 paragraphs: what makes Austin's thrift and secondhand scene distinctive, the mix of charity chains vs. independent eclectic shops, the role of consignment and vintage in a city with strong creative and sustainability cultures, and what this report covers. Use footnote citations [n].]
+
+## Austin's Thrift & Secondhand Stores
+
+[For each store, use a ### subheading with the exact store name, followed by 2–3 paragraphs covering: address and neighborhood, store type (charity thrift chain, independent thrift, consignment boutique, vintage dealer, specialty), what categories of goods they carry (clothing, furniture, books, housewares, etc.), price level, curation style (bulk/standard/curated), any notable community programs or donation-drop policies, and current operating status. Note any stores that have closed and explain their significance.]
+
+[Use ### [Exact Store Name] format for every location entry. Cover at least 10–14 stores, spanning the full range from Goodwill and Salvation Army to small eclectic shops.]
+
+## Store Comparison: Type, Specialty & Price Range
+
+[A Markdown comparison table with columns: Store Name | Type | Primary Goods | Price Range | Curation | Neighborhood. Follow with a few paragraphs discussing how to choose between chain thrift vs. curated consignment vs. eclectic vintage, the sustainability angle of secondhand shopping in Austin, and which stores are best for specific goals (furniture hunting, vintage clothing, book hunting, quick donation drop-offs).]
+
+## Planning Considerations
+- Goodwill and Salvation Army locations across Austin accept donations and are the most accessible starting points for budget shoppers; inventory turns over quickly so frequent visits pay off.
+- Austin's independent thrift and vintage shops cluster in South Congress, East Austin, and North Loop — plan a neighborhood circuit rather than one-off trips.
+- Consignment boutiques (clothing and furniture) tend to have stricter selection and higher prices, but condition and curation are noticeably better; many accept items by appointment.
+- The best vintage furniture finds often require early-morning weekend visits — pieces move fast at Austin's eclectic shops.
+- Some Austin thrift stores support specific community missions (veterans, job training, domestic violence programs) — the report notes each store's charitable affiliation.
+
+## References
+1. [Title](URL) — brief excerpt or description
+2. ...
+[Continue numbered list through all citations used inline above]
+
+---CSV---
+name,address,city,state,zip,latitude,longitude,type,specialty,price_range,website,notes
+"[Store Name]","[Street Address]","Austin","TX","[ZIP]",[LAT],[LNG],"[chain|independent|consignment|vintage|specialty|closed]","[clothing|furniture|books|general|multi-category|vintage]","[$ | $$ | $$$]","[https://...]","[one sentence]"
+[one row per store — include open and closed stores, mark closed ones with type "closed"]
+---
+
+**Column notes for this report:**
+- `type` — use one of: `chain` (Goodwill, Salvation Army, Savers), `independent` (local thrift), `consignment` (upscale resale boutique), `vintage` (curated vintage shop), `specialty` (books/records/furniture-only), `closed`
+- `specialty` — primary goods: `clothing`, `furniture`, `books`, `general`, `multi-category`, `vintage`
+- `price_range` — `$` (budget/bulk thrift), `$$` (mid-range/independent), `$$$` (curated consignment)
+- Every store mentioned with a ### heading must have a CSV row, including closed ones
+- Include lat/lng for every row — geocode from the street address, 6 decimal places
+
+---
+
+## After you run the prompt
+
+Check that the output contains:
+- [ ] Front-matter block with all fields filled in (not placeholders)
+- [ ] `featured_location_1` and `featured_location_2` are real store names matching `### Name` headings
+- [ ] `stats:` has 4 entries with real values
+- [ ] Numbered `[n]` citations throughout the body
+- [ ] A `## References` section with numbered links
+- [ ] A `---CSV---` separator followed by CSV rows
+- [ ] `type`, `specialty`, and `price_range` columns present in every CSV row
+- [ ] Every `### Name` heading has a matching CSV row
+- [ ] Goodwill and Salvation Army locations are included with individual addresses
+
+If any of these are missing, re-prompt Perplexity asking it to add the missing piece.
