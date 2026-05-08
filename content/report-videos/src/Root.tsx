@@ -6,6 +6,7 @@ import { AustinGolfCourses } from "./reports/austin-golf-courses";
 import { AustinHorsebackRiding } from "./reports/austin-horseback-riding";
 import { AustinNeighborhoods } from "./reports/austin-neighborhoods";
 import { AustinPs5Bundles } from "./reports/austin-ps5-bundles";
+import { AustinToyStores } from "./reports/austin-toy-stores";
 import { AustinVintageGuitar } from "./reports/austin-vintage-guitar";
 import { PoolOpenings } from "./reports/pool-openings";
 
@@ -23,6 +24,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="austin-horseback-riding" component={AustinHorsebackRiding} durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="austin-neighborhoods"   component={AustinNeighborhoods}   durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="austin-ps5-bundles"     component={AustinPs5Bundles}      durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
+    <Composition id="austin-toy-stores"      component={AustinToyStores}       durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="austin-vintage-guitar"  component={AustinVintageGuitar}   durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="pool-openings"          component={PoolOpenings}          durationInFrames={DURATION} fps={FPS} width={WIDTH} height={HEIGHT} />
   </>

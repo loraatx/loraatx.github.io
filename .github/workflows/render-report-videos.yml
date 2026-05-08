@@ -7,6 +7,23 @@ on:
       - "content/report-videos/src/**"
       - "content/report-videos/package.json"
   workflow_dispatch:
+    inputs:
+      report:
+        description: "Report slug to render (leave blank to render all)"
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - austin-bike-shops
+          - austin-chambers
+          - austin-golf-courses
+          - austin-horseback-riding
+          - austin-neighborhoods
+          - austin-ps5-bundles
+          - austin-toy-stores
+          - austin-vintage-guitar
+          - pool-openings
 
 jobs:
   render:
@@ -31,15 +48,23 @@ jobs:
         working-directory: content/report-videos
         run: npx remotion browser ensure
 
-      - name: Render all report videos
+      - name: Render videos
         working-directory: content/report-videos
-        run: npm run render:all
+        run: |
+          REPORT="${{ github.event.inputs.report }}"
+          if [ -n "$REPORT" ]; then
+            echo "Rendering single report: $REPORT"
+            npm run render:$REPORT
+          else
+            echo "Rendering all reports"
+            npm run render:all
+          fi
 
       - name: Commit rendered videos to repo
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add apps/reports/*/storymap/promo.mp4
+          git add apps/reports/*/storymap/promo.mp4 apps/reports/PoolOpenings/storymap/promo.mp4
           if git diff --cached --quiet; then
             echo "No video changes to commit."
           else
