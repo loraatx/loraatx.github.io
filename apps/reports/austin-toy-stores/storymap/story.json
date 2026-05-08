@@ -66,6 +66,11 @@
         "lngLat": [-97.733110, 30.357190],
         "title": "Terra Toys",
         "subtitle": "2438 W Anderson Ln · North Central Austin",
+        "image": {
+          "src": "image2.png",
+          "alt": "Terra Toys",
+          "caption": "Terra Toys — Austin's original toy store since 1978"
+        },
         "body": "<p>Austin's original toy store since 1978. Terra carries classic toys, art supplies, musical instruments, kites, and learning tools — with a demo-friendly browsing experience and an in-store cafe.</p>",
         "stats": [
           { "label": "Founded",   "value": "1978" },
