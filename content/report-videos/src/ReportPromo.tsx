@@ -105,6 +105,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
       <div style={{ position: "absolute", inset: 0, padding: "44px 70px 36px", display: "flex", flexDirection: "column" }}>
 
+        {/* Top row: QR left + Eyebrow right */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 28, marginBottom: 20 }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, opacity: qrOp, flexShrink: 0 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: "rgba(0,0,0,0.45)", letterSpacing: "0.08em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
@@ -119,12 +120,15 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           </div>
         </div>
 
+        {/* Title */}
         <div style={{ fontSize: 96, fontWeight: 800, color: "#111827", lineHeight: 1.08, letterSpacing: "-0.015em", transform: `translateY(${titleY}px)`, opacity: titleS, marginBottom: 20 }}>
           {title}
         </div>
 
+        {/* Divider */}
         <div style={{ width: divW, height: 2, background: `linear-gradient(90deg, ${accentColor}, transparent)`, marginBottom: 24, borderRadius: 1 }} />
 
+        {/* Narrative */}
         <div style={{ fontSize: 40, fontWeight: 700, color: "#1f2937", lineHeight: 1.45, opacity: paraOp, transform: `translateY(${paraY}px)`, maxWidth: "90%" }}>
           {narrative}
         </div>
