@@ -9,10 +9,6 @@ export const AustinToyStores: React.FC = () => (
     accentColor="#d4380d"
     locationCount={8}
     appPath="/apps/reports/austin-toy-stores"
-    bullets={[
-      "8 toy stores across Greater Austin",
-      "Independent · Educational · Collectible · Closed · etc...",
-      "Monkey See Monkey Do · Over the Rainbow · etc.",
-    ]}
+    narrative="Austin's toy market favors long-running independents over chains. This report profiles 8 stores spanning independent, educational, and collectible shops — Terra Toys, Toy Joy, Lakeshore, Monkey See Monkey Do, and more."
   />
 );

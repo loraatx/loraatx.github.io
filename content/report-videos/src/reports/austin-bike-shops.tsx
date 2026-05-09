@@ -9,11 +9,6 @@ export const AustinBikeShops: React.FC = () => (
     accentColor="#2f855a"
     locationCount={12}
     appPath="/apps/reports/austin-bike-shops"
-    bullets={[
-      "12 bike & e-bike shops",
-      "Independents, co-op & specialists",
-      "Austin Tri Cyclist · Austin Bike Farm · Trek Bicycle",
-      "REI Austin · Rocket Electrics · etc.",
-    ]}
+    narrative="Austin's cycling culture spans urban commuters and hill-country riders alike. This report profiles 12 shops — independents, co-op, and specialists — Austin Tri Cyclist, Bike Farm, Trek, REI, Rocket Electrics, and more."
   />
 );

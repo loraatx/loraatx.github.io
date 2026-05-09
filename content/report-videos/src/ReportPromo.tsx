@@ -15,9 +15,9 @@ export interface ReportPromoProps {
   accentColor: string;
   locationCount: number;
   appPath: string;
-  bullets: [string, string, string, string];
-  /** URL the QR code points to. Defaults to https://anatomy.city{appPath}.
-   *  Set to a free report page or Gumroad link when ready. */
+  /** One narrative paragraph (≤200 chars): Austin context → report scope → store list. */
+  narrative: string;
+  /** URL the QR code points to. Defaults to https://anatomy.city{appPath}. */
   reportUrl?: string;
 }
 
@@ -25,12 +25,11 @@ const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as con
 
 // Simple Austin-style city skyline — pure SVG, no external assets
 const Cityscape: React.FC<{ width: number; height: number; accent: string }> = ({ width, height, accent }) => {
-  // Buildings: [x, w, h]. Tallest cluster near center = downtown.
   const bldgs = [
     [0,55,95],[45,70,140],[105,50,110],[148,60,162],[198,45,130],
     [232,80,196],[302,55,218],[348,72,252],
     [410,92,282],[495,58,238],[542,82,262],
-    [614,104,308], // tallest — Frost Bank stand-in
+    [614,104,308],
     [706,62,278],[758,88,258],
     [836,72,232],[898,56,205],[944,82,182],
     [1016,60,156],[1066,76,172],[1132,50,132],[1172,66,116],[1228,52,142],
@@ -39,7 +38,7 @@ const Cityscape: React.FC<{ width: number; height: number; accent: string }> = (
   const ground = height;
   const buildingColor = "#c8cdd8";
   const windowColor = "#dde2ec";
-  const accentGlow = accent + "18"; // very subtle accent tint on tallest
+  const accentGlow = accent + "18";
 
   return (
     <svg
@@ -48,7 +47,6 @@ const Cityscape: React.FC<{ width: number; height: number; accent: string }> = (
       height={height}
       viewBox={`0 0 ${width} ${height}`}
     >
-      {/* Subtle sky gradient */}
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#eef1f8" />
@@ -60,24 +58,19 @@ const Cityscape: React.FC<{ width: number; height: number; accent: string }> = (
         </linearGradient>
       </defs>
       <rect x={0} y={0} width={width} height={height} fill="url(#sky)" />
-
-      {/* Ground line */}
       <rect x={0} y={ground - 3} width={width} height={3} fill="#b8bdc8" opacity={0.5} />
 
       {bldgs.map(([x, w, h], i) => {
         const isLandmark = h > 270;
         return (
           <g key={i}>
-            {/* Building body */}
             <rect
               x={x} y={ground - h} width={w} height={h}
               fill={isLandmark ? `url(#groundfade)` : buildingColor}
             />
-            {/* Accent tint on tallest */}
             {isLandmark && (
               <rect x={x} y={ground - h} width={w} height={h} fill={accentGlow} />
             )}
-            {/* Windows — rows of small rects on taller buildings */}
             {h > 150 && (() => {
               const winW = 5, winH = 4, colGap = 13, rowGap = 16;
               const cols = Math.floor((w - 10) / colGap);
@@ -107,35 +100,35 @@ const Cityscape: React.FC<{ width: number; height: number; accent: string }> = (
 };
 
 export const ReportPromo: React.FC<ReportPromoProps> = ({
-  title, eyebrow, accentColor, appPath, bullets, reportUrl,
+  title, eyebrow, accentColor, appPath, narrative, reportUrl,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  const barW    = interpolate(frame, [0, 18],    [0, width],  cl);
-  const eyeOp   = interpolate(frame, [12, 32],   [0, 1],      cl);
-  const cityOp  = interpolate(frame, [0, 40],    [0, 1],      cl);
+  const barW   = interpolate(frame, [0, 18],    [0, width],  cl);
+  const eyeOp  = interpolate(frame, [12, 32],   [0, 1],      cl);
+  const cityOp = interpolate(frame, [0, 40],    [0, 1],      cl);
+  const qrOp   = interpolate(frame, [20, 42],   [0, 1],      cl);
 
-  const titleS  = spring({ fps, frame: frame - 18, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
-  const titleY  = interpolate(titleS, [0, 1], [26, 0]);
+  const titleS = spring({ fps, frame: frame - 18, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
+  const titleY = interpolate(titleS, [0, 1], [26, 0]);
 
-  const divW    = interpolate(frame, [48, 74],   [0, width - 140], cl);
+  const divW   = interpolate(frame, [48, 74],   [0, width - 140], cl);
 
-  const b0Op    = interpolate(frame, [72,  88],  [0, 1],  cl);
-  const b0Y     = interpolate(frame, [72,  88],  [20, 0], cl);
-  const b1Op    = interpolate(frame, [92,  108], [0, 1],  cl);
-  const b1Y     = interpolate(frame, [92,  108], [20, 0], cl);
-  const b2Op    = interpolate(frame, [112, 128], [0, 1],  cl);
-  const b2Y     = interpolate(frame, [112, 128], [20, 0], cl);
-  const b3Op    = interpolate(frame, [132, 148], [0, 1],  cl);
-  const b3Y     = interpolate(frame, [132, 148], [20, 0], cl);
-  const bulletOps = [b0Op, b1Op, b2Op, b3Op];
-  const bulletYs  = [b0Y,  b1Y,  b2Y,  b3Y];
+  const paraOp = interpolate(frame, [72, 95],   [0, 1],  cl);
+  const paraY  = interpolate(frame, [72, 95],   [20, 0], cl);
 
-  const ctaOp   = interpolate(frame, [162, 180], [0, 1],  cl);
+  const ctaOp  = interpolate(frame, [162, 180], [0, 1],  cl);
 
-  const url = `anatomy.city${appPath}`;
-  const qrUrl = reportUrl ?? `https://anatomy.city${appPath}`;
+  const url    = `anatomy.city${appPath}`;
+  const qrUrl  = reportUrl ?? `https://anatomy.city${appPath}`;
+
+  // Parse eyebrow: "Prefix: BOLD - suffix"
+  const colonIdx = eyebrow.indexOf(": ");
+  const dashIdx  = eyebrow.indexOf(" - ");
+  const prefix   = colonIdx > -1 ? eyebrow.slice(0, colonIdx + 2) : eyebrow;
+  const bold     = colonIdx > -1 && dashIdx > -1 ? eyebrow.slice(colonIdx + 2, dashIdx) : "";
+  const suffix   = dashIdx  > -1 ? eyebrow.slice(dashIdx) : "";
 
   return (
     <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#f8f9fc" }}>
@@ -158,27 +151,58 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         justifyContent: "space-between",
       }}>
         <div>
-          {/* Eyebrow — format: "City Anatomy Free Report: BOLD PART - normal part" */}
-          {(() => {
-            const colonIdx = eyebrow.indexOf(": ");
-            const dashIdx  = eyebrow.indexOf(" - ");
-            const prefix   = colonIdx > -1 ? eyebrow.slice(0, colonIdx + 2) : eyebrow;
-            const bold     = colonIdx > -1 && dashIdx > -1 ? eyebrow.slice(colonIdx + 2, dashIdx) : "";
-            const suffix   = dashIdx  > -1 ? eyebrow.slice(dashIdx) : "";
-            return (
+          {/* Top row: QR (left) + Eyebrow (right) */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 28, marginBottom: 20 }}>
+
+            {/* QR code — top left */}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 5,
+              opacity: qrOp,
+              flexShrink: 0,
+            }}>
               <div style={{
-                fontSize: 22,
-                letterSpacing: "0.08em",
-                color: accentColor,
-                marginBottom: 16,
-                opacity: eyeOp,
+                fontSize: 13,
+                fontWeight: 700,
+                color: "rgba(0,0,0,0.45)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
               }}>
-                <span style={{ fontWeight: 400 }}>{prefix}</span>
-                <span style={{ fontWeight: 800 }}>{bold}</span>
-                <span style={{ fontWeight: 400 }}>{suffix}</span>
+                Scan to get report
               </div>
-            );
-          })()}
+              <div style={{
+                background: "#ffffff",
+                padding: 7,
+                borderRadius: 6,
+                border: `2px solid ${accentColor}`,
+                lineHeight: 0,
+              }}>
+                <QRCodeSVG
+                  value={qrUrl}
+                  size={80}
+                  fgColor="#111111"
+                  bgColor="#ffffff"
+                  level="M"
+                />
+              </div>
+            </div>
+
+            {/* Eyebrow */}
+            <div style={{
+              fontSize: 26,
+              letterSpacing: "0.08em",
+              color: accentColor,
+              opacity: eyeOp,
+              paddingTop: 4,
+            }}>
+              <span style={{ fontWeight: 400 }}>{prefix}</span>
+              <span style={{ fontWeight: 800 }}>{bold}</span>
+              <span style={{ fontWeight: 400 }}>{suffix}</span>
+            </div>
+          </div>
 
           {/* Title */}
           <div style={{
@@ -203,84 +227,29 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
             borderRadius: 1,
           }} />
 
-          {/* Bullets */}
-          {bullets.map((text, i) => (
-            <div key={i} style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: 16,
-              marginBottom: 12,
-              opacity: bulletOps[i],
-              transform: `translateY(${bulletYs[i]}px)`,
-            }}>
-              <div style={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                background: accentColor,
-                marginTop: 10,
-                flexShrink: 0,
-              }} />
-              <div style={{
-                fontSize: 58,
-                fontWeight: 600,
-                color: "#1f2937",
-                lineHeight: 1.2,
-              }}>
-                {text}
-              </div>
-            </div>
-          ))}
+          {/* Narrative paragraph */}
+          <div style={{
+            fontSize: 36,
+            fontWeight: 500,
+            color: "#1f2937",
+            lineHeight: 1.45,
+            opacity: paraOp,
+            transform: `translateY(${paraY}px)`,
+            maxWidth: "90%",
+          }}>
+            {narrative}
+          </div>
         </div>
 
-        {/* Footer: URL label left, QR code right */}
+        {/* Footer: URL label */}
         <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
+          fontSize: 18,
+          fontWeight: 700,
+          color: accentColor,
+          letterSpacing: "0.04em",
           opacity: ctaOp,
         }}>
-          <div style={{
-            fontSize: 18,
-            fontWeight: 700,
-            color: accentColor,
-            letterSpacing: "0.04em",
-          }}>
-            {url}
-          </div>
-
-          {/* QR code — placeholder pointing to appPath; swap reportUrl prop for final link */}
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 6,
-          }}>
-            <div style={{
-              fontSize: 11,
-              fontWeight: 600,
-              color: "rgba(0,0,0,0.4)",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}>
-              Scan to explore
-            </div>
-            <div style={{
-              background: "#ffffff",
-              padding: 8,
-              borderRadius: 6,
-              border: `2px solid ${accentColor}`,
-              lineHeight: 0,
-            }}>
-              <QRCodeSVG
-                value={qrUrl}
-                size={120}
-                fgColor="#111111"
-                bgColor="#ffffff"
-                level="M"
-              />
-            </div>
-          </div>
+          {url}
         </div>
       </div>
 

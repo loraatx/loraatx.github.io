@@ -9,11 +9,6 @@ export const AustinGolfCourses: React.FC = () => (
     accentColor="#2d7a1a"
     locationCount={20}
     appPath="/apps/reports/austin-golf-courses"
-    bullets={[
-      "20 golf facilities",
-      "Municipal, daily-fee & resort",
-      "Lions Municipal · Hancock · Jimmy Clay · Roy Kizer",
-      "Morris Williams · Grey Rock · Avery Ranch · etc.",
-    ]}
+    narrative="Austin's golf scene spans historic munis to Hill Country resorts. This report profiles 20 facilities — Lions, Hancock, Jimmy Clay, Morris Williams, Grey Rock, Avery Ranch, and more."
   />
 );

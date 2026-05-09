@@ -9,11 +9,6 @@ export const PoolOpenings: React.FC = () => (
     accentColor="#0ea5e9"
     locationCount={46}
     appPath="/apps/reports/PoolOpenings"
-    bullets={[
-      "22 aquatic facilities mapped",
-      "Pools, lap lanes & splash pads",
-      "Barton Springs · Deep Eddy · Stacy · Rosewood · Brentwood",
-      "Dittmar · Patterson · Bartholomew · Givens · etc.",
-    ]}
+    narrative="Austin operates one of Texas's most extensive public pool networks. This report profiles 22 facilities — Barton Springs, Deep Eddy, Stacy, Rosewood, Dittmar, Bartholomew, Givens, and more."
   />
 );

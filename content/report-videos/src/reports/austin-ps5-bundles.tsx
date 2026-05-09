@@ -9,11 +9,6 @@ export const AustinPs5Bundles: React.FC = () => (
     accentColor="#003087"
     locationCount={18}
     appPath="/apps/reports/austin-ps5-bundles"
-    bullets={[
-      "18 locations across 7 retailers",
-      "Big box, warehouse & game stores",
-      "Best Buy · Target · Walmart · Costco · Sam's Club",
-      "GameStop · Game Over · etc.",
-    ]}
+    narrative="Austin's PS5 retail market spans big-box, warehouse clubs, and indie game shops. This report profiles 18 locations at 7 retailers — Best Buy, Target, Walmart, Costco, GameStop, and more."
   />
 );

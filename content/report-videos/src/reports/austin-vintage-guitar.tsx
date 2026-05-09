@@ -9,11 +9,6 @@ export const AustinVintageGuitar: React.FC = () => (
     accentColor="#7D4F00"
     locationCount={9}
     appPath="/apps/reports/austin-vintage-guitar"
-    bullets={[
-      "9 guitar shops across Austin",
-      "Vintage, boutique & acoustic",
-      "Austin Vintage Guitars · South Austin Music · Moon Music",
-      "Austin Guitar House · Strait Music · Fiddler's Green · etc.",
-    ]}
+    narrative="Austin's live-music culture drives a thriving used-guitar market. This report profiles 9 shops — Austin Vintage Guitars, South Austin Music, Moon Music, Austin Guitar House, Strait Music, and more."
   />
 );

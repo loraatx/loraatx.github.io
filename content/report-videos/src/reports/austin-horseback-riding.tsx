@@ -9,11 +9,6 @@ export const AustinHorsebackRiding: React.FC = () => (
     accentColor="#8B4513"
     locationCount={17}
     appPath="/apps/reports/austin-horseback-riding"
-    bullets={[
-      "17 riding operations",
-      "Trail ranches, lessons & wellness",
-      "Southern Trails · Maverick · Willow · Bee Cave Riding",
-      "Texas Trail Rides · Tri-Star Farm · Manor Equestrian · etc.",
-    ]}
+    narrative="Austin's Hill Country setting supports an active riding scene from trail ranches to lesson barns. This report profiles 17 operations — Southern Trails, Maverick, Willow, Bee Cave Riding, and more."
   />
 );

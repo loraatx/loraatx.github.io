@@ -9,11 +9,6 @@ export const AustinChambers: React.FC = () => (
     accentColor="#6f4e37"
     locationCount={12}
     appPath="/apps/reports/austin-chambers"
-    bullets={[
-      "12 chambers across the metro",
-      "Regional, affinity & corridor orgs",
-      "Austin Chamber · LGBT Chamber · West Austin Chamber",
-      "Pflugerville · Round Rock · etc.",
-    ]}
+    narrative="Austin's chamber landscape spans regional, affinity, and corridor organizations. This report profiles 12 chambers — Austin Chamber, LGBT Chamber, West Austin, Pflugerville, Round Rock, and more."
   />
 );
