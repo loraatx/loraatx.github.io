@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "content/report-videos/src/**"
+      - "content/report-videos/public/**"
       - "content/report-videos/package.json"
   workflow_dispatch:
     inputs:

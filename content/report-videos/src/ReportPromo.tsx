@@ -84,7 +84,6 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
   const barW    = interpolate(frame, [0, 18],    [0, width], cl);
   const eyeOp   = interpolate(frame, [12, 32],   [0, 1],     cl);
-  // Cityscape stays subtle so text reads clearly on top
   const cityOp  = interpolate(frame, [0, 40],    [0, 0.3],   cl);
   const qrOp    = interpolate(frame, [20, 42],   [0, 1],     cl);
 
@@ -95,7 +94,6 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const paraOp  = interpolate(frame, [72, 95],   [0, 1],  cl);
   const paraY   = interpolate(frame, [72, 95],   [20, 0], cl);
 
-  // App screenshot slides in from the right after narrative appears
   const appSlideX = interpolate(frame, [105, 150], [500, 0], cl);
   const appOp     = interpolate(frame, [105, 150], [0, 0.6], cl);
 
@@ -104,12 +102,10 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   return (
     <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#f8f9fc" }}>
 
-      {/* Cityscape — dimmed so text stays legible */}
       <div style={{ position: "absolute", inset: 0, opacity: cityOp }}>
         <Cityscape width={width} height={height} accent={accentColor} />
       </div>
 
-      {/* App screenshot — slides in from right, sits behind text */}
       <div style={{
         position: "absolute",
         right: 48,
@@ -146,10 +142,8 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         </div>
       </div>
 
-      {/* Accent bar */}
       <div style={{ position: "absolute", top: 0, left: 0, width: barW, height: 7, background: accentColor }} />
 
-      {/* Content — z-index above screenshot so text bleeds over image */}
       <div style={{
         position: "absolute",
         inset: 0,
@@ -159,10 +153,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         zIndex: 1,
       }}>
 
-        {/* Top row: QR left + Eyebrow right */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 28, marginBottom: 20 }}>
-
-          {/* QR — top left */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, opacity: qrOp, flexShrink: 0 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: "rgba(0,0,0,0.45)", letterSpacing: "0.08em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
               Scan to get report
@@ -171,22 +162,17 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
               <QRCodeSVG value={qrUrl} size={96} fgColor="#111111" bgColor="#ffffff" level="M" />
             </div>
           </div>
-
-          {/* Eyebrow */}
           <div style={{ fontSize: 72, fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.15, color: accentColor, opacity: eyeOp }}>
             {eyebrow}
           </div>
         </div>
 
-        {/* Title */}
         <div style={{ fontSize: 96, fontWeight: 800, color: "#111827", lineHeight: 1.08, letterSpacing: "-0.015em", transform: `translateY(${titleY}px)`, opacity: titleS, marginBottom: 20 }}>
           {title}
         </div>
 
-        {/* Divider */}
         <div style={{ width: divW, height: 2, background: `linear-gradient(90deg, ${accentColor}, transparent)`, marginBottom: 24, borderRadius: 1 }} />
 
-        {/* Narrative + fixed map app line */}
         <div style={{ fontSize: 40, fontWeight: 700, color: "#1f2937", lineHeight: 1.45, opacity: paraOp, transform: `translateY(${paraY}px)`, maxWidth: "65%" }}>
           {narrative}
           <span style={{ display: "block", marginTop: 10, color: accentColor }}>
