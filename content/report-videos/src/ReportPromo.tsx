@@ -1,10 +1,8 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Img,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -82,20 +80,17 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  const barW    = interpolate(frame, [0, 18],    [0, width], cl);
-  const eyeOp   = interpolate(frame, [12, 32],   [0, 1],     cl);
-  const cityOp  = interpolate(frame, [0, 40],    [0, 0.3],   cl);
-  const qrOp    = interpolate(frame, [20, 42],   [0, 1],     cl);
+  const barW   = interpolate(frame, [0, 18],  [0, width], cl);
+  const eyeOp  = interpolate(frame, [12, 32], [0, 1],     cl);
+  const cityOp = interpolate(frame, [0, 40],  [0, 1],     cl);
+  const qrOp   = interpolate(frame, [20, 42], [0, 1],     cl);
 
-  const titleS  = spring({ fps, frame: frame - 18, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
-  const titleY  = interpolate(titleS, [0, 1], [26, 0]);
+  const titleS = spring({ fps, frame: frame - 18, config: { damping: 18, stiffness: 80, mass: 0.8 }, from: 0, to: 1, durationInFrames: 35 });
+  const titleY = interpolate(titleS, [0, 1], [26, 0]);
 
-  const divW    = interpolate(frame, [48, 74],   [0, width - 140], cl);
-  const paraOp  = interpolate(frame, [72, 95],   [0, 1],  cl);
-  const paraY   = interpolate(frame, [72, 95],   [20, 0], cl);
-
-  const appSlideX = interpolate(frame, [105, 150], [500, 0], cl);
-  const appOp     = interpolate(frame, [105, 150], [0, 0.6], cl);
+  const divW   = interpolate(frame, [48, 74], [0, width - 140], cl);
+  const paraOp = interpolate(frame, [72, 95], [0, 1],  cl);
+  const paraY  = interpolate(frame, [72, 95], [20, 0], cl);
 
   const qrUrl = reportUrl ?? `https://anatomy.city${appPath}`;
 
@@ -106,52 +101,9 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         <Cityscape width={width} height={height} accent={accentColor} />
       </div>
 
-      <div style={{
-        position: "absolute",
-        right: 48,
-        top: "50%",
-        transform: `translateX(${appSlideX}px) translateY(-50%)`,
-        opacity: appOp,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 8,
-        zIndex: 0,
-      }}>
-        <Img
-          src={staticFile("app-screenshot.png")}
-          style={{
-            width: 250,
-            borderRadius: 12,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
-            border: "3px solid rgba(255,255,255,0.7)",
-            display: "block",
-          }}
-        />
-        <div style={{
-          fontSize: 14,
-          fontWeight: 700,
-          color: "rgba(0,0,0,0.4)",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          background: "rgba(255,255,255,0.6)",
-          padding: "3px 10px",
-          borderRadius: 4,
-        }}>
-          Example app
-        </div>
-      </div>
-
       <div style={{ position: "absolute", top: 0, left: 0, width: barW, height: 7, background: accentColor }} />
 
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        padding: "44px 70px 36px",
-        display: "flex",
-        flexDirection: "column",
-        zIndex: 1,
-      }}>
+      <div style={{ position: "absolute", inset: 0, padding: "44px 70px 36px", display: "flex", flexDirection: "column" }}>
 
         <div style={{ display: "flex", alignItems: "flex-start", gap: 28, marginBottom: 20 }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, opacity: qrOp, flexShrink: 0 }}>
@@ -173,11 +125,8 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
         <div style={{ width: divW, height: 2, background: `linear-gradient(90deg, ${accentColor}, transparent)`, marginBottom: 24, borderRadius: 1 }} />
 
-        <div style={{ fontSize: 40, fontWeight: 700, color: "#1f2937", lineHeight: 1.45, opacity: paraOp, transform: `translateY(${paraY}px)`, maxWidth: "65%" }}>
+        <div style={{ fontSize: 40, fontWeight: 700, color: "#1f2937", lineHeight: 1.45, opacity: paraOp, transform: `translateY(${paraY}px)`, maxWidth: "90%" }}>
           {narrative}
-          <span style={{ display: "block", marginTop: 10, color: accentColor }}>
-            Each report includes a custom interactive map app.
-          </span>
         </div>
 
       </div>
