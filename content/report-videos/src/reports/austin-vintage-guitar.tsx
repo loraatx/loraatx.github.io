@@ -3,12 +3,12 @@ import { ReportPromo } from "../ReportPromo";
 
 export const AustinVintageGuitar: React.FC = () => (
   <ReportPromo
-    title="Vintage & Used Guitar Shops"
-    eyebrow="City Anatomy Free Report: AUSTIN SHOPPING - Vintage & Used Guitars"
+    title="Austin Vintage Guitar"
+    eyebrow="City Anatomy Shopping Report - Austin"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#7D4F00"
     locationCount={9}
     appPath="/apps/reports/austin-vintage-guitar"
-    narrative="Austin's live-music culture drives a thriving used-guitar market. This report profiles 9 shops — Austin Vintage Guitars, South Austin Music, Moon Music, Austin Guitar House, Strait Music, and more."
+    narrative="Austin's music scene runs deep — and so do its guitar shops. Discover 9 stores where players and collectors find vintage, boutique, and used instruments at every price. Austin Vintage Guitars, South Austin Music, Strait Music, and more."
   />
 );

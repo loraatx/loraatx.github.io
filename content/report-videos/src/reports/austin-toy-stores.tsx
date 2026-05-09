@@ -3,12 +3,12 @@ import { ReportPromo } from "../ReportPromo";
 
 export const AustinToyStores: React.FC = () => (
   <ReportPromo
-    title="Toy Stores & Children's Specialty Retailers"
-    eyebrow="City Anatomy Free Report: AUSTIN SHOPPING - Toy Stores"
+    title="Austin Toy Stores"
+    eyebrow="City Anatomy Shopping Report - Austin"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#d4380d"
     locationCount={8}
     appPath="/apps/reports/austin-toy-stores"
-    narrative="Austin's toy market favors long-running independents over chains. This report profiles 8 stores spanning independent, educational, and collectible shops — Terra Toys, Toy Joy, Lakeshore, Monkey See Monkey Do, and more."
+    narrative="Austin's toy scene goes far beyond big-box retail. Discover 8 curated shops — long-running independents, educational specialists, and museum outposts. Terra Toys, Toy Joy, Lakeshore, Monkey See Monkey Do, and more inside."
   />
 );

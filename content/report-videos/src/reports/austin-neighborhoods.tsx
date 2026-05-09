@@ -3,12 +3,12 @@ import { ReportPromo } from "../ReportPromo";
 
 export const AustinNeighborhoods: React.FC = () => (
   <ReportPromo
-    title="Historic & Emerging Neighborhoods"
-    eyebrow="City Anatomy Free Report: AUSTIN CITY GOVERNMENT - Neighborhoods"
+    title="Austin Neighborhoods"
+    eyebrow="City Anatomy City Government Report - Austin"
     subtitle="Greater Austin · Product Intelligence Report"
     accentColor="#2B6CB0"
     locationCount={33}
     appPath="/apps/reports/austin-neighborhoods"
-    narrative="Austin's neighborhoods range from 19th-century historic districts to master-planned suburbs. This report profiles 33 — Hyde Park, Travis Heights, Mueller, Zilker, The Domain, Circle C, and more."
+    narrative="Austin is one of America's fastest-changing cities — and its neighborhoods tell the story. Discover 33 districts: historic enclaves to master-planned suburbs. Hyde Park, Travis Heights, Mueller, Zilker, The Domain, Circle C, and more."
   />
 );

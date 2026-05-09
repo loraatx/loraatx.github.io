@@ -118,17 +118,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
   const paraOp = interpolate(frame, [72, 95],   [0, 1],  cl);
   const paraY  = interpolate(frame, [72, 95],   [20, 0], cl);
 
-  const ctaOp  = interpolate(frame, [162, 180], [0, 1],  cl);
-
-  const url    = `anatomy.city${appPath}`;
   const qrUrl  = reportUrl ?? `https://anatomy.city${appPath}`;
-
-  // Parse eyebrow: "Prefix: BOLD - suffix"
-  const colonIdx = eyebrow.indexOf(": ");
-  const dashIdx  = eyebrow.indexOf(" - ");
-  const prefix   = colonIdx > -1 ? eyebrow.slice(0, colonIdx + 2) : eyebrow;
-  const bold     = colonIdx > -1 && dashIdx > -1 ? eyebrow.slice(colonIdx + 2, dashIdx) : "";
-  const suffix   = dashIdx  > -1 ? eyebrow.slice(dashIdx) : "";
 
   return (
     <AbsoluteFill style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", overflow: "hidden", background: "#f8f9fc" }}>
@@ -148,7 +138,6 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
         padding: "44px 70px 36px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
       }}>
         <div>
           {/* Top row: QR (left) + Eyebrow (right) */}
@@ -164,10 +153,10 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
               flexShrink: 0,
             }}>
               <div style={{
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 700,
                 color: "rgba(0,0,0,0.45)",
-                letterSpacing: "0.1em",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 whiteSpace: "nowrap",
               }}>
@@ -182,7 +171,7 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
               }}>
                 <QRCodeSVG
                   value={qrUrl}
-                  size={80}
+                  size={96}
                   fgColor="#111111"
                   bgColor="#ffffff"
                   level="M"
@@ -192,21 +181,20 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
             {/* Eyebrow */}
             <div style={{
-              fontSize: 26,
-              letterSpacing: "0.08em",
+              fontSize: 72,
+              fontWeight: 800,
+              letterSpacing: "-0.01em",
+              lineHeight: 1.15,
               color: accentColor,
               opacity: eyeOp,
-              paddingTop: 4,
             }}>
-              <span style={{ fontWeight: 400 }}>{prefix}</span>
-              <span style={{ fontWeight: 800 }}>{bold}</span>
-              <span style={{ fontWeight: 400 }}>{suffix}</span>
+              {eyebrow}
             </div>
           </div>
 
           {/* Title */}
           <div style={{
-            fontSize: 84,
+            fontSize: 96,
             fontWeight: 800,
             color: "#111827",
             lineHeight: 1.08,
@@ -229,8 +217,8 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
 
           {/* Narrative paragraph */}
           <div style={{
-            fontSize: 36,
-            fontWeight: 500,
+            fontSize: 40,
+            fontWeight: 700,
             color: "#1f2937",
             lineHeight: 1.45,
             opacity: paraOp,
@@ -241,16 +229,6 @@ export const ReportPromo: React.FC<ReportPromoProps> = ({
           </div>
         </div>
 
-        {/* Footer: URL label */}
-        <div style={{
-          fontSize: 18,
-          fontWeight: 700,
-          color: accentColor,
-          letterSpacing: "0.04em",
-          opacity: ctaOp,
-        }}>
-          {url}
-        </div>
       </div>
 
     </AbsoluteFill>
