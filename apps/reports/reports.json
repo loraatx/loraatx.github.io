@@ -1,7 +1,7 @@
 [
   {
     "id": "austin-chambers",
-    "category": "City Government",
+    "category": "City Gov",
     "title": "Austin-Area Chambers of Commerce",
     "eyebrow": "Austin Metro · Report",
     "blurb": "Regional, affinity, and corridor chambers mapped across Greater Austin.",
@@ -10,7 +10,7 @@
   },
   {
     "id": "austin-neighborhoods",
-    "category": "City Government",
+    "category": "City Gov",
     "title": "Historic and Emerging Neighborhoods of Austin, Texas",
     "eyebrow": "Austin Metro · Report",
     "blurb": "A survey of central, historic, and master-planned Austin communities.",
