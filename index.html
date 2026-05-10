@@ -70,7 +70,7 @@
       const cardsContainer = document.getElementById('report-cards');
       if (!frame || !categoryNav || !cardsContainer) return;
 
-      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Government'];
+      const CATEGORY_ORDER = ['Shopping', 'Recreation', 'City Gov'];
 
       fetch('/apps/reports/reports.json')
         .then(r => r.ok ? r.json() : [])

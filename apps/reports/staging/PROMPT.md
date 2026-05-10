@@ -33,7 +33,7 @@ front-matter block — do not change the format.
 ---
 title: [Full descriptive report title, e.g. "Vintage Guitar Shops in Greater Austin"]
 subtitle: [One-line description, e.g. "Independent dealers, consignment, and repair specialists"]
-category: [Shopping | Recreation | City Government]
+category: [Shopping | Recreation | City Gov]
 accent: #[A hex color that fits the topic — earthy for outdoors, bold for retail, etc.]
 slug: austin-[kebab-case-topic, e.g. "austin-vintage-guitar"]
 featured_location_1: [Exact name of the 1st highlighted location — will get a photo]

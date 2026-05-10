@@ -30,7 +30,7 @@ apps/reports/
 Everything else is copied unchanged from `template/`. Only these two files are customized:
 
 | File | Purpose |
-|------|---------|
+|------|--------|
 | `config.js` | Title, theme, map center, filters, columns, popup fields |
 | `data.geojson` | Location data for the topic |
 
@@ -57,7 +57,8 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 
 ### Scene 2 — Location highlight
 - Camera: fly close to a featured location (zoom 14–16, pitch 50–55)
-- Popup: title, subtitle (address), `body` (3 sentences of context), `stats` table, `link` back to report
+- Popup: title, subtitle (address), **`image`: always `{ "src": "image2.png", "alt": "<location name>", "caption": "<one-line description>" }`**, `body` (3 sentences of context), `stats` table, `link` back to report
+- `image2.png` is always the photo of `featured_location_1` (scene 2 subject) — copy it from staging alongside the other images
 
 ### Scene 3 — Closing CTA
 - Camera: fly back to city-wide overview (same coords as scene 1)
@@ -67,8 +68,9 @@ Every storymap follows the same 3-scene structure. Only the camera coordinates a
 ### story.json popup field reference
 
 | Field | Renders as |
-|-------|-----------|
+|-------|----------|
 | `video` | `{ src }` — plays local mp4 fullscreen in popup; **scene 1 only, no other fields** |
+| `nav` | `{ name, city }` — renders Google / Apple / Waze / Reddit buttons; add to scene 2 location popup |
 | `body` | Up to 3 bullet points (split by sentence-ending punctuation) |
 | `image` | `{ src, alt, caption }` — full-width image above body |
 | `stats` | `[{ label, value }]` — two-column table |
@@ -119,7 +121,7 @@ Use lowercase kebab-case matching the topic, e.g. `austin-coffee-shops`, `austin
 ```json
 {
   "id": "{slug}",
-  "category": "Shopping | Recreation | City Government",
+  "category": "Shopping | Recreation | City Gov",
   "title": "Full report title",
   "eyebrow": "Austin Metro · Report",
   "blurb": "One-sentence description for the homepage card.",
