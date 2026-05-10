@@ -27,11 +27,6 @@ const slugArg = args.find(a => !a.startsWith('--')) || null;
 async function main() {
   const template = fs.readFileSync(TEMPLATE, 'utf-8');
 
-  fs.mkdirSync(OUT_DIR, { recursive: true });
-
-  // Copy GSAP into out/ so compositions can load it without a CDN fetch
-  fs.copyFileSync(GSAP_SRC, path.join(OUT_DIR, 'gsap.min.js'));
-
   const slugs = slugArg
     ? [slugArg]
     : fs.readdirSync(REPORTS_DIR)
@@ -64,15 +59,19 @@ async function main() {
       .replaceAll('{{ACCENT}}', cfg.accentColor)
       .replaceAll('{{QR_SVG}}', qrSvg);
 
-    const outFile = path.join(OUT_DIR, `${slug}.html`);
-    fs.writeFileSync(outFile, html, 'utf-8');
-    console.log(`Built: out/${slug}.html`);
+    // Each slug gets its own subdirectory so `hyperframes render out/{slug}/`
+    // matches the CLI's expected [dir] argument format.
+    const slugDir = path.join(OUT_DIR, slug);
+    fs.mkdirSync(slugDir, { recursive: true });
+    fs.writeFileSync(path.join(slugDir, 'index.html'), html, 'utf-8');
+    fs.copyFileSync(GSAP_SRC, path.join(slugDir, 'gsap.min.js'));
+    console.log(`Built: out/${slug}/index.html`);
 
     if (shouldRender) {
       const mp4Out = outputPath(slug);
       console.log(`Rendering ${slug} → ${mp4Out}`);
       execSync(
-        `npx hyperframes render "${outFile}" --fps 30 --output "${mp4Out}"`,
+        `npx hyperframes render "${slugDir}" --fps 30 --output "${mp4Out}"`,
         { stdio: 'inherit', cwd: ROOT }
       );
     }
