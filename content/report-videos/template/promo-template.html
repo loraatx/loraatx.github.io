@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script src="./gsap.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: #0a0a0f;
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+
+    #comp {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+    }
+
+    #bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    #bg-glow {
+      position: absolute;
+      right: -100px;
+      bottom: -100px;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, {{ACCENT}}28 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    #bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 7px;
+      width: 0;
+      background: {{ACCENT}};
+    }
+
+    #content {
+      position: absolute;
+      inset: 0;
+      padding: 48px 72px 44px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #top-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    #qr-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      opacity: 0;
+    }
+
+    #qr-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.38);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    #qr-frame {
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 8px;
+      border: 2.5px solid {{ACCENT}};
+      box-shadow: 0 0 22px {{ACCENT}}38;
+      line-height: 0;
+    }
+
+    #qr-frame svg {
+      display: block;
+      width: 104px;
+      height: 104px;
+    }
+
+    #eyebrow {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: {{ACCENT}};
+      opacity: 0;
+      padding-top: 6px;
+      line-height: 1.3;
+    }
+
+    #title {
+      font-size: 92px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+      opacity: 0;
+    }
+
+    #divider {
+      height: 3px;
+      background: linear-gradient(90deg, {{ACCENT}} 0%, {{ACCENT}}00 100%);
+      border-radius: 2px;
+      margin-bottom: 28px;
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    #narrative {
+      font-size: 34px;
+      font-weight: 600;
+      color: #bcc5d8;
+      line-height: 1.52;
+      max-width: 88%;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="comp"
+       data-composition-id="report-promo"
+       data-width="1280"
+       data-height="720"
+       data-duration="10">
+
+    <div id="bg-grid"></div>
+    <div id="bg-glow"></div>
+    <div id="bar"></div>
+
+    <div id="content">
+      <div id="top-row">
+        <div id="qr-block">
+          <div id="qr-label">Scan to get report</div>
+          <div id="qr-frame">{{QR_SVG}}</div>
+        </div>
+        <div id="eyebrow">{{EYEBROW}}</div>
+      </div>
+
+      <div id="title">{{TITLE}}</div>
+      <div id="divider"></div>
+      <div id="narrative">{{NARRATIVE}}</div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#bar',
+      { width: 0 },
+      { width: '100%', duration: 0.6, ease: 'power2.out' },
+      0
+    );
+
+    tl.fromTo('#qr-block',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+      0.4
+    );
+
+    tl.fromTo('#eyebrow',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.7, ease: 'power1.out' },
+      0.5
+    );
+
+    tl.fromTo('#title',
+      { opacity: 0, y: 26 },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'back.out(1.7)' },
+      0.75
+    );
+
+    tl.fromTo('#divider',
+      { scaleX: 0 },
+      { scaleX: 1, duration: 0.8, ease: 'power2.inOut' },
+      1.9
+    );
+
+    tl.fromTo('#narrative',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+      2.7
+    );
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines['report-promo'] = tl;
+  </script>
+</body>
+</html>

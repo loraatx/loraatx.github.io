@@ -1,31 +1,22 @@
 {
-  "name": "report-videos",
-  "version": "1.0.0",
-  "description": "City Anatomy — report promo videos",
+  "name": "city-anatomy-report-videos",
+  "version": "2.0.0",
+  "description": "City Anatomy — report promo videos (Hyperframes + GSAP)",
   "scripts": {
-    "dev": "npx remotion studio",
-    "render": "npx remotion render",
-    "render:bike-shops": "npx remotion render austin-bike-shops       ../../apps/reports/austin-bike-shops/storymap/promo.mp4",
-    "render:chambers": "npx remotion render austin-chambers          ../../apps/reports/austin-chambers/storymap/promo.mp4",
-    "render:golf-courses": "npx remotion render austin-golf-courses      ../../apps/reports/austin-golf-courses/storymap/promo.mp4",
-    "render:horseback-riding": "npx remotion render austin-horseback-riding  ../../apps/reports/austin-horseback-riding/storymap/promo.mp4",
-    "render:neighborhoods": "npx remotion render austin-neighborhoods     ../../apps/reports/austin-neighborhoods/storymap/promo.mp4",
-    "render:ps5-bundles": "npx remotion render austin-ps5-bundles       ../../apps/reports/austin-ps5-bundles/storymap/promo.mp4",
-    "render:toy-stores": "npx remotion render austin-toy-stores        ../../apps/reports/austin-toy-stores/storymap/promo.mp4",
-    "render:vintage-guitar": "npx remotion render austin-vintage-guitar    ../../apps/reports/austin-vintage-guitar/storymap/promo.mp4",
-    "render:pool-openings": "npx remotion render pool-openings            ../../apps/reports/PoolOpenings/storymap/promo.mp4",
-    "render:all": "npm run render:bike-shops && npm run render:chambers && npm run render:golf-courses && npm run render:horseback-riding && npm run render:neighborhoods && npm run render:ps5-bundles && npm run render:toy-stores && npm run render:vintage-guitar && npm run render:pool-openings"
-  },
-  "dependencies": {
-    "@remotion/cli": "4.0.450",
-    "qrcode.react": "^4.2.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "remotion": "4.0.450"
+    "build": "node build.js",
+    "render:bike-shops":       "node build.js austin-bike-shops --render",
+    "render:chambers":         "node build.js austin-chambers --render",
+    "render:golf-courses":     "node build.js austin-golf-courses --render",
+    "render:horseback-riding": "node build.js austin-horseback-riding --render",
+    "render:neighborhoods":    "node build.js austin-neighborhoods --render",
+    "render:ps5-bundles":      "node build.js austin-ps5-bundles --render",
+    "render:toy-stores":       "node build.js austin-toy-stores --render",
+    "render:vintage-guitar":   "node build.js austin-vintage-guitar --render",
+    "render:pool-openings":    "node build.js pool-openings --render",
+    "render:all":              "node build.js --render"
   },
   "devDependencies": {
-    "@types/react": "18.3.1",
-    "@types/react-dom": "18.3.1",
-    "typescript": "5.4.5"
+    "gsap": "^3.12.0",
+    "qrcode": "^1.5.4"
   }
 }
