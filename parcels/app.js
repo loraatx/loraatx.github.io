@@ -88,6 +88,11 @@
   });
 
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), 'top-right');
+  map.addControl(new maplibregl.GeolocateControl({
+    positionOptions:  { enableHighAccuracy: true },
+    trackUserLocation: true,
+    showUserHeading:   true
+  }), 'top-right');
   map.addControl(new maplibregl.ScaleControl({ maxWidth: 120, unit: 'imperial' }), 'bottom-left');
 
   // --- Zoom-hint banner -----------------------------------------------------

@@ -67,12 +67,14 @@
 
   function open() {
     if (!mounted) return;
+    document.body.classList.add('drawer-open');
     elDrawer.setAttribute('aria-hidden', 'false');
     elDrawer.classList.add('is-open');
   }
 
   function close() {
     if (!mounted) return;
+    document.body.classList.remove('drawer-open');
     elDrawer.classList.remove('is-open');
     elDrawer.setAttribute('aria-hidden', 'true');
     elDrawer.style.transform = '';

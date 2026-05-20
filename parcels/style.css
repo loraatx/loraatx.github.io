@@ -330,6 +330,18 @@ html, body {
   font-size: 0.82rem;
 }
 
+/* ── MapLibre controls — slide left when drawer is open ─────────────── */
+.maplibregl-ctrl-top-right {
+  transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.drawer-open .maplibregl-ctrl-top-right {
+  right: 388px; /* 380px drawer + 8px gap */
+}
+/* On mobile the drawer is full-width; don't shift controls (they're hidden anyway) */
+@media (max-width: 600px) {
+  body.drawer-open .maplibregl-ctrl-top-right { right: 8px; }
+}
+
 /* ── MapLibre controls readability ──────────────────────────────────── */
 .maplibregl-ctrl-attrib {
   background: color-mix(in srgb, var(--surface) 85%, transparent);
