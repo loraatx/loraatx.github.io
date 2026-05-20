@@ -67,17 +67,15 @@
 
   function open() {
     if (!mounted) return;
-    elDrawer.hidden = false;
     elDrawer.setAttribute('aria-hidden', 'false');
-    requestAnimationFrame(() => elDrawer.classList.add('is-open'));
+    elDrawer.classList.add('is-open');
   }
 
   function close() {
     if (!mounted) return;
     elDrawer.classList.remove('is-open');
     elDrawer.setAttribute('aria-hidden', 'true');
-    // Match transition duration (style.css). Fall back to immediate hide.
-    setTimeout(() => { if (!elDrawer.classList.contains('is-open')) elDrawer.hidden = true; }, 250);
+    elDrawer.style.transform = '';
   }
 
   // ----- panel renderers --------------------------------------------------
@@ -222,6 +220,68 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && elDrawer.classList.contains('is-open')) close();
     });
+
+    // Swipe-to-close gesture.
+    // Desktop: drag the handle rightward. Mobile: swipe anywhere on the drawer.
+    // Distinguishes horizontal swipe from vertical scroll by checking which
+    // axis moves first.
+    (function wireSwipe() {
+      let startX = null, startY = null, dragging = false;
+
+      function onDown(clientX, clientY) {
+        startX = clientX; startY = clientY; dragging = false;
+      }
+      function onMove(clientX, clientY, preventDefault) {
+        if (startX === null) return;
+        const dx = clientX - startX;
+        const dy = Math.abs(clientY - startY);
+        if (!dragging) {
+          if (dy > 8)  { startX = null; return; }   // vertical scroll wins
+          if (dx > 8)  dragging = true;
+        }
+        if (dragging && dx > 0) {
+          preventDefault();
+          elDrawer.style.transform = `translateX(${dx}px)`;
+        }
+      }
+      function onUp(clientX) {
+        if (!dragging) { startX = null; return; }
+        const dx = clientX - startX;
+        startX = null; dragging = false;
+        elDrawer.style.transform = '';
+        if (dx > 80) close();
+      }
+      function onCancel() {
+        startX = null; dragging = false;
+        elDrawer.style.transform = '';
+      }
+
+      // Handle (desktop pointer events)
+      const handle = elDrawer.querySelector('.drawer-handle');
+      if (handle) {
+        handle.addEventListener('pointerdown', e => {
+          onDown(e.clientX, e.clientY);
+          handle.setPointerCapture(e.pointerId);
+        });
+        handle.addEventListener('pointermove', e => onMove(e.clientX, e.clientY, () => e.preventDefault()));
+        handle.addEventListener('pointerup',   e => onUp(e.clientX));
+        handle.addEventListener('pointercancel', onCancel);
+      }
+
+      // Full drawer (touch events on mobile)
+      elDrawer.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        onDown(t.clientX, t.clientY);
+      }, { passive: true });
+      elDrawer.addEventListener('touchmove', e => {
+        const t = e.touches[0];
+        onMove(t.clientX, t.clientY, () => e.preventDefault());
+      }, { passive: false });
+      elDrawer.addEventListener('touchend', e => {
+        onUp(e.changedTouches[0].clientX);
+      });
+      elDrawer.addEventListener('touchcancel', onCancel);
+    }());
 
     mounted = true;
     return true;
