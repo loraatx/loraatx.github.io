@@ -205,6 +205,74 @@
     }
   });
 
+  // --- Filter integration ---------------------------------------------------
+  // filter.js emits `parcelfilterchange` when the user adjusts the search
+  // panel. We translate the active filter into a server query (search_parcels
+  // RPC, scoped to the current viewport) and de-emphasise non-matching
+  // parcels with a paint expression. Every parcel stays present and clickable,
+  // so the existing click -> drawer flow is unaffected.
+  const FILL_OPACITY = 0.55;
+  let activeFilter = null;
+  let filterSeq = 0;
+
+  function clearParcelHighlight() {
+    if (!map.getLayer('parcels-fill')) return;
+    map.setPaintProperty('parcels-fill', 'fill-opacity', FILL_OPACITY);
+    map.setPaintProperty('parcels-line', 'line-opacity', 1);
+  }
+
+  function applyParcelHighlight(ids) {
+    if (!map.getLayer('parcels-fill')) return;
+    const match = ['in', ['id'], ['literal', ids]];
+    map.setPaintProperty('parcels-fill', 'fill-opacity',
+      ['case', match, 0.72, 0.06]);
+    map.setPaintProperty('parcels-line', 'line-opacity',
+      ['case', match, 1, 0.1]);
+  }
+
+  async function runParcelFilter() {
+    if (!activeFilter) { clearParcelHighlight(); return; }
+    const seq = ++filterSeq;
+    document.dispatchEvent(new CustomEvent('parcelfilterresult',
+      { detail: { loading: true } }));
+    const b = map.getBounds();
+    try {
+      const ids = await window.ParcelAPI.searchParcels({
+        categories:  activeFilter.categories,
+        farMin:      activeFilter.farMin,
+        farMax:      activeFilter.farMax,
+        heightMin:   activeFilter.heightMin,
+        heightMax:   activeFilter.heightMax,
+        permitAfter: activeFilter.permitAfter,
+        west: b.getWest(),  south: b.getSouth(),
+        east: b.getEast(),  north: b.getNorth()
+      });
+      if (seq !== filterSeq) return;          // a newer request superseded us
+      applyParcelHighlight(ids);
+      document.dispatchEvent(new CustomEvent('parcelfilterresult',
+        { detail: { count: ids.length } }));
+    } catch (err) {
+      if (seq !== filterSeq) return;
+      console.warn('[parcels] search failed', err);
+      document.dispatchEvent(new CustomEvent('parcelfilterresult',
+        { detail: { error: (err && err.message) || 'Search failed' } }));
+    }
+  }
+
+  document.addEventListener('parcelfilterchange', (e) => {
+    activeFilter = (e.detail && e.detail.active) ? e.detail : null;
+    if (activeFilter) {
+      runParcelFilter();
+    } else {
+      clearParcelHighlight();
+      document.dispatchEvent(new CustomEvent('parcelfilterresult',
+        { detail: { count: null } }));
+    }
+  });
+
+  // Re-scope the search to the viewport whenever the user pans or zooms.
+  map.on('moveend', () => { if (activeFilter) runParcelFilter(); });
+
   // --- Source-load diagnostics ---------------------------------------------
   map.on('error', (e) => {
     console.warn('[parcels] map error', e && e.error ? e.error : e);

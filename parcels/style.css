@@ -85,6 +85,178 @@ html, body {
 }
 .map-brand:hover { opacity: 0.8; }
 
+/* ── Filter panel — floating card, top-left ────────────────────────── */
+.filter-panel {
+  position: fixed;
+  top: 52px;
+  left: 12px;
+  width: 290px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 130px);
+  z-index: 90;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-panel.is-collapsed {
+  transform: translateX(-100%);
+}
+
+/* Toggle handle — sticks out of the card's right edge, always visible. */
+.filter-toggle {
+  position: absolute;
+  right: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 56px;
+  appearance: none;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 3px 0 8px var(--shadow);
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.filter-toggle:hover { color: var(--text); }
+
+.filter-toggle-chevron {
+  display: block;
+  transition: transform 0.2s ease;
+}
+.filter-panel.is-collapsed .filter-toggle-chevron { transform: rotate(180deg); }
+
+.filter-inner {
+  padding: 0.9rem 1rem 1rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.filter-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.filter-clear {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 2px 4px;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--accent);
+  cursor: pointer;
+}
+.filter-clear:hover { text-decoration: underline; }
+
+.filter-group { margin-top: 0.85rem; }
+
+.filter-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip { cursor: pointer; }
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--text);
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.chip input:checked + span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.chip input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.range-row { display: flex; align-items: center; gap: 8px; }
+.range-sep { flex-shrink: 0; font-size: 0.8rem; color: var(--muted); }
+
+.filter-num,
+.filter-select {
+  width: 100%;
+  min-width: 0;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.filter-num:focus,
+.filter-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: var(--accent);
+}
+
+.filter-result {
+  margin: 1rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.filter-result[data-state="done"]    { color: var(--text); font-weight: 600; }
+.filter-result[data-state="loading"] { font-style: italic; }
+.filter-result[data-state="error"]   { color: #b00020; }
+
+@media (prefers-color-scheme: dark) {
+  .filter-result[data-state="error"] { color: #ff8080; }
+}
+
+@media (max-width: 600px) {
+  .filter-panel { top: 48px; max-height: calc(100vh - 160px); }
+}
+
 /* ── Drawer — fixed right overlay ──────────────────────────────────── */
 .drawer {
   position: fixed;

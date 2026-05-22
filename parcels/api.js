@@ -33,6 +33,29 @@
     return data;
   }
 
+  // Search/filter — multi-parcel counterpart to getConstraints. Returns the
+  // parcel_ids matching the given criteria within a viewport bbox. Backed by
+  // the search_parcels RPC (see scripts/sql/search_parcels.sql).
+  async function searchParcels(params) {
+    const p = params || {};
+    const cats = Array.isArray(p.categories) && p.categories.length
+      ? p.categories : null;
+    const { data, error } = await requireSb().rpc('search_parcels', {
+      p_categories:   cats,
+      p_far_min:      p.farMin      != null ? p.farMin      : null,
+      p_far_max:      p.farMax      != null ? p.farMax      : null,
+      p_height_min:   p.heightMin   != null ? p.heightMin   : null,
+      p_height_max:   p.heightMax   != null ? p.heightMax   : null,
+      p_permit_after: p.permitAfter != null ? p.permitAfter : null,
+      p_west:  p.west  != null ? p.west  : null,
+      p_south: p.south != null ? p.south : null,
+      p_east:  p.east  != null ? p.east  : null,
+      p_north: p.north != null ? p.north : null
+    });
+    if (error) throw error;
+    return (data || []).map(row => row.parcel_id);
+  }
+
   // Phase B / C placeholders — wire once their RPCs / Edge Function ship.
   async function getCases(/* parcelId */) {
     return { not_implemented: true };
@@ -46,6 +69,7 @@
     init(sb) { _sb = sb; },
     getParcel,
     getConstraints,
+    searchParcels,
     getCases,
     ask
   };
