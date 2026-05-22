@@ -58,7 +58,7 @@ as $$
     and (p_height_max is null or r.max_height_ft <= p_height_max)
     and (
       p_west is null or p_south is null or p_east is null or p_north is null
-      or p.centroid && st_makeenvelope(p_west, p_south, p_east, p_north, 4326)
+      or p.geom && st_makeenvelope(p_west, p_south, p_east, p_north, 4326)
     )
     and (
       p_permit_after is null
