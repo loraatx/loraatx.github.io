@@ -238,12 +238,11 @@
     const b = map.getBounds();
     try {
       const ids = await window.ParcelAPI.searchParcels({
-        categories:  activeFilter.categories,
-        farMin:      activeFilter.farMin,
-        farMax:      activeFilter.farMax,
-        heightMin:   activeFilter.heightMin,
-        heightMax:   activeFilter.heightMax,
-        permitAfter: activeFilter.permitAfter,
+        categories: activeFilter.categories,
+        farMin:     activeFilter.farMin,
+        farMax:     activeFilter.farMax,
+        heightMin:  activeFilter.heightMin,
+        heightMax:  activeFilter.heightMax,
         west: b.getWest(),  south: b.getSouth(),
         east: b.getEast(),  north: b.getNorth()
       });

@@ -238,6 +238,14 @@ html, body {
   border-color: var(--accent);
 }
 
+.filter-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: var(--muted);
+  font-style: italic;
+}
+
 .filter-result {
   margin: 1rem 0 0;
   padding-top: 0.7rem;

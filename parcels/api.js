@@ -41,12 +41,11 @@
     const cats = Array.isArray(p.categories) && p.categories.length
       ? p.categories : null;
     const { data, error } = await requireSb().rpc('search_parcels', {
-      p_categories:   cats,
-      p_far_min:      p.farMin      != null ? p.farMin      : null,
-      p_far_max:      p.farMax      != null ? p.farMax      : null,
-      p_height_min:   p.heightMin   != null ? p.heightMin   : null,
-      p_height_max:   p.heightMax   != null ? p.heightMax   : null,
-      p_permit_after: p.permitAfter != null ? p.permitAfter : null,
+      p_categories: cats,
+      p_far_min:    p.farMin    != null ? p.farMin    : null,
+      p_far_max:    p.farMax    != null ? p.farMax    : null,
+      p_height_min: p.heightMin != null ? p.heightMin : null,
+      p_height_max: p.heightMax != null ? p.heightMax : null,
       p_west:  p.west  != null ? p.west  : null,
       p_south: p.south != null ? p.south : null,
       p_east:  p.east  != null ? p.east  : null,

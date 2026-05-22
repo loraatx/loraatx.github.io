@@ -1,87 +1,80 @@
 -- scripts/sql/search_parcels.sql
 --
--- RPC the browser calls (via PostgREST `rpc/search_parcels`) to power the
--- parcel search/filter panel on /parcels/index.html.
+-- RPC called by the parcel filter panel on /parcels/index.html.
+-- Returns parcel_ids matching zoning/FAR/height criteria within a
+-- map-viewport bounding box. Scoping to the viewport keeps result
+-- sets small and rides the GiST index on parcels.geom.
 --
--- This is the multi-parcel counterpart to get_parcel_constraints: where that
--- function returns the zoning rules for one clicked parcel, this one returns
--- the parcel_ids of every parcel matching a set of filter criteria within a
--- map viewport. The viewport bbox keeps result sets bounded and fast — the
--- query rides the GiST index on parcels.centroid.
+-- All parameters are optional. Null means "no filter on this field".
 --
--- IMPORTANT: this is a read-only function. It creates NO tables and stores
--- NO rows; a function definition is a few KB of code in pg_proc and does not
--- count against the database size quota. Running it does not grow the DB.
+--   p_categories  text[]   — austin_zoning_rules.category values to include
+--   p_far_min     numeric  — minimum floor-area ratio
+--   p_far_max     numeric  — maximum floor-area ratio
+--   p_height_min  numeric  — minimum max_height_ft
+--   p_height_max  numeric  — maximum max_height_ft
+--   p_west/south/east/north numeric — viewport bbox in WGS-84 lon/lat
 --
--- Inputs (all optional; null = "don't filter on this"):
---   p_categories  text[]  -- austin_zoning_rules.category values to include
---   p_far_min     numeric -- min floor-area ratio
---   p_far_max     numeric -- max floor-area ratio
---   p_height_min  numeric -- min max_height_ft
---   p_height_max  numeric -- max max_height_ft
---   p_permit_after date   -- only parcels with a permit issued on/after this
---   p_west/p_south/p_east/p_north numeric -- viewport bbox in lon/lat (4326)
+-- Tables used: public.parcels, public.austin_zoning_rules (both exist).
+-- Creates no tables, stores no rows. Idempotent — safe to re-run.
 --
--- Output: setof rows { parcel_id text } — capped at 20000.
+-- NOTE: permit-activity filtering is intentionally NOT included here. The
+-- public.permits table is future work and does not yet exist in the live
+-- database; referencing it would make this CREATE FUNCTION fail. When that
+-- table is populated, add a p_permit_after date parameter and an
+-- `exists (select 1 from public.permits ...)` clause, then re-run this file.
 --
--- Anon-callable; security invoker so RLS on the underlying tables still
--- applies. Idempotent — replaces the function on re-run.
---
--- How to run: paste this whole file into the Supabase SQL editor and Run.
+-- How to run: paste into the Supabase SQL editor and click Run.
 
 set statement_timeout = 0;
 
 create or replace function public.search_parcels(
-  p_categories  text[]  default null,
-  p_far_min     numeric default null,
-  p_far_max     numeric default null,
-  p_height_min  numeric default null,
-  p_height_max  numeric default null,
-  p_permit_after date   default null,
-  p_west        numeric default null,
-  p_south       numeric default null,
-  p_east        numeric default null,
-  p_north       numeric default null
+  p_categories text[]  default null,
+  p_far_min    numeric default null,
+  p_far_max    numeric default null,
+  p_height_min numeric default null,
+  p_height_max numeric default null,
+  p_west       numeric default null,
+  p_south      numeric default null,
+  p_east       numeric default null,
+  p_north      numeric default null
 )
-returns table (parcel_id text)
+returns table(parcel_id text)
 language sql
 stable
 security invoker
 as $$
   select p.parcel_id
-  from public.parcels p
+  from   public.parcels p
   left join public.austin_zoning_rules r on r.base_zoning = p.zoning
-  where (p_categories is null or r.category = any (p_categories))
-    and (p_far_min    is null or r.far >= p_far_min)
-    and (p_far_max    is null or r.far <= p_far_max)
+  where
+    -- zoning category
+    (p_categories is null or r.category = any(p_categories))
+    -- FAR range
+    and (p_far_min is null or r.far >= p_far_min)
+    and (p_far_max is null or r.far <= p_far_max)
+    -- height range
     and (p_height_min is null or r.max_height_ft >= p_height_min)
     and (p_height_max is null or r.max_height_ft <= p_height_max)
+    -- viewport bbox (uses GiST index on parcels.geom)
     and (
-      p_west is null or p_south is null or p_east is null or p_north is null
+      p_west  is null or p_south is null
+      or p_east is null or p_north is null
       or p.geom && st_makeenvelope(p_west, p_south, p_east, p_north, 4326)
-    )
-    and (
-      p_permit_after is null
-      or exists (
-        select 1 from public.permits pm
-        where pm.parcel_id = p.parcel_id
-          and pm.issued_date >= p_permit_after
-      )
     )
   limit 20000;
 $$;
 
--- Anon callable.
 revoke all on function public.search_parcels(
-  text[], numeric, numeric, numeric, numeric, date,
+  text[], numeric, numeric, numeric, numeric,
   numeric, numeric, numeric, numeric
 ) from public;
+
 grant execute on function public.search_parcels(
-  text[], numeric, numeric, numeric, numeric, date,
+  text[], numeric, numeric, numeric, numeric,
   numeric, numeric, numeric, numeric
 ) to anon, authenticated;
 
--- Smoke test the user can run after install (Austin-wide bbox):
+-- Quick smoke test (run after installing):
 --   select count(*) from public.search_parcels(
---     array['commercial'], 1.0, null, null, null, null,
---     -98.20, 30.00, -97.40, 30.65);
+--     array['commercial'], 1.0, null, null, null,
+--     -97.80, 30.20, -97.60, 30.40);

@@ -65,12 +65,10 @@
 
       <div class="filter-group">
         <span class="filter-label">Building permits</span>
-        <select id="permit-since" class="filter-select" aria-label="Permit recency">
-          <option value="">Any time</option>
-          <option value="1">Permit in last 1 year</option>
-          <option value="2">Permit in last 2 years</option>
-          <option value="5">Permit in last 5 years</option>
+        <select id="permit-since" class="filter-select" aria-label="Permit recency" disabled>
+          <option>Coming soon</option>
         </select>
+        <p class="filter-hint">Filter by recent permit activity — available once the permits dataset is loaded.</p>
       </div>
 
       <p class="filter-result" id="filter-result" data-state="idle" aria-live="polite">

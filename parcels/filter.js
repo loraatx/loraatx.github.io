@@ -5,6 +5,9 @@
 // query and de-emphasises non-matching parcels on the map. app.js reports
 // back via `parcelfilterresult`, which updates the result badge.
 //
+// The "Building permits" control is a disabled stub — permit-activity
+// filtering is deferred until the permits dataset is loaded.
+//
 // No-ops gracefully when #filter-panel is absent (e.g. /parcels/embed.html).
 
 (function () {
@@ -16,7 +19,6 @@
   const elFarMax    = panel.querySelector('#far-max');
   const elHeightMin = panel.querySelector('#height-min');
   const elHeightMax = panel.querySelector('#height-max');
-  const elPermit    = panel.querySelector('#permit-since');
   const elClear     = panel.querySelector('#filter-clear');
   const elToggle    = panel.querySelector('#filter-toggle');
   const elResult    = panel.querySelector('#filter-result');
@@ -26,24 +28,14 @@
     return Number.isFinite(v) ? v : null;
   }
 
-  // Translate the "permit in last N years" select into an ISO cutoff date.
-  function permitAfterDate() {
-    const years = parseInt(elPermit.value, 10);
-    if (!Number.isFinite(years) || years <= 0) return null;
-    const d = new Date();
-    d.setFullYear(d.getFullYear() - years);
-    return d.toISOString().slice(0, 10);
-  }
-
   function collect() {
     return {
       categories: Array.from(elCategories)
         .filter(c => c.checked).map(c => c.value),
-      farMin:      num(elFarMin),
-      farMax:      num(elFarMax),
-      heightMin:   num(elHeightMin),
-      heightMax:   num(elHeightMax),
-      permitAfter: permitAfterDate()
+      farMin:    num(elFarMin),
+      farMax:    num(elFarMax),
+      heightMin: num(elHeightMin),
+      heightMax: num(elHeightMax)
     };
   }
 
@@ -52,8 +44,7 @@
     const active =
       s.categories.length > 0 ||
       s.farMin != null || s.farMax != null ||
-      s.heightMin != null || s.heightMax != null ||
-      s.permitAfter != null;
+      s.heightMin != null || s.heightMax != null;
     document.dispatchEvent(new CustomEvent('parcelfilterchange', {
       detail: Object.assign({ active }, s)
     }));
@@ -68,14 +59,12 @@
   elCategories.forEach(c => c.addEventListener('change', emitDebounced));
   [elFarMin, elFarMax, elHeightMin, elHeightMax]
     .forEach(i => i.addEventListener('input', emitDebounced));
-  elPermit.addEventListener('change', emitDebounced);
 
   elClear.addEventListener('click', () => {
     clearTimeout(debounceTimer);
     elCategories.forEach(c => { c.checked = false; });
     elFarMin.value = elFarMax.value = '';
     elHeightMin.value = elHeightMax.value = '';
-    elPermit.value = '';
     emit();
   });
 
