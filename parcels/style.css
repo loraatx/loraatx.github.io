@@ -246,8 +246,26 @@ html, body {
   font-style: italic;
 }
 
+.filter-search {
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 9px 12px;
+  appearance: none;
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.filter-search:hover { opacity: 0.9; }
+.filter-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 .filter-result {
-  margin: 1rem 0 0;
+  margin: 0.8rem 0 0;
   padding-top: 0.7rem;
   border-top: 1px solid var(--border);
   font-size: 0.82rem;

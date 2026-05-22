@@ -1,9 +1,10 @@
 // filter.js — controller for the parcel search/filter panel.
 //
-// Owns the filter panel UI only. It collects the user's criteria and emits a
-// `parcelfilterchange` event; app.js translates that into a search_parcels
-// query and de-emphasises non-matching parcels on the map. app.js reports
-// back via `parcelfilterresult`, which updates the result badge.
+// Owns the filter panel UI only. The user sets criteria, then presses
+// Search (or Enter in a number field) to run the query — nothing fires
+// automatically on input. Search emits a `parcelfilterchange` event;
+// app.js turns that into a search_parcels query and de-emphasises
+// non-matching parcels on the map, reporting back via `parcelfilterresult`.
 //
 // The "Building permits" control is a disabled stub — permit-activity
 // filtering is deferred until the permits dataset is loaded.
@@ -19,6 +20,7 @@
   const elFarMax    = panel.querySelector('#far-max');
   const elHeightMin = panel.querySelector('#height-min');
   const elHeightMax = panel.querySelector('#height-max');
+  const elSearch    = panel.querySelector('#filter-search');
   const elClear     = panel.querySelector('#filter-clear');
   const elToggle    = panel.querySelector('#filter-toggle');
   const elResult    = panel.querySelector('#filter-result');
@@ -39,7 +41,8 @@
     };
   }
 
-  function emit() {
+  // Run the search with whatever is currently in the form.
+  function runSearch() {
     const s = collect();
     const active =
       s.categories.length > 0 ||
@@ -50,22 +53,18 @@
     }));
   }
 
-  let debounceTimer = null;
-  function emitDebounced() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(emit, 400);
-  }
+  elSearch.addEventListener('click', runSearch);
 
-  elCategories.forEach(c => c.addEventListener('change', emitDebounced));
-  [elFarMin, elFarMax, elHeightMin, elHeightMax]
-    .forEach(i => i.addEventListener('input', emitDebounced));
+  // Enter inside any number field runs the search too.
+  [elFarMin, elFarMax, elHeightMin, elHeightMax].forEach(i => {
+    i.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+  });
 
   elClear.addEventListener('click', () => {
-    clearTimeout(debounceTimer);
     elCategories.forEach(c => { c.checked = false; });
     elFarMin.value = elFarMax.value = '';
     elHeightMin.value = elHeightMax.value = '';
-    emit();
+    runSearch();   // empty form -> active:false -> app.js clears the highlight
   });
 
   elToggle.addEventListener('click', () => {
@@ -89,7 +88,7 @@
     }
     if (d.count == null) {
       elResult.dataset.state = 'idle';
-      elResult.textContent = 'Adjust filters to find parcels';
+      elResult.textContent = 'Set filters and press Search';
       return;
     }
     elResult.dataset.state = 'done';
