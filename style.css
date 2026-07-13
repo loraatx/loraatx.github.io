@@ -950,6 +950,88 @@ main {
   }
 }
 
+/* ── Services page: flat, card-free treatment ─────────── */
+.services-page .docs-layout {
+  gap: 2.25rem;
+}
+
+.services-page .docs-nav {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.services-page .page-title {
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+}
+
+.services-page .nav-section,
+.services-page .nav-section:first-of-type {
+  border-top: none;
+  padding-top: 0.35rem;
+}
+
+.services-page .nav-links {
+  padding: 0.35rem 0 0;
+  gap: 0;
+}
+
+.services-page .nav-link {
+  border: none;
+  border-left: 2px solid var(--border);
+  border-radius: 0;
+  padding: 0.6rem 0 0.6rem 0.9rem;
+  color: var(--muted);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.services-page .nav-link:hover,
+.services-page .nav-link:focus-visible {
+  border-left-color: var(--accent);
+  box-shadow: none;
+  transform: none;
+  color: var(--text);
+}
+
+.services-page .nav-link.is-active {
+  border-left-color: var(--accent);
+  background: none;
+  box-shadow: none;
+  color: var(--text);
+}
+
+.services-page .map-panel {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.services-page .map-viewport {
+  border-radius: 10px;
+}
+
+.services-page .map-overlay {
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.services-page .detail-panel {
+  background: none;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1rem 0 0;
+}
+
 /* ── Tour popup ─────────────────────────────── */
 .maplibregl-popup-content {
   background: var(--surface);
